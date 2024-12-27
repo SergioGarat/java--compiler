@@ -28,6 +28,7 @@ public class Token {
         INST_IF,
         INST_ELSE,
         INST_ELIF,
+        INST_FOR,
         INST_WHILE,
         /* INST_FOR,
         INST_SWITCH,

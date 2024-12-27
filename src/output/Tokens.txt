@@ -395,9 +395,59 @@
 
 	SEMICOLON[;](40:12)
 
-	RBRACKET[}](41:0)
+	ID[numC](42:1)
 
-	EOF[](41:1)
+	COMMA[,](42:5)
+
+	ID[numD](42:7)
+
+	COMMA[,](42:11)
+
+	ID[numE](42:13)
+
+	TWO_POINTS[:](42:18)
+
+	ID[number](42:20)
+
+	OP_ASSIG[:=](42:27)
+
+	NUMBER[100](42:30)
+
+	SEMICOLON[;](42:33)
+
+	INSTR_PRINT[print](43:1)
+
+	LPAREN[(](43:6)
+
+	ID[numC](43:7)
+
+	RPAREN[)](43:11)
+
+	SEMICOLON[;](43:12)
+
+	INSTR_PRINT[print](44:1)
+
+	LPAREN[(](44:6)
+
+	ID[numD](44:7)
+
+	RPAREN[)](44:11)
+
+	SEMICOLON[;](44:12)
+
+	INSTR_PRINT[print](45:1)
+
+	LPAREN[(](45:6)
+
+	ID[numE](45:7)
+
+	RPAREN[)](45:11)
+
+	SEMICOLON[;](45:12)
+
+	RBRACKET[}](46:0)
+
+	EOF[](46:1)
 
 
 

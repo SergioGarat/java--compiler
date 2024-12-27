@@ -1,11 +1,7 @@
 package symbols;
 
-/**
- *
- * @author soyjo
- */
-public class SymbolBoolOp extends SymbolBase{ 
-    
+public class SymbolBoolOp extends SymbolBase {
+
     private String var_id;
     private Boolean value;
     private boolean isConst;
@@ -23,15 +19,15 @@ public class SymbolBoolOp extends SymbolBase{
         this.isConst = true;
     }
 
-    public String getVarId(){
+    public String getVarId() {
         return this.var_id;
     }
 
-    public boolean getIsConst(){
+    public boolean getIsConst() {
         return this.isConst;
     }
 
-    public Boolean getValue(){
+    public Boolean getValue() {
         return this.value;
     }
 }

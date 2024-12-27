@@ -1,15 +1,15 @@
 package symbols;
 
-public class SymbolNumberVal extends SymbolBase{
+public class SymbolNumberVal extends SymbolBase {
 
-	private Integer value;
+    private Integer value;
 
-	public SymbolNumberVal(int value) {
-		super("Symbol Number Value", 0);
-		this.value = value;
-	}
-	
-	public Integer getValue() {
-		return this.value;
-	}
+    public SymbolNumberVal(int value) {
+        super("Symbol Number Value", 0);
+        this.value = value;
+    }
+
+    public Integer getValue() {
+        return this.value;
+    }
 }

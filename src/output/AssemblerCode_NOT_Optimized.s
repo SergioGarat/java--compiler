@@ -266,7 +266,7 @@ main:
 # pmb PROC_main
 push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.
 mov %rsp, %rbp
-sub $24, %rsp
+sub $32, %rsp
 
 # T21 = 5
 movl $5, %edi
@@ -374,9 +374,46 @@ mov $T30, %rdi
 xor %rax, %rax
 call printf
 
+# T31 = 100
+movl $100, %edi
+movl %edi, -28(%rbp)
+
+# numE_2_2 = T31
+movl -28(%rbp), %edi
+movl %edi, -32(%rbp)
+
+# numD_2_2 = T31
+movw -28(%rbp), %di
+movw %di, -32(%rbp)
+
+# numC_2_2 = T31
+movw -28(%rbp), %di
+movw %di, -32(%rbp)
+
+# output numC_2_2
+mov $format_int, %rdi
+xor %rsi, %rsi
+movl -32(%rbp), %esi
+xor %rax, %rax
+call printf
+
+# output numC_2_2
+mov $format_int, %rdi
+xor %rsi, %rsi
+movl -32(%rbp), %esi
+xor %rax, %rax
+call printf
+
+# output numC_2_2
+mov $format_int, %rdi
+xor %rsi, %rsi
+movl -32(%rbp), %esi
+xor %rax, %rax
+call printf
+
 # rtn
 # Delete all reserved space
-addq $24, %rsp
+addq $32, %rsp
 leave
 ret
 

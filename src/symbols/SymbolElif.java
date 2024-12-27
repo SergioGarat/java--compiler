@@ -1,9 +1,9 @@
 package symbols;
 
-public class SymbolElif extends SymbolBase{
+public class SymbolElif extends SymbolBase {
 
-	public SymbolElif() {
-		super("Symbol Else If", 0);
-	}
-	
+    public SymbolElif() {
+        super("Symbol Else If", 0);
+    }
+
 }

@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package symbols;
 
-/**
- *
- * @author soyjo
- */
-public class SymbolInitBoolOp extends SymbolBase{
-    
+public class SymbolInitBoolOp extends SymbolBase {
+
     private String var_id;
     private Object value;
     private boolean isConst;
@@ -28,15 +19,15 @@ public class SymbolInitBoolOp extends SymbolBase{
         this.isConst = true;
     }
 
-    public String getVarId(){
+    public String getVarId() {
         return this.var_id;
     }
 
-    public boolean getIsConst(){
+    public boolean getIsConst() {
         return this.isConst;
     }
 
-    public Object getValue(){
+    public Object getValue() {
         return this.value;
     }
 }

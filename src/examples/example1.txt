@@ -39,4 +39,9 @@ function main() {
 	print(" :");
 	print(recursiveAdding(numB));
 	print("\n");
+
+	numC, numD, numE : number := 100;
+	print(numC);
+	print(numD);
+	print(numE);
 }

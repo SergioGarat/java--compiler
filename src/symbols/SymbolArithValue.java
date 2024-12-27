@@ -1,10 +1,7 @@
 package symbols;
-/**
- *
- * @author soyjo
- */
-public class SymbolArithValue extends SymbolBase{
-    
+
+public class SymbolArithValue extends SymbolBase {
+
     private String var_id;
     private Integer value;
     private boolean isConst;
@@ -22,15 +19,15 @@ public class SymbolArithValue extends SymbolBase{
         this.isConst = true;
     }
 
-    public String getVarId(){
+    public String getVarId() {
         return this.var_id;
     }
 
-    public boolean getIsConst(){
+    public boolean getIsConst() {
         return this.isConst;
     }
 
-    public Object getValue(){
+    public Object getValue() {
         return this.value;
-    } 
+    }
 }

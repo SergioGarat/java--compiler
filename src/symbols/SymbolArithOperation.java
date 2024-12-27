@@ -1,4 +1,5 @@
 package symbols;
+
 public class SymbolArithOperation extends SymbolBase {
 
     private String var_id;
@@ -18,15 +19,15 @@ public class SymbolArithOperation extends SymbolBase {
         this.isConst = true;
     }
 
-    public String getVarId(){
+    public String getVarId() {
         return this.var_id;
     }
 
-    public boolean getIsConst(){
+    public boolean getIsConst() {
         return this.isConst;
     }
 
-    public Integer getValue(){
+    public Integer getValue() {
         return this.value;
     }
     
