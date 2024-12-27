@@ -1,8 +1,8 @@
 package symbols;
 
-public class SymbolEmpty extends SymbolBase{
-	public SymbolEmpty() {
-			super("SymbolEmpty", 0);
-	}
+public class SymbolEmpty extends SymbolBase {
+    public SymbolEmpty() {
+        super("SymbolEmpty", 0);
+    }
 }
     

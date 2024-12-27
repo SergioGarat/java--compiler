@@ -1,9 +1,9 @@
 package symbols;
 
-public class SymbolElse extends SymbolBase{
+public class SymbolElse extends SymbolBase {
 
-	public SymbolElse() {
-		super("Symbol Else", 0);
-	}
-	
+    public SymbolElse() {
+        super("Symbol Else", 0);
+    }
+
 }

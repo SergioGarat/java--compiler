@@ -1,7 +1,7 @@
 package symbols;
 
 public class SymbolMMain extends SymbolBase {
-	public SymbolMMain() {
-		super("Symbol M Main", 0);
-	}
+    public SymbolMMain() {
+        super("Symbol M Main", 0);
+    }
 }

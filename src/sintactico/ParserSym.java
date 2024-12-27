@@ -11,13 +11,13 @@ public class ParserSym {
   public static final int string = 4;
   public static final int op_logical = 7;
   public static final int number = 3;
-  public static final int inst_main = 28;
+  public static final int inst_main = 29;
   public static final int constant = 18;
-  public static final int instr_read = 19;
+  public static final int instr_read = 20;
   public static final int inst_elif = 13;
-  public static final int two_points = 27;
-  public static final int lbracket = 23;
-  public static final int semicolon = 25;
+  public static final int two_points = 28;
+  public static final int lbracket = 24;
+  public static final int semicolon = 26;
   public static final int inst_function = 16;
   public static final int op_assig = 11;
   public static final int op_logical_not = 8;
@@ -27,15 +27,16 @@ public class ParserSym {
   public static final int inst_if = 12;
   public static final int id = 2;
   public static final int inst_else = 14;
-  public static final int rparen = 22;
+  public static final int rparen = 23;
   public static final int error = 1;
   public static final int op_arithmetical_c = 9;
-  public static final int rbracket = 24;
+  public static final int rbracket = 25;
   public static final int op_arithmetical_b = 10;
-  public static final int instr_print = 20;
+  public static final int instr_print = 21;
   public static final int op_relational = 6;
-  public static final int lparen = 21;
-  public static final int comma = 26;
+  public static final int lparen = 22;
+  public static final int comma = 27;
+  public static final int inst_for = 19;
   public static final int inst_while = 15;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -57,6 +58,7 @@ public class ParserSym {
   "inst_function",
   "inst_return",
   "constant",
+  "inst_for",
   "instr_read",
   "instr_print",
   "lparen",

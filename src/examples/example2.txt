@@ -1,0 +1,17 @@
+function main() {
+
+
+	numA : number := 5;
+	numB : number := 10;
+	print("FACTORIAL ");
+	print(numA);
+	print("! :");
+	print(factorial(numA));
+	print("\n");
+
+	print("RECURSIVE ADDING ");
+	print(numB);
+	print(" :");
+	print(recursiveAdding(numB));
+	print("\n");
+}

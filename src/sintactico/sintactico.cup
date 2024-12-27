@@ -112,7 +112,7 @@ parser code
 
 terminal String id, number, string, bool,  op_relational, op_logical, op_logical_not, op_arithmetical_c, op_arithmetical_b;
 terminal        op_assig, inst_if, inst_elif, inst_else,
-                inst_while, inst_function, inst_return, constant,
+                inst_while, inst_function, inst_return, constant, inst_for,
                 instr_read, instr_print, lparen, rparen, lbracket, rbracket, semicolon,
                 comma, two_points, inst_main;
 
@@ -137,7 +137,7 @@ non terminal  SymbolInstruction           INSTRUCTION;
 non terminal  SymbolBlockIn               BLOCK_IN;
 non terminal  SymbolBlockOut              BLOCK_OUT;
 
-non terminal  SymbolDeclarations          DECLARATIONS;
+non terminal  SymbolDeclarations          DECLARATIONS, DECLARATION;
 
 non terminal  SymbolConstant              CONSTANT;
 
@@ -167,13 +167,7 @@ non terminal  SymbolElif                  ELIF;
 non terminal  SymbolElse                  ELSE;
 non terminal  SymbolMWhile                M_WHILE;
 non terminal  SymbolInstructionWhile      INSTRUCTION_WHILE;
-/*
 non terminal  SymbolInstructionFor        INSTRUCTION_FOR;
-non terminal  SymbolInternalFor           INTERNAL_FOR;
-non terminal  SymbolInstructionSwitch     INSTRUCTION_SWITCH;
-non terminal  SymbolCases                 CASES;
-non terminal  SymbolCaseDefault           CASE_DEFAULT;
-*/
 non terminal  SymbolDeclareFunctions      DECLARE_FUNCTIONS;
 non terminal  SymbolDefFunction           DEFINE_FUNCTION;
 non terminal  SymbolFunInit               FUNCTION_INIT;
@@ -356,7 +350,12 @@ DECLARATIONS                ::=  id:var_id comma DECLARATIONS:declarations
                                 throw new SemanticError(message);
                               }
                             :}
-                            | id:id_var CONSTANT:constant two_points id:type_id op_assig VALUE:value
+                            | DECLARATION:declaration
+                            {:
+                              RESULT = declaration;
+                            :};
+
+DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_id op_assig VALUE:value
                             {:
                               try {
 
@@ -1654,7 +1653,44 @@ INSTRUCTION_WHILE           ::= inst_while M_WHILE:mwhile COND lbracket BLOCK_IN
 
                               RESULT = new SymbolInstructionWhile();
                             :};
+/*
+M_FOR                       ::= EMPTY
+                            {:
+                              String label = backend.addLabel();
 
+                              c3a_g.generateC3aInstr(
+                                Code.skip,
+                                null,
+                                null,
+                                label
+                              );
+
+                              RESULT = new SymbolMFor(label);
+                            :};
+
+INSTRUCTION_FOR             ::= inst_for M_FOR:mfor FOR_BODY lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket
+                            {:
+                              String for_loop_label = mfor.getLabel();
+                              c3a_g.generateC3aInstr(
+                                Code.go_to,
+                                null,
+                                null,
+                                for_loop_label
+                              );
+
+                              String end_label = labelFalseStack.pop();
+                              c3a_g.generateC3aInstr(
+                                Code.skip,
+                                null,
+                                null,
+                                end_label
+                              );
+
+                              RESULT = new SymbolInstructionWhile();
+                            :};
+
+FOR_BODY                    ::= lparen INIT_FOR semicolon COND_FOR semicolon POST_FOR rparen
+*/
 CALL_FUNCTION               ::= id:fun_id lparen:lp rparen:rp
                             {:
                               try{

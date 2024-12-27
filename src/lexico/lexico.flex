@@ -133,9 +133,7 @@ INST_ELSE       = ("else")  //ok
 INST_ELIF       = ("elif")  //ok BORRAMOS??
 
 INST_WHILE      = ("while") //ok
-/*
 INST_FOR        = ("for")   //ok
-*/
 
 INST_FUNCTION   = ("function") //ok
 INST_RETURN     = ("return")    //ok
@@ -182,13 +180,11 @@ TWO_POINTS      = (":")     //ok
                         return symbol(Tokens.INST_WHILE.name(),ParserSym.inst_while);
                      }
 
-/*
 {INST_FOR}           {
                         Token token = new Token(Tokens.INST_FOR,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(ParserSym.inst_for, yytext());
+                        return symbol(Tokens.INST_FOR.name(), ParserSym.inst_for);
                     }
-*/
 
 {INST_FUNCTION}      {
                         Token token = new Token(Tokens.INST_FUNCTION,yyline,yycolumn, yytext());

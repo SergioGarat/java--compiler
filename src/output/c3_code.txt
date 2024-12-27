@@ -167,5 +167,19 @@ output T29
 T30 = "\n"
 output T30
 
+T31 = 100
+
+numE_2_2 = T31
+
+numD_2_2 = T31
+
+numC_2_2 = T31
+
+output numC_2_2
+
+output numC_2_2
+
+output numC_2_2
+
 rtn
 

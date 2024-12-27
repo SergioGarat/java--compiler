@@ -2,7 +2,7 @@ package symbols;
 
 public class SymbolFunInstructions extends SymbolBase {
 
-	public SymbolFunInstructions() {
-		super("Symbol Function Instructions", 0);
-	}
+    public SymbolFunInstructions() {
+        super("Symbol Function Instructions", 0);
+    }
 }
