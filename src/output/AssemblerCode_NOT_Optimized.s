@@ -7,6 +7,9 @@ T27: .asciz "RECURSIVE ADDING "
 T26: .asciz "\n"
 T28: .asciz " :"
 T30: .asciz "\n"
+T38: .asciz "\n"
+T37: .asciz "He entrado: "
+T39: .asciz "HE SALIDO"
 T12: .asciz "\n"
 T11: .asciz "Invalid number: "
 format_int: .asciz "%d"
@@ -266,7 +269,7 @@ main:
 # pmb PROC_main
 push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.
 mov %rsp, %rbp
-sub $32, %rsp
+sub $54, %rsp
 
 # T21 = 5
 movl $5, %edi
@@ -411,9 +414,92 @@ movl -32(%rbp), %esi
 xor %rax, %rax
 call printf
 
+# T32 = 0
+movl $0, %edi
+movl %edi, -36(%rbp)
+
+# i_2_2 = T32
+movl -36(%rbp), %edi
+movl %edi, -40(%rbp)
+
+# LABEL_9:skip
+LABEL_9:
+
+# T33 = 3
+movl $3, %edi
+movl %edi, -44(%rbp)
+
+# T34= i_2_2 LT T33
+movl -44(%rbp), %edi
+movl -40(%rbp), %esi
+xor %rax, %rax # clean return value register
+call CMP_LT
+movw %ax,-46(%rbp) # get return value
+
+# if T34=true goto LABEL_10
+cmpw $1,-46(%rbp)
+je LABEL_10
+
+# go_to LABEL_11
+jmp LABEL_11
+
+# LABEL_12:skip
+LABEL_12:
+
+# T35 = 1
+movl $1, %edi
+movl %edi, -50(%rbp)
+
+# T36 = i_2_2 add T35
+movl -40(%rbp), %edi
+movl -50(%rbp), %eax
+addl %eax, %edi
+movl %edi, -54(%rbp)
+
+# i_2_2 = T36
+movl -54(%rbp), %edi
+movl %edi, -40(%rbp)
+
+# go_to LABEL_9
+jmp LABEL_9
+
+# LABEL_10:skip
+LABEL_10:
+
+# T37 = "He entrado: "
+# output T37
+mov $T37, %rdi
+xor %rax, %rax
+call printf
+
+# output i_2_2
+mov $format_int, %rdi
+xor %rsi, %rsi
+movl -40(%rbp), %esi
+xor %rax, %rax
+call printf
+
+# T38 = "\n"
+# output T38
+mov $T38, %rdi
+xor %rax, %rax
+call printf
+
+# go_to LABEL_12
+jmp LABEL_12
+
+# LABEL_11:skip
+LABEL_11:
+
+# T39 = "HE SALIDO"
+# output T39
+mov $T39, %rdi
+xor %rax, %rax
+call printf
+
 # rtn
 # Delete all reserved space
-addq $32, %rsp
+addq $54, %rsp
 leave
 ret
 

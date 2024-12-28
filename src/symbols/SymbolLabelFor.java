@@ -1,11 +1,11 @@
 package symbols;
 
-public class SymbolMFor extends SymbolBase {
+public class SymbolLabelFor extends SymbolBase {
 
     private String label;
 
-    public SymbolMFor(String label) {
-        super("Symbol M_For", 0);
+    public SymbolLabelFor(String label) {
+        super("Symbol For Init Label", 0);
         this.label = label;
     }
 

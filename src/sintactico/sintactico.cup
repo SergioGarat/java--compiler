@@ -166,6 +166,9 @@ non terminal  SymbolInstructionIf         INSTRUCTION_IF;
 non terminal  SymbolElif                  ELIF;
 non terminal  SymbolElse                  ELSE;
 non terminal  SymbolMWhile                M_WHILE;
+non terminal  SymbolForBody               FOR_BODY;
+non terminal  SymbolLabelFor              LABEL_FOR;
+non terminal  SymbolLabelPostFor          LABEL_POST_FOR;
 non terminal  SymbolInstructionWhile      INSTRUCTION_WHILE;
 non terminal  SymbolInstructionFor        INSTRUCTION_FOR;
 non terminal  SymbolDeclareFunctions      DECLARE_FUNCTIONS;
@@ -288,6 +291,10 @@ INSTRUCTION                 ::=  DECLARATIONS semicolon
                             {:
                               RESULT = new SymbolInstruction();
                             :}
+                            | INSTRUCTION_FOR
+                            {:
+                              RESULT = new SymbolInstruction();
+                            :}
                             | OPERATOR_ASSIG semicolon
                             {:
                               RESULT = new SymbolInstruction();
@@ -375,7 +382,7 @@ DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_
                                   && type.getTipoSubyacente() != TipoSubyacente.TS_STRING ){
                                     String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                     String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                    String message = "Invalid subjacent type" + " from "+from+" to "+to;
+                                    String message = "DECLARATION: Invalid subjacent type" + " from "+from+" to "+to;
                                     throw new SemanticError(message);
                                 }
 
@@ -679,7 +686,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                               if(var_dtype.getTipoSubyacente() != TipoSubyacente.TS_NUMBER){
                                 String from = id_valxleft.getLine() + ":" + id_valxleft.getColumn();
                                 String to = id_valxright.getLine() + ":" + id_valxright.getColumn();
-                                String message = "Invalid subjacent type" + " from "+from+" to "+to;
+                                String message = "ARITHMETICAL_VALUE: Invalid subjacent type" + " from "+from+" to "+to;
                                 throw new SemanticError(message);
                               }
 
@@ -1202,7 +1209,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                 if(var_dtype.getTipoSubyacente() != TipoSubyacente.TS_BOOLEAN){
                                   String from = id_valxleft.getLine() + ":" + id_valxleft.getColumn();
                                   String to = id_valxright.getLine() + ":" + id_valxright.getColumn();
-                                  String message = "Invalid subjacent type" + " from "+from+" to "+to;
+                                  String message = "BOOLEAN_OP_VALUE: Invalid subjacent type" + " from "+from+" to "+to;
                                   throw new SemanticError(message);
                                 }
 
@@ -1653,8 +1660,28 @@ INSTRUCTION_WHILE           ::= inst_while M_WHILE:mwhile COND lbracket BLOCK_IN
 
                               RESULT = new SymbolInstructionWhile();
                             :};
-/*
-M_FOR                       ::= EMPTY
+
+INSTRUCTION_FOR             ::= inst_for lparen FOR_BODY:forBody rparen lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket
+                            {:
+                              String postInstrLabel = forBody.getLabel();
+                              c3a_g.generateC3aInstr(
+                                Code.go_to,
+                                null,
+                                null,
+                                postInstrLabel
+                              );
+
+                              String end_label = labelFalseStack.pop();
+                              c3a_g.generateC3aInstr(
+                                Code.skip,
+                                null,
+                                null,
+                                end_label
+                              );
+                              RESULT = new SymbolInstructionFor();
+                            :};
+
+LABEL_FOR                   ::= EMPTY
                             {:
                               String label = backend.addLabel();
 
@@ -1665,32 +1692,36 @@ M_FOR                       ::= EMPTY
                                 label
                               );
 
-                              RESULT = new SymbolMFor(label);
+                              RESULT = new SymbolLabelFor(label);
                             :};
 
-INSTRUCTION_FOR             ::= inst_for M_FOR:mfor FOR_BODY lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket
-                            {:
-                              String for_loop_label = mfor.getLabel();
-                              c3a_g.generateC3aInstr(
-                                Code.go_to,
-                                null,
-                                null,
-                                for_loop_label
-                              );
+FOR_BODY                    ::= DECLARATION semicolon LABEL_FOR:labelFor COND semicolon LABEL_POST_FOR:labelPostFor OPERATOR_ASSIG
+                                {:
+                                    String iniForLabel = labelFor.getLabel();
+                                    c3a_g.generateC3aInstr(
+                                      Code.go_to,
+                                      null,
+                                      null,
+                                      iniForLabel
+                                    );
 
-                              String end_label = labelFalseStack.pop();
+                                    RESULT = new SymbolForBody(labelPostFor.getLabel());
+                                :};
+
+LABEL_POST_FOR              ::= EMPTY
+                            {:
+                              String label = backend.addLabel();
+
                               c3a_g.generateC3aInstr(
                                 Code.skip,
                                 null,
                                 null,
-                                end_label
+                                label
                               );
 
-                              RESULT = new SymbolInstructionWhile();
+                              RESULT = new SymbolLabelPostFor(label);
                             :};
 
-FOR_BODY                    ::= lparen INIT_FOR semicolon COND_FOR semicolon POST_FOR rparen
-*/
 CALL_FUNCTION               ::= id:fun_id lparen:lp rparen:rp
                             {:
                               try{
@@ -2069,7 +2100,6 @@ FUNCTION_RETURN             ::= inst_return VALUE:value semicolon
                                 throw new SemanticError(e.getMessage());
                               }
                             :}
-                            // | inst_return
                             | EMPTY
                             {:
                               RESULT = new SymbolFunReturn();

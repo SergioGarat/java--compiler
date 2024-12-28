@@ -44,4 +44,11 @@ function main() {
 	print(numC);
 	print(numD);
 	print(numE);
+
+	for (i : number := 0; ((i < 3)); i := i + 1){
+              print("He entrado: ");
+              print(i);
+              print("\n");
+        }
+    print("HE SALIDO");
 }

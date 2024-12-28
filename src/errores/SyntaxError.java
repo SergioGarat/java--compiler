@@ -14,7 +14,7 @@ public class SyntaxError extends Exception {
     public SyntaxError(ComplexSymbol s, ArrayList<String> expectedName, boolean recovered) {
         String from = s.xleft.getLine() + ":" + s.xleft.getColumn();
         String to = s.xright.getLine() + ":" + s.xright.getColumn();
-        String error = "Syntax Error: " + (s.value != null ? s.value : "") + "spanning from " + from + " to " + to;
+        String error = "Syntax Error: " + (s.value != null ? s.value : "") + " spanning from " + from + " to " + to;
         if (expectedName != null && expectedName.size() > 0) {
             error += "\t\n Token/s Expected: ";
             for (String token : expectedName) {
