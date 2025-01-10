@@ -181,5 +181,46 @@ output numC_2_2
 
 output numC_2_2
 
+T32 = 0
+
+i_2_2 = T32
+
+LABEL_9:skip
+
+T33 = 3
+
+T34= i_2_2 LT T33
+
+if T34=true goto LABEL_10
+
+go_to LABEL_11
+
+LABEL_12:skip
+
+T35 = 1
+
+T36 = i_2_2 add T35
+
+i_2_2 = T36
+
+go_to LABEL_9
+
+LABEL_10:skip
+
+T37 = "He entrado: "
+output T37
+
+output i_2_2
+
+T38 = "\n"
+output T38
+
+go_to LABEL_12
+
+LABEL_11:skip
+
+T39 = "HE SALIDO"
+output T39
+
 rtn
 

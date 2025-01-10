@@ -187,7 +187,6 @@ public class SymbolsTable {
     public void enterBlock() {
         scopeTable.add(scope + 1, scopeTable.get(scope));
         scope += 1;
-        // We are increasing the scope lvl
         saveTableInFile("ENTER BLOCK : increase scope");
     }
 
@@ -199,13 +198,13 @@ public class SymbolsTable {
             this.scope--;
             // remove out of scope variables, or 
             // iterate over hashmap
-            ArrayList<String> keys = new ArrayList<String>(descriptionTable.keySet());
+            ArrayList<String> keys = new ArrayList<>(descriptionTable.keySet());
             for (String key : keys) {
                 if (descriptionTable.get(key).getScope() > this.scope) {
                     descriptionTable.remove(key);
                 }
             }
-            // move from expanstion to description
+            // move from expansion to description
             int first = scopeTable.get(scope + 1) - 1;
             int last = scopeTable.get(scope);
 
@@ -224,9 +223,9 @@ public class SymbolsTable {
     }
 
     public void reset() {
-        scopeTable = new ArrayList<Integer>();
-        descriptionTable = new HashMap<String, Description>();
-        expansionTable = new ArrayList<Expansion>();
+        scopeTable = new ArrayList<>();
+        descriptionTable = new HashMap<>();
+        expansionTable = new ArrayList<>();
         scopeTable.add(0);
         scopeTable.add(0);
         scope = 1;

@@ -164,6 +164,10 @@ public class Backend {
         return this.varTable.get(name).getAssemblerDir();
     }
 
+    public String getVar68kAssembler(String name) {
+        return this.varTable.get(name).getAssembler68kDir();
+    }
+
     public Variable getVariable(String name) {
         return this.varTable.get(name);
     }

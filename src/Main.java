@@ -25,10 +25,10 @@ public class Main {
     private static final boolean COMPILE = false;
 
     public static void main(String[] args) {
-        if (COMPILE) {
+        //if (COMPILE) {
             generateJavaFiles();
-            return;
-        }
+            //return;
+        //}
         String file = WORK_DIR + "examples\\example1.txt";
         if (args.length != 0) {
             file = args[0];

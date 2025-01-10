@@ -24,6 +24,7 @@ public class GeneratorAssembler {
     // Write the resulting code
     private BufferedWriter writer;
     private final String PATH = "src\\output\\AssemblerCode_NOT_Optimized.s";
+    private final String PATH_68K = "src\\output\\AssemblerCode_NOT_Optimized.68k";
     private final String PATH_OPTIMIZED = "src\\output\\AssemblerCode_Optimized.s";
     // Symbols Table
     private SymbolsTable symbolsTable;
@@ -44,32 +45,23 @@ public class GeneratorAssembler {
 
     public void generateAssembler(boolean optimized) {
         try {
-            File file;
+            File fileGAS;
+            File file68k;
             if (optimized) {
-                file = new File(PATH_OPTIMIZED);
+                fileGAS = new File(PATH_OPTIMIZED);
+                file68k = new File(PATH_OPTIMIZED);
             } else {
-                file = new File(PATH);
+                fileGAS = new File(PATH);
+                file68k = new File(PATH_68K);
             }
-            if (!file.exists()) {
-                file.createNewFile();
+            if (!fileGAS.exists()) {
+                fileGAS.createNewFile();
             }
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
-            writeHead();
-            ArrayList<InstructionC3A> instructions = c3a_g.getInstructions();
-            for (int i = 0; i < instructions.size(); i++) {
-                InstructionC3A ins = instructions.get(i);
-                if (i < instructions.size() - 1) {
-                    InstructionC3A next = instructions.get(i + 1);
-                    toAssembly(ins, next);
-                } else {
-                    toAssembly(ins, null);
-                }
+            if (!file68k.exists()) {
+                file68k.createNewFile();
             }
-            writeBottom();
-            for (String inst : assemblyInstructions) {
-                writer.write(inst);
-            }
-            writer.close();
+            writeGasAssemblerCode(fileGAS);
+            write68kAssemblerCode(file68k);
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GeneratorAssembler.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,6 +69,41 @@ public class GeneratorAssembler {
         } catch (IOException e) {
             System.out.println("ERROR: CANNOT CREATE ASSEMBLY FILE");
         }
+    }
+
+    private void writeGasAssemblerCode(File fileGAS) throws IOException {
+        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileGAS), StandardCharsets.UTF_8));
+        writeHead();
+        ArrayList<InstructionC3A> instructions = c3a_g.getInstructions();
+        for (int i = 0; i < instructions.size(); i++) {
+            InstructionC3A ins = instructions.get(i);
+            if (i < instructions.size() - 1) {
+                InstructionC3A next = instructions.get(i + 1);
+                toAssembly(ins);
+            } else {
+                toAssembly(ins);
+            }
+        }
+        writeBottom();
+        for (String inst : assemblyInstructions) {
+            writer.write(inst);
+        }
+        writer.close();
+    }
+
+    private void write68kAssemblerCode(File file68k) throws IOException {
+        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file68k), StandardCharsets.UTF_8));
+        write68kHead();
+        ArrayList<InstructionC3A> instructions = c3a_g.getInstructions();
+        for (int i = 0; i < instructions.size(); i++) {
+            InstructionC3A ins = instructions.get(i);
+            to68kAssembly(ins);
+        }
+        writeBottom();
+        for (String inst : assemblyInstructions) {
+            writer.write(inst);
+        }
+        writer.close();
     }
 
     private void writeLine(String input) {
@@ -87,6 +114,10 @@ public class GeneratorAssembler {
         assemblyInstructions.add("# " + instruction.toString().replace("\n", "\n# ") + "\n");
     }
 
+    public void writeC3A68k_Comment(InstructionC3A instruction) {
+        assemblyInstructions.add("; " + instruction.toString().replace("\n", "\n; ") + "\n");
+    }
+
     // Generates the header of program
     private void writeHead() {
         writeLine(".global main");
@@ -95,6 +126,14 @@ public class GeneratorAssembler {
         writeLine(".data");
         declareStringVariables();
         writeLine(".text");
+    }
+
+    private void write68kHead() {
+        writeLine("; Programa en Easy68k");
+        /* Declaración de Inicio*/
+        writeLine("ORG     $1000        ; Dirección de inicio");
+        writeLine("; Datos");
+        declare68kStringVariables();
     }
 
     private void declareStringVariables() {
@@ -109,6 +148,17 @@ public class GeneratorAssembler {
         writeLine("format_int: .asciz \"%d\"");
         writeLine("true_label : .asciz \"true\"");
         writeLine("false_label : .asciz \"false\"");
+    }
+
+    private void declare68kStringVariables() {
+        // Only declare as global string values
+        for (Variable var : backend.getVariables()) {
+            if (var instanceof StrVariable) {
+                writeLine(var.getName() + "\tDC.B\t" + "\"" + ((StrVariable) var).getValue() + "\"");
+            }
+        }
+        //Print formats for int and boolean.
+        writeLine("format_int DC.B \"%d\",0");
     }
 
     private void writePrintBoolFunction() {
@@ -130,7 +180,7 @@ public class GeneratorAssembler {
         writePrintBoolFunction();
     }
 
-    public void toAssembly(InstructionC3A instruction, InstructionC3A nextInstruction) {
+    public void toAssembly(InstructionC3A instruction) {
         writeC3A_Comment(instruction);
         switch (instruction.getOpCode()) {
             case skip:
@@ -142,6 +192,95 @@ public class GeneratorAssembler {
             // "jump X place"
             case go_to:
                 writeLine("jmp " + instruction.getDest());
+                break;
+            // Arithmetical expressions
+            // Sume
+            case add:
+                calculateSumRes(instruction, "add");
+                break;
+            // Substract
+            case sub:
+                calculateSumRes(instruction, "sub");
+                break;
+            // Modul
+            case mod:
+                calculateDivision(instruction, "idiv", 2);
+                break;
+            // Product
+            case prod:
+                calculateMulu(instruction, "imul");
+                break;
+            // Division
+            case div:
+                calculateDivision(instruction, "idiv", 1);
+                break;
+            // Funtion related expressions
+            case call:
+                callInstruction(instruction);
+                break;
+            case param:
+                paramInstruction(instruction);
+                break;
+            // Preamble expression
+            case pmb:
+                pmbInstruction(instruction);
+                break;
+            // Copy expression
+            case copy:
+                copyInstruction(instruction);
+                break;
+
+            // In order to obtain which branch is we are using an auxiliar method
+            // called substract Jump
+            case jump_cond:
+                jumpCondInstruction(instruction);
+                break;
+            // Lower than
+            case LT:
+                // Lower/equals
+            case LE:
+                // Equals
+            case EQ:
+                // Negative
+            case NE:
+                // Greater/equals
+            case GE:
+                // Greater
+            case GT:
+                substractCMP(instruction, instruction.getOpCode());
+                break;
+            case and:
+            case or:
+                logicalInstruction(instruction);
+                break;
+            case not:
+            case neg:
+                unaryInstruction(instruction);
+                break;
+            case input:
+                inputInstruction(instruction);
+                break;
+            case output:
+                outputInstruction(instruction);
+                break;
+            default:
+                break;
+        }
+        writeLine("");
+    }
+
+    public void to68kAssembly(InstructionC3A instruction) {
+        writeC3A68k_Comment(instruction);
+        switch (instruction.getOpCode()) {
+            case skip:
+                skip68kInstruction(instruction);
+                break;
+            case rtn:
+                return68kInstruction(instruction);
+                break;
+            // "jump X place"
+            case go_to:
+                writeLine("BRA " + instruction.getDest());
                 break;
             // Arithmetical expressions
             // Sume
@@ -280,6 +419,10 @@ public class GeneratorAssembler {
         writeLine(instruction.getDest() + ":");
     }
 
+    private void skip68kInstruction(InstructionC3A instruction) {
+        writeLine(instruction.getDest() + ":");
+    }
+
     // Auxiliar method for return Instruction
     private void returnInstruction(InstructionC3A instruction) {
         // is function with return value, op1 register that stores return value
@@ -303,6 +446,23 @@ public class GeneratorAssembler {
         writeLine("ret");
     }
 
+    private void return68kInstruction(InstructionC3A instruction) {
+        // is function with return value, op1 register that stores return value
+        //todo FALTA PONER LA ETIQUETA?
+        if (instruction.getOp1() != null) {
+            Variable variable = backend.getVariable(instruction.getOp1());
+            writeLine("; Moving function result into D0");
+            String suffix = "L";
+            if (variable.getType() == Type.TipoSubyacente.TS_BOOLEAN) {
+                suffix = "W";
+            }
+            writeLine("MOVE." + suffix + " " + variable.getAssembler68kDir() + ", D0");
+        }
+
+        writeLine("UNLK\tA6\t\t; Restaura el marco de la pila");
+        writeLine("RTS\t\t\t; Retorno");
+    }
+
     // Auxiliar method which will be helping with the arithmetical calculations (sum and rest)
     private void calculateSumRes(InstructionC3A instruction, String type) {
         boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
@@ -314,6 +474,18 @@ public class GeneratorAssembler {
         writeLine("movl " + op2 + ", %eax");
         writeLine(type + "l" + " %eax, %edi");
         writeLine("movl %edi, " + getVarAssembler(instruction.getDest()));
+    }
+
+    private void calculateSumRes68k(InstructionC3A instruction, String type) {
+        boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
+        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp1());
+        String op1 = op1Lit ? "$" + instruction.getOp1() : getVar68kAssembler(instruction.getOp1());
+        String op2 = op2Lit ? "$" + instruction.getOp2() : getVar68kAssembler(instruction.getOp2());
+        // For sure that are
+        writeLine("MOVE.L " + op1 + ", D0");
+        writeLine("MOVE.L " + op2 + ", D1");
+        writeLine(type + ".L" + " D1, D0");
+        writeLine("MOVE.L D0, " + getVar68kAssembler(instruction.getDest()));
     }
 
     // Auxiliar method which will help with the / and % operations
@@ -473,6 +645,10 @@ public class GeneratorAssembler {
 
     private String getVarAssembler(String varName) {
         return backend.getVarAssembler(varName);
+    }
+
+    private String getVar68kAssembler(String varName) {
+        return backend.getVar68kAssembler(varName);
     }
 
     private String getCMPFunctionLabel(Code code, boolean numCmp) {

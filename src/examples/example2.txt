@@ -1,17 +1,10 @@
 function main() {
 
+    for (i : number := 0; ((i < 3)); i := i + 1){
+          print("He entrado: ");
+          print(i);
+          print("\n");
+    }
+    print("HE SALIDO");
 
-	numA : number := 5;
-	numB : number := 10;
-	print("FACTORIAL ");
-	print(numA);
-	print("! :");
-	print(factorial(numA));
-	print("\n");
-
-	print("RECURSIVE ADDING ");
-	print(numB);
-	print(" :");
-	print(recursiveAdding(numB));
-	print("\n");
 }

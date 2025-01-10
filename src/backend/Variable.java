@@ -37,6 +37,14 @@ public class Variable {
         return (-this.offset) + "(%rbp)";
     }
 
+    public String getAssembler68kDir() {
+        if (isParam) {
+            return this.offset + "(A6)";
+        }
+        // - offset
+        return (-this.offset) + "(A6)";
+    }
+
     @Override
     public String toString() {
         return this.name + "\ttam : " + this.size + "\ttipo subyacente :" + this.type + "\tidFun : " + this.idParent + "\toffset : " + getAssemblerDir();
