@@ -23,7 +23,7 @@ public class Procedure {
 
     @Override
     public String toString() {
-        return this.name.replace("PROC_", "") + "\tnparams=" + this.nparams + "\ttype=" + this.type;
+        return this.name + ":\tNº de parámetros: " + this.nparams + "\t|\tTipo: " + this.type;
     }
 
     public String getName() {

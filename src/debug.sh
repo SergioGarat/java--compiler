@@ -1,4 +1,4 @@
 #!/bin/sh
 
-gcc -no-pie -g ./output/AssemblerCode_NOT_Optimized.s -o program
+gcc -no-pie -g ./output/AssemblerCode.s -o program
 gdb ./program

@@ -1,97 +1,111 @@
 -----------------------------------------------
 ---------------- C3@ code list ----------------
 -----------------------------------------------
-PROC_factorial:skip
+PROC_sumaDosNumeros:skip
 
-pmb PROC_factorial
+pmb PROC_sumaDosNumeros
 
 T0 = 0
 
 result_0_2 = T0
 
-T1 = 0
+T1 = a_0_1 add b_0_1
 
-T2= num_0_1 EQ T1
+result_0_2 = T1
 
-if T2=true goto LABEL_0
+rtn result_0_2
+
+PROC_factorial:skip
+
+pmb PROC_factorial
+
+T2 = 0
+
+result_1_2 = T2
+
+T3 = 0
+
+T4= num_1_1 EQ T3
+
+if T4=true goto LABEL_0
 
 go_to LABEL_1
 
 LABEL_0:skip
 
-T3 = 1
+T5 = 1
 
-result_0_2 = T3
+result_1_2 = T5
 
 go_to LABEL_2
 
 LABEL_1:skip
 
-T4 = 1
+T6 = 1
 
-T5 = num_0_1 sub T4
+T7 = num_1_1 sub T6
 
-param PROC_factorial(T5)
+param PROC_factorial(T7)
 
 call PROC_factorial
 
-T6 = return PROC_factorial
+T8 = return PROC_factorial
 
-T7 = num_0_1 prod T6
+T9 = num_1_1 prod T8
 
-result_0_2 = T7
+result_1_2 = T9
 
 LABEL_2:skip
 
-rtn result_0_2
+rtn result_1_2
 
 PROC_recursiveAdding:skip
 
 pmb PROC_recursiveAdding
 
-T8 = 0
+T10 = 0
 
-result_1_2 = T8
+result_2_2 = T10
 
-T9 = 1
+T11 = 1
 
-T10= num_0_1 LT T9
+T12= num_1_1 LT T11
 
-if T10=true goto LABEL_3
+if T12=true goto LABEL_3
 
 go_to LABEL_4
 
 LABEL_3:skip
 
-T11 = "Invalid number: "
-output T11
+T13 = "Invalid number: "
+output T13
 
-output num_0_1
+output num_1_1
 
-T12 = "\n"
-output T12
+T14 = "\n"
+output T14
 
-T13 = 0
+T15 = 0
 
-result_1_2 = T13
+result_2_2 = T15
 
 go_to LABEL_5
 
 LABEL_4:skip
 
-T14 = 1
+T16 = 1
 
-T15= num_0_1 EQ T14
+T17= num_1_1 EQ T16
 
-if T15=true goto LABEL_6
+if T17=true goto LABEL_6
 
 go_to LABEL_7
 
 LABEL_6:skip
 
-T16 = 1
+T18 = 1
 
-result_1_2 = T16
+result_2_2 = T18
 
 LABEL_5:skip
 
@@ -99,128 +113,146 @@ go_to LABEL_8
 
 LABEL_7:skip
 
-T17 = 1
+T19 = 1
 
-T18 = num_0_1 sub T17
+T20 = num_1_1 sub T19
 
-param PROC_recursiveAdding(T18)
+param PROC_recursiveAdding(T20)
 
 call PROC_recursiveAdding
 
-T19 = return PROC_recursiveAdding
+T21 = return PROC_recursiveAdding
 
-T20 = num_0_1 add T19
+T22 = num_1_1 add T21
 
-result_1_2 = T20
+result_2_2 = T22
 
 LABEL_8:skip
 
-rtn result_1_2
+rtn result_2_2
 
 main:skip
 
 pmb PROC_main
 
-T21 = 5
+T23 = 5
 
-numA_2_2 = T21
+numA_3_2 = T23
 
-T22 = 10
+T24 = 10
 
-numB_2_2 = T22
+numB_3_2 = T24
 
-T23 = "FACTORIAL "
-output T23
+T25 = "FACTORIAL "
+output T25
 
-output numA_2_2
+output numA_3_2
 
-T24 = "! :"
-output T24
+T26 = "! :"
+output T26
 
-param PROC_factorial(numA_2_2)
+param PROC_factorial(numA_3_2)
 
 call PROC_factorial
 
-T25 = return PROC_factorial
+T27 = return PROC_factorial
 
-output T25
-
-T26 = "\n"
-output T26
-
-T27 = "RECURSIVE ADDING "
 output T27
 
-output numB_2_2
-
-T28 = " :"
+T28 = "\n"
 output T28
 
-param PROC_recursiveAdding(numB_2_2)
+T29 = "RECURSIVE ADDING "
+output T29
+
+output numB_3_2
+
+T30 = " :"
+output T30
+
+param PROC_recursiveAdding(numB_3_2)
 
 call PROC_recursiveAdding
 
-T29 = return PROC_recursiveAdding
+T31 = return PROC_recursiveAdding
 
-output T29
+output T31
 
-T30 = "\n"
-output T30
+T32 = "\n"
+output T32
 
-T31 = 100
+T33 = 100
 
-numE_2_2 = T31
+numE_3_2 = T33
 
-numD_2_2 = T31
+numD_3_2 = T33
 
-numC_2_2 = T31
+numC_3_2 = T33
 
-output numC_2_2
+T34 = 0
 
-output numC_2_2
+numF_3_2 = T34
 
-output numC_2_2
+param PROC_sumaDosNumeros(numC_3_2)
 
-T32 = 0
+param PROC_sumaDosNumeros(numC_3_2)
 
-i_2_2 = T32
+call PROC_sumaDosNumeros
+
+T35 = return PROC_sumaDosNumeros
+
+output T35
+
+param PROC_sumaDosNumeros(numC_3_2)
+
+param PROC_sumaDosNumeros(numC_3_2)
+
+call PROC_sumaDosNumeros
+
+T36 = return PROC_sumaDosNumeros
+
+numF_3_2 = T36
+
+T37 = 0
+
+i_3_2 = T37
 
 LABEL_9:skip
 
-T33 = 3
+T38 = 3
 
-T34= i_2_2 LT T33
+T39= i_3_2 LT T38
 
-if T34=true goto LABEL_10
+if T39=true goto LABEL_10
 
 go_to LABEL_11
 
 LABEL_12:skip
 
-T35 = 1
+T40 = 1
 
-T36 = i_2_2 add T35
+T41 = i_3_2 add T40
 
-i_2_2 = T36
+i_3_2 = T41
 
 go_to LABEL_9
 
 LABEL_10:skip
 
-T37 = "He entrado: "
-output T37
+T42 = "\n"
+output T42
 
-output i_2_2
+T43 = "He entrado: "
+output T43
 
-T38 = "\n"
-output T38
+output i_3_2
 
 go_to LABEL_12
 
 LABEL_11:skip
 
-T39 = "HE SALIDO"
-output T39
+T44 = "\nHE SALIDO\n"
+output T44
 
 rtn
 
