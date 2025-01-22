@@ -1,10 +1,12 @@
-import java_cup.internal_error;
 import java_cup.runtime.ComplexSymbolFactory;
 import jflex.exceptions.SilentExit;
 import lexico.Lexico;
 import sintactico.Parser;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,13 +24,9 @@ public class Main {
 
     private static final String OUTPUT_DIR = WORK_DIR + "output\\";
 
-    private static final boolean COMPILE = false;
-
     public static void main(String[] args) {
-        //if (COMPILE) {
-            generateJavaFiles();
-            //return;
-        //}
+        generateJavaFiles();
+        //Aquí se debe cambiar el archivo que se quiere escoger para compilar
         String file = WORK_DIR + "examples\\example1.txt";
         if (args.length != 0) {
             file = args[0];
@@ -39,11 +37,13 @@ public class Main {
     private static void generateJavaFiles() {
         try {
             generateFlexFile();
+            System.out.println("Léxico generado");
         } catch (Exception e) {
             System.out.println("ERROR GENERANDO EL ARCHIVO: " + e.getMessage());
         }
         try {
             generateCupFile();
+            System.out.println("Parser generado");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +53,7 @@ public class Main {
         jflex.Main.generate(new String[]{JFLEX_FILE});
     }
 
-    private static void generateCupFile() throws internal_error, IOException, Exception {
+    private static void generateCupFile() throws Exception {
         String[] commands = {/* "-dump_grammar", */ "-locations", "-parser", "Parser", CUP_FILE};
         java_cup.Main.main(commands);
         // generates on WorkDir folder Parser.java and ParserSym.java
@@ -76,17 +76,11 @@ public class Main {
 
     private static void executeCompiler(String file) {
         try {
-            //Clean all output files
             cleanOutputFiles();
-
-            // Here we are executing the files specified
-            // We read the input.txt
             Reader reader = new BufferedReader(new FileReader(file));
-            // generate intermediate code
-            ComplexSymbolFactory sf = new ComplexSymbolFactory();
-            Lexico scanner = new Lexico(reader, sf);
-            Parser parser = new Parser(scanner, sf);
-            // rezamos 3 ave marias, 5 padre nuestros y le hacemos una estatua a Andreu  para que todo funcione
+            ComplexSymbolFactory symbolFactory = new ComplexSymbolFactory();
+            Lexico scanner = new Lexico(reader, symbolFactory);
+            Parser parser = new Parser(scanner, symbolFactory);
             parser.parse();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -94,9 +88,11 @@ public class Main {
     }
 
     private static void cleanOutputFiles() {
+        System.out.println("Borramos el contenido de la carpeta output.");
         File output_dir = new File(OUTPUT_DIR);
         if (output_dir.isDirectory()) {
             for (File file : output_dir.listFiles()) {
+                System.out.println("Borrado archivo: " + file.getName());
                 file.delete();
             }
         }

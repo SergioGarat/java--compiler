@@ -3,6 +3,7 @@ package backend;
 
 import symbolsTable.SymbolsTable;
 import symbolsTable.Type.TipoSubyacente;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -35,29 +36,23 @@ public class Backend {
     }
 
     // Adding a new VARIABLE into the table
-    //    private String name;    // variable name
-    //    private int code;       // variable code id
-    //    private int idParent;   // parent id
-    //    private int offset;     // offset
-    //    private int size;       // space occupation
-    //    private Type type;      // type
     public String addVar(String varname, int size, TipoSubyacente type, boolean isParam) {
         int scope = symbolsTable.getActualScope();
         int idParent = getLastProcedureId();
         String name = varname + "_" + idParent + "_" + scope;
         Procedure proc = procTable.get(idParent);
         int offset = (proc.getSize() + size);
-        if(isParam) {
+        if (isParam) {
             offset = proc.getOffset() + 16;
             // We update its parent size
             proc.setOffset(offset);
         }
-        if(!isParam){
+        if (!isParam) {
             // We update its parent size
             proc.setSize(proc.getSize() + size);
         }
         // We add the variable into the table
-        varTable.put(name,new Variable(name, idParent, offset, size, type, isParam));
+        varTable.put(name, new Variable(name, idParent, offset, size, type, isParam));
 
         return name;
     }
@@ -68,24 +63,24 @@ public class Backend {
         int scope = symbolsTable.getActualScope();
         String name = varname + "_" + idParent + "_" + scope;
         // We add the variable into the table
-        varTable.put(name,new StrVariable(name, idParent, size, value));
+        varTable.put(name, new StrVariable(name, idParent, size, value));
 
         return name;
     }
 
     // TMP STRING VARIABLE
     public String addTempStrVar(int size, String value) {
-        String name = "T"+tmp_n;
+        String name = "T" + tmp_n;
         tmp_n++;
         int idParent = getLastProcedureId();
         // We add the variable into the table
-        varTable.put(name,new StrVariable(name, idParent, size, value));
+        varTable.put(name, new StrVariable(name, idParent, size, value));
 
         return name;
     }
 
     public String addTempVar(int size, TipoSubyacente type) {
-        String name = "T"+tmp_n;
+        String name = "T" + tmp_n;
         tmp_n++;
         int idParent = getLastProcedureId();
         // We add the variable into the table
@@ -98,26 +93,20 @@ public class Backend {
     }
 
     // Adding a new PROCEDURE into the table
-    //    private String name;    // its name
-    //    private int nv;         // variable number
-    //    private int depth;      // subprogram from comes
-    //    private int size;       // memory used
-    //  private int offset;     // offset
-    //  private Type type;      // type
-    public String addProc(String procName, int params,int size, int offset, TipoSubyacente type) {
+    public String addProc(String procName, int params, int size, TipoSubyacente type) {
         String name = "PROC_" + procName;
         // We add the new procedure
         procTable.add(new Procedure(name, params, size, type));
         return name;
     }
 
-    public String addMain(){
+    public String addMain() {
         String name = "PROC_main";
         this.procTable.add(new Procedure(name, 0, 0, TipoSubyacente.TS_NULL));
         return name;
     }
 
-    public String addLabel(){
+    public String addLabel() {
         String label = "LABEL_" + labelTable.size();
 
         labelTable.add(new Label(label));
@@ -131,24 +120,24 @@ public class Backend {
                 + "---------------------------------------------\n";
 
         result += "Variables:\n";
-        for (int i = 0; i < varTable.size(); i++) {
-            result += varTable.get(i) + "\n";
+        for (String name: varTable.keySet()) {
+            result += varTable.get(name) + "\n";
         }
 
         result += "\nProcedures:\n";
-        for (int i = 0; i < procTable.size(); i++) {
-            result += procTable.get(i) + "\n";
+        for (Procedure procedure : procTable) {
+            result += procedure + "\n";
         }
 
         result += "\nLabels:\n";
-        for (int i = 0; i < labelTable.size(); i++) {
-            result += labelTable.get(i) + "\n";
+        for (Label label : labelTable) {
+            result += label + "\n";
         }
 
         try {
             // File Writter
             File file = new File(PATH);
-            if(!file.exists()){
+            if (!file.exists()) {
                 file.createNewFile();
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -164,28 +153,24 @@ public class Backend {
         return this.varTable.get(name).getAssemblerDir();
     }
 
-    public String getVar68kAssembler(String name) {
-        return this.varTable.get(name).getAssembler68kDir();
-    }
-
     public Variable getVariable(String name) {
         return this.varTable.get(name);
     }
 
-    public Collection<Variable> getVariables(){
+    public Collection<Variable> getVariables() {
         return this.varTable.values();
     }
 
-    public Procedure getProcedure(String proc){
+    public Procedure getProcedure(String proc) {
         for (Procedure procedure : this.procTable) {
-            if (procedure.getName().equals(proc)){
+            if (procedure.getName().equals(proc)) {
                 return procedure;
             }
         }
         return null;
     }
 
-    private int getLastProcedureId(){
+    private int getLastProcedureId() {
         return procTable.get(procTable.size() - 1).getNv();
     }
 }

@@ -1,28 +1,28 @@
 .global main
 .extern printf, scanf
 .data
-T23: .asciz "FACTORIAL "
-T24: .asciz "! :"
-T27: .asciz "RECURSIVE ADDING "
-T26: .asciz "\n"
-T28: .asciz " :"
-T30: .asciz "\n"
-T38: .asciz "\n"
-T37: .asciz "He entrado: "
-T39: .asciz "HE SALIDO"
-T12: .asciz "\n"
-T11: .asciz "Invalid number: "
+T25: .asciz "FACTORIAL "
+T26: .asciz "! :"
+T29: .asciz "RECURSIVE ADDING "
+T28: .asciz "\n"
+T30: .asciz " :"
+T32: .asciz "\n"
+T43: .asciz "He entrado: "
+T42: .asciz "\n"
+T44: .asciz "\nHE SALIDO\n"
+T14: .asciz "\n"
+T13: .asciz "Invalid number: "
 format_int: .asciz "%d"
 true_label : .asciz "true"
 false_label : .asciz "false"
 .text
-# PROC_factorial:skip
-PROC_factorial:
+# PROC_sumaDosNumeros:skip
+PROC_sumaDosNumeros:
 
-# pmb PROC_factorial
+# pmb PROC_sumaDosNumeros
 push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.
 mov %rsp, %rbp
-sub $34, %rsp
+sub $12, %rsp
 
 # T0 = 0
 movl $0, %edi
@@ -32,18 +32,52 @@ movl %edi, -4(%rbp)
 movl -4(%rbp), %edi
 movl %edi, -8(%rbp)
 
-# T1 = 0
+# T1 = a_0_1 add b_0_1
+movl 16(%rbp), %edi
+movl 32(%rbp), %eax
+addl %eax, %edi
+movl %edi, -12(%rbp)
+
+# result_0_2 = T1
+movl -12(%rbp), %edi
+movl %edi, -8(%rbp)
+
+# rtn result_0_2
+# Moving function result into %eax or %ax
+movl -8(%rbp), %eax
+# Delete all reserved space
+addq $12, %rsp
+leave
+ret
+
+# PROC_factorial:skip
+PROC_factorial:
+
+# pmb PROC_factorial
+push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.
+mov %rsp, %rbp
+sub $34, %rsp
+
+# T2 = 0
+movl $0, %edi
+movl %edi, -4(%rbp)
+
+# result_1_2 = T2
+movl -4(%rbp), %edi
+movl %edi, -8(%rbp)
+
+# T3 = 0
 movl $0, %edi
 movl %edi, -12(%rbp)
 
-# T2= num_0_1 EQ T1
+# T4= num_1_1 EQ T3
 movl -12(%rbp), %edi
 movl 16(%rbp), %esi
 xor %rax, %rax # clean return value register
 call CMP_EQ_NUM
 movw %ax,-14(%rbp) # get return value
 
-# if T2=true goto LABEL_0
+# if T4=true goto LABEL_0
 cmpw $1,-14(%rbp)
 je LABEL_0
 
@@ -53,11 +87,11 @@ jmp LABEL_1
 # LABEL_0:skip
 LABEL_0:
 
-# T3 = 1
+# T5 = 1
 movl $1, %edi
 movl %edi, -18(%rbp)
 
-# result_0_2 = T3
+# result_1_2 = T5
 movl -18(%rbp), %edi
 movl %edi, -8(%rbp)
 
@@ -67,17 +101,17 @@ jmp LABEL_2
 # LABEL_1:skip
 LABEL_1:
 
-# T4 = 1
+# T6 = 1
 movl $1, %edi
 movl %edi, -22(%rbp)
 
-# T5 = num_0_1 sub T4
+# T7 = num_1_1 sub T6
 movl 16(%rbp), %edi
 movl -22(%rbp), %eax
 subl %eax, %edi
 movl %edi, -26(%rbp)
 
-# param PROC_factorial(T5)
+# param PROC_factorial(T7)
 movslq -26(%rbp), %rdx
 push %rdx
 
@@ -87,23 +121,23 @@ call PROC_factorial
 # pop all params
 pop %rdx
 
-# T6 = return PROC_factorial
+# T8 = return PROC_factorial
 movl %eax, -30(%rbp)
 
-# T7 = num_0_1 prod T6
+# T9 = num_1_1 prod T8
 movl 16(%rbp), %edi
 movl -30(%rbp), %eax
 imull %eax, %edi
 movl %edi, -34(%rbp)
 
-# result_0_2 = T7
+# result_1_2 = T9
 movl -34(%rbp), %edi
 movl %edi, -8(%rbp)
 
 # LABEL_2:skip
 LABEL_2:
 
-# rtn result_0_2
+# rtn result_1_2
 # Moving function result into %eax or %ax
 movl -8(%rbp), %eax
 # Delete all reserved space
@@ -119,26 +153,26 @@ push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pil
 mov %rsp, %rbp
 sub $44, %rsp
 
-# T8 = 0
+# T10 = 0
 movl $0, %edi
 movl %edi, -4(%rbp)
 
-# result_1_2 = T8
+# result_2_2 = T10
 movl -4(%rbp), %edi
 movl %edi, -8(%rbp)
 
-# T9 = 1
+# T11 = 1
 movl $1, %edi
 movl %edi, -12(%rbp)
 
-# T10= num_0_1 LT T9
+# T12= num_1_1 LT T11
 movl -12(%rbp), %edi
 movl 16(%rbp), %esi
 xor %rax, %rax # clean return value register
 call CMP_LT
 movw %ax,-14(%rbp) # get return value
 
-# if T10=true goto LABEL_3
+# if T12=true goto LABEL_3
 cmpw $1,-14(%rbp)
 je LABEL_3
 
@@ -148,30 +182,30 @@ jmp LABEL_4
 # LABEL_3:skip
 LABEL_3:
 
-# T11 = "Invalid number: "
-# output T11
-mov $T11, %rdi
+# T13 = "Invalid number: "
+# output T13
+mov $T13, %rdi
 xor %rax, %rax
 call printf
 
-# output num_0_1
+# output num_1_1
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl 16(%rbp), %esi
 xor %rax, %rax
 call printf
 
-# T12 = "\n"
-# output T12
-mov $T12, %rdi
+# T14 = "\n"
+# output T14
+mov $T14, %rdi
 xor %rax, %rax
 call printf
 
-# T13 = 0
+# T15 = 0
 movl $0, %edi
 movl %edi, -18(%rbp)
 
-# result_1_2 = T13
+# result_2_2 = T15
 movl -18(%rbp), %edi
 movl %edi, -8(%rbp)
 
@@ -181,18 +215,18 @@ jmp LABEL_5
 # LABEL_4:skip
 LABEL_4:
 
-# T14 = 1
+# T16 = 1
 movl $1, %edi
 movl %edi, -22(%rbp)
 
-# T15= num_0_1 EQ T14
+# T17= num_1_1 EQ T16
 movl -22(%rbp), %edi
 movl 16(%rbp), %esi
 xor %rax, %rax # clean return value register
 call CMP_EQ_NUM
 movw %ax,-24(%rbp) # get return value
 
-# if T15=true goto LABEL_6
+# if T17=true goto LABEL_6
 cmpw $1,-24(%rbp)
 je LABEL_6
 
@@ -202,11 +236,11 @@ jmp LABEL_7
 # LABEL_6:skip
 LABEL_6:
 
-# T16 = 1
+# T18 = 1
 movl $1, %edi
 movl %edi, -28(%rbp)
 
-# result_1_2 = T16
+# result_2_2 = T18
 movl -28(%rbp), %edi
 movl %edi, -8(%rbp)
 
@@ -219,17 +253,17 @@ jmp LABEL_8
 # LABEL_7:skip
 LABEL_7:
 
-# T17 = 1
+# T19 = 1
 movl $1, %edi
 movl %edi, -32(%rbp)
 
-# T18 = num_0_1 sub T17
+# T20 = num_1_1 sub T19
 movl 16(%rbp), %edi
 movl -32(%rbp), %eax
 subl %eax, %edi
 movl %edi, -36(%rbp)
 
-# param PROC_recursiveAdding(T18)
+# param PROC_recursiveAdding(T20)
 movslq -36(%rbp), %rdx
 push %rdx
 
@@ -239,23 +273,23 @@ call PROC_recursiveAdding
 # pop all params
 pop %rdx
 
-# T19 = return PROC_recursiveAdding
+# T21 = return PROC_recursiveAdding
 movl %eax, -40(%rbp)
 
-# T20 = num_0_1 add T19
+# T22 = num_1_1 add T21
 movl 16(%rbp), %edi
 movl -40(%rbp), %eax
 addl %eax, %edi
 movl %edi, -44(%rbp)
 
-# result_1_2 = T20
+# result_2_2 = T22
 movl -44(%rbp), %edi
 movl %edi, -8(%rbp)
 
 # LABEL_8:skip
 LABEL_8:
 
-# rtn result_1_2
+# rtn result_2_2
 # Moving function result into %eax or %ax
 movl -8(%rbp), %eax
 # Delete all reserved space
@@ -269,44 +303,44 @@ main:
 # pmb PROC_main
 push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.
 mov %rsp, %rbp
-sub $54, %rsp
+sub $70, %rsp
 
-# T21 = 5
+# T23 = 5
 movl $5, %edi
 movl %edi, -4(%rbp)
 
-# numA_2_2 = T21
+# numA_3_2 = T23
 movl -4(%rbp), %edi
 movl %edi, -8(%rbp)
 
-# T22 = 10
+# T24 = 10
 movl $10, %edi
 movl %edi, -12(%rbp)
 
-# numB_2_2 = T22
+# numB_3_2 = T24
 movl -12(%rbp), %edi
 movl %edi, -16(%rbp)
 
-# T23 = "FACTORIAL "
-# output T23
-mov $T23, %rdi
+# T25 = "FACTORIAL "
+# output T25
+mov $T25, %rdi
 xor %rax, %rax
 call printf
 
-# output numA_2_2
+# output numA_3_2
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -8(%rbp), %esi
 xor %rax, %rax
 call printf
 
-# T24 = "! :"
-# output T24
-mov $T24, %rdi
+# T26 = "! :"
+# output T26
+mov $T26, %rdi
 xor %rax, %rax
 call printf
 
-# param PROC_factorial(numA_2_2)
+# param PROC_factorial(numA_3_2)
 movslq -8(%rbp), %rdx
 push %rdx
 
@@ -316,42 +350,42 @@ call PROC_factorial
 # pop all params
 pop %rdx
 
-# T25 = return PROC_factorial
+# T27 = return PROC_factorial
 movl %eax, -20(%rbp)
 
-# output T25
+# output T27
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -20(%rbp), %esi
 xor %rax, %rax
 call printf
 
-# T26 = "\n"
-# output T26
-mov $T26, %rdi
+# T28 = "\n"
+# output T28
+mov $T28, %rdi
 xor %rax, %rax
 call printf
 
-# T27 = "RECURSIVE ADDING "
-# output T27
-mov $T27, %rdi
+# T29 = "RECURSIVE ADDING "
+# output T29
+mov $T29, %rdi
 xor %rax, %rax
 call printf
 
-# output numB_2_2
+# output numB_3_2
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -16(%rbp), %esi
 xor %rax, %rax
 call printf
 
-# T28 = " :"
-# output T28
-mov $T28, %rdi
+# T30 = " :"
+# output T30
+mov $T30, %rdi
 xor %rax, %rax
 call printf
 
-# param PROC_recursiveAdding(numB_2_2)
+# param PROC_recursiveAdding(numB_3_2)
 movslq -16(%rbp), %rdx
 push %rdx
 
@@ -361,83 +395,117 @@ call PROC_recursiveAdding
 # pop all params
 pop %rdx
 
-# T29 = return PROC_recursiveAdding
+# T31 = return PROC_recursiveAdding
 movl %eax, -24(%rbp)
 
-# output T29
+# output T31
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -24(%rbp), %esi
 xor %rax, %rax
 call printf
 
-# T30 = "\n"
-# output T30
-mov $T30, %rdi
+# T32 = "\n"
+# output T32
+mov $T32, %rdi
 xor %rax, %rax
 call printf
 
-# T31 = 100
+# T33 = 100
 movl $100, %edi
 movl %edi, -28(%rbp)
 
-# numE_2_2 = T31
+# numE_3_2 = T33
 movl -28(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# numD_2_2 = T31
+# numD_3_2 = T33
 movw -28(%rbp), %di
 movw %di, -32(%rbp)
 
-# numC_2_2 = T31
+# numC_3_2 = T33
 movw -28(%rbp), %di
 movw %di, -32(%rbp)
 
-# output numC_2_2
-mov $format_int, %rdi
-xor %rsi, %rsi
-movl -32(%rbp), %esi
-xor %rax, %rax
-call printf
-
-# output numC_2_2
-mov $format_int, %rdi
-xor %rsi, %rsi
-movl -32(%rbp), %esi
-xor %rax, %rax
-call printf
-
-# output numC_2_2
-mov $format_int, %rdi
-xor %rsi, %rsi
-movl -32(%rbp), %esi
-xor %rax, %rax
-call printf
-
-# T32 = 0
+# T34 = 0
 movl $0, %edi
 movl %edi, -36(%rbp)
 
-# i_2_2 = T32
+# numF_3_2 = T34
 movl -36(%rbp), %edi
 movl %edi, -40(%rbp)
+
+# param PROC_sumaDosNumeros(numC_3_2)
+movslq -32(%rbp), %rdx
+push %rdx
+
+# param PROC_sumaDosNumeros(numC_3_2)
+movslq -32(%rbp), %rdx
+push %rdx
+
+# call PROC_sumaDosNumeros
+xor %rax, %rax   # clean return register
+call PROC_sumaDosNumeros
+# pop all params
+pop %rdx
+pop %rdx
+
+# T35 = return PROC_sumaDosNumeros
+movl %eax, -44(%rbp)
+
+# output T35
+mov $format_int, %rdi
+xor %rsi, %rsi
+movl -44(%rbp), %esi
+xor %rax, %rax
+call printf
+
+# param PROC_sumaDosNumeros(numC_3_2)
+movslq -32(%rbp), %rdx
+push %rdx
+
+# param PROC_sumaDosNumeros(numC_3_2)
+movslq -32(%rbp), %rdx
+push %rdx
+
+# call PROC_sumaDosNumeros
+xor %rax, %rax   # clean return register
+call PROC_sumaDosNumeros
+# pop all params
+pop %rdx
+pop %rdx
+
+# T36 = return PROC_sumaDosNumeros
+movl %eax, -48(%rbp)
+
+# numF_3_2 = T36
+movl -48(%rbp), %edi
+movl %edi, -40(%rbp)
+
+# T37 = 0
+movl $0, %edi
+movl %edi, -52(%rbp)
+
+# i_3_2 = T37
+movl -52(%rbp), %edi
+movl %edi, -56(%rbp)
 
 # LABEL_9:skip
 LABEL_9:
 
-# T33 = 3
+# T38 = 3
 movl $3, %edi
-movl %edi, -44(%rbp)
+movl %edi, -60(%rbp)
 
-# T34= i_2_2 LT T33
-movl -44(%rbp), %edi
-movl -40(%rbp), %esi
+# T39= i_3_2 LT T38
+movl -60(%rbp), %edi
+movl -56(%rbp), %esi
 xor %rax, %rax # clean return value register
 call CMP_LT
-movw %ax,-46(%rbp) # get return value
+movw %ax,-62(%rbp) # get return value
 
-# if T34=true goto LABEL_10
-cmpw $1,-46(%rbp)
+# if T39=true goto LABEL_10
+cmpw $1,-62(%rbp)
 je LABEL_10
 
 # go_to LABEL_11
@@ -446,19 +514,19 @@ jmp LABEL_11
 # LABEL_12:skip
 LABEL_12:
 
-# T35 = 1
+# T40 = 1
 movl $1, %edi
-movl %edi, -50(%rbp)
+movl %edi, -66(%rbp)
 
-# T36 = i_2_2 add T35
-movl -40(%rbp), %edi
-movl -50(%rbp), %eax
+# T41 = i_3_2 add T40
+movl -56(%rbp), %edi
+movl -66(%rbp), %eax
 addl %eax, %edi
-movl %edi, -54(%rbp)
+movl %edi, -70(%rbp)
 
-# i_2_2 = T36
-movl -54(%rbp), %edi
-movl %edi, -40(%rbp)
+# i_3_2 = T41
+movl -70(%rbp), %edi
+movl %edi, -56(%rbp)
 
 # go_to LABEL_9
 jmp LABEL_9
@@ -466,22 +534,22 @@ jmp LABEL_9
 # LABEL_10:skip
 LABEL_10:
 
-# T37 = "He entrado: "
-# output T37
-mov $T37, %rdi
+# T42 = "\n"
+# output T42
+mov $T42, %rdi
 xor %rax, %rax
 call printf
 
-# output i_2_2
+# T43 = "He entrado: "
+# output T43
+mov $T43, %rdi
+xor %rax, %rax
+call printf
+
+# output i_3_2
 mov $format_int, %rdi
 xor %rsi, %rsi
-movl -40(%rbp), %esi
-xor %rax, %rax
-call printf
-
-# T38 = "\n"
-# output T38
-mov $T38, %rdi
+movl -56(%rbp), %esi
 xor %rax, %rax
 call printf
 
@@ -491,15 +559,15 @@ jmp LABEL_12
 # LABEL_11:skip
 LABEL_11:
 
-# T39 = "HE SALIDO"
-# output T39
-mov $T39, %rdi
+# T44 = "\nHE SALIDO\n"
+# output T44
+mov $T44, %rdi
 xor %rax, %rax
 call printf
 
 # rtn
 # Delete all reserved space
-addq $54, %rsp
+addq $70, %rsp
 leave
 ret
 

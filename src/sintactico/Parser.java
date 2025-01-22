@@ -13,16 +13,16 @@ import errores.SemanticError;
 import errores.SymbolsTableError;
 import errores.SyntaxError;
 import generatorAssembler.GeneratorAssembler;
+import java_cup.runtime.ComplexSymbolFactory;
+import java_cup.runtime.ComplexSymbolFactory.ComplexSymbol;
+import java_cup.runtime.ComplexSymbolFactory.Location;
+import java_cup.runtime.Symbol;
 import lexico.Lexico;
 import symbols.*;
 import symbolsTable.SymbolsTable;
 import symbolsTable.Type;
 import symbolsTable.Type.Tipo;
 import symbolsTable.Type.TipoSubyacente;
-import java_cup.runtime.ComplexSymbolFactory;
-import java_cup.runtime.ComplexSymbolFactory.ComplexSymbol;
-import java_cup.runtime.ComplexSymbolFactory.Location;
-import java_cup.runtime.Symbol;
 import java.util.ArrayList;
 import java.util.Stack;
 import java_cup.runtime.ComplexSymbolFactory.Location;
@@ -486,7 +486,7 @@ public class Parser extends java_cup.runtime.lr_parser {
     this.lexico = lexico;
     this.symbolsTable = new SymbolsTable();
     this.backend = new Backend(symbolsTable);
-    this.c3a_g = new GeneratorC3A(backend);
+    this.c3a_g = new GeneratorC3A();
     this.assembler = new GeneratorAssembler(symbolsTable, backend, c3a_g);
     this.labelTrueStack = new Stack<String>();
     this.labelFalseStack = new Stack<String>();
@@ -601,16 +601,8 @@ class CUP$Parser$actions {
                               symbolsTable.closeSymbolsTableFiles();
                               backend.storeTables();
 
-                              //NOT OPTIMIZED CODE
                               c3a_g.savec3aInFile(false);
                               assembler.generateAssembler(false);
-
-                              /*
-                               OPTIMIZED CODE, NOT IMPLEMENTED
-                              c3a_g.optimize();
-                              c3a_g.savec3aInFile(true);
-                              assembler.generateAssembler(true);
-                              */
 
                               closeErrorFiles();
                             
@@ -1051,45 +1043,45 @@ class CUP$Parser$actions {
 		Location valuexright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		SymbolValue value = (SymbolValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
-                                Type varType = symbolsTable.get(var_id);
-                                String type_id = varType.getTypeName();
+                              try {
+                                   Type varType = symbolsTable.get(var_id);
+                                   String type_id = varType.getTypeName();
 
-                                if(varType.getTipo() == Tipo.dconst){
+                                   if (varType.getTipo() == Tipo.dconst) {
+                                       String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
+                                       String to = valuexright.getLine() + ":" + valuexright.getColumn();
+                                       String message = "Cant assign value to constant" + " from " + from + " to " + to;
+                                       throw new SemanticError(message);
+                                   }
+
+                                   //IF LITERALL (type = null) CHECK SUBJACENT Tipo
+                                   if (value.getTipo() == Tipo.dnull && varType.getTipoSubyacente() == value.getTipoSubyacente()) {
+                                       String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
+                                       String to = valuexright.getLine() + ":" + valuexright.getColumn();
+                                       String message = "Value and type must have same subjacent type" + " from " + from + " to " + to;
+                                       throw new SemanticError(message);
+                                   }
+
+                                   if (value.getTipo() != Tipo.dnull && !value.getTypeName().equals(type_id)) {
+                                       String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
+                                       String to = valuexright.getLine() + ":" + valuexright.getColumn();
+                                       String message = "ValueType and type_id must be the same type" + " from " + from + " to " + to;
+                                       throw new SemanticError(message);
+                                   }
+
+                                   c3a_g.generateC3aInstr(
+                                           Code.copy,
+                                           value.getVarId(),
+                                           null,
+                                           varType.getBackendId()
+                                   );
+
+                                   RESULT = new SymbolOperatorAssignation();
+                              } catch (SymbolsTableError e) {
                                   String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
-                                  String to = valuexright.getLine() + ":" + valuexright.getColumn();
-                                  String message = "Cant assign value to constant" + " from "+from+" to "+to;
+                                  String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
+                                  String message = e.getMessage() + " from " + from + " to " + to;
                                   throw new SemanticError(message);
-                                }
-
-                                //IF LITERALL (type = null) CHECK SUBJACENT Tipo
-                                if(value.getTipo() == Tipo.dnull && varType.getTipoSubyacente() == value.getTipoSubyacente()){
-                                  String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
-                                  String to = valuexright.getLine() + ":" + valuexright.getColumn();
-                                  String message = "Value and type must have same subjacent type" + " from "+from+" to "+to;
-                                  throw new SemanticError(message);
-                                }
-
-                                if(value.getTipo() != Tipo.dnull && value.getTypeName() != type_id){
-                                  String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
-                                  String to = valuexright.getLine() + ":" + valuexright.getColumn();
-                                  String message = "Value and type must have same subjacent type" + " from "+from+" to "+to;
-                                  throw new SemanticError(message);
-                                }
-
-                                c3a_g.generateC3aInstr(
-                                  Code.copy,
-                                  value.getVarId(),
-                                  null,
-                                  varType.getBackendId()
-                                );
-
-                                RESULT = new SymbolOperatorAssignation();
-                              }catch(SymbolsTableError e){
-                                String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
-                                String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
-                                String message = e.getMessage() + " from "+from+" to "+to;
-                                throw new SemanticError(message);
                               }
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("OPERATOR_ASSIG",17, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -3212,7 +3204,7 @@ class CUP$Parser$actions {
 
                                 TipoSubyacente subType = return_fun_type.getTipoSubyacente();
                                 ArrayList<Param> params = fun_params.getParams();
-                                String backId = backend.addProc(fun_id, params.size(), 0, 0, subType);
+                                String backId = backend.addProc(fun_id, params.size(), 0, subType);
 
                                 Type fun_type = new Type(backId, Tipo.dfun, type_id);
 
