@@ -3,7 +3,7 @@ package c3a;
 public class InstructionC3A {
 
     // All posible operations that our c3@ will be able to use
-    public static enum Code {
+    public enum Code {
         copy,
         neg,
         add,
@@ -50,18 +50,15 @@ public class InstructionC3A {
             case neg:
                 result += this.dest + " = " + this.opCode + " " + this.op1;
                 break;
-            /* ARITHMETICAL OP*/
-            case add:
-            case sub:
-            case div:
-            case prod:
-            case mod:
+            /* ARITHMETICAL OP */
+            case add, sub, div, prod, mod:
                 /* BOOLEAN OP */
-            case and:
-            case or:
+            case and, or:
+                /* RELATIONAL OP */
+            case EQ, GE, GT, LE, LT, NE:
                 result += this.dest + " = " + this.op1 + " " + this.opCode + " " + this.op2;
                 break;
-            case call:
+            case call, pmb:
                 result += this.opCode + " " + this.dest;
                 break;
             case copy:
@@ -73,14 +70,6 @@ public class InstructionC3A {
             /* JUMPS */
             case go_to:
                 result += this.opCode + " " + this.dest;
-                break;
-            case EQ:
-            case GE:
-            case GT:
-            case LE:
-            case LT:
-            case NE:
-                result += this.dest + "= " + this.op1 + " " + this.opCode + " " + this.op2;
                 break;
             case jump_cond:
                 result += "if " + this.op1 + "=" + this.op2 + " goto " + this.dest;
@@ -97,9 +86,6 @@ public class InstructionC3A {
                 break;
             case param:
                 result += this.opCode + " " + this.dest + "(" + this.op1 + ")";
-                break;
-            case pmb:
-                result += this.opCode + " " + this.dest;
                 break;
             case rtn:
                 result += this.opCode;
@@ -123,34 +109,6 @@ public class InstructionC3A {
 
     public void setOpCode(Code opCode) {
         this.opCode = opCode;
-    }
-
-    public String signeOperador() {
-        switch (this.opCode) {
-            case add:
-                return "+";
-            case div:
-                return "%";
-            case sub:
-                return "-";
-            case mod:
-                return "%";
-            case prod:
-                return "*";
-            case LT:
-                return "<";
-            case LE:
-                return "<=";
-            case EQ:
-                return "=";
-            case NE:
-                return "!=";
-            case GE:
-                return ">=";
-            case GT:
-                return ">";
-        }
-        return null;
     }
 
     public String getOp1() {
@@ -177,20 +135,12 @@ public class InstructionC3A {
         this.dest = dest;
     }
 
-    public static boolean opIsLiteral(String n) {
-        return opIsInt(n) || opIsBoolean(n) || opIsString(n);
-    }
-
     public static boolean opIsInt(String n) {
         return n.matches("[0-9]+") || n.matches("^-[0-9]+");
     }
 
     public static boolean opIsBoolean(String n) {
         return n.equals("true") || n.equals("false");
-    }
-
-    public static boolean opIsString(String n) {
-        return n.charAt(0) == '"' && n.charAt(n.length() - 1) == '"';
     }
 
 }

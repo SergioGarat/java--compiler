@@ -533,19 +533,19 @@ public class Parser extends java_cup.runtime.lr_parser {
   private void initTypes() {
     try{
       //init NUMBER type
-      Type number_type = new Type(Tipo.dtype, TipoSubyacente.TS_NUMBER, 4, Integer.MIN_VALUE, Integer.MIN_VALUE);
+      Type number_type = new Type(Tipo.dtype, TipoSubyacente.TS_NUMBER, 4);
       symbolsTable.add("number", number_type);
 
       // init String type
-      Type str_type = new Type(Tipo.dtype, TipoSubyacente.TS_STRING, 2, 0, 0);
+      Type str_type = new Type(Tipo.dtype, TipoSubyacente.TS_STRING, 2);
       symbolsTable.add("string", str_type);
 
       //init BOOLEAN type
-      Type bool_type = new Type(Tipo.dtype,TipoSubyacente.TS_BOOLEAN,2,0,1);
+      Type bool_type = new Type(Tipo.dtype,TipoSubyacente.TS_BOOLEAN, 2);
       symbolsTable.add("boolean",bool_type);
 
       //init VOID type
-      Type void_type = new Type(Tipo.dtype, TipoSubyacente.TS_NULL, 0, 0, 0);
+      Type void_type = new Type(Tipo.dtype, TipoSubyacente.TS_NULL, 0);
       symbolsTable.add("void", void_type);
     }catch (SymbolsTableError e){
       closeErrorFiles();
@@ -601,8 +601,8 @@ class CUP$Parser$actions {
                               symbolsTable.closeSymbolsTableFiles();
                               backend.storeTables();
 
-                              c3a_g.savec3aInFile(false);
-                              assembler.generateAssembler(false);
+                              c3a_g.savec3aInFile();
+                              assembler.generateAssembler();
 
                               closeErrorFiles();
                             
@@ -2998,7 +2998,7 @@ class CUP$Parser$actions {
                                 Type paramType = symbolsTable.getParam(fun_id, num_params);
                                 TipoSubyacente paramSubType = symbolsTable.get(paramType.getTypeName()).getTipoSubyacente();
 
-                                if(paramSubType != subType){
+                                if (paramSubType != subType){
                                   String from = valuexleft.getLine() + ":" + valuexleft.getColumn();
                                   String to = valuexright.getLine() + ":" + valuexright.getColumn();
                                   String message = fun_id + ". Incorrect type for param " + num_params + ". Expected " + subType + " but got " + paramSubType + " from "+from+" to "+to;

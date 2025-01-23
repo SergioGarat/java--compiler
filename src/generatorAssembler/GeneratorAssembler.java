@@ -41,7 +41,7 @@ public class GeneratorAssembler {
         assemblyInstructions = new ArrayList<String>();
     }
 
-    public void generateAssembler(boolean optimized) {
+    public void generateAssembler() {
         try {
             File fileGAS;
             fileGAS = new File(PATH);

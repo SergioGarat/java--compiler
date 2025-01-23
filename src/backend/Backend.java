@@ -46,8 +46,7 @@ public class Backend {
             offset = proc.getOffset() + 16;
             // We update its parent size
             proc.setOffset(offset);
-        }
-        if (!isParam) {
+        } else {
             // We update its parent size
             proc.setSize(proc.getSize() + size);
         }
@@ -120,7 +119,7 @@ public class Backend {
                 + "---------------------------------------------\n";
 
         result += "Variables:\n";
-        for (String name: varTable.keySet()) {
+        for (String name : varTable.keySet()) {
             result += varTable.get(name) + "\n";
         }
 

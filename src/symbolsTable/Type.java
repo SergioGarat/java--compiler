@@ -8,17 +8,13 @@ public class Type {
     private String backendId = "";
 
     private int size;
-    private int lowLimit;
-    private int highLimit;
     private Object value;
     private String typeName;
 
-    public Type(Tipo tipo, TipoSubyacente tipoSubyacente, int size, int lowLimit, int highLimit) {
+    public Type(Tipo tipo, TipoSubyacente tipoSubyacente, int size) {
         this.tipo = tipo;
         this.tipoSubyacente = tipoSubyacente;
         this.size = size;
-        this.lowLimit = lowLimit;
-        this.highLimit = highLimit;
     }
 
     public Type(Tipo tipo, String typeName) {
@@ -68,22 +64,6 @@ public class Type {
 
     public void setSize(int size) {
         this.size = size;
-    }
-
-    public int getLowLimit() {
-        return lowLimit;
-    }
-
-    public void setLowLimit(int lowLimit) {
-        this.lowLimit = lowLimit;
-    }
-
-    public int getHighLimit() {
-        return highLimit;
-    }
-
-    public void setHighLimit(int highLimit) {
-        this.highLimit = highLimit;
     }
 
     public Object getValue() {

@@ -73,7 +73,7 @@ public class SymbolsTable {
         int idxe = funDes.getFirst();
         int idxep = -1;
 
-        while (idxe != -1 && expansionTable.get(idxe).getId() != idParam) {
+        while (idxe != -1 && !expansionTable.get(idxe).getId().equals(idParam)) {
             idxep = idxe;
             idxe = ((ParamExpansion) expansionTable.get(idxe)).getNext();
         }
@@ -162,28 +162,6 @@ public class SymbolsTable {
         return expansionTable.get(idxe).getType();
     }
 
-    public ArrayList<Expansion> getParams(String idFun) throws SymbolsTableError {
-        Description funDes = descriptionTable.get(idFun);
-        // CHECK TYPE
-        if (funDes == null) {
-            throw new SymbolsTableError(idFun + "function not found");
-
-        }
-        if (funDes.getType().getTipo() != Tipo.dfun) {
-            throw new SymbolsTableError(idFun + "is not a function");
-        }
-
-        ArrayList<Expansion> params = new ArrayList<Expansion>();
-        int idxe = funDes.getFirst();
-
-        while (idxe != -1) {
-            params.add(expansionTable.get(idxe));
-            idxe = ((ParamExpansion) expansionTable.get(idxe)).getNext();
-        }
-
-        return params;
-    }
-
     public void enterBlock() {
         scopeTable.add(scope + 1, scopeTable.get(scope));
         scope += 1;
@@ -194,32 +172,30 @@ public class SymbolsTable {
         if (scope == 1) {
             throw new SymbolsTableError("Compiler error : out of scope 1");
         }
-        if (scope != 1) {
-            this.scope--;
-            // remove out of scope variables, or 
-            // iterate over hashmap
-            ArrayList<String> keys = new ArrayList<>(descriptionTable.keySet());
-            for (String key : keys) {
-                if (descriptionTable.get(key).getScope() > this.scope) {
-                    descriptionTable.remove(key);
-                }
+        this.scope--;
+        // remove out of scope variables, or
+        // iterate over hashmap
+        ArrayList<String> keys = new ArrayList<>(descriptionTable.keySet());
+        for (String key : keys) {
+            if (descriptionTable.get(key).getScope() > this.scope) {
+                descriptionTable.remove(key);
             }
-            // move from expansion to description
-            int first = scopeTable.get(scope + 1) - 1;
-            int last = scopeTable.get(scope);
-
-            for (int i = first; i >= last; i--) {
-                // not move coplex types like params
-                if (expansionTable.get(i).getScope() != -1) {
-                    Description des = new Description(expansionTable.remove(i));
-                    descriptionTable.put(des.getId(), des);
-                }
-            }
-
-            this.scopeTable.remove(this.scopeTable.size() - 1);
-            // We are decreasing the block's level and deleting data
-            saveTableInFile("LEAVE BLOCK : decrease scope");
         }
+        // move from expansion to description
+        int first = scopeTable.get(scope + 1) - 1;
+        int last = scopeTable.get(scope);
+
+        for (int i = first; i >= last; i--) {
+            // not move coplex types like params
+            if (expansionTable.get(i).getScope() != -1) {
+                Description des = new Description(expansionTable.remove(i));
+                descriptionTable.put(des.getId(), des);
+            }
+        }
+
+        this.scopeTable.remove(this.scopeTable.size() - 1);
+        // We are decreasing the block's level and deleting data
+        saveTableInFile("LEAVE BLOCK : decrease scope");
     }
 
     public void reset() {
@@ -270,8 +246,8 @@ public class SymbolsTable {
         // Expansion table data
         result += "-----------------------------------------------\n";
         result += "------------- EXPANSION TABLE -----------------\n\n";
-        for (int i = 0; i < this.expansionTable.size(); i++) {
-            result += this.expansionTable.get(i).toString() + "\n";
+        for (Expansion expansion : this.expansionTable) {
+            result += expansion.toString() + "\n";
         }
         result += "\n-----------------------------------------------\n\n";
         result += "-------------- END SYMBOLS TABLE --------------\n\n";
