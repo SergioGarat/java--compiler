@@ -26,10 +26,9 @@ public class GeneratorC3A {
     }
 
 
-    public void savec3aInFile(boolean optimized) {
+    public void savec3aInFile() {
         String result = "-----------------------------------------------\n"
                 + "---------------- C3@ code list"
-                + (optimized ? "optimized" : "")
                 + " ----------------\n"
                 + "-----------------------------------------------\n";
         for (InstructionC3A instruction : instructions) {

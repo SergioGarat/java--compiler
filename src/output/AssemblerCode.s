@@ -70,7 +70,7 @@ movl %edi, -8(%rbp)
 movl $0, %edi
 movl %edi, -12(%rbp)
 
-# T4= num_1_1 EQ T3
+# T4 = num_1_1 EQ T3
 movl -12(%rbp), %edi
 movl 16(%rbp), %esi
 xor %rax, %rax # clean return value register
@@ -165,7 +165,7 @@ movl %edi, -8(%rbp)
 movl $1, %edi
 movl %edi, -12(%rbp)
 
-# T12= num_1_1 LT T11
+# T12 = num_1_1 LT T11
 movl -12(%rbp), %edi
 movl 16(%rbp), %esi
 xor %rax, %rax # clean return value register
@@ -219,7 +219,7 @@ LABEL_4:
 movl $1, %edi
 movl %edi, -22(%rbp)
 
-# T17= num_1_1 EQ T16
+# T17 = num_1_1 EQ T16
 movl -22(%rbp), %edi
 movl 16(%rbp), %esi
 xor %rax, %rax # clean return value register
@@ -497,7 +497,7 @@ LABEL_9:
 movl $3, %edi
 movl %edi, -60(%rbp)
 
-# T39= i_3_2 LT T38
+# T39 = i_3_2 LT T38
 movl -60(%rbp), %edi
 movl -56(%rbp), %esi
 xor %rax, %rax # clean return value register

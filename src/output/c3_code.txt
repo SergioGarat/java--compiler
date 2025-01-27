@@ -25,7 +25,7 @@ result_1_2 = T2
 
 T3 = 0
 
-T4= num_1_1 EQ T3
+T4 = num_1_1 EQ T3
 
 if T4=true goto LABEL_0
 
@@ -69,7 +69,7 @@ result_2_2 = T10
 
 T11 = 1
 
-T12= num_1_1 LT T11
+T12 = num_1_1 LT T11
 
 if T12=true goto LABEL_3
 
@@ -95,7 +95,7 @@ LABEL_4:skip
 
 T16 = 1
 
-T17= num_1_1 EQ T16
+T17 = num_1_1 EQ T16
 
 if T17=true goto LABEL_6
 
@@ -221,7 +221,7 @@ LABEL_9:skip
 
 T38 = 3
 
-T39= i_3_2 LT T38
+T39 = i_3_2 LT T38
 
 if T39=true goto LABEL_10
 
