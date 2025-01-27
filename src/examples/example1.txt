@@ -40,6 +40,8 @@ function main() {
 	print(factorial(numA));
 	print("\n");
 
+	//Llamada a la función de suma recursiva//
+
 	print("RECURSIVE ADDING ");
 	print(numB);
 	print(" :");
@@ -51,6 +53,8 @@ function main() {
 	numF : number := 0;
 	print(sumaDosNumeros(numC, numD));
     numF := sumaDosNumeros(numC, numE);
+
+    // Comprobación del funcionamiento del bucle for//
 
 	for (i : number := 0; ((i < 3)); i := i + 1){
               print("\n");

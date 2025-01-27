@@ -403,223 +403,223 @@
 
 	SEMICOLON[;](40:12)
 
-	INSTR_PRINT[print](42:1)
-
-	LPAREN[(](42:6)
-
-	STRING["RECURSIVE ADDING "](42:7)
-
-	RPAREN[)](42:26)
-
-	SEMICOLON[;](42:27)
-
-	INSTR_PRINT[print](43:1)
-
-	LPAREN[(](43:6)
-
-	ID[numB](43:7)
-
-	RPAREN[)](43:11)
-
-	SEMICOLON[;](43:12)
-
 	INSTR_PRINT[print](44:1)
 
 	LPAREN[(](44:6)
 
-	STRING[" :"](44:7)
+	STRING["RECURSIVE ADDING "](44:7)
 
-	RPAREN[)](44:11)
+	RPAREN[)](44:26)
 
-	SEMICOLON[;](44:12)
+	SEMICOLON[;](44:27)
 
 	INSTR_PRINT[print](45:1)
 
 	LPAREN[(](45:6)
 
-	ID[recursiveAdding](45:7)
+	ID[numB](45:7)
 
-	LPAREN[(](45:22)
+	RPAREN[)](45:11)
 
-	ID[numB](45:23)
-
-	RPAREN[)](45:27)
-
-	RPAREN[)](45:28)
-
-	SEMICOLON[;](45:29)
+	SEMICOLON[;](45:12)
 
 	INSTR_PRINT[print](46:1)
 
 	LPAREN[(](46:6)
 
-	STRING["\n"](46:7)
+	STRING[" :"](46:7)
 
 	RPAREN[)](46:11)
 
 	SEMICOLON[;](46:12)
 
-	ID[numC](48:1)
+	INSTR_PRINT[print](47:1)
 
-	COMMA[,](48:5)
+	LPAREN[(](47:6)
 
-	ID[numD](48:7)
+	ID[recursiveAdding](47:7)
 
-	COMMA[,](48:11)
+	LPAREN[(](47:22)
 
-	ID[numE](48:13)
+	ID[numB](47:23)
 
-	TWO_POINTS[:](48:18)
+	RPAREN[)](47:27)
 
-	ID[number](48:20)
+	RPAREN[)](47:28)
 
-	OP_ASSIG[:=](48:27)
+	SEMICOLON[;](47:29)
 
-	NUMBER[100](48:30)
+	INSTR_PRINT[print](48:1)
 
-	SEMICOLON[;](48:33)
+	LPAREN[(](48:6)
 
-	ID[numF](50:1)
+	STRING["\n"](48:7)
 
-	TWO_POINTS[:](50:6)
+	RPAREN[)](48:11)
 
-	ID[number](50:8)
+	SEMICOLON[;](48:12)
 
-	OP_ASSIG[:=](50:15)
+	ID[numC](50:1)
 
-	NUMBER[0](50:18)
+	COMMA[,](50:5)
 
-	SEMICOLON[;](50:19)
+	ID[numD](50:7)
 
-	INSTR_PRINT[print](51:1)
+	COMMA[,](50:11)
 
-	LPAREN[(](51:6)
+	ID[numE](50:13)
 
-	ID[sumaDosNumeros](51:7)
+	TWO_POINTS[:](50:18)
 
-	LPAREN[(](51:21)
+	ID[number](50:20)
 
-	ID[numC](51:22)
+	OP_ASSIG[:=](50:27)
 
-	COMMA[,](51:26)
+	NUMBER[100](50:30)
 
-	ID[numD](51:28)
+	SEMICOLON[;](50:33)
 
-	RPAREN[)](51:32)
+	ID[numF](52:1)
 
-	RPAREN[)](51:33)
+	TWO_POINTS[:](52:6)
 
-	SEMICOLON[;](51:34)
+	ID[number](52:8)
 
-	ID[numF](52:4)
+	OP_ASSIG[:=](52:15)
 
-	OP_ASSIG[:=](52:9)
+	NUMBER[0](52:18)
 
-	ID[sumaDosNumeros](52:12)
+	SEMICOLON[;](52:19)
 
-	LPAREN[(](52:26)
+	INSTR_PRINT[print](53:1)
 
-	ID[numC](52:27)
+	LPAREN[(](53:6)
 
-	COMMA[,](52:31)
+	ID[sumaDosNumeros](53:7)
 
-	ID[numE](52:33)
+	LPAREN[(](53:21)
 
-	RPAREN[)](52:37)
+	ID[numC](53:22)
 
-	SEMICOLON[;](52:38)
+	COMMA[,](53:26)
 
-	INST_FOR[for](54:1)
+	ID[numD](53:28)
 
-	LPAREN[(](54:5)
+	RPAREN[)](53:32)
 
-	ID[i](54:6)
+	RPAREN[)](53:33)
 
-	TWO_POINTS[:](54:8)
+	SEMICOLON[;](53:34)
 
-	ID[number](54:10)
+	ID[numF](54:4)
 
-	OP_ASSIG[:=](54:17)
+	OP_ASSIG[:=](54:9)
 
-	NUMBER[0](54:20)
+	ID[sumaDosNumeros](54:12)
 
-	SEMICOLON[;](54:21)
+	LPAREN[(](54:26)
 
-	LPAREN[(](54:23)
+	ID[numC](54:27)
 
-	LPAREN[(](54:24)
+	COMMA[,](54:31)
 
-	ID[i](54:25)
+	ID[numE](54:33)
 
-	OP_LT[<](54:27)
+	RPAREN[)](54:37)
 
-	NUMBER[3](54:29)
+	SEMICOLON[;](54:38)
 
-	RPAREN[)](54:30)
+	INST_FOR[for](58:1)
 
-	RPAREN[)](54:31)
+	LPAREN[(](58:5)
 
-	SEMICOLON[;](54:32)
+	ID[i](58:6)
 
-	ID[i](54:34)
+	TWO_POINTS[:](58:8)
 
-	OP_ASSIG[:=](54:36)
+	ID[number](58:10)
 
-	ID[i](54:39)
+	OP_ASSIG[:=](58:17)
 
-	OP_SUM[+](54:41)
+	NUMBER[0](58:20)
 
-	NUMBER[1](54:43)
+	SEMICOLON[;](58:21)
 
-	RPAREN[)](54:44)
+	LPAREN[(](58:23)
 
-	LBRACKET[{](54:45)
+	LPAREN[(](58:24)
 
-	INSTR_PRINT[print](55:14)
+	ID[i](58:25)
 
-	LPAREN[(](55:19)
+	OP_LT[<](58:27)
 
-	STRING["\n"](55:20)
+	NUMBER[3](58:29)
 
-	RPAREN[)](55:24)
+	RPAREN[)](58:30)
 
-	SEMICOLON[;](55:25)
+	RPAREN[)](58:31)
 
-	INSTR_PRINT[print](56:14)
+	SEMICOLON[;](58:32)
 
-	LPAREN[(](56:19)
+	ID[i](58:34)
 
-	STRING["He entrado: "](56:20)
+	OP_ASSIG[:=](58:36)
 
-	RPAREN[)](56:34)
+	ID[i](58:39)
 
-	SEMICOLON[;](56:35)
+	OP_SUM[+](58:41)
 
-	INSTR_PRINT[print](57:14)
+	NUMBER[1](58:43)
 
-	LPAREN[(](57:19)
+	RPAREN[)](58:44)
 
-	ID[i](57:20)
+	LBRACKET[{](58:45)
 
-	RPAREN[)](57:21)
+	INSTR_PRINT[print](59:14)
 
-	SEMICOLON[;](57:22)
+	LPAREN[(](59:19)
 
-	RBRACKET[}](58:8)
+	STRING["\n"](59:20)
 
-	INSTR_PRINT[print](59:4)
+	RPAREN[)](59:24)
 
-	LPAREN[(](59:9)
+	SEMICOLON[;](59:25)
 
-	STRING["\nHE SALIDO\n"](59:10)
+	INSTR_PRINT[print](60:14)
 
-	RPAREN[)](59:25)
+	LPAREN[(](60:19)
 
-	SEMICOLON[;](59:26)
+	STRING["He entrado: "](60:20)
 
-	RBRACKET[}](61:0)
+	RPAREN[)](60:34)
 
-	EOF[](61:1)
+	SEMICOLON[;](60:35)
+
+	INSTR_PRINT[print](61:14)
+
+	LPAREN[(](61:19)
+
+	ID[i](61:20)
+
+	RPAREN[)](61:21)
+
+	SEMICOLON[;](61:22)
+
+	RBRACKET[}](62:8)
+
+	INSTR_PRINT[print](63:4)
+
+	LPAREN[(](63:9)
+
+	STRING["\nHE SALIDO\n"](63:10)
+
+	RPAREN[)](63:25)
+
+	SEMICOLON[;](63:26)
+
+	RBRACKET[}](64:0)
+
+	EOF[](64:1)
 
 
 
