@@ -95,11 +95,11 @@ import java.io.FileWriter;
 %eofval}
 
 
-DIGIT           = [0-9]     //ok
-LETTER          = [a-zA-Z]  //ok
+DIGIT           = [0-9]
+LETTER          = [a-zA-Z]
 
 BLANK           = (" "|\t|\r|\n)
-COMMENT         = ("/*".*"*/") //OK
+COMMENT         = ("//".*"//")
 
 ID              = (({LETTER})({LETTER}|{DIGIT})*)   // ok
 NUMBER          = ("0" | [1-9]{DIGIT}*)                     // ok
@@ -124,35 +124,35 @@ OP_OR       = ("||")
 OP_NOT      = ("!")
 OP_ASSIG    = (":=")
 
-CONSTANT        = ("constant")     //ok
+CONSTANT        = ("constant")
 
 // Operaciones
 
-INST_IF         = ("if")    //ok
-INST_ELSE       = ("else")  //ok
-INST_ELIF       = ("elif")  //ok BORRAMOS??
+INST_IF         = ("if")
+INST_ELSE       = ("else")
+INST_ELIF       = ("elif")
 
-INST_WHILE      = ("while") //ok
-INST_FOR        = ("for")   //ok
+INST_WHILE      = ("while")
+INST_FOR        = ("for")
 
-INST_FUNCTION   = ("function") //ok
-INST_RETURN     = ("return")    //ok
-INST_MAIN       = ("main")      //ok    //*
+INST_FUNCTION   = ("function")
+INST_RETURN     = ("return")
+INST_MAIN       = ("main")
 
 // Entrada/salida
 
-INSTR_READ        = ("read") //ok
-INSTR_PRINT       = ("print") //ok
+INSTR_READ        = ("read")
+INSTR_PRINT       = ("print")
 
 // Caracteres especiales
 
-LPAREN          = ("(")     //ok
-RPAREN          = (")")     //ok
-LBRACKET        = ("{")     //ok
-RBRACKET        = ("}")     //ok
-SEMICOLON       = (";")     //ok
-COMMA           = (",")     //ok
-TWO_POINTS      = (":")     //ok
+LPAREN          = ("(")
+RPAREN          = (")")
+LBRACKET        = ("{")
+RBRACKET        = ("}")
+SEMICOLON       = (";")
+COMMA           = (",")
+TWO_POINTS      = (":")
 
 %%
 {BLANK}              {/*Ignore*/}
@@ -172,7 +172,7 @@ TWO_POINTS      = (":")     //ok
                         Token token = new Token(Tokens.INST_ELSE,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.INST_ELSE.name(),ParserSym.inst_elif);
-                     } // BORRAMOS??
+                     }
 
 {INST_WHILE}         {
                         Token token = new Token(Tokens.INST_WHILE,yyline,yycolumn, yytext());
@@ -354,40 +354,6 @@ TWO_POINTS      = (":")     //ok
                         return symbol(Tokens.STRING.name(),ParserSym.string, yytext());
                      }
 
-/*
-{SPC_INC}            {
-                        Token token = new Token(Tokens.SPC_INC,yyline,yycolumn, yytext());
-                        writeToken(token);
-                        return symbol(ParserSym.spc_inc);
-                     }
-{SPC_DEC}            {
-                     Token token = new Token(Tokens.SPC_DEC,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(ParserSym.spc_dec);
-                     }
-
-
-{SPC_ASGINC}         {
-                     Token token = new Token(Tokens.SPC_ASGINC,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(ParserSym.spc_asginc);
-                     }
-{SPC_ASGDEC}         {
-                     Token token = new Token(Tokens.SPC_ASGDEC,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(ParserSym.spc_asgdec);
-                     }
-{SPC_ASGDIV}         {
-                     Token token = new Token(Tokens.SPC_ASGDIV,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(ParserSym.spc_asgdiv);
-                     }
-{SPC_ASGMUL}         {
-                     Token token = new Token(Tokens.SPC_ASGMUL,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(ParserSym.spc_asgmul);
-                     }
-*/
 //==============================================================================
 [^]                  {
                         Token token = new Token(Tokens.ERROR,yyline,yycolumn, yytext());

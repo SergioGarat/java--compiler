@@ -1,5 +1,6 @@
 function main() {
 
+    _hola_
     for (i : number := 0; ((i < 3)); i := i + 1){
           print("He entrado: ");
           print(i);
