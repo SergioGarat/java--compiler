@@ -2,70 +2,19 @@
 ---------------- TABLES INFO ----------------
 ---------------------------------------------
 Variables:
-numD_3_2:	Tamaño: 0	|	Tipo Subyacente:null	|	IdFuncion : 3	|	Offset : -32(%rbp)
-a_0_1:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : 16(%rbp)
-T21:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -40(%rbp)
-T20:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -36(%rbp)
-T23:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -4(%rbp)
-numE_3_2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -32(%rbp)
-b_0_1:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : 32(%rbp)
-T22:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -44(%rbp)
-T25:	Tamaño: 20	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T25
-T24:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -12(%rbp)
-T27:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -20(%rbp)
-T26:	Tamaño: 6	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T26
-T29:	Tamaño: 34	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T29
-T28:	Tamaño: 4	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T28
-i_3_2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -56(%rbp)
-num_1_1:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : 16(%rbp)
-numB_3_2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -16(%rbp)
-result_2_2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -8(%rbp)
-result_0_2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -8(%rbp)
-T30:	Tamaño: 4	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T30
-T32:	Tamaño: 4	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T32
-numC_3_2:	Tamaño: 0	|	Tipo Subyacente:null	|	IdFuncion : 3	|	Offset : -32(%rbp)
-T31:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -24(%rbp)
-T34:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -36(%rbp)
-T33:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -28(%rbp)
-T36:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -48(%rbp)
-T35:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -44(%rbp)
-T38:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -60(%rbp)
-T37:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -52(%rbp)
-T39:	Tamaño: 2	|	Tipo Subyacente:boolean	|	IdFuncion : 3	|	Offset : -62(%rbp)
-T41:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -70(%rbp)
-T40:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -66(%rbp)
-T43:	Tamaño: 24	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T43
-T42:	Tamaño: 4	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T42
-T44:	Tamaño: 26	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T44
-numA_3_2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -8(%rbp)
+T4:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -22(%rbp)
+T5:	Tamaño: 24	|	Tipo Subyacente:string	|	IdFuncion : 0	|	Offset : T5
+T6:	Tamaño: 4	|	Tipo Subyacente:string	|	IdFuncion : 0	|	Offset : T6
+T7:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -26(%rbp)
+T8:	Tamaño: 18	|	Tipo Subyacente:string	|	IdFuncion : 0	|	Offset : T8
 T0:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -4(%rbp)
 T1:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -12(%rbp)
-T2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -4(%rbp)
-T3:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -12(%rbp)
-T4:	Tamaño: 2	|	Tipo Subyacente:boolean	|	IdFuncion : 1	|	Offset : -14(%rbp)
-T5:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -18(%rbp)
-T6:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -22(%rbp)
-T7:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -26(%rbp)
-T8:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -30(%rbp)
-T9:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -34(%rbp)
-numF_3_2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -40(%rbp)
-num_2_1:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : 16(%rbp)
-result_1_2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -8(%rbp)
-T10:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -4(%rbp)
-T12:	Tamaño: 2	|	Tipo Subyacente:boolean	|	IdFuncion : 2	|	Offset : -14(%rbp)
-T11:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -12(%rbp)
-T14:	Tamaño: 4	|	Tipo Subyacente:string	|	IdFuncion : 2	|	Offset : T14
-T13:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 2	|	Offset : T13
-T16:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -22(%rbp)
-T15:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -18(%rbp)
-T18:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -28(%rbp)
-T17:	Tamaño: 2	|	Tipo Subyacente:boolean	|	IdFuncion : 2	|	Offset : -24(%rbp)
-T19:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -32(%rbp)
+i_0_2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -8(%rbp)
+T2:	Tamaño: 2	|	Tipo Subyacente:boolean	|	IdFuncion : 0	|	Offset : -14(%rbp)
+entrada_0_2:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -30(%rbp)
+T3:	Tamaño: 4	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -18(%rbp)
 
 Procedures:
-PROC_sumaDosNumeros:	Nº de parámetros: 2	|	Tipo: number
-PROC_factorial:	Nº de parámetros: 1	|	Tipo: number
-PROC_recursiveAdding:	Nº de parámetros: 1	|	Tipo: number
 PROC_main:	Nº de parámetros: 0	|	Tipo: null
 
 Labels:
@@ -73,12 +22,3 @@ LABEL_0
 LABEL_1
 LABEL_2
 LABEL_3
-LABEL_4
-LABEL_5
-LABEL_6
-LABEL_7
-LABEL_8
-LABEL_9
-LABEL_10
-LABEL_11
-LABEL_12

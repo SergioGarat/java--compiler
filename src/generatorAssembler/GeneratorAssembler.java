@@ -43,12 +43,14 @@ public class GeneratorAssembler {
 
     public void generateAssembler() {
         try {
-            File fileGAS;
-            fileGAS = new File(PATH);
+
+            File fileGAS = new File(PATH);
             if (!fileGAS.exists()) {
                 fileGAS.createNewFile();
             }
+
             writeGasAssemblerCode(fileGAS);
+
             assemblyInstructions.clear();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GeneratorAssembler.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,12 +64,12 @@ public class GeneratorAssembler {
 
     private void writeGasAssemblerCode(File fileGAS) throws IOException, SymbolsTableError {
         writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileGAS), StandardCharsets.UTF_8));
-        writeHead();
+        headerWrite();
         ArrayList<InstructionC3A> instructions = c3a_g.getInstructions();
         for (InstructionC3A ins : instructions) {
             toAssembly(ins);
         }
-        writeBottom();
+        footerWrite();
         for (String inst : assemblyInstructions) {
             writer.write(inst);
         }
@@ -83,7 +85,7 @@ public class GeneratorAssembler {
     }
 
     // Generates the header of program
-    private void writeHead() {
+    private void headerWrite() {
         writeLine(".global main");
         /* C functions declaration */
         writeLine(".extern printf, scanf");
@@ -117,7 +119,7 @@ public class GeneratorAssembler {
         writeLine("ret");
     }
 
-    private void writeBottom() {
+    private void footerWrite() {
         writeLine("# exit");
         writeLine("\n# auxiliar functions");
         writeCMPFunctions();
@@ -219,12 +221,11 @@ public class GeneratorAssembler {
     }
 
     private void inputInstruction(InstructionC3A instruction) {
-        writeLine("push %rbp");
+        String dest = getVarAssembler(instruction.getDest());
         writeLine("xor %rax, %rax");
         writeLine("mov $format_int, %rdi");
-        writeLine("leaq " + getVarAssembler(instruction.getDest()) + ", %rsi");
+        writeLine("leaq " + dest + ", %rsi");
         writeLine("call scanf");
-        writeLine("pop %rbp");
     }
 
     private void unaryInstruction(InstructionC3A instruction) {
@@ -313,7 +314,7 @@ public class GeneratorAssembler {
     // Auxiliar method which will help with the / and % operations
     private void calculateDivision(InstructionC3A instruction, String type, int code) {
         boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
-        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp1());
+        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
         String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
         String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
 
@@ -339,7 +340,7 @@ public class GeneratorAssembler {
     // Mulu calculation
     private void calculateMulu(InstructionC3A instruction, String type) {
         boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
-        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp1());
+        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
         String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
         String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
         writeLine("movl " + op1 + ", " + "%edi");
@@ -455,7 +456,10 @@ public class GeneratorAssembler {
 
         //save space for local variables
         Procedure proc = backend.getProcedure(backFunId);
-        writeLine("sub $" + proc.getSize() + ", %rsp");
+
+        int procsize = proc.getSize();
+        //si alineamos al memoria a 32 funciona -> procsize = 32
+        writeLine("sub $" + procsize + ", %rsp");
     }
 
     private String getVarAssembler(String varName) {
