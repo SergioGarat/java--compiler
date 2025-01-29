@@ -183,12 +183,12 @@ jmp LABEL_4
 LABEL_3:
 
 # T13 = "Invalid number: "
-# output T13
+# print T13
 mov $T13, %rdi
 xor %rax, %rax
 call printf
 
-# output num_1_1
+# print num_1_1
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl 16(%rbp), %esi
@@ -196,7 +196,7 @@ xor %rax, %rax
 call printf
 
 # T14 = "\n"
-# output T14
+# print T14
 mov $T14, %rdi
 xor %rax, %rax
 call printf
@@ -322,12 +322,12 @@ movl -12(%rbp), %edi
 movl %edi, -16(%rbp)
 
 # T25 = "FACTORIAL "
-# output T25
+# print T25
 mov $T25, %rdi
 xor %rax, %rax
 call printf
 
-# output numA_3_2
+# print numA_3_2
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -8(%rbp), %esi
@@ -335,7 +335,7 @@ xor %rax, %rax
 call printf
 
 # T26 = "! :"
-# output T26
+# print T26
 mov $T26, %rdi
 xor %rax, %rax
 call printf
@@ -353,7 +353,7 @@ pop %rdx
 # T27 = return PROC_factorial
 movl %eax, -20(%rbp)
 
-# output T27
+# print T27
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -20(%rbp), %esi
@@ -361,18 +361,18 @@ xor %rax, %rax
 call printf
 
 # T28 = "\n"
-# output T28
+# print T28
 mov $T28, %rdi
 xor %rax, %rax
 call printf
 
 # T29 = "RECURSIVE ADDING "
-# output T29
+# print T29
 mov $T29, %rdi
 xor %rax, %rax
 call printf
 
-# output numB_3_2
+# print numB_3_2
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -16(%rbp), %esi
@@ -380,7 +380,7 @@ xor %rax, %rax
 call printf
 
 # T30 = " :"
-# output T30
+# print T30
 mov $T30, %rdi
 xor %rax, %rax
 call printf
@@ -398,7 +398,7 @@ pop %rdx
 # T31 = return PROC_recursiveAdding
 movl %eax, -24(%rbp)
 
-# output T31
+# print T31
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -24(%rbp), %esi
@@ -406,7 +406,7 @@ xor %rax, %rax
 call printf
 
 # T32 = "\n"
-# output T32
+# print T32
 mov $T32, %rdi
 xor %rax, %rax
 call printf
@@ -453,7 +453,7 @@ pop %rdx
 # T35 = return PROC_sumaDosNumeros
 movl %eax, -44(%rbp)
 
-# output T35
+# print T35
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -44(%rbp), %esi
@@ -535,18 +535,18 @@ jmp LABEL_9
 LABEL_10:
 
 # T42 = "\n"
-# output T42
+# print T42
 mov $T42, %rdi
 xor %rax, %rax
 call printf
 
 # T43 = "He entrado: "
-# output T43
+# print T43
 mov $T43, %rdi
 xor %rax, %rax
 call printf
 
-# output i_3_2
+# print i_3_2
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -56(%rbp), %esi
@@ -560,7 +560,7 @@ jmp LABEL_12
 LABEL_11:
 
 # T44 = "\nHE SALIDO\n"
-# output T44
+# print T44
 mov $T44, %rdi
 xor %rax, %rax
 call printf

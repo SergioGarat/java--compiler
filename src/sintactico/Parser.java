@@ -607,7 +607,7 @@ class CUP$Parser$actions {
             {
               Start RESULT =null;
 		
-                            // close symbolsTable.txt file
+                            // close SymbolsTableData.txt file
                               symbolsTable.closeSymbolsTableFiles();
                               backend.storeTables();
 
@@ -1961,7 +1961,7 @@ class CUP$Parser$actions {
                                 String var_id = backend.addTempVar(number_type.getSize(), number_type.getTipoSubyacente());
 
                                 c3a_g.generateC3aInstr(
-                                  Code.input,
+                                  Code.read,
                                   null,
                                   null,
                                   var_id
@@ -3115,14 +3115,14 @@ class CUP$Parser$actions {
                                 if(value.getTipo() == Tipo.dnull && value.getTipoSubyacente() == TipoSubyacente.TS_STRING){
                                   var_id = backend.addTempStrVar(value.getStringSize(), (String) value.getValue());
                                   c3a_g.generateC3aInstr(
-                                    Code.output,
+                                    Code.print,
                                     subtype.toString(),
                                     (String) value.getValue(),
                                     var_id
                                   );
                                 }else{
                                   c3a_g.generateC3aInstr(
-                                    Code.output,
+                                    Code.print,
                                     subtype.toString(),
                                     null,
                                     var_id

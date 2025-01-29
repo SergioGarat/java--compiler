@@ -201,10 +201,10 @@ public class GeneratorAssembler {
             case neg:
                 unaryInstruction(instruction);
                 break;
-            case input:
+            case read:
                 inputInstruction(instruction);
                 break;
-            case output:
+            case print:
                 outputInstruction(instruction);
                 break;
             default:
