@@ -1507,7 +1507,7 @@ VALUE_COMPARISON            ::= lparen VALUE:val1 op_relational:op VALUE:val2 rp
                               RESULT = cmp_val;
                             :};
 
-COND                        ::= lparen BOOLEAN_OP_VALUE:bool_val rparen
+COND                        ::= BOOLEAN_OP_VALUE:bool_val
                               {:
                                 String var_id = bool_val.getVarId();
 

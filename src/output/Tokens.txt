@@ -97,8 +97,6 @@
 
 	INST_IF[if](8:1)
 
-	LPAREN[(](8:3)
-
 	LPAREN[(](8:4)
 
 	ID[num](8:5)
@@ -108,8 +106,6 @@
 	NUMBER[0](8:12)
 
 	RPAREN[)](8:13)
-
-	RPAREN[)](8:14)
 
 	LBRACKET[{](8:15)
 
@@ -195,19 +191,15 @@
 
 	LPAREN[(](18:3)
 
-	LPAREN[(](18:4)
+	ID[num](18:4)
 
-	ID[num](18:5)
+	OP_LT[<](18:8)
 
-	OP_LT[<](18:9)
+	NUMBER[1](18:10)
 
-	NUMBER[1](18:11)
+	RPAREN[)](18:11)
 
-	RPAREN[)](18:12)
-
-	RPAREN[)](18:13)
-
-	LBRACKET[{](18:14)
+	LBRACKET[{](18:12)
 
 	INSTR_PRINT[print](19:2)
 
@@ -253,19 +245,15 @@
 
 	LPAREN[(](24:6)
 
-	LPAREN[(](24:7)
+	ID[num](24:7)
 
-	ID[num](24:8)
+	OP_EQ[==](24:11)
 
-	OP_EQ[==](24:12)
+	NUMBER[1](24:14)
 
-	NUMBER[1](24:15)
+	RPAREN[)](24:15)
 
-	RPAREN[)](24:16)
-
-	RPAREN[)](24:17)
-
-	LBRACKET[{](24:18)
+	LBRACKET[{](24:16)
 
 	ID[result](25:2)
 
@@ -547,33 +535,29 @@
 
 	LPAREN[(](54:23)
 
-	LPAREN[(](54:24)
+	ID[i](54:24)
 
-	ID[i](54:25)
+	OP_LT[<](54:26)
 
-	OP_LT[<](54:27)
+	NUMBER[3](54:28)
 
-	NUMBER[3](54:29)
+	RPAREN[)](54:29)
 
-	RPAREN[)](54:30)
+	SEMICOLON[;](54:30)
 
-	RPAREN[)](54:31)
+	ID[i](54:32)
 
-	SEMICOLON[;](54:32)
+	OP_ASSIG[:=](54:34)
 
-	ID[i](54:34)
+	ID[i](54:37)
 
-	OP_ASSIG[:=](54:36)
+	OP_SUM[+](54:39)
 
-	ID[i](54:39)
+	NUMBER[1](54:41)
 
-	OP_SUM[+](54:41)
+	RPAREN[)](54:42)
 
-	NUMBER[1](54:43)
-
-	RPAREN[)](54:44)
-
-	LBRACKET[{](54:45)
+	LBRACKET[{](54:43)
 
 	INSTR_PRINT[print](55:14)
 
