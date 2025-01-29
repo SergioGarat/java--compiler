@@ -27,8 +27,8 @@ public class InstructionC3A {
         call,
         param,
         rtn,
-        input, // System in
-        output, // System print
+        read,
+        print
     }
 
     public Code opCode;
@@ -75,10 +75,10 @@ public class InstructionC3A {
                 result += "if " + this.op1 + "=" + this.op2 + " goto " + this.dest;
                 break;
             /* OTHER OPERATIONS*/
-            case input:
+            case read:
                 result += this.dest + " = " + this.opCode;
                 break;
-            case output:
+            case print:
                 if (this.op2 != null) {
                     result += this.dest + " = \"" + this.op2 + "\"\n";
                 }

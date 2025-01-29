@@ -78,12 +78,12 @@ go_to LABEL_4
 LABEL_3:skip
 
 T13 = "Invalid number: "
-output T13
+print T13
 
-output num_1_1
+print num_1_1
 
 T14 = "\n"
-output T14
+print T14
 
 T15 = 0
 
@@ -144,12 +144,12 @@ T24 = 10
 numB_3_2 = T24
 
 T25 = "FACTORIAL "
-output T25
+print T25
 
-output numA_3_2
+print numA_3_2
 
 T26 = "! :"
-output T26
+print T26
 
 param PROC_factorial(numA_3_2)
 
@@ -157,18 +157,18 @@ call PROC_factorial
 
 T27 = return PROC_factorial
 
-output T27
+print T27
 
 T28 = "\n"
-output T28
+print T28
 
 T29 = "RECURSIVE ADDING "
-output T29
+print T29
 
-output numB_3_2
+print numB_3_2
 
 T30 = " :"
-output T30
+print T30
 
 param PROC_recursiveAdding(numB_3_2)
 
@@ -176,10 +176,10 @@ call PROC_recursiveAdding
 
 T31 = return PROC_recursiveAdding
 
-output T31
+print T31
 
 T32 = "\n"
-output T32
+print T32
 
 T33 = 100
 
@@ -201,7 +201,7 @@ call PROC_sumaDosNumeros
 
 T35 = return PROC_sumaDosNumeros
 
-output T35
+print T35
 
 param PROC_sumaDosNumeros(numC_3_2)
 
@@ -240,19 +240,19 @@ go_to LABEL_9
 LABEL_10:skip
 
 T42 = "\n"
-output T42
+print T42
 
 T43 = "He entrado: "
-output T43
+print T43
 
-output i_3_2
+print i_3_2
 
 go_to LABEL_12
 
 LABEL_11:skip
 
 T44 = "\nHE SALIDO\n"
-output T44
+print T44
 
 rtn
 
