@@ -584,7 +584,7 @@ class CUP$Parser$actions {
               Object RESULT =null;
 		Location start_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location start_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolStarts start_val = (SymbolStarts)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		Start start_val = (Start)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		RESULT = start_val;
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -595,7 +595,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 1: // STARTS ::= INIT DECLARE_FUNCTIONS 
             {
-              SymbolStarts RESULT =null;
+              Start RESULT =null;
 		
                             // close symbolsTable.txt file
                               symbolsTable.closeSymbolsTableFiles();
@@ -613,10 +613,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 2: // INIT ::= 
             {
-              SymbolInit RESULT =null;
+              Init RESULT =null;
 		
                               initTypes();
-                              RESULT = new SymbolInit();
+                              RESULT = new Init();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INIT",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -625,9 +625,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 3: // DECLARE_FUNCTIONS ::= DEFINE_FUNCTION DECLARE_FUNCTIONS 
             {
-              SymbolDeclareFunctions RESULT =null;
+              DeclareFunctions RESULT =null;
 		
-                              RESULT = new SymbolDeclareFunctions();
+                              RESULT = new DeclareFunctions();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DECLARE_FUNCTIONS",38, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -636,9 +636,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 4: // DECLARE_FUNCTIONS ::= MAIN 
             {
-              SymbolDeclareFunctions RESULT =null;
+              DeclareFunctions RESULT =null;
 		
-                              RESULT = new SymbolDeclareFunctions();
+                              RESULT = new DeclareFunctions();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DECLARE_FUNCTIONS",38, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -647,7 +647,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 5: // MAIN ::= inst_function inst_main M_MAIN lparen rparen lbracket BLOCK_IN MAIN_INSTRUCTIONS BLOCK_OUT rbracket 
             {
-              SymbolMain RESULT =null;
+              MainS RESULT =null;
 		
                               c3a_g.generateC3aInstr(
                                 Code.rtn,
@@ -656,7 +656,7 @@ class CUP$Parser$actions {
                                 "PROC_main"
                               );
 
-                              RESULT = new SymbolMain();
+                              RESULT = new MainS();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("MAIN",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-9)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -665,7 +665,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 6: // M_MAIN ::= 
             {
-              SymbolMMain RESULT =null;
+              MainLabel RESULT =null;
 		
 
                               String backId = backend.addMain();
@@ -686,7 +686,7 @@ class CUP$Parser$actions {
                                 backId
                               );
 
-                              RESULT = new SymbolMMain();
+                              RESULT = new MainLabel();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("M_MAIN",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -695,9 +695,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 7: // MAIN_INSTRUCTIONS ::= INSTRUCTIONS 
             {
-              SymbolMainInstr RESULT =null;
+              MainInstructions RESULT =null;
 		
-                              RESULT = new SymbolMainInstr();
+                              RESULT = new MainInstructions();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("MAIN_INSTRUCTIONS",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -706,9 +706,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 8: // MAIN_INSTRUCTIONS ::= EMPTY 
             {
-              SymbolMainInstr RESULT =null;
+              MainInstructions RESULT =null;
 		
-                              RESULT = new SymbolMainInstr();
+                              RESULT = new MainInstructions();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("MAIN_INSTRUCTIONS",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -717,9 +717,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 9: // INSTRUCTIONS ::= INSTRUCTIONS INSTRUCTION 
             {
-              SymbolInstructions RESULT =null;
+              Instructions RESULT =null;
 		
-                              RESULT = new SymbolInstructions();
+                              RESULT = new Instructions();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTIONS",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -728,9 +728,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 10: // INSTRUCTIONS ::= INSTRUCTION 
             {
-              SymbolInstructions RESULT =null;
+              Instructions RESULT =null;
 		
-                              RESULT = new SymbolInstructions();
+                              RESULT = new Instructions();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTIONS",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -739,9 +739,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 11: // INSTRUCTION ::= DECLARATIONS semicolon 
             {
-              SymbolInstruction RESULT =null;
+              Instruction RESULT =null;
 		
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTION",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -750,9 +750,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 12: // INSTRUCTION ::= INSTRUCTION_IF 
             {
-              SymbolInstruction RESULT =null;
+              Instruction RESULT =null;
 		
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTION",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -761,9 +761,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 13: // INSTRUCTION ::= INSTRUCTION_WHILE 
             {
-              SymbolInstruction RESULT =null;
+              Instruction RESULT =null;
 		
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTION",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -772,9 +772,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 14: // INSTRUCTION ::= INSTRUCTION_FOR 
             {
-              SymbolInstruction RESULT =null;
+              Instruction RESULT =null;
 		
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTION",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -783,9 +783,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 15: // INSTRUCTION ::= OPERATOR_ASSIG semicolon 
             {
-              SymbolInstruction RESULT =null;
+              Instruction RESULT =null;
 		
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTION",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -794,9 +794,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 16: // INSTRUCTION ::= INSTRUCTION_OUT semicolon 
             {
-              SymbolInstruction RESULT =null;
+              Instruction RESULT =null;
 		
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTION",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -805,9 +805,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 17: // INSTRUCTION ::= CALL_FUNCTION semicolon 
             {
-              SymbolInstruction RESULT =null;
+              Instruction RESULT =null;
 		
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTION",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -816,10 +816,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 18: // BLOCK_IN ::= 
             {
-              SymbolBlockIn RESULT =null;
+              BlockIn RESULT =null;
 		
                               symbolsTable.enterBlock();
-                              RESULT = new SymbolBlockIn();
+                              RESULT = new BlockIn();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("BLOCK_IN",7, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -828,11 +828,11 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 19: // BLOCK_OUT ::= 
             {
-              SymbolBlockOut RESULT =null;
+              BlockOut RESULT =null;
 		
                               try{
                                 symbolsTable.leaveBlock();
-                                RESULT = new SymbolBlockOut();
+                                RESULT = new BlockOut();
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -844,13 +844,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 20: // DECLARATIONS ::= id comma DECLARATIONS 
             {
-              SymbolDeclarations RESULT =null;
+              Declarations RESULT =null;
 		Location var_idxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location var_idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
 		String var_id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		Location declarationsxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location declarationsxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolDeclarations declarations = (SymbolDeclarations)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Declarations declarations = (Declarations)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 Type type = declarations.getType();
@@ -890,10 +890,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 21: // DECLARATIONS ::= DECLARATION 
             {
-              SymbolDeclarations RESULT =null;
+              Declarations RESULT =null;
 		Location declarationxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location declarationxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolDeclarations declaration = (SymbolDeclarations)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Declarations declaration = (Declarations)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               RESULT = declaration;
                             
@@ -904,19 +904,19 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 22: // DECLARATION ::= id CONSTANT two_points id op_assig VALUE 
             {
-              SymbolDeclarations RESULT =null;
+              Declarations RESULT =null;
 		Location id_varxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)).xleft;
 		Location id_varxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)).xright;
 		String id_var = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-5)).value;
 		Location constantxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).xleft;
 		Location constantxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).xright;
-		SymbolConstant constant = (SymbolConstant)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
+		Const constant = (Const)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
 		Location type_idxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location type_idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
 		String type_id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		Location valuexleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location valuexright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolValue value = (SymbolValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Value value = (Value)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try {
 
@@ -982,11 +982,11 @@ class CUP$Parser$actions {
                                 String val_id = value.getVarId();
                                 symbolsTable.add(id_var, var_type);
 
-                                SymbolDeclarations symDcls;
+                                Declarations symDcls;
                                 if(value.getIsString()){
-                                  symDcls = new SymbolDeclarations(val_id, var_type, (String) value.getValue());
+                                  symDcls = new Declarations(val_id, var_type, (String) value.getValue());
                                 }else{
-                                  symDcls = new SymbolDeclarations(val_id, var_type);
+                                  symDcls = new Declarations(val_id, var_type);
                                 }
 
                                 if(type.getTipoSubyacente() != TipoSubyacente.TS_STRING){
@@ -1013,9 +1013,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 23: // CONSTANT ::= constant 
             {
-              SymbolConstant RESULT =null;
+              Const RESULT =null;
 		
-                              RESULT = new SymbolConstant(true);
+                              RESULT = new Const(true);
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("CONSTANT",11, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -1024,9 +1024,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 24: // CONSTANT ::= EMPTY 
             {
-              SymbolConstant RESULT =null;
+              Const RESULT =null;
 		
-                              RESULT = new SymbolConstant(false);
+                              RESULT = new Const(false);
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("CONSTANT",11, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -1035,13 +1035,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 25: // OPERATOR_ASSIG ::= id op_assig VALUE 
             {
-              SymbolOperatorAssignation RESULT =null;
+              Assignation RESULT =null;
 		Location var_idxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location var_idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
 		String var_id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		Location valuexleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location valuexright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolValue value = (SymbolValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Value value = (Value)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try {
                                    Type varType = symbolsTable.get(var_id);
@@ -1076,7 +1076,7 @@ class CUP$Parser$actions {
                                            varType.getBackendId()
                                    );
 
-                                   RESULT = new SymbolOperatorAssignation();
+                                   RESULT = new Assignation();
                               } catch (SymbolsTableError e) {
                                   String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
                                   String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
@@ -1091,11 +1091,11 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 26: // ARITH_OP ::= op_arithmetical_b 
             {
-              SymbolArithOperator RESULT =null;
+              ArithmeticOperator RESULT =null;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		String op = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		 RESULT = new SymbolArithOperator(op); 
+		 RESULT = new ArithmeticOperator(op); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ARITH_OP",19, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1103,11 +1103,11 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 27: // ARITH_OP ::= op_arithmetical_c 
             {
-              SymbolArithOperator RESULT =null;
+              ArithmeticOperator RESULT =null;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		String op = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		 RESULT = new SymbolArithOperator(op); 
+		 RESULT = new ArithmeticOperator(op); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ARITH_OP",19, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1115,19 +1115,19 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 28: // ARITHMETICAL_OPERATION ::= ARITHMETICAL_VALUE ARITH_OP ARITHMETICAL_VALUE 
             {
-              SymbolArithOperation RESULT =null;
+              ArithmeticOperation RESULT =null;
 		Location arith_val1xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location arith_val1xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
-		SymbolArithValue arith_val1 = (SymbolArithValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		ArithmeticValue arith_val1 = (ArithmeticValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolArithOperator op = (SymbolArithOperator)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		ArithmeticOperator op = (ArithmeticOperator)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		Location arith_val2xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location arith_val2xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolArithValue arith_val2 = (SymbolArithValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		ArithmeticValue arith_val2 = (ArithmeticValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
-                                SymbolArithOperation sym;
+                                ArithmeticOperation sym;
                                 boolean allConst = arith_val1.getIsConst() && arith_val2.getIsConst();
 
                                 Code op_code;
@@ -1197,10 +1197,10 @@ class CUP$Parser$actions {
                                 );
 
                                 if(allConst){
-                                  sym = new SymbolArithOperation(var_id, value);
+                                  sym = new ArithmeticOperation(var_id, value);
                                 }
                                 else{
-                                  sym = new SymbolArithOperation(var_id);
+                                  sym = new ArithmeticOperation(var_id);
                                 }
 
                                 RESULT = sym;
@@ -1215,25 +1215,25 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 29: // ARITHMETICAL_OPERATION ::= op_arithmetical_b lparen ARITHMETICAL_OPERATION rparen 
             {
-              SymbolArithOperation RESULT =null;
+              ArithmeticOperation RESULT =null;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).xright;
 		String op = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
 		Location arith_opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location arith_opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolArithOperation arith_op = (SymbolArithOperation)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		ArithmeticOperation arith_op = (ArithmeticOperation)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               try{
-                                SymbolArithOperation sym = arith_op;
+                                ArithmeticOperation sym = arith_op;
                                 if(op.equals("-")){
                                   Type type_number = symbolsTable.get("number");
                                   String var_id = backend.addTempVar(type_number.getSize(),  type_number.getTipoSubyacente());
 
                                   if(arith_op.getIsConst()){
                                     Integer value = - arith_op.getValue().intValue();
-                                    sym = new SymbolArithOperation(arith_op.getVarId(), value);
+                                    sym = new ArithmeticOperation(arith_op.getVarId(), value);
                                   }else{
-                                    sym = new SymbolArithOperation(var_id);
+                                    sym = new ArithmeticOperation(var_id);
                                   }
 
                                   c3a_g.generateC3aInstr(
@@ -1256,10 +1256,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 30: // ARITHMETICAL_OPERATION ::= lparen ARITHMETICAL_OPERATION rparen 
             {
-              SymbolArithOperation RESULT =null;
+              ArithmeticOperation RESULT =null;
 		Location arith_opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location arith_opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolArithOperation arith_op = (SymbolArithOperation)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		ArithmeticOperation arith_op = (ArithmeticOperation)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               RESULT = arith_op;
                             
@@ -1270,13 +1270,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 31: // NUMBER_VALUE ::= number 
             {
-              SymbolNumberVal RESULT =null;
+              NumericValue RESULT =null;
 		Location n_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location n_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		String n_val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               Integer value = Integer.valueOf(n_val);
-                              RESULT = new SymbolNumberVal(value);
+                              RESULT = new NumericValue(value);
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("NUMBER_VALUE",12, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -1285,10 +1285,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 32: // NUMBER_VALUE ::= lparen NUMBER_VALUE rparen 
             {
-              SymbolNumberVal RESULT =null;
+              NumericValue RESULT =null;
 		Location n_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location n_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolNumberVal n_val = (SymbolNumberVal)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		NumericValue n_val = (NumericValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               RESULT = n_val;
                             
@@ -1299,18 +1299,18 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 33: // NUMBER_VALUE ::= op_arithmetical_b NUMBER_VALUE 
             {
-              SymbolNumberVal RESULT =null;
+              NumericValue RESULT =null;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
 		String op = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		Location n_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location n_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolNumberVal n_val = (SymbolNumberVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		NumericValue n_val = (NumericValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              SymbolNumberVal sym = n_val;
+                              NumericValue sym = n_val;
                               if(op.equals("-")){
                                 Integer value = - n_val.getValue().intValue();
-                                sym = new SymbolNumberVal(value);
+                                sym = new NumericValue(value);
                               }
 
                               RESULT = sym;
@@ -1322,10 +1322,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 34: // ARITHMETICAL_VALUE ::= NUMBER_VALUE 
             {
-              SymbolArithValue RESULT =null;
+              ArithmeticValue RESULT =null;
 		Location n_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location n_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolNumberVal n_val = (SymbolNumberVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		NumericValue n_val = (NumericValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                             try{
                               Integer value = n_val.getValue();
@@ -1341,7 +1341,7 @@ class CUP$Parser$actions {
                                 var_id
                               );
 
-                              RESULT = new SymbolArithValue(var_id, value);
+                              RESULT = new ArithmeticValue(var_id, value);
                             }catch(SymbolsTableError e){
                               throw new SemanticError(e.getMessage());
                             }
@@ -1353,10 +1353,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 35: // ARITHMETICAL_VALUE ::= ID_VALUE 
             {
-              SymbolArithValue RESULT =null;
+              ArithmeticValue RESULT =null;
 		Location id_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location id_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolIdVal id_val = (SymbolIdVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Identifier id_val = (Identifier)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                             try{
                               Tipo main_var_type = id_val.getTipo();
@@ -1377,14 +1377,14 @@ class CUP$Parser$actions {
                                 throw new SemanticError(message);
                               }
 
-                              SymbolArithValue sym;
+                              ArithmeticValue sym;
                               String var_id = id_val.getId();
 
                               if(main_var_type == Tipo.dconst){
                                 Integer value = (Integer) id_val.getValue();
-                                sym = new SymbolArithValue(var_id, value);
+                                sym = new ArithmeticValue(var_id, value);
                               }else{
-                                sym = new SymbolArithValue(var_id);
+                                sym = new ArithmeticValue(var_id);
                               }
 
                               RESULT = sym;
@@ -1399,16 +1399,16 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 36: // ARITHMETICAL_VALUE ::= ARITHMETICAL_OPERATION 
             {
-              SymbolArithValue RESULT =null;
+              ArithmeticValue RESULT =null;
 		Location arith_opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location arith_opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolArithOperation arith_op = (SymbolArithOperation)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		ArithmeticOperation arith_op = (ArithmeticOperation)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                            SymbolArithValue sym;
+                            ArithmeticValue sym;
                             if(arith_op.getIsConst()){
-                              sym = new SymbolArithValue(arith_op.getVarId(), arith_op.getValue());
+                              sym = new ArithmeticValue(arith_op.getVarId(), arith_op.getValue());
                             }else{
-                              sym = new SymbolArithValue(arith_op.getVarId());
+                              sym = new ArithmeticValue(arith_op.getVarId());
                             }
 
                             RESULT = sym;
@@ -1420,10 +1420,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 37: // ARITHMETICAL_VALUE ::= CALL_FUNCTION 
             {
-              SymbolArithValue RESULT =null;
+              ArithmeticValue RESULT =null;
 		Location call_fnxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location call_fnxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolCallFunction call_fn = (SymbolCallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                             try{
                               Type fn_type = symbolsTable.get(call_fn.getFunctionId());
@@ -1445,7 +1445,7 @@ class CUP$Parser$actions {
                                 var_id
                               );
 
-                              RESULT = new SymbolArithValue(var_id);
+                              RESULT = new ArithmeticValue(var_id);
                             }catch(SymbolsTableError e){
                               String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
                               String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
@@ -1460,13 +1460,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 38: // ARITHMETICAL_VALUE ::= op_arithmetical_b CALL_FUNCTION 
             {
-              SymbolArithValue RESULT =null;
+              ArithmeticValue RESULT =null;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
 		String op = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		Location call_fnxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location call_fnxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolCallFunction call_fn = (SymbolCallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                             try{
                               Type fn_type = symbolsTable.get(call_fn.getFunctionId());
@@ -1497,7 +1497,7 @@ class CUP$Parser$actions {
                                 );
                               }
 
-                              RESULT = new SymbolArithValue(var_id);
+                              RESULT = new ArithmeticValue(var_id);
                             }catch(SymbolsTableError e){
                               String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
                               String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
@@ -1512,7 +1512,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 39: // ID_VALUE ::= id 
             {
-              SymbolIdVal RESULT =null;
+              Identifier RESULT =null;
 		Location id_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location id_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		String id_val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
@@ -1520,9 +1520,9 @@ class CUP$Parser$actions {
                               try{
                                 Type id_type = symbolsTable.get(id_val);
                                 String var_id = id_type.getBackendId();
-                                SymbolIdVal sym = new SymbolIdVal(var_id, id_type.getTipo(), id_type.getTypeName());
+                                Identifier sym = new Identifier(var_id, id_type.getTipo(), id_type.getTypeName());
                                 if(id_type.getTipo() == Tipo.dconst){
-                                  sym = new SymbolIdVal(var_id, id_type.getTipo(), id_type.getTypeName(), id_type.getValue());
+                                  sym = new Identifier(var_id, id_type.getTipo(), id_type.getTypeName(), id_type.getValue());
                                 }
 
                                 RESULT = sym;
@@ -1540,10 +1540,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 40: // ID_VALUE ::= lparen ID_VALUE rparen 
             {
-              SymbolIdVal RESULT =null;
+              Identifier RESULT =null;
 		Location id_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location id_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolIdVal id_val = (SymbolIdVal)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		Identifier id_val = (Identifier)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               RESULT = id_val;
                             
@@ -1554,17 +1554,17 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 41: // ID_VALUE ::= op_logical_not ID_VALUE 
             {
-              SymbolIdVal RESULT =null;
+              Identifier RESULT =null;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
 		String op = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		Location id_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location id_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolIdVal id_val = (SymbolIdVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Identifier id_val = (Identifier)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
 
-                                SymbolIdVal sym;
+                                Identifier sym;
                                 // check if unary operator is type valid
                                 TipoSubyacente subType = symbolsTable.get(id_val.getTypeName()).getTipoSubyacente();
 
@@ -1587,9 +1587,9 @@ class CUP$Parser$actions {
 
                                 if(id_val.getTipo() == Tipo.dconst){
                                   Boolean value = !((Boolean) id_val.getValue()).booleanValue();
-                                  sym = new SymbolIdVal(var_id, id_val.getTipo(), id_val.getTypeName(), value);
+                                  sym = new Identifier(var_id, id_val.getTipo(), id_val.getTypeName(), value);
                                 }else{
-                                  sym = new SymbolIdVal(var_id, id_val.getTipo(), id_val.getTypeName());
+                                  sym = new Identifier(var_id, id_val.getTipo(), id_val.getTypeName());
                                 }
 
                                 RESULT = sym;
@@ -1604,16 +1604,16 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 42: // ID_VALUE ::= op_arithmetical_b ID_VALUE 
             {
-              SymbolIdVal RESULT =null;
+              Identifier RESULT =null;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
 		String op = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		Location id_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location id_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolIdVal id_val = (SymbolIdVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Identifier id_val = (Identifier)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try {
-                                SymbolIdVal sym = id_val;
+                                Identifier sym = id_val;
                                 // check if unary operator is type valid
                                 TipoSubyacente subType = symbolsTable.get(id_val.getTypeName()).getTipoSubyacente();
 
@@ -1637,9 +1637,9 @@ class CUP$Parser$actions {
 
                                   if(id_val.getTipo() == Tipo.dconst){
                                     Integer value = -((Integer) id_val.getValue()).intValue();
-                                    sym = new SymbolIdVal(var_id, id_val.getTipo(), id_val.getTypeName(), value);
+                                    sym = new Identifier(var_id, id_val.getTipo(), id_val.getTypeName(), value);
                                   }else{
-                                    sym = new SymbolIdVal(var_id, id_val.getTipo(), id_val.getTypeName());
+                                    sym = new Identifier(var_id, id_val.getTipo(), id_val.getTypeName());
                                   }
                                 }
 
@@ -1655,12 +1655,12 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 43: // STRING_VALUE ::= string 
             {
-              SymbolStringVal RESULT =null;
+              StringValue RESULT =null;
 		Location string_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location string_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		String string_val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              RESULT = new SymbolStringVal(string_val);
+                              RESULT = new StringValue(string_val);
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("STRING_VALUE",14, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -1669,10 +1669,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 44: // STRING_VALUE ::= lparen STRING_VALUE rparen 
             {
-              SymbolStringVal RESULT =null;
+              StringValue RESULT =null;
 		Location string_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location string_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolStringVal string_val = (SymbolStringVal)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		StringValue string_val = (StringValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               RESULT = string_val;
                             
@@ -1683,20 +1683,20 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 45: // VALUE ::= ID_VALUE 
             {
-              SymbolValue RESULT =null;
+              Value RESULT =null;
 		Location id_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location id_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolIdVal id_val = (SymbolIdVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Identifier id_val = (Identifier)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              SymbolValue sym;
+                              Value sym;
 
                               String var_id = id_val.getId();
 
                               if(id_val.getTipo() == Tipo.dconst){
-                                sym = new SymbolValue(var_id, id_val.getTipo(), id_val.getTypeName(), id_val.getValue());
+                                sym = new Value(var_id, id_val.getTipo(), id_val.getTypeName(), id_val.getValue());
                               }
                               else {
-                                sym = new SymbolValue(var_id, id_val.getTipo(), id_val.getTypeName());
+                                sym = new Value(var_id, id_val.getTipo(), id_val.getTypeName());
                               }
 
                               RESULT = sym;
@@ -1708,10 +1708,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 46: // VALUE ::= STRING_VALUE 
             {
-              SymbolValue RESULT =null;
+              Value RESULT =null;
 		Location str_valuexleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location str_valuexright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolStringVal str_value = (SymbolStringVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		StringValue str_value = (StringValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 String value = str_value.getString().replace("\"", "");
@@ -1727,7 +1727,7 @@ class CUP$Parser$actions {
                                 // string size in bytes
                                 int stringSize = value.length() * type_string.getSize();
 
-                                SymbolValue sym = new SymbolValue(value, stringSize);
+                                Value sym = new Value(value, stringSize);
 
                                 RESULT = sym;
                               }catch(SymbolsTableError e){
@@ -1741,10 +1741,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 47: // VALUE ::= BOOLEAN_VALUE 
             {
-              SymbolValue RESULT =null;
+              Value RESULT =null;
 		Location bool_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location bool_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolBoolVal bool_val = (SymbolBoolVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		BooleanValue bool_val = (BooleanValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 Boolean value = bool_val.getValue();
@@ -1759,7 +1759,7 @@ class CUP$Parser$actions {
                                   var_id
                                 );
 
-                                RESULT = new SymbolValue(var_id, TipoSubyacente.TS_BOOLEAN, value);
+                                RESULT = new Value(var_id, TipoSubyacente.TS_BOOLEAN, value);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1771,10 +1771,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 48: // VALUE ::= NUMBER_VALUE 
             {
-              SymbolValue RESULT =null;
+              Value RESULT =null;
 		Location n_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location n_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolNumberVal n_val = (SymbolNumberVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		NumericValue n_val = (NumericValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 Integer value = n_val.getValue();
@@ -1790,7 +1790,7 @@ class CUP$Parser$actions {
                                   var_id
                                 );
 
-                                RESULT = new SymbolValue(var_id, TipoSubyacente.TS_NUMBER, value);
+                                RESULT = new Value(var_id, TipoSubyacente.TS_NUMBER, value);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1802,19 +1802,19 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 49: // VALUE ::= VALUE_COMPARISON 
             {
-              SymbolValue RESULT =null;
+              Value RESULT =null;
 		Location comp_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location comp_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolValueComparison comp_val = (SymbolValueComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		ValuesComparison comp_val = (ValuesComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              SymbolValue sym;
+                              Value sym;
                               String id = comp_val.getVarId();
 
                               if(comp_val.getIsConst()){
                                 Boolean value = comp_val.getValue();
-                                sym = new SymbolValue(id, TipoSubyacente.TS_BOOLEAN, value);
+                                sym = new Value(id, TipoSubyacente.TS_BOOLEAN, value);
                               }else{
-                                sym = new SymbolValue(id, TipoSubyacente.TS_BOOLEAN);
+                                sym = new Value(id, TipoSubyacente.TS_BOOLEAN);
                               }
 
                               RESULT = sym;
@@ -1826,13 +1826,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 50: // VALUE ::= op_logical_not VALUE_COMPARISON 
             {
-              SymbolValue RESULT =null;
+              Value RESULT =null;
 		Location comp_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location comp_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolValueComparison comp_val = (SymbolValueComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		ValuesComparison comp_val = (ValuesComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
-                                SymbolValue sym;
+                                Value sym;
 
                                 Type type_bool = symbolsTable.get("boolean");
                                 String var_id = backend.addTempVar(type_bool.getSize(), type_bool.getTipoSubyacente());
@@ -1846,9 +1846,9 @@ class CUP$Parser$actions {
 
                                 if(comp_val.getIsConst()){
                                   Boolean value = ! comp_val.getValue().booleanValue();
-                                  sym = new SymbolValue(var_id, TipoSubyacente.TS_BOOLEAN, value);
+                                  sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN, value);
                                 }else{
-                                  sym = new SymbolValue(var_id, TipoSubyacente.TS_BOOLEAN);
+                                  sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN);
                                 }
 
                                 RESULT = sym;
@@ -1863,17 +1863,17 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 51: // VALUE ::= ARITHMETICAL_OPERATION 
             {
-              SymbolValue RESULT =null;
+              Value RESULT =null;
 		Location arith_opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location arith_opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolArithOperation arith_op = (SymbolArithOperation)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		ArithmeticOperation arith_op = (ArithmeticOperation)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              SymbolValue sym;
+                              Value sym;
                               String var_id = arith_op.getVarId();
                               if(arith_op.getIsConst()){
-                                sym = new SymbolValue(var_id, TipoSubyacente.TS_NUMBER, arith_op.getValue());
+                                sym = new Value(var_id, TipoSubyacente.TS_NUMBER, arith_op.getValue());
                               }else{
-                                sym = new SymbolValue(var_id, TipoSubyacente.TS_NUMBER);
+                                sym = new Value(var_id, TipoSubyacente.TS_NUMBER);
                               }
 
                               RESULT = sym;
@@ -1885,17 +1885,17 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 52: // VALUE ::= BOOLEAN_OPERATION 
             {
-              SymbolValue RESULT =null;
+              Value RESULT =null;
 		Location bool_opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location bool_opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolBoolOp bool_op = (SymbolBoolOp)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		BooleanOperator bool_op = (BooleanOperator)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              SymbolValue sym;
+                              Value sym;
                               String var_id = new String(bool_op.getVarId());
                               if(bool_op.getIsConst()){
-                                sym = new SymbolValue(var_id, TipoSubyacente.TS_BOOLEAN, bool_op.getValue());
+                                sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN, bool_op.getValue());
                               }else{
-                                sym = new SymbolValue(var_id, TipoSubyacente.TS_BOOLEAN);
+                                sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN);
                               }
 
                               RESULT = sym;
@@ -1907,10 +1907,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 53: // VALUE ::= CALL_FUNCTION 
             {
-              SymbolValue RESULT =null;
+              Value RESULT =null;
 		Location call_fnxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location call_fnxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolCallFunction call_fn = (SymbolCallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 Type fn_type = symbolsTable.get(call_fn.getFunctionId());
@@ -1932,7 +1932,7 @@ class CUP$Parser$actions {
                                   var_id
                                 );
 
-                                RESULT = new SymbolValue(var_id, Tipo.dfun, fn_type.getTypeName());
+                                RESULT = new Value(var_id, Tipo.dfun, fn_type.getTypeName());
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1944,7 +1944,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 54: // VALUE ::= instr_read lparen rparen 
             {
-              SymbolValue RESULT =null;
+              Value RESULT =null;
 		
                               try{
                                 Type number_type = symbolsTable.get("number");
@@ -1957,7 +1957,7 @@ class CUP$Parser$actions {
                                   var_id
                                 );
 
-                                RESULT = new SymbolValue(var_id, number_type.getTipoSubyacente());
+                                RESULT = new Value(var_id, number_type.getTipoSubyacente());
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1969,19 +1969,19 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 55: // BOOLEAN_OPERATION ::= BOOLEAN_OP_VALUE op_logical BOOLEAN_OP_VALUE 
             {
-              SymbolBoolOp RESULT =null;
+              BooleanOperator RESULT =null;
 		Location bool_val1xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location bool_val1xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
-		SymbolBoolOpValue bool_val1 = (SymbolBoolOpValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		BooleanOperationValue bool_val1 = (BooleanOperationValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
 		String op = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		Location bool_val2xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location bool_val2xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolBoolOpValue bool_val2 = (SymbolBoolOpValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		BooleanOperationValue bool_val2 = (BooleanOperationValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
-                                SymbolBoolOp sym;
+                                BooleanOperator sym;
                                 Code op_code;
 
                                 switch(op){
@@ -2027,9 +2027,9 @@ class CUP$Parser$actions {
                                 );
 
                                 if(allConst){
-                                  sym = new SymbolBoolOp(var_id, value);
+                                  sym = new BooleanOperator(var_id, value);
                                 }else{
-                                  sym = new SymbolBoolOp(var_id);
+                                  sym = new BooleanOperator(var_id);
                                 }
 
                                 RESULT = sym;
@@ -2044,10 +2044,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 56: // BOOLEAN_OPERATION ::= lparen BOOLEAN_OPERATION rparen 
             {
-              SymbolBoolOp RESULT =null;
+              BooleanOperator RESULT =null;
 		Location bool_opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location bool_opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolBoolOp bool_op = (SymbolBoolOp)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		BooleanOperator bool_op = (BooleanOperator)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               RESULT = bool_op;
                             
@@ -2058,13 +2058,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 57: // BOOLEAN_OPERATION ::= op_logical_not lparen BOOLEAN_OPERATION rparen 
             {
-              SymbolBoolOp RESULT =null;
+              BooleanOperator RESULT =null;
 		Location bool_opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location bool_opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolBoolOp bool_op = (SymbolBoolOp)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		BooleanOperator bool_op = (BooleanOperator)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               try{
-                                SymbolBoolOp sym;
+                                BooleanOperator sym;
                                 Type type_boolean = symbolsTable.get("boolean");
                                 String var_id = backend.addTempVar(type_boolean.getSize(),  type_boolean.getTipoSubyacente());
 
@@ -2077,9 +2077,9 @@ class CUP$Parser$actions {
 
                                 if(bool_op.getIsConst()){
                                   Boolean value = ! bool_op.getValue().booleanValue();
-                                  sym = new SymbolBoolOp(bool_op.getVarId(), value);
+                                  sym = new BooleanOperator(bool_op.getVarId(), value);
                                 }else{
-                                  sym = new SymbolBoolOp(var_id);
+                                  sym = new BooleanOperator(var_id);
                                 }
 
                                 RESULT = sym;
@@ -2094,10 +2094,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 58: // BOOLEAN_OP_VALUE ::= BOOLEAN_VALUE 
             {
-              SymbolBoolOpValue RESULT =null;
+              BooleanOperationValue RESULT =null;
 		Location bool_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location bool_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolBoolVal bool_val = (SymbolBoolVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		BooleanValue bool_val = (BooleanValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 Boolean value = bool_val.getValue();
@@ -2112,7 +2112,7 @@ class CUP$Parser$actions {
                                   var_id
                                 );
 
-                                RESULT = new SymbolBoolOpValue(var_id, value);
+                                RESULT = new BooleanOperationValue(var_id, value);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -2124,10 +2124,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 59: // BOOLEAN_OP_VALUE ::= ID_VALUE 
             {
-              SymbolBoolOpValue RESULT =null;
+              BooleanOperationValue RESULT =null;
 		Location id_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location id_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolIdVal id_val = (SymbolIdVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Identifier id_val = (Identifier)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 Tipo main_var_type = id_val.getTipo();
@@ -2147,14 +2147,14 @@ class CUP$Parser$actions {
                                   throw new SemanticError(message);
                                 }
 
-                                SymbolBoolOpValue sym;
+                                BooleanOperationValue sym;
                                 String var_id = id_val.getId();
 
                                 if(main_var_type == Tipo.dconst){
                                   Boolean value = (Boolean) id_val.getValue();
-                                  sym = new SymbolBoolOpValue(var_id, value);
+                                  sym = new BooleanOperationValue(var_id, value);
                                 }else{
-                                  sym = new SymbolBoolOpValue(var_id);
+                                  sym = new BooleanOperationValue(var_id);
                                 }
 
                                 RESULT = sym;
@@ -2169,16 +2169,16 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 60: // BOOLEAN_OP_VALUE ::= BOOLEAN_OPERATION 
             {
-              SymbolBoolOpValue RESULT =null;
+              BooleanOperationValue RESULT =null;
 		Location bool_opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location bool_opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolBoolOp bool_op = (SymbolBoolOp)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		BooleanOperator bool_op = (BooleanOperator)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              SymbolBoolOpValue sym;
+                              BooleanOperationValue sym;
                               if(bool_op.getIsConst()){
-                                sym = new SymbolBoolOpValue(bool_op.getVarId(), bool_op.getValue());
+                                sym = new BooleanOperationValue(bool_op.getVarId(), bool_op.getValue());
                               }else{
-                                sym = new SymbolBoolOpValue(bool_op.getVarId());
+                                sym = new BooleanOperationValue(bool_op.getVarId());
                               }
                               RESULT = sym;
                             
@@ -2189,17 +2189,17 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 61: // BOOLEAN_OP_VALUE ::= VALUE_COMPARISON 
             {
-              SymbolBoolOpValue RESULT =null;
+              BooleanOperationValue RESULT =null;
 		Location comp_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location comp_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolValueComparison comp_val = (SymbolValueComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		ValuesComparison comp_val = (ValuesComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              SymbolBoolOpValue sym;
+                              BooleanOperationValue sym;
                               String id = new String(comp_val.getVarId());
                               if(comp_val.getIsConst()){
-                                sym = new SymbolBoolOpValue(id, comp_val.getValue());
+                                sym = new BooleanOperationValue(id, comp_val.getValue());
                               }else{
-                                sym = new SymbolBoolOpValue(id);
+                                sym = new BooleanOperationValue(id);
                               }
 
                               RESULT = sym;
@@ -2211,10 +2211,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 62: // BOOLEAN_OP_VALUE ::= op_logical_not VALUE_COMPARISON 
             {
-              SymbolBoolOpValue RESULT =null;
+              BooleanOperationValue RESULT =null;
 		Location comp_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location comp_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolValueComparison comp_val = (SymbolValueComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		ValuesComparison comp_val = (ValuesComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 Type type_bool = symbolsTable.get("boolean");
@@ -2227,12 +2227,12 @@ class CUP$Parser$actions {
                                   var_id
                                 );
 
-                                SymbolBoolOpValue sym;
+                                BooleanOperationValue sym;
                                 if(comp_val.getIsConst()){
                                   Boolean value = ! comp_val.getValue().booleanValue();
-                                  sym = new SymbolBoolOpValue(var_id, value);
+                                  sym = new BooleanOperationValue(var_id, value);
                                 }else{
-                                  sym = new SymbolBoolOpValue(var_id);
+                                  sym = new BooleanOperationValue(var_id);
                                 }
                                 RESULT = sym;
                               }catch(SymbolsTableError e){
@@ -2246,10 +2246,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 63: // BOOLEAN_OP_VALUE ::= CALL_FUNCTION 
             {
-              SymbolBoolOpValue RESULT =null;
+              BooleanOperationValue RESULT =null;
 		Location call_fnxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location call_fnxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolCallFunction call_fn = (SymbolCallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 Type fn_type = symbolsTable.get(call_fn.getFunctionId());
@@ -2271,7 +2271,7 @@ class CUP$Parser$actions {
                                   var_id
                                 );
 
-                                RESULT = new SymbolBoolOpValue(var_id);
+                                RESULT = new BooleanOperationValue(var_id);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -2283,13 +2283,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 64: // BOOLEAN_OP_VALUE ::= op_logical_not CALL_FUNCTION 
             {
-              SymbolBoolOpValue RESULT =null;
+              BooleanOperationValue RESULT =null;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
 		String op = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		Location call_fnxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location call_fnxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolCallFunction call_fn = (SymbolCallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 Type fn_type = symbolsTable.get(call_fn.getFunctionId());
@@ -2318,7 +2318,7 @@ class CUP$Parser$actions {
                                   var_id
                                 );
 
-                                RESULT = new SymbolBoolOpValue(var_id);
+                                RESULT = new BooleanOperationValue(var_id);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -2330,13 +2330,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 65: // BOOLEAN_VALUE ::= bool 
             {
-              SymbolBoolVal RESULT =null;
+              BooleanValue RESULT =null;
 		Location bool_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location bool_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		String bool_val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               Boolean value = Boolean.valueOf(bool_val);
-                              RESULT = new SymbolBoolVal(value);
+                              RESULT = new BooleanValue(value);
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("BOOLEAN_VALUE",15, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2345,13 +2345,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 66: // BOOLEAN_VALUE ::= op_logical_not BOOLEAN_VALUE 
             {
-              SymbolBoolVal RESULT =null;
+              BooleanValue RESULT =null;
 		Location bool_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location bool_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolBoolVal bool_val = (SymbolBoolVal)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		BooleanValue bool_val = (BooleanValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               Boolean value = ! bool_val.getValue().booleanValue();
-                              RESULT = new SymbolBoolVal(value);
+                              RESULT = new BooleanValue(value);
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("BOOLEAN_VALUE",15, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2360,10 +2360,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 67: // BOOLEAN_VALUE ::= lparen BOOLEAN_VALUE rparen 
             {
-              SymbolBoolVal RESULT =null;
+              BooleanValue RESULT =null;
 		Location bool_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location bool_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolBoolVal bool_val = (SymbolBoolVal)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		BooleanValue bool_val = (BooleanValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               RESULT = bool_val;
                             
@@ -2374,19 +2374,19 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 68: // VALUE_COMPARISON ::= lparen VALUE op_relational VALUE rparen 
             {
-              SymbolValueComparison RESULT =null;
+              ValuesComparison RESULT =null;
 		Location val1xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).xleft;
 		Location val1xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).xright;
-		SymbolValue val1 = (SymbolValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+		Value val1 = (Value)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
 		String op = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		Location val2xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location val2xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolValue val2 = (SymbolValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		Value val2 = (Value)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               try{
-                                SymbolValueComparison sym;
+                                ValuesComparison sym;
 
                                 Tipo type1 = val1.getTipo();
                                 TipoSubyacente subType1;
@@ -2522,9 +2522,9 @@ class CUP$Parser$actions {
                                 String var_id = backend.addTempVar(type_bool.getSize(), type_bool.getTipoSubyacente());
 
                                 if(allConst){
-                                  sym = new SymbolValueComparison(var_id, val);
+                                  sym = new ValuesComparison(var_id, val);
                                 }else{
-                                  sym = new SymbolValueComparison(var_id);
+                                  sym = new ValuesComparison(var_id);
                                 }
 
                                 c3a_g.generateC3aInstr(
@@ -2546,10 +2546,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 69: // VALUE_COMPARISON ::= lparen VALUE_COMPARISON rparen 
             {
-              SymbolValueComparison RESULT =null;
+              ValuesComparison RESULT =null;
 		Location cmp_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location cmp_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolValueComparison cmp_val = (SymbolValueComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		ValuesComparison cmp_val = (ValuesComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               RESULT = cmp_val;
                             
@@ -2560,10 +2560,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 70: // COND ::= lparen BOOLEAN_OP_VALUE rparen 
             {
-              SymbolCondition RESULT =null;
+              Condition RESULT =null;
 		Location bool_valxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location bool_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolBoolOpValue bool_val = (SymbolBoolOpValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		BooleanOperationValue bool_val = (BooleanOperationValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                                 String var_id = bool_val.getVarId();
 
@@ -2588,7 +2588,7 @@ class CUP$Parser$actions {
                                   false_label
                                 );
 
-                                RESULT = new SymbolCondition();
+                                RESULT = new Condition();
                               
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("COND",26, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2597,7 +2597,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 71: // COND_T ::= 
             {
-              SymbolConditionTrue RESULT =null;
+              ConditionTrue RESULT =null;
 		
                                 String label = labelTrueStack.pop();
 
@@ -2608,7 +2608,7 @@ class CUP$Parser$actions {
                                   label
                                 );
 
-                                RESULT = new SymbolConditionTrue();
+                                RESULT = new ConditionTrue();
                               
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("COND_T",28, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2617,7 +2617,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 72: // COND_F ::= 
             {
-              SymbolConditionFalse RESULT =null;
+              ConditionFalse RESULT =null;
 		
                                 String label = labelFalseStack.pop();
 
@@ -2628,7 +2628,7 @@ class CUP$Parser$actions {
                                   label
                                 );
 
-                                RESULT = new SymbolConditionFalse();
+                                RESULT = new ConditionFalse();
                               
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("COND_F",27, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2637,9 +2637,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 73: // INSTRUCTION_IF ::= inst_if COND lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket ELIF ELSE 
             {
-              SymbolInstructionIf RESULT =null;
+              InstructionIf RESULT =null;
 		
-                              RESULT = new SymbolInstructionIf();
+                              RESULT = new InstructionIf();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTION_IF",29, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-9)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2648,7 +2648,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 74: // M_END ::= EMPTY 
             {
-              SymbolMEnd RESULT =null;
+              End RESULT =null;
 		
                               String label = backend.addLabel();
 
@@ -2659,7 +2659,7 @@ class CUP$Parser$actions {
                                 label
                               );
 
-                              RESULT = new SymbolMEnd(label);
+                              RESULT = new End(label);
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("M_END",25, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2668,10 +2668,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 75: // ELIF ::= M_END inst_elif COND_F COND lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket ELIF 
             {
-              SymbolElif RESULT =null;
+              ElseIf RESULT =null;
 		Location mendxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)).xleft;
 		Location mendxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)).xright;
-		SymbolMEnd mend = (SymbolMEnd)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-10)).value;
+		End mend = (End)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-10)).value;
 		
                               String label = mend.getLabel();
 
@@ -2682,7 +2682,7 @@ class CUP$Parser$actions {
                                 label
                               );
 
-                              RESULT = new SymbolElif();
+                              RESULT = new ElseIf();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ELIF",30, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2691,9 +2691,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 76: // ELIF ::= 
             {
-              SymbolElif RESULT =null;
+              ElseIf RESULT =null;
 		
-                              RESULT = new SymbolElif();
+                              RESULT = new ElseIf();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ELIF",30, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2702,10 +2702,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 77: // ELSE ::= M_END inst_else lbracket BLOCK_IN COND_F INSTRUCTIONS BLOCK_OUT rbracket 
             {
-              SymbolElse RESULT =null;
+              Else RESULT =null;
 		Location mendxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)).xleft;
 		Location mendxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)).xright;
-		SymbolMEnd mend = (SymbolMEnd)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-7)).value;
+		End mend = (End)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-7)).value;
 		
                               String label = mend.getLabel();
 
@@ -2716,7 +2716,7 @@ class CUP$Parser$actions {
                                 label
                               );
 
-                              RESULT = new SymbolElse();
+                              RESULT = new Else();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ELSE",31, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2725,9 +2725,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 78: // ELSE ::= COND_F 
             {
-              SymbolElse RESULT =null;
+              Else RESULT =null;
 		
-                              RESULT = new SymbolElse();
+                              RESULT = new Else();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ELSE",31, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2736,7 +2736,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 79: // M_WHILE ::= EMPTY 
             {
-              SymbolMWhile RESULT =null;
+              WhileLabel RESULT =null;
 		
                               String label = backend.addLabel();
 
@@ -2747,7 +2747,7 @@ class CUP$Parser$actions {
                                 label
                               );
 
-                              RESULT = new SymbolMWhile(label);
+                              RESULT = new WhileLabel(label);
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("M_WHILE",32, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2756,10 +2756,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 80: // INSTRUCTION_WHILE ::= inst_while M_WHILE COND lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket 
             {
-              SymbolInstructionWhile RESULT =null;
+              InstructionWhile RESULT =null;
 		Location mwhilexleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)).xleft;
 		Location mwhilexright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)).xright;
-		SymbolMWhile mwhile = (SymbolMWhile)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-7)).value;
+		WhileLabel mwhile = (WhileLabel)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-7)).value;
 		
                               String loop_label = mwhile.getLabel();
                               c3a_g.generateC3aInstr(
@@ -2777,7 +2777,7 @@ class CUP$Parser$actions {
                                 end_label
                               );
 
-                              RESULT = new SymbolInstructionWhile();
+                              RESULT = new InstructionWhile();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTION_WHILE",36, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-8)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2786,10 +2786,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 81: // INSTRUCTION_FOR ::= inst_for lparen FOR_BODY rparen lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket 
             {
-              SymbolInstructionFor RESULT =null;
+              InstructionFor RESULT =null;
 		Location forBodyxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)).xleft;
 		Location forBodyxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)).xright;
-		SymbolForBody forBody = (SymbolForBody)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-7)).value;
+		ForBody forBody = (ForBody)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-7)).value;
 		
                               String postInstrLabel = forBody.getLabel();
                               c3a_g.generateC3aInstr(
@@ -2806,7 +2806,7 @@ class CUP$Parser$actions {
                                 null,
                                 end_label
                               );
-                              RESULT = new SymbolInstructionFor();
+                              RESULT = new InstructionFor();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INSTRUCTION_FOR",37, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-9)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2815,7 +2815,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 82: // LABEL_FOR ::= EMPTY 
             {
-              SymbolLabelFor RESULT =null;
+              ForLabel RESULT =null;
 		
                               String label = backend.addLabel();
 
@@ -2826,7 +2826,7 @@ class CUP$Parser$actions {
                                 label
                               );
 
-                              RESULT = new SymbolLabelFor(label);
+                              RESULT = new ForLabel(label);
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("LABEL_FOR",34, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2835,13 +2835,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 83: // FOR_BODY ::= DECLARATION semicolon LABEL_FOR COND semicolon LABEL_POST_FOR OPERATOR_ASSIG 
             {
-              SymbolForBody RESULT =null;
+              ForBody RESULT =null;
 		Location labelForxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).xleft;
 		Location labelForxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).xright;
-		SymbolLabelFor labelFor = (SymbolLabelFor)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
+		ForLabel labelFor = (ForLabel)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
 		Location labelPostForxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location labelPostForxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolLabelPostFor labelPostFor = (SymbolLabelPostFor)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		LabelPostFor labelPostFor = (LabelPostFor)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                                     String iniForLabel = labelFor.getLabel();
                                     c3a_g.generateC3aInstr(
@@ -2851,7 +2851,7 @@ class CUP$Parser$actions {
                                       iniForLabel
                                     );
 
-                                    RESULT = new SymbolForBody(labelPostFor.getLabel());
+                                    RESULT = new ForBody(labelPostFor.getLabel());
                                 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("FOR_BODY",33, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2860,7 +2860,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 84: // LABEL_POST_FOR ::= EMPTY 
             {
-              SymbolLabelPostFor RESULT =null;
+              LabelPostFor RESULT =null;
 		
                               String label = backend.addLabel();
 
@@ -2871,7 +2871,7 @@ class CUP$Parser$actions {
                                 label
                               );
 
-                              RESULT = new SymbolLabelPostFor(label);
+                              RESULT = new LabelPostFor(label);
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("LABEL_POST_FOR",35, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2880,7 +2880,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 85: // CALL_FUNCTION ::= id lparen rparen 
             {
-              SymbolCallFunction RESULT =null;
+              CallFunction RESULT =null;
 		Location fun_idxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location fun_idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
 		String fun_id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
@@ -2910,7 +2910,7 @@ class CUP$Parser$actions {
                                   backId
                                 );
 
-                                RESULT = new SymbolCallFunction(fun_id, backId);
+                                RESULT = new CallFunction(fun_id, backId);
                               }catch(SymbolsTableError e){
                                 String from = fun_idxleft.getLine() + ":" + fun_idxleft.getColumn();
                                 String to = fun_idxright.getLine() + ":" + fun_idxright.getColumn();
@@ -2925,10 +2925,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 86: // CALL_FUNCTION ::= CALL_BODY rparen 
             {
-              SymbolCallFunction RESULT =null;
+              CallFunction RESULT =null;
 		Location bodyxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location bodyxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolCallBody body = (SymbolCallBody)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		CallBody body = (CallBody)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		Location rpxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location rpxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		Object rp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
@@ -2955,7 +2955,7 @@ class CUP$Parser$actions {
 
 
 
-                                RESULT = new SymbolCallFunction(fun_id, fun_backId);
+                                RESULT = new CallFunction(fun_id, fun_backId);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -2967,13 +2967,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 87: // CALL_BODY ::= CALL_BODY comma VALUE 
             {
-              SymbolCallBody RESULT =null;
+              CallBody RESULT =null;
 		Location bodyxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location bodyxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
-		SymbolCallBody body = (SymbolCallBody)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		CallBody body = (CallBody)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		Location valuexleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location valuexright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolValue value = (SymbolValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Value value = (Value)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 String fun_id = body.getFunId();
@@ -3013,7 +3013,7 @@ class CUP$Parser$actions {
                                   fun_back_id
                                 );
 
-                                RESULT = new SymbolCallBody(fun_id, fun_back_id, num_params+1);
+                                RESULT = new CallBody(fun_id, fun_back_id, num_params+1);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -3025,13 +3025,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 88: // CALL_BODY ::= id lparen VALUE 
             {
-              SymbolCallBody RESULT =null;
+              CallBody RESULT =null;
 		Location fun_idxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location fun_idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
 		String fun_id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		Location valuexleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location valuexright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolValue value = (SymbolValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		Value value = (Value)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try{
                                 TipoSubyacente subType;
@@ -3071,7 +3071,7 @@ class CUP$Parser$actions {
                                   fun_back_id
                                 );
 
-                                RESULT = new SymbolCallBody(fun_id, fun_back_id, 0+1);
+                                RESULT = new CallBody(fun_id, fun_back_id, 0+1);
                               }catch(SymbolsTableError e){
                                 String from = fun_idxleft.getLine() + ":" + fun_idxleft.getColumn();
                                 String to = fun_idxright.getLine() + ":" + fun_idxright.getColumn();
@@ -3086,10 +3086,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 89: // INSTRUCTION_OUT ::= instr_print lparen VALUE rparen 
             {
-              SymbolInstructionOut RESULT =null;
+              InstructionOut RESULT =null;
 		Location valuexleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location valuexright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolValue value = (SymbolValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		Value value = (Value)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               try{
                                 String var_id = value.getVarId();
@@ -3118,7 +3118,7 @@ class CUP$Parser$actions {
                                     var_id
                                   );
                                 }
-                                RESULT = new SymbolInstructionOut();
+                                RESULT = new InstructionOut();
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -3130,13 +3130,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 90: // DEFINE_FUNCTION ::= FUNCTION_INIT lbracket BLOCK_IN FUNCTION_INSTRUCTIONS FUNCTION_RETURN BLOCK_OUT rbracket 
             {
-              SymbolDefFunction RESULT =null;
+              DefineFunction RESULT =null;
 		Location fun_initxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)).xleft;
 		Location fun_initxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)).xright;
-		SymbolFunInit fun_init = (SymbolFunInit)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-6)).value;
+		FunctionInit fun_init = (FunctionInit)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-6)).value;
 		Location fun_retxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location fun_retxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
-		SymbolFunReturn fun_ret = (SymbolFunReturn)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		FunctionReturn fun_ret = (FunctionReturn)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
                               //check if fun type and return type are the same
                               if(fun_init.getTipoSubyacente() != fun_ret.getTipoSubyacente()) {
@@ -3166,7 +3166,7 @@ class CUP$Parser$actions {
                                 );
                               }
 
-                              RESULT = new SymbolDefFunction();
+                              RESULT = new DefineFunction();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DEFINE_FUNCTION",39, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-6)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -3175,13 +3175,13 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 91: // FUNCTION_INIT ::= inst_function id FUNCTION_PARAMS rparen two_points id 
             {
-              SymbolFunInit RESULT =null;
+              FunctionInit RESULT =null;
 		Location fun_idxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).xleft;
 		Location fun_idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).xright;
 		String fun_id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
 		Location fun_paramsxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).xleft;
 		Location fun_paramsxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).xright;
-		SymbolFunParams fun_params = (SymbolFunParams)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+		FunctionParams fun_params = (FunctionParams)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
 		Location type_idxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location type_idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		String type_id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
@@ -3203,7 +3203,7 @@ class CUP$Parser$actions {
                                 }
 
                                 TipoSubyacente subType = return_fun_type.getTipoSubyacente();
-                                ArrayList<Param> params = fun_params.getParams();
+                                ArrayList<Parameter> params = fun_params.getParams();
                                 String backId = backend.addProc(fun_id, params.size(), 0, subType);
 
                                 Type fun_type = new Type(backId, Tipo.dfun, type_id);
@@ -3211,7 +3211,7 @@ class CUP$Parser$actions {
                                 symbolsTable.add(fun_id, fun_type);
 
                                 // add params if it has
-                                for(Param param : params){
+                                for(Parameter param : params){
                                   Type param_type = param.getType();
                                   TipoSubyacente param_subType = symbolsTable.get(param.getType().getTypeName()).getTipoSubyacente();
                                   String param_backId = backend.addVar(param.getVarId(), param.getSize(), param_subType, true);
@@ -3233,7 +3233,7 @@ class CUP$Parser$actions {
                                   backId
                                 );
 
-                                RESULT = new SymbolFunInit(backId, subType);
+                                RESULT = new FunctionInit(backId, subType);
                               }catch(SymbolsTableError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
@@ -3248,12 +3248,12 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 92: // FUNCTION_PARAMS ::= FUNCTION_W_PARAMS 
             {
-              SymbolFunParams RESULT =null;
+              FunctionParams RESULT =null;
 		Location paramsxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location paramsxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		SymbolFunWParams params = (SymbolFunWParams)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		FunctionWithParams params = (FunctionWithParams)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              RESULT = new SymbolFunParams(params.getParams());
+                              RESULT = new FunctionParams(params.getParams());
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("FUNCTION_PARAMS",41, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -3262,9 +3262,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 93: // FUNCTION_PARAMS ::= lparen 
             {
-              SymbolFunParams RESULT =null;
+              FunctionParams RESULT =null;
 		
-                              RESULT = new SymbolFunParams();
+                              RESULT = new FunctionParams();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("FUNCTION_PARAMS",41, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -3273,10 +3273,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 94: // FUNCTION_W_PARAMS ::= FUNCTION_W_PARAMS comma id two_points id 
             {
-              SymbolFunWParams RESULT =null;
+              FunctionWithParams RESULT =null;
 		Location prev_paramsxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).xleft;
 		Location prev_paramsxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)).xright;
-		SymbolFunWParams prev_params = (SymbolFunWParams)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
+		FunctionWithParams prev_params = (FunctionWithParams)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
 		Location idxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
 		String id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
@@ -3302,9 +3302,9 @@ class CUP$Parser$actions {
 
                                 Type param_type = new Type(Tipo.darg, type_id);
 
-                                Param param = new Param(id, param_type, type_type.getSize());
+                                Parameter param = new Parameter(id, param_type, type_type.getSize());
 
-                                RESULT = new SymbolFunWParams(param, prev_params);
+                                RESULT = new FunctionWithParams(param, prev_params);
                               }catch(SymbolsTableError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
@@ -3319,7 +3319,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 95: // FUNCTION_W_PARAMS ::= lparen id two_points id 
             {
-              SymbolFunWParams RESULT =null;
+              FunctionWithParams RESULT =null;
 		Location idxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
 		Location idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
 		String id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
@@ -3345,9 +3345,9 @@ class CUP$Parser$actions {
 
                                 Type param_type = new Type(Tipo.darg, type_id);
 
-                                Param param = new Param(id, param_type, type_type.getSize());
+                                Parameter param = new Parameter(id, param_type, type_type.getSize());
 
-                                RESULT = new SymbolFunWParams(param);
+                                RESULT = new FunctionWithParams(param);
                               }catch(SymbolsTableError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
@@ -3362,9 +3362,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 96: // FUNCTION_INSTRUCTIONS ::= INSTRUCTIONS 
             {
-              SymbolFunInstructions RESULT =null;
+              FunctionInstructions RESULT =null;
 		
-                              RESULT = new SymbolFunInstructions();
+                              RESULT = new FunctionInstructions();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("FUNCTION_INSTRUCTIONS",43, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -3373,9 +3373,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 97: // FUNCTION_INSTRUCTIONS ::= 
             {
-              SymbolFunInstructions RESULT =null;
+              FunctionInstructions RESULT =null;
 		
-                              RESULT = new SymbolFunInstructions();
+                              RESULT = new FunctionInstructions();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("FUNCTION_INSTRUCTIONS",43, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -3384,10 +3384,10 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 98: // FUNCTION_RETURN ::= inst_return VALUE semicolon 
             {
-              SymbolFunReturn RESULT =null;
+              FunctionReturn RESULT =null;
 		Location valuexleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location valuexright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		SymbolValue value = (SymbolValue)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		Value value = (Value)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               try{
                                 // is literall
@@ -3402,7 +3402,7 @@ class CUP$Parser$actions {
                                   subType = type_type.getTipoSubyacente();
                                 }
 
-                                RESULT = new SymbolFunReturn(value.getVarId(), subType);
+                                RESULT = new FunctionReturn(value.getVarId(), subType);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -3414,9 +3414,9 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 99: // FUNCTION_RETURN ::= EMPTY 
             {
-              SymbolFunReturn RESULT =null;
+              FunctionReturn RESULT =null;
 		
-                              RESULT = new SymbolFunReturn();
+                              RESULT = new FunctionReturn();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("FUNCTION_RETURN",44, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -3425,8 +3425,8 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 100: // EMPTY ::= 
             {
-              SymbolEmpty RESULT =null;
-		 RESULT = new SymbolEmpty(); 
+              Empty RESULT =null;
+		 RESULT = new Empty(); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("EMPTY",47, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

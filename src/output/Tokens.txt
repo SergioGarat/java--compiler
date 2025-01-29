@@ -617,9 +617,9 @@
 
 	SEMICOLON[;](59:26)
 
-	RBRACKET[}](61:0)
+	RBRACKET[}](60:0)
 
-	EOF[](61:1)
+	EOF[](60:1)
 
 
 
