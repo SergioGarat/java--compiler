@@ -124,65 +124,65 @@ terminal        op_assig, inst_if, inst_elif, inst_else,
 
 /******Declaració de simbols no terminals*********/
 
-non terminal  SymbolStarts                STARTS;
-non terminal  SymbolInit                  INIT;
+non terminal  Start                STARTS;
+non terminal  Init                  INIT;
 
-non terminal  SymbolMMain                 M_MAIN;
-non terminal  SymbolMain                  MAIN;
-non terminal  SymbolMainInstr             MAIN_INSTRUCTIONS;
+non terminal  MainLabel                 M_MAIN;
+non terminal  MainS                  MAIN;
+non terminal  MainInstructions             MAIN_INSTRUCTIONS;
 
-non terminal  SymbolInstructions          INSTRUCTIONS;
-non terminal  SymbolInstruction           INSTRUCTION;
+non terminal  Instructions          INSTRUCTIONS;
+non terminal  Instruction           INSTRUCTION;
 
-non terminal  SymbolBlockIn               BLOCK_IN;
-non terminal  SymbolBlockOut              BLOCK_OUT;
+non terminal  BlockIn               BLOCK_IN;
+non terminal  BlockOut              BLOCK_OUT;
 
-non terminal  SymbolDeclarations          DECLARATIONS, DECLARATION;
+non terminal  Declarations          DECLARATIONS, DECLARATION;
 
-non terminal  SymbolConstant              CONSTANT;
+non terminal  Const              CONSTANT;
 
-non terminal  SymbolNumberVal             NUMBER_VALUE;
-non terminal  SymbolIdVal                 ID_VALUE;
-non terminal  SymbolStringVal             STRING_VALUE;
-non terminal  SymbolBoolVal               BOOLEAN_VALUE;
+non terminal  NumericValue             NUMBER_VALUE;
+non terminal  Identifier                 ID_VALUE;
+non terminal  StringValue             STRING_VALUE;
+non terminal  BooleanValue               BOOLEAN_VALUE;
 
-non terminal  SymbolValue                 VALUE;
+non terminal  Value                 VALUE;
 
-non terminal  SymbolOperatorAssignation   OPERATOR_ASSIG;
-non terminal  SymbolInstructionOut        INSTRUCTION_OUT;
+non terminal  Assignation   OPERATOR_ASSIG;
+non terminal  InstructionOut        INSTRUCTION_OUT;
 
-non terminal  SymbolArithOperator         ARITH_OP;
-non terminal  SymbolArithOperation        ARITHMETICAL_OPERATION;
-non terminal  SymbolArithValue            ARITHMETICAL_VALUE;
+non terminal  ArithmeticOperator         ARITH_OP;
+non terminal  ArithmeticOperation        ARITHMETICAL_OPERATION;
+non terminal  ArithmeticValue            ARITHMETICAL_VALUE;
 
-non terminal  SymbolBoolOp                BOOLEAN_OPERATION;
-non terminal  SymbolBoolOpValue           BOOLEAN_OP_VALUE;
-non terminal  SymbolValueComparison       VALUE_COMPARISON;
-non terminal  SymbolMEnd                  M_END;
-non terminal  SymbolCondition             COND;
-non terminal  SymbolConditionFalse        COND_F;
-non terminal  SymbolConditionTrue         COND_T;
-non terminal  SymbolInstructionIf         INSTRUCTION_IF;
-non terminal  SymbolElif                  ELIF;
-non terminal  SymbolElse                  ELSE;
-non terminal  SymbolMWhile                M_WHILE;
-non terminal  SymbolForBody               FOR_BODY;
-non terminal  SymbolLabelFor              LABEL_FOR;
-non terminal  SymbolLabelPostFor          LABEL_POST_FOR;
-non terminal  SymbolInstructionWhile      INSTRUCTION_WHILE;
-non terminal  SymbolInstructionFor        INSTRUCTION_FOR;
-non terminal  SymbolDeclareFunctions      DECLARE_FUNCTIONS;
-non terminal  SymbolDefFunction           DEFINE_FUNCTION;
-non terminal  SymbolFunInit               FUNCTION_INIT;
-non terminal  SymbolFunParams             FUNCTION_PARAMS;
-non terminal  SymbolFunWParams            FUNCTION_W_PARAMS;
-non terminal  SymbolFunInstructions       FUNCTION_INSTRUCTIONS;
-non terminal  SymbolFunReturn             FUNCTION_RETURN;
+non terminal  BooleanOperator                BOOLEAN_OPERATION;
+non terminal  BooleanOperationValue           BOOLEAN_OP_VALUE;
+non terminal  ValuesComparison       VALUE_COMPARISON;
+non terminal  End                  M_END;
+non terminal  Condition             COND;
+non terminal  ConditionFalse        COND_F;
+non terminal  ConditionTrue         COND_T;
+non terminal  InstructionIf         INSTRUCTION_IF;
+non terminal  ElseIf                  ELIF;
+non terminal  Else                  ELSE;
+non terminal  WhileLabel                M_WHILE;
+non terminal  ForBody               FOR_BODY;
+non terminal  ForLabel              LABEL_FOR;
+non terminal  LabelPostFor          LABEL_POST_FOR;
+non terminal  InstructionWhile      INSTRUCTION_WHILE;
+non terminal  InstructionFor        INSTRUCTION_FOR;
+non terminal  DeclareFunctions      DECLARE_FUNCTIONS;
+non terminal  DefineFunction           DEFINE_FUNCTION;
+non terminal  FunctionInit               FUNCTION_INIT;
+non terminal  FunctionParams             FUNCTION_PARAMS;
+non terminal  FunctionWithParams            FUNCTION_W_PARAMS;
+non terminal  FunctionInstructions       FUNCTION_INSTRUCTIONS;
+non terminal  FunctionReturn             FUNCTION_RETURN;
 
-non terminal  SymbolCallFunction          CALL_FUNCTION;
-non terminal  SymbolCallBody              CALL_BODY;
+non terminal  CallFunction          CALL_FUNCTION;
+non terminal  CallBody              CALL_BODY;
 
-non terminal  SymbolEmpty                 EMPTY;
+non terminal  Empty                 EMPTY;
 
 // precedences
 precedence left op_arithmetical_b;
@@ -206,16 +206,16 @@ STARTS                      ::=  INIT DECLARE_FUNCTIONS
 
 INIT                        ::= {:
                               initTypes();
-                              RESULT = new SymbolInit();
+                              RESULT = new Init();
                             :};
 
 DECLARE_FUNCTIONS           ::= DEFINE_FUNCTION DECLARE_FUNCTIONS
                             {:
-                              RESULT = new SymbolDeclareFunctions();
+                              RESULT = new DeclareFunctions();
                             :}
                             | MAIN
                             {:
-                              RESULT = new SymbolDeclareFunctions();
+                              RESULT = new DeclareFunctions();
                             :};
 
 MAIN                        ::= inst_function inst_main M_MAIN lparen rparen lbracket BLOCK_IN MAIN_INSTRUCTIONS BLOCK_OUT rbracket {:
@@ -226,7 +226,7 @@ MAIN                        ::= inst_function inst_main M_MAIN lparen rparen lbr
                                 "PROC_main"
                               );
 
-                              RESULT = new SymbolMain();
+                              RESULT = new MainS();
                             :};
 
 M_MAIN                      ::=
@@ -250,67 +250,67 @@ M_MAIN                      ::=
                                 backId
                               );
 
-                              RESULT = new SymbolMMain();
+                              RESULT = new MainLabel();
                             :};
 
 MAIN_INSTRUCTIONS           ::= INSTRUCTIONS
                             {:
-                              RESULT = new SymbolMainInstr();
+                              RESULT = new MainInstructions();
                             :}
                             | EMPTY
                             {:
-                              RESULT = new SymbolMainInstr();
+                              RESULT = new MainInstructions();
                             :};
 
 INSTRUCTIONS                ::= INSTRUCTIONS INSTRUCTION
                             {:
-                              RESULT = new SymbolInstructions();
+                              RESULT = new Instructions();
                             :}
                             | INSTRUCTION
                             {:
-                              RESULT = new SymbolInstructions();
+                              RESULT = new Instructions();
                             :};
 
 INSTRUCTION                 ::=  DECLARATIONS semicolon
                             {:
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             :}
                             | INSTRUCTION_IF
                             {:
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             :}
                             | INSTRUCTION_WHILE
                             {:
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             :}
                             | INSTRUCTION_FOR
                             {:
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             :}
                             | OPERATOR_ASSIG semicolon
                             {:
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             :}
                             | INSTRUCTION_OUT semicolon
                             {:
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             :}
                             | CALL_FUNCTION semicolon
                             {:
-                              RESULT = new SymbolInstruction();
+                              RESULT = new Instruction();
                             :};
 
 BLOCK_IN                    ::=
                             {:
                               symbolsTable.enterBlock();
-                              RESULT = new SymbolBlockIn();
+                              RESULT = new BlockIn();
                             :};
 
 BLOCK_OUT                   ::=
                             {:
                               try{
                                 symbolsTable.leaveBlock();
-                                RESULT = new SymbolBlockOut();
+                                RESULT = new BlockOut();
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -420,11 +420,11 @@ DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_
                                 String val_id = value.getVarId();
                                 symbolsTable.add(id_var, var_type);
 
-                                SymbolDeclarations symDcls;
+                                Declarations symDcls;
                                 if(value.getIsString()){
-                                  symDcls = new SymbolDeclarations(val_id, var_type, (String) value.getValue());
+                                  symDcls = new Declarations(val_id, var_type, (String) value.getValue());
                                 }else{
-                                  symDcls = new SymbolDeclarations(val_id, var_type);
+                                  symDcls = new Declarations(val_id, var_type);
                                 }
 
                                 if(type.getTipoSubyacente() != TipoSubyacente.TS_STRING){
@@ -447,11 +447,11 @@ DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_
 
 CONSTANT                    ::=  constant
                             {:
-                              RESULT = new SymbolConstant(true);
+                              RESULT = new Const(true);
                             :}
                             |  EMPTY
                             {:
-                              RESULT = new SymbolConstant(false);
+                              RESULT = new Const(false);
                             :};
 
 OPERATOR_ASSIG              ::= id:var_id op_assig VALUE:value
@@ -489,7 +489,7 @@ OPERATOR_ASSIG              ::= id:var_id op_assig VALUE:value
                                            varType.getBackendId()
                                    );
 
-                                   RESULT = new SymbolOperatorAssignation();
+                                   RESULT = new Assignation();
                               } catch (SymbolsTableError e) {
                                   String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
                                   String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
@@ -499,14 +499,14 @@ OPERATOR_ASSIG              ::= id:var_id op_assig VALUE:value
                             :};
 
 ARITH_OP                    ::= op_arithmetical_b:op
-                            {: RESULT = new SymbolArithOperator(op); :}
+                            {: RESULT = new ArithmeticOperator(op); :}
                             | op_arithmetical_c:op
-                            {: RESULT = new SymbolArithOperator(op); :};
+                            {: RESULT = new ArithmeticOperator(op); :};
 
 ARITHMETICAL_OPERATION      ::= ARITHMETICAL_VALUE:arith_val1 ARITH_OP:op ARITHMETICAL_VALUE:arith_val2
                             {:
                               try{
-                                SymbolArithOperation sym;
+                                ArithmeticOperation sym;
                                 boolean allConst = arith_val1.getIsConst() && arith_val2.getIsConst();
 
                                 Code op_code;
@@ -576,10 +576,10 @@ ARITHMETICAL_OPERATION      ::= ARITHMETICAL_VALUE:arith_val1 ARITH_OP:op ARITHM
                                 );
 
                                 if(allConst){
-                                  sym = new SymbolArithOperation(var_id, value);
+                                  sym = new ArithmeticOperation(var_id, value);
                                 }
                                 else{
-                                  sym = new SymbolArithOperation(var_id);
+                                  sym = new ArithmeticOperation(var_id);
                                 }
 
                                 RESULT = sym;
@@ -590,16 +590,16 @@ ARITHMETICAL_OPERATION      ::= ARITHMETICAL_VALUE:arith_val1 ARITH_OP:op ARITHM
                             | op_arithmetical_b:op lparen ARITHMETICAL_OPERATION:arith_op rparen
                             {:
                               try{
-                                SymbolArithOperation sym = arith_op;
+                                ArithmeticOperation sym = arith_op;
                                 if(op.equals("-")){
                                   Type type_number = symbolsTable.get("number");
                                   String var_id = backend.addTempVar(type_number.getSize(),  type_number.getTipoSubyacente());
 
                                   if(arith_op.getIsConst()){
                                     Integer value = - arith_op.getValue().intValue();
-                                    sym = new SymbolArithOperation(arith_op.getVarId(), value);
+                                    sym = new ArithmeticOperation(arith_op.getVarId(), value);
                                   }else{
-                                    sym = new SymbolArithOperation(var_id);
+                                    sym = new ArithmeticOperation(var_id);
                                   }
 
                                   c3a_g.generateC3aInstr(
@@ -623,7 +623,7 @@ ARITHMETICAL_OPERATION      ::= ARITHMETICAL_VALUE:arith_val1 ARITH_OP:op ARITHM
 NUMBER_VALUE                ::= number:n_val
                             {:
                               Integer value = Integer.valueOf(n_val);
-                              RESULT = new SymbolNumberVal(value);
+                              RESULT = new NumericValue(value);
                             :}
                             | lparen NUMBER_VALUE:n_val rparen
                             {:
@@ -631,10 +631,10 @@ NUMBER_VALUE                ::= number:n_val
                             :}
                             | op_arithmetical_b:op NUMBER_VALUE:n_val
                             {:
-                              SymbolNumberVal sym = n_val;
+                              NumericValue sym = n_val;
                               if(op.equals("-")){
                                 Integer value = - n_val.getValue().intValue();
-                                sym = new SymbolNumberVal(value);
+                                sym = new NumericValue(value);
                               }
 
                               RESULT = sym;
@@ -656,7 +656,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                                 var_id
                               );
 
-                              RESULT = new SymbolArithValue(var_id, value);
+                              RESULT = new ArithmeticValue(var_id, value);
                             }catch(SymbolsTableError e){
                               throw new SemanticError(e.getMessage());
                             }
@@ -682,14 +682,14 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                                 throw new SemanticError(message);
                               }
 
-                              SymbolArithValue sym;
+                              ArithmeticValue sym;
                               String var_id = id_val.getId();
 
                               if(main_var_type == Tipo.dconst){
                                 Integer value = (Integer) id_val.getValue();
-                                sym = new SymbolArithValue(var_id, value);
+                                sym = new ArithmeticValue(var_id, value);
                               }else{
-                                sym = new SymbolArithValue(var_id);
+                                sym = new ArithmeticValue(var_id);
                               }
 
                               RESULT = sym;
@@ -699,11 +699,11 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                           :}
                           | ARITHMETICAL_OPERATION:arith_op
                           {:
-                            SymbolArithValue sym;
+                            ArithmeticValue sym;
                             if(arith_op.getIsConst()){
-                              sym = new SymbolArithValue(arith_op.getVarId(), arith_op.getValue());
+                              sym = new ArithmeticValue(arith_op.getVarId(), arith_op.getValue());
                             }else{
-                              sym = new SymbolArithValue(arith_op.getVarId());
+                              sym = new ArithmeticValue(arith_op.getVarId());
                             }
 
                             RESULT = sym;
@@ -730,7 +730,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                                 var_id
                               );
 
-                              RESULT = new SymbolArithValue(var_id);
+                              RESULT = new ArithmeticValue(var_id);
                             }catch(SymbolsTableError e){
                               String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
                               String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
@@ -769,7 +769,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                                 );
                               }
 
-                              RESULT = new SymbolArithValue(var_id);
+                              RESULT = new ArithmeticValue(var_id);
                             }catch(SymbolsTableError e){
                               String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
                               String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
@@ -783,9 +783,9 @@ ID_VALUE                    ::= id:id_val
                               try{
                                 Type id_type = symbolsTable.get(id_val);
                                 String var_id = id_type.getBackendId();
-                                SymbolIdVal sym = new SymbolIdVal(var_id, id_type.getTipo(), id_type.getTypeName());
+                                Identifier sym = new Identifier(var_id, id_type.getTipo(), id_type.getTypeName());
                                 if(id_type.getTipo() == Tipo.dconst){
-                                  sym = new SymbolIdVal(var_id, id_type.getTipo(), id_type.getTypeName(), id_type.getValue());
+                                  sym = new Identifier(var_id, id_type.getTipo(), id_type.getTypeName(), id_type.getValue());
                                 }
 
                                 RESULT = sym;
@@ -804,7 +804,7 @@ ID_VALUE                    ::= id:id_val
                             {:
                               try{
 
-                                SymbolIdVal sym;
+                                Identifier sym;
                                 // check if unary operator is type valid
                                 TipoSubyacente subType = symbolsTable.get(id_val.getTypeName()).getTipoSubyacente();
 
@@ -827,9 +827,9 @@ ID_VALUE                    ::= id:id_val
 
                                 if(id_val.getTipo() == Tipo.dconst){
                                   Boolean value = !((Boolean) id_val.getValue()).booleanValue();
-                                  sym = new SymbolIdVal(var_id, id_val.getTipo(), id_val.getTypeName(), value);
+                                  sym = new Identifier(var_id, id_val.getTipo(), id_val.getTypeName(), value);
                                 }else{
-                                  sym = new SymbolIdVal(var_id, id_val.getTipo(), id_val.getTypeName());
+                                  sym = new Identifier(var_id, id_val.getTipo(), id_val.getTypeName());
                                 }
 
                                 RESULT = sym;
@@ -840,7 +840,7 @@ ID_VALUE                    ::= id:id_val
                             | op_arithmetical_b:op ID_VALUE:id_val
                             {:
                               try {
-                                SymbolIdVal sym = id_val;
+                                Identifier sym = id_val;
                                 // check if unary operator is type valid
                                 TipoSubyacente subType = symbolsTable.get(id_val.getTypeName()).getTipoSubyacente();
 
@@ -864,9 +864,9 @@ ID_VALUE                    ::= id:id_val
 
                                   if(id_val.getTipo() == Tipo.dconst){
                                     Integer value = -((Integer) id_val.getValue()).intValue();
-                                    sym = new SymbolIdVal(var_id, id_val.getTipo(), id_val.getTypeName(), value);
+                                    sym = new Identifier(var_id, id_val.getTipo(), id_val.getTypeName(), value);
                                   }else{
-                                    sym = new SymbolIdVal(var_id, id_val.getTipo(), id_val.getTypeName());
+                                    sym = new Identifier(var_id, id_val.getTipo(), id_val.getTypeName());
                                   }
                                 }
 
@@ -878,7 +878,7 @@ ID_VALUE                    ::= id:id_val
 
 STRING_VALUE                ::= string:string_val
                             {:
-                              RESULT = new SymbolStringVal(string_val);
+                              RESULT = new StringValue(string_val);
                             :}
                             | lparen STRING_VALUE:string_val rparen
                             {:
@@ -887,15 +887,15 @@ STRING_VALUE                ::= string:string_val
 
 VALUE                       ::= ID_VALUE:id_val
                             {:
-                              SymbolValue sym;
+                              Value sym;
 
                               String var_id = id_val.getId();
 
                               if(id_val.getTipo() == Tipo.dconst){
-                                sym = new SymbolValue(var_id, id_val.getTipo(), id_val.getTypeName(), id_val.getValue());
+                                sym = new Value(var_id, id_val.getTipo(), id_val.getTypeName(), id_val.getValue());
                               }
                               else {
-                                sym = new SymbolValue(var_id, id_val.getTipo(), id_val.getTypeName());
+                                sym = new Value(var_id, id_val.getTipo(), id_val.getTypeName());
                               }
 
                               RESULT = sym;
@@ -916,7 +916,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 // string size in bytes
                                 int stringSize = value.length() * type_string.getSize();
 
-                                SymbolValue sym = new SymbolValue(value, stringSize);
+                                Value sym = new Value(value, stringSize);
 
                                 RESULT = sym;
                               }catch(SymbolsTableError e){
@@ -938,7 +938,7 @@ VALUE                       ::= ID_VALUE:id_val
                                   var_id
                                 );
 
-                                RESULT = new SymbolValue(var_id, TipoSubyacente.TS_BOOLEAN, value);
+                                RESULT = new Value(var_id, TipoSubyacente.TS_BOOLEAN, value);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -959,21 +959,21 @@ VALUE                       ::= ID_VALUE:id_val
                                   var_id
                                 );
 
-                                RESULT = new SymbolValue(var_id, TipoSubyacente.TS_NUMBER, value);
+                                RESULT = new Value(var_id, TipoSubyacente.TS_NUMBER, value);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
                             :}
                             | VALUE_COMPARISON:comp_val
                             {:
-                              SymbolValue sym;
+                              Value sym;
                               String id = comp_val.getVarId();
 
                               if(comp_val.getIsConst()){
                                 Boolean value = comp_val.getValue();
-                                sym = new SymbolValue(id, TipoSubyacente.TS_BOOLEAN, value);
+                                sym = new Value(id, TipoSubyacente.TS_BOOLEAN, value);
                               }else{
-                                sym = new SymbolValue(id, TipoSubyacente.TS_BOOLEAN);
+                                sym = new Value(id, TipoSubyacente.TS_BOOLEAN);
                               }
 
                               RESULT = sym;
@@ -981,7 +981,7 @@ VALUE                       ::= ID_VALUE:id_val
                             | op_logical_not VALUE_COMPARISON:comp_val
                             {:
                               try{
-                                SymbolValue sym;
+                                Value sym;
 
                                 Type type_bool = symbolsTable.get("boolean");
                                 String var_id = backend.addTempVar(type_bool.getSize(), type_bool.getTipoSubyacente());
@@ -995,9 +995,9 @@ VALUE                       ::= ID_VALUE:id_val
 
                                 if(comp_val.getIsConst()){
                                   Boolean value = ! comp_val.getValue().booleanValue();
-                                  sym = new SymbolValue(var_id, TipoSubyacente.TS_BOOLEAN, value);
+                                  sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN, value);
                                 }else{
-                                  sym = new SymbolValue(var_id, TipoSubyacente.TS_BOOLEAN);
+                                  sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN);
                                 }
 
                                 RESULT = sym;
@@ -1007,24 +1007,24 @@ VALUE                       ::= ID_VALUE:id_val
                             :}
                             | ARITHMETICAL_OPERATION:arith_op
                             {:
-                              SymbolValue sym;
+                              Value sym;
                               String var_id = arith_op.getVarId();
                               if(arith_op.getIsConst()){
-                                sym = new SymbolValue(var_id, TipoSubyacente.TS_NUMBER, arith_op.getValue());
+                                sym = new Value(var_id, TipoSubyacente.TS_NUMBER, arith_op.getValue());
                               }else{
-                                sym = new SymbolValue(var_id, TipoSubyacente.TS_NUMBER);
+                                sym = new Value(var_id, TipoSubyacente.TS_NUMBER);
                               }
 
                               RESULT = sym;
                             :}
                             | BOOLEAN_OPERATION:bool_op
                             {:
-                              SymbolValue sym;
+                              Value sym;
                               String var_id = new String(bool_op.getVarId());
                               if(bool_op.getIsConst()){
-                                sym = new SymbolValue(var_id, TipoSubyacente.TS_BOOLEAN, bool_op.getValue());
+                                sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN, bool_op.getValue());
                               }else{
-                                sym = new SymbolValue(var_id, TipoSubyacente.TS_BOOLEAN);
+                                sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN);
                               }
 
                               RESULT = sym;
@@ -1051,7 +1051,7 @@ VALUE                       ::= ID_VALUE:id_val
                                   var_id
                                 );
 
-                                RESULT = new SymbolValue(var_id, Tipo.dfun, fn_type.getTypeName());
+                                RESULT = new Value(var_id, Tipo.dfun, fn_type.getTypeName());
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1069,7 +1069,7 @@ VALUE                       ::= ID_VALUE:id_val
                                   var_id
                                 );
 
-                                RESULT = new SymbolValue(var_id, number_type.getTipoSubyacente());
+                                RESULT = new Value(var_id, number_type.getTipoSubyacente());
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1078,7 +1078,7 @@ VALUE                       ::= ID_VALUE:id_val
 BOOLEAN_OPERATION           ::= BOOLEAN_OP_VALUE:bool_val1 op_logical:op BOOLEAN_OP_VALUE:bool_val2
                             {:
                               try{
-                                SymbolBoolOp sym;
+                                BooleanOperator sym;
                                 Code op_code;
 
                                 switch(op){
@@ -1124,9 +1124,9 @@ BOOLEAN_OPERATION           ::= BOOLEAN_OP_VALUE:bool_val1 op_logical:op BOOLEAN
                                 );
 
                                 if(allConst){
-                                  sym = new SymbolBoolOp(var_id, value);
+                                  sym = new BooleanOperator(var_id, value);
                                 }else{
-                                  sym = new SymbolBoolOp(var_id);
+                                  sym = new BooleanOperator(var_id);
                                 }
 
                                 RESULT = sym;
@@ -1141,7 +1141,7 @@ BOOLEAN_OPERATION           ::= BOOLEAN_OP_VALUE:bool_val1 op_logical:op BOOLEAN
                             | op_logical_not lparen BOOLEAN_OPERATION:bool_op rparen
                             {:
                               try{
-                                SymbolBoolOp sym;
+                                BooleanOperator sym;
                                 Type type_boolean = symbolsTable.get("boolean");
                                 String var_id = backend.addTempVar(type_boolean.getSize(),  type_boolean.getTipoSubyacente());
 
@@ -1154,9 +1154,9 @@ BOOLEAN_OPERATION           ::= BOOLEAN_OP_VALUE:bool_val1 op_logical:op BOOLEAN
 
                                 if(bool_op.getIsConst()){
                                   Boolean value = ! bool_op.getValue().booleanValue();
-                                  sym = new SymbolBoolOp(bool_op.getVarId(), value);
+                                  sym = new BooleanOperator(bool_op.getVarId(), value);
                                 }else{
-                                  sym = new SymbolBoolOp(var_id);
+                                  sym = new BooleanOperator(var_id);
                                 }
 
                                 RESULT = sym;
@@ -1180,7 +1180,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                   var_id
                                 );
 
-                                RESULT = new SymbolBoolOpValue(var_id, value);
+                                RESULT = new BooleanOperationValue(var_id, value);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1205,14 +1205,14 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                   throw new SemanticError(message);
                                 }
 
-                                SymbolBoolOpValue sym;
+                                BooleanOperationValue sym;
                                 String var_id = id_val.getId();
 
                                 if(main_var_type == Tipo.dconst){
                                   Boolean value = (Boolean) id_val.getValue();
-                                  sym = new SymbolBoolOpValue(var_id, value);
+                                  sym = new BooleanOperationValue(var_id, value);
                                 }else{
-                                  sym = new SymbolBoolOpValue(var_id);
+                                  sym = new BooleanOperationValue(var_id);
                                 }
 
                                 RESULT = sym;
@@ -1222,22 +1222,22 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                             :}
                             | BOOLEAN_OPERATION:bool_op
                             {:
-                              SymbolBoolOpValue sym;
+                              BooleanOperationValue sym;
                               if(bool_op.getIsConst()){
-                                sym = new SymbolBoolOpValue(bool_op.getVarId(), bool_op.getValue());
+                                sym = new BooleanOperationValue(bool_op.getVarId(), bool_op.getValue());
                               }else{
-                                sym = new SymbolBoolOpValue(bool_op.getVarId());
+                                sym = new BooleanOperationValue(bool_op.getVarId());
                               }
                               RESULT = sym;
                             :}
                             | VALUE_COMPARISON:comp_val
                             {:
-                              SymbolBoolOpValue sym;
+                              BooleanOperationValue sym;
                               String id = new String(comp_val.getVarId());
                               if(comp_val.getIsConst()){
-                                sym = new SymbolBoolOpValue(id, comp_val.getValue());
+                                sym = new BooleanOperationValue(id, comp_val.getValue());
                               }else{
-                                sym = new SymbolBoolOpValue(id);
+                                sym = new BooleanOperationValue(id);
                               }
 
                               RESULT = sym;
@@ -1255,12 +1255,12 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                   var_id
                                 );
 
-                                SymbolBoolOpValue sym;
+                                BooleanOperationValue sym;
                                 if(comp_val.getIsConst()){
                                   Boolean value = ! comp_val.getValue().booleanValue();
-                                  sym = new SymbolBoolOpValue(var_id, value);
+                                  sym = new BooleanOperationValue(var_id, value);
                                 }else{
-                                  sym = new SymbolBoolOpValue(var_id);
+                                  sym = new BooleanOperationValue(var_id);
                                 }
                                 RESULT = sym;
                               }catch(SymbolsTableError e){
@@ -1289,7 +1289,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                   var_id
                                 );
 
-                                RESULT = new SymbolBoolOpValue(var_id);
+                                RESULT = new BooleanOperationValue(var_id);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1323,7 +1323,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                   var_id
                                 );
 
-                                RESULT = new SymbolBoolOpValue(var_id);
+                                RESULT = new BooleanOperationValue(var_id);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1333,12 +1333,12 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
 BOOLEAN_VALUE               ::= bool:bool_val
                             {:
                               Boolean value = Boolean.valueOf(bool_val);
-                              RESULT = new SymbolBoolVal(value);
+                              RESULT = new BooleanValue(value);
                             :}
                             | op_logical_not BOOLEAN_VALUE:bool_val
                             {:
                               Boolean value = ! bool_val.getValue().booleanValue();
-                              RESULT = new SymbolBoolVal(value);
+                              RESULT = new BooleanValue(value);
                             :}
                             | lparen BOOLEAN_VALUE:bool_val rparen
                             {:
@@ -1349,7 +1349,7 @@ BOOLEAN_VALUE               ::= bool:bool_val
 VALUE_COMPARISON            ::= lparen VALUE:val1 op_relational:op VALUE:val2 rparen
                             {:
                               try{
-                                SymbolValueComparison sym;
+                                ValuesComparison sym;
 
                                 Tipo type1 = val1.getTipo();
                                 TipoSubyacente subType1;
@@ -1485,9 +1485,9 @@ VALUE_COMPARISON            ::= lparen VALUE:val1 op_relational:op VALUE:val2 rp
                                 String var_id = backend.addTempVar(type_bool.getSize(), type_bool.getTipoSubyacente());
 
                                 if(allConst){
-                                  sym = new SymbolValueComparison(var_id, val);
+                                  sym = new ValuesComparison(var_id, val);
                                 }else{
-                                  sym = new SymbolValueComparison(var_id);
+                                  sym = new ValuesComparison(var_id);
                                 }
 
                                 c3a_g.generateC3aInstr(
@@ -1507,7 +1507,7 @@ VALUE_COMPARISON            ::= lparen VALUE:val1 op_relational:op VALUE:val2 rp
                               RESULT = cmp_val;
                             :};
 
-COND                        ::= lparen BOOLEAN_OP_VALUE:bool_val rparen
+COND                        ::= BOOLEAN_OP_VALUE:bool_val
                               {:
                                 String var_id = bool_val.getVarId();
 
@@ -1532,7 +1532,7 @@ COND                        ::= lparen BOOLEAN_OP_VALUE:bool_val rparen
                                   false_label
                                 );
 
-                                RESULT = new SymbolCondition();
+                                RESULT = new Condition();
                               :};
 
 COND_T                      ::=
@@ -1546,7 +1546,7 @@ COND_T                      ::=
                                   label
                                 );
 
-                                RESULT = new SymbolConditionTrue();
+                                RESULT = new ConditionTrue();
                               :};
 
 COND_F                      ::=
@@ -1560,12 +1560,12 @@ COND_F                      ::=
                                   label
                                 );
 
-                                RESULT = new SymbolConditionFalse();
+                                RESULT = new ConditionFalse();
                               :};
 
 INSTRUCTION_IF              ::= inst_if COND lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket ELIF ELSE
                             {:
-                              RESULT = new SymbolInstructionIf();
+                              RESULT = new InstructionIf();
                             :};
 
 M_END                       ::= EMPTY
@@ -1579,7 +1579,7 @@ M_END                       ::= EMPTY
                                 label
                               );
 
-                              RESULT = new SymbolMEnd(label);
+                              RESULT = new End(label);
                             :};
 
 ELIF                        ::= M_END:mend inst_elif COND_F COND lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket ELIF
@@ -1593,11 +1593,11 @@ ELIF                        ::= M_END:mend inst_elif COND_F COND lbracket BLOCK_
                                 label
                               );
 
-                              RESULT = new SymbolElif();
+                              RESULT = new ElseIf();
                             :}
                             |
                             {:
-                              RESULT = new SymbolElif();
+                              RESULT = new ElseIf();
                             :};
 
 ELSE                        ::= M_END:mend inst_else lbracket BLOCK_IN COND_F INSTRUCTIONS BLOCK_OUT rbracket
@@ -1611,11 +1611,11 @@ ELSE                        ::= M_END:mend inst_else lbracket BLOCK_IN COND_F IN
                                 label
                               );
 
-                              RESULT = new SymbolElse();
+                              RESULT = new Else();
                             :}
                             | COND_F
                             {:
-                              RESULT = new SymbolElse();
+                              RESULT = new Else();
                             :};
 
 M_WHILE                     ::= EMPTY
@@ -1629,7 +1629,7 @@ M_WHILE                     ::= EMPTY
                                 label
                               );
 
-                              RESULT = new SymbolMWhile(label);
+                              RESULT = new WhileLabel(label);
                             :};
 
 INSTRUCTION_WHILE           ::= inst_while M_WHILE:mwhile COND lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket
@@ -1650,7 +1650,7 @@ INSTRUCTION_WHILE           ::= inst_while M_WHILE:mwhile COND lbracket BLOCK_IN
                                 end_label
                               );
 
-                              RESULT = new SymbolInstructionWhile();
+                              RESULT = new InstructionWhile();
                             :};
 
 INSTRUCTION_FOR             ::= inst_for lparen FOR_BODY:forBody rparen lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket
@@ -1670,7 +1670,7 @@ INSTRUCTION_FOR             ::= inst_for lparen FOR_BODY:forBody rparen lbracket
                                 null,
                                 end_label
                               );
-                              RESULT = new SymbolInstructionFor();
+                              RESULT = new InstructionFor();
                             :};
 
 LABEL_FOR                   ::= EMPTY
@@ -1684,7 +1684,7 @@ LABEL_FOR                   ::= EMPTY
                                 label
                               );
 
-                              RESULT = new SymbolLabelFor(label);
+                              RESULT = new ForLabel(label);
                             :};
 
 FOR_BODY                    ::= DECLARATION semicolon LABEL_FOR:labelFor COND semicolon LABEL_POST_FOR:labelPostFor OPERATOR_ASSIG
@@ -1697,7 +1697,7 @@ FOR_BODY                    ::= DECLARATION semicolon LABEL_FOR:labelFor COND se
                                       iniForLabel
                                     );
 
-                                    RESULT = new SymbolForBody(labelPostFor.getLabel());
+                                    RESULT = new ForBody(labelPostFor.getLabel());
                                 :};
 
 LABEL_POST_FOR              ::= EMPTY
@@ -1711,7 +1711,7 @@ LABEL_POST_FOR              ::= EMPTY
                                 label
                               );
 
-                              RESULT = new SymbolLabelPostFor(label);
+                              RESULT = new LabelPostFor(label);
                             :};
 
 CALL_FUNCTION               ::= id:fun_id lparen:lp rparen:rp
@@ -1735,7 +1735,7 @@ CALL_FUNCTION               ::= id:fun_id lparen:lp rparen:rp
                                   backId
                                 );
 
-                                RESULT = new SymbolCallFunction(fun_id, backId);
+                                RESULT = new CallFunction(fun_id, backId);
                               }catch(SymbolsTableError e){
                                 String from = fun_idxleft.getLine() + ":" + fun_idxleft.getColumn();
                                 String to = fun_idxright.getLine() + ":" + fun_idxright.getColumn();
@@ -1767,7 +1767,7 @@ CALL_FUNCTION               ::= id:fun_id lparen:lp rparen:rp
 
 
 
-                                RESULT = new SymbolCallFunction(fun_id, fun_backId);
+                                RESULT = new CallFunction(fun_id, fun_backId);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1813,7 +1813,7 @@ CALL_BODY                   ::= CALL_BODY:body comma VALUE:value
                                   fun_back_id
                                 );
 
-                                RESULT = new SymbolCallBody(fun_id, fun_back_id, num_params+1);
+                                RESULT = new CallBody(fun_id, fun_back_id, num_params+1);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1858,7 +1858,7 @@ CALL_BODY                   ::= CALL_BODY:body comma VALUE:value
                                   fun_back_id
                                 );
 
-                                RESULT = new SymbolCallBody(fun_id, fun_back_id, 0+1);
+                                RESULT = new CallBody(fun_id, fun_back_id, 0+1);
                               }catch(SymbolsTableError e){
                                 String from = fun_idxleft.getLine() + ":" + fun_idxleft.getColumn();
                                 String to = fun_idxright.getLine() + ":" + fun_idxright.getColumn();
@@ -1896,7 +1896,7 @@ INSTRUCTION_OUT             ::= instr_print lparen VALUE:value rparen
                                     var_id
                                   );
                                 }
-                                RESULT = new SymbolInstructionOut();
+                                RESULT = new InstructionOut();
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
@@ -1932,7 +1932,7 @@ DEFINE_FUNCTION             ::= FUNCTION_INIT:fun_init lbracket BLOCK_IN FUNCTIO
                                 );
                               }
 
-                              RESULT = new SymbolDefFunction();
+                              RESULT = new DefineFunction();
                             :};
 
 FUNCTION_INIT               ::= inst_function id:fun_id FUNCTION_PARAMS:fun_params rparen two_points id:type_id
@@ -1954,7 +1954,7 @@ FUNCTION_INIT               ::= inst_function id:fun_id FUNCTION_PARAMS:fun_para
                                 }
 
                                 TipoSubyacente subType = return_fun_type.getTipoSubyacente();
-                                ArrayList<Param> params = fun_params.getParams();
+                                ArrayList<Parameter> params = fun_params.getParams();
                                 String backId = backend.addProc(fun_id, params.size(), 0, subType);
 
                                 Type fun_type = new Type(backId, Tipo.dfun, type_id);
@@ -1962,7 +1962,7 @@ FUNCTION_INIT               ::= inst_function id:fun_id FUNCTION_PARAMS:fun_para
                                 symbolsTable.add(fun_id, fun_type);
 
                                 // add params if it has
-                                for(Param param : params){
+                                for(Parameter param : params){
                                   Type param_type = param.getType();
                                   TipoSubyacente param_subType = symbolsTable.get(param.getType().getTypeName()).getTipoSubyacente();
                                   String param_backId = backend.addVar(param.getVarId(), param.getSize(), param_subType, true);
@@ -1984,7 +1984,7 @@ FUNCTION_INIT               ::= inst_function id:fun_id FUNCTION_PARAMS:fun_para
                                   backId
                                 );
 
-                                RESULT = new SymbolFunInit(backId, subType);
+                                RESULT = new FunctionInit(backId, subType);
                               }catch(SymbolsTableError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
@@ -1995,11 +1995,11 @@ FUNCTION_INIT               ::= inst_function id:fun_id FUNCTION_PARAMS:fun_para
 
 FUNCTION_PARAMS             ::= FUNCTION_W_PARAMS:params
                             {:
-                              RESULT = new SymbolFunParams(params.getParams());
+                              RESULT = new FunctionParams(params.getParams());
                             :}
                             | lparen
                             {:
-                              RESULT = new SymbolFunParams();
+                              RESULT = new FunctionParams();
                             :};
 
 FUNCTION_W_PARAMS           ::= FUNCTION_W_PARAMS:prev_params comma id:id two_points id:type_id
@@ -2022,9 +2022,9 @@ FUNCTION_W_PARAMS           ::= FUNCTION_W_PARAMS:prev_params comma id:id two_po
 
                                 Type param_type = new Type(Tipo.darg, type_id);
 
-                                Param param = new Param(id, param_type, type_type.getSize());
+                                Parameter param = new Parameter(id, param_type, type_type.getSize());
 
-                                RESULT = new SymbolFunWParams(param, prev_params);
+                                RESULT = new FunctionWithParams(param, prev_params);
                               }catch(SymbolsTableError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
@@ -2052,9 +2052,9 @@ FUNCTION_W_PARAMS           ::= FUNCTION_W_PARAMS:prev_params comma id:id two_po
 
                                 Type param_type = new Type(Tipo.darg, type_id);
 
-                                Param param = new Param(id, param_type, type_type.getSize());
+                                Parameter param = new Parameter(id, param_type, type_type.getSize());
 
-                                RESULT = new SymbolFunWParams(param);
+                                RESULT = new FunctionWithParams(param);
                               }catch(SymbolsTableError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
@@ -2065,11 +2065,11 @@ FUNCTION_W_PARAMS           ::= FUNCTION_W_PARAMS:prev_params comma id:id two_po
 
 FUNCTION_INSTRUCTIONS       ::= INSTRUCTIONS
                             {:
-                              RESULT = new SymbolFunInstructions();
+                              RESULT = new FunctionInstructions();
                             :}
                             |
                             {:
-                              RESULT = new SymbolFunInstructions();
+                              RESULT = new FunctionInstructions();
                             :};
 
 FUNCTION_RETURN             ::= inst_return VALUE:value semicolon
@@ -2087,14 +2087,14 @@ FUNCTION_RETURN             ::= inst_return VALUE:value semicolon
                                   subType = type_type.getTipoSubyacente();
                                 }
 
-                                RESULT = new SymbolFunReturn(value.getVarId(), subType);
+                                RESULT = new FunctionReturn(value.getVarId(), subType);
                               }catch(SymbolsTableError e){
                                 throw new SemanticError(e.getMessage());
                               }
                             :}
                             | EMPTY
                             {:
-                              RESULT = new SymbolFunReturn();
+                              RESULT = new FunctionReturn();
                             :};
 
-EMPTY                       ::= {: RESULT = new SymbolEmpty(); :};
+EMPTY                       ::= {: RESULT = new Empty(); :};

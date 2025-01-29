@@ -6,7 +6,7 @@ function sumaDosNumeros(a: number, b: number) : number {
 
 function factorial(num : number) : number {
 	result : number := 0;
-	if((num == 0)){
+	if (num == 0) {
 		result := 1;
 	}else{
           result := num * factorial(num - 1);
@@ -16,13 +16,13 @@ function factorial(num : number) : number {
 
 function recursiveAdding(num : number) : number {
 	result : number := 0;
-	if((num < 1)){
+	if(num < 1){
 		print("Invalid number: ");
 		print(num);
 		print("\n");
 		result := 0;
 	}
-	elif ((num == 1)){
+	elif (num == 1){
 		result := 1;
 	}
 	else{
@@ -56,7 +56,7 @@ function main() {
 
     // Comprobación del funcionamiento del bucle for//
 
-	for (i : number := 0; ((i < 3)); i := i + 1){
+	for (i : number := 0; (i < 3); i := i + 1){
               print("\n");
               print("He entrado: ");
               print(i);
