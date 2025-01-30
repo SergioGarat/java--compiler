@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class GeneratorAssembler {
 
     private BufferedWriter writer;
-    private final String PATH = "src\\output\\AssemblerCode.s";
+    private String PATH = "src\\output\\";
     // Symbols Table
     private SymbolsTable symbolsTable;
     // TS + TV
@@ -38,6 +38,16 @@ public class GeneratorAssembler {
         this.symbolsTable = symbolTable;
         this.backend = backend;
         this.c3a_g = c3a_g;
+        this.PATH += "AssemblerCode.s";
+        assemblyInstructions = new ArrayList<String>();
+    }
+
+    public GeneratorAssembler(SymbolsTable symbolTable, Backend backend, GeneratorC3A c3a_g, String filename) {
+        //this.writer = writer;
+        this.symbolsTable = symbolTable;
+        this.backend = backend;
+        this.c3a_g = c3a_g;
+        this.PATH += filename + "AssemblerCode.s";
         assemblyInstructions = new ArrayList<String>();
     }
 
@@ -300,10 +310,15 @@ public class GeneratorAssembler {
 
     // Auxiliar method which will be helping with the arithmetical calculations (sum and rest)
     private void calculateSumRes(InstructionC3A instruction, String type) {
+        /*
         boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
-        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp1());
+        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
         String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
         String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
+        */
+
+        String op1 = GetOperand(instruction, 1);
+        String op2 = GetOperand(instruction, 2);
         // For sure that are
         writeLine("movl " + op1 + ", %edi");
         writeLine("movl " + op2 + ", %eax");
@@ -313,11 +328,14 @@ public class GeneratorAssembler {
 
     // Auxiliar method which will help with the / and % operations
     private void calculateDivision(InstructionC3A instruction, String type, int code) {
+        /*
         boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
         boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
         String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
         String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
-
+*/
+        String op1 = GetOperand(instruction, 1);
+        String op2 = GetOperand(instruction, 2);
         writeLine("movl " + op1 + ", %eax");
         writeLine("cdq");
         writeLine("movl " + op2 + ", %edi");
@@ -339,14 +357,31 @@ public class GeneratorAssembler {
 
     // Mulu calculation
     private void calculateMulu(InstructionC3A instruction, String type) {
+        /*
         boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
         boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
         String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
         String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
+        */
+
+        String op1 = GetOperand(instruction, 1);
+        String op2 = GetOperand(instruction, 2);
         writeLine("movl " + op1 + ", " + "%edi");
         writeLine("movl " + op2 + ", " + "%eax");
         writeLine(type + "l" + " %eax" + ", %edi");
         writeLine("movl %edi, " + getVarAssembler(instruction.getDest()));
+    }
+
+
+    private String GetOperand(InstructionC3A instruction, int op){
+
+        if(op == 1){
+            return InstructionC3A.opIsInt(instruction.getOp1()) ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
+        } else if (op == 2) {
+
+            return InstructionC3A.opIsInt(instruction.getOp1()) ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
+        }
+        return "";
     }
 
     // Call Instruction

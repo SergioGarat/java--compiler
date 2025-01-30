@@ -27,12 +27,21 @@ public class Main {
     public static void main(String[] args) {
         generateJavaFiles();
         //Aquí se debe cambiar el archivo que se quiere escoger para compilar
-        String file = WORK_DIR + "examples\\example1.txt";
+
+
+        String[] files = {"example2.txt"};
         if (args.length != 0) {
-            file = args[0];
+            files = new String[]{args[0]};
         }
-        executeCompiler(file);
+
+        cleanOutputFiles("", true);
+        for(String file : files){
+            executeCompiler(file);
+        }
+
     }
+
+
 
     private static void generateJavaFiles() {
         try {
@@ -76,25 +85,39 @@ public class Main {
 
     private static void executeCompiler(String file) {
         try {
-            cleanOutputFiles();
-            Reader reader = new BufferedReader(new FileReader(file));
+            String fname = file;
+            int pos = fname.lastIndexOf(".");
+            if (pos > 0) {
+                fname = fname.substring(0, pos);
+            }
+
+            cleanOutputFiles(fname, false);
+            Reader reader = new BufferedReader(new FileReader(WORK_DIR + "examples\\" + file ));
             ComplexSymbolFactory symbolFactory = new ComplexSymbolFactory();
-            Lexico scanner = new Lexico(reader, symbolFactory);
-            Parser parser = new Parser(scanner, symbolFactory);
+            Lexico scanner = new Lexico(reader, symbolFactory, fname);
+            Parser parser = new Parser(scanner, symbolFactory, fname);
             parser.parse();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    private static void cleanOutputFiles() {
+    private static void cleanOutputFiles(String startname, boolean full) {
         System.out.println("Borramos el contenido de la carpeta output.");
         File output_dir = new File(OUTPUT_DIR);
         if (output_dir.isDirectory()) {
             for (File file : output_dir.listFiles()) {
-                System.out.println("Borrado archivo: " + file.getName());
-                file.delete();
+                if(full || file.getName().startsWith(startname)) {
+
+                    if(file.delete()){
+                        System.out.println("Borrado archivo: " + file.getName());
+                    }else{
+                        System.out.println("El archivo: " + file.getName()+ " no pudo ser borrado");
+                    }
+                }
             }
         }
+
     }
 }

@@ -11,9 +11,10 @@ public class CompilerError extends Exception {
     private static BufferedWriter outLexical = null;
     private static BufferedWriter outSyntax = null;
     private static BufferedWriter outSemantic = null;
-    private final String PATH_LEXICAL = "src\\output\\lexicalError.txt";
-    private final String PATH_SYNTAX = "src\\output\\syntaxError.txt";
-    private final String PATH_SEMANTIC = "src\\output\\semanticError.txt";
+    private static String BASE_PATH = "src\\output\\";
+    private final String LEXICAL_FILE = "lexicalError.txt";
+    private final String SYNTAX_FILE = "syntaxError.txt";
+    private final String SEMANTIC_FILE = "semanticError.txt";
     private ErrorType type;
 
 
@@ -21,7 +22,11 @@ public class CompilerError extends Exception {
         LEXICAL, SYNTAX, SEMANTIC
     }
 
-    public CompilerError(String message, ErrorType type) {
+    public CompilerError(String message, ErrorType type){
+        this(message, type, "");
+    }
+
+    public CompilerError(String message, ErrorType type, String filename) {
         super(message);
         this.type = type;
         BufferedWriter out = getBufferedWriter(type);
@@ -30,15 +35,15 @@ public class CompilerError extends Exception {
             try {
                 switch (type) {
                     case LEXICAL:
-                        outLexical = new BufferedWriter(new FileWriter(PATH_LEXICAL));
+                        outLexical = new BufferedWriter(new FileWriter(BASE_PATH + filename + LEXICAL_FILE));
                         out = outLexical;
                         break;
                     case SYNTAX:
-                        outSyntax = new BufferedWriter(new FileWriter(PATH_SYNTAX));
+                        outSyntax = new BufferedWriter(new FileWriter(BASE_PATH + filename + SYNTAX_FILE));
                         out = outSyntax;
                         break;
                     case SEMANTIC:
-                        outSemantic = new BufferedWriter(new FileWriter(PATH_SEMANTIC));
+                        outSemantic = new BufferedWriter(new FileWriter(BASE_PATH + filename + SEMANTIC_FILE));
                         out = outSemantic;
                         break;
                 }

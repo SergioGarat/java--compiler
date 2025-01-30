@@ -20,24 +20,44 @@ import java.io.FileWriter;
 %full
 
 %init{
-    try{
-        out = new BufferedWriter(new FileWriter(TOKENS_PATH, true));
+    /*
+      try{
+        out = new BufferedWriter(new FileWriter(BASE_TOKENS_PATH + TOKENS_PATH, true));
         out.write("*** Tokens ***\n");
     }catch(Exception e){
         System.out.println("Error writing Tokens : " + e);
         e.printStackTrace();
     }
+     */
 %init}
 
 %{
     public Lexico(java.io.Reader in, ComplexSymbolFactory sf) {
       this(in);
       this.symbolFactory = sf;
+
     }
 
-    public static final String TOKENS_PATH = "src\\output\\Tokens.txt";
+    public Lexico(java.io.Reader in, ComplexSymbolFactory sf, String filename) {
+          this(in);
+          this.symbolFactory = sf;
+          this.TOKENS_PATH = filename+this.TOKENS_PATH;
+
+          try{
+                  out = new BufferedWriter(new FileWriter(BASE_TOKENS_PATH + TOKENS_PATH, true));
+                  out.write("*** Tokens ***\n");
+              }catch(Exception e){
+                  System.out.println("Error writing Tokens : " + e);
+                  e.printStackTrace();
+              }
+
+        }
+
+    public String TOKENS_PATH = "Tokens.txt";
 
     public static final String TOKENS_ERROR_PATH = "src\\output\\Error_Tokens.txt";
+
+    public static final String BASE_TOKENS_PATH = "src\\output\\";
 
     private static BufferedWriter out;
 
