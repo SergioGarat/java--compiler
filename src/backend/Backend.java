@@ -38,9 +38,9 @@ public class Backend {
     // Adding a new VARIABLE into the table
     public String addVar(String varname, int size, TipoSubyacente type, boolean isParam) {
         int scope = symbolsTable.getActualScope();
-        int idParent = getLastProcedureId();
-        String name = varname + "_" + idParent + "_" + scope;
-        Procedure proc = procTable.get(idParent);
+        int idProcedure = getLastProcedureId();
+        String name = varname + "_" + idProcedure + "_" + scope;
+        Procedure proc = procTable.get(idProcedure);
         int offset = (proc.getSize() + size);
         if (isParam) {
             offset = proc.getOffset() + 16;
@@ -51,7 +51,7 @@ public class Backend {
             proc.setSize(proc.getSize() + size);
         }
         // We add the variable into the table
-        varTable.put(name, new Variable(name, idParent, offset, size, type, isParam));
+        varTable.put(name, new Variable(name, idProcedure, offset, size, type, isParam));
 
         return name;
     }

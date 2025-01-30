@@ -11,7 +11,7 @@ public class ParserSym {
   public static final int string = 4;
   public static final int op_logical = 7;
   public static final int number = 3;
-  public static final int inst_main = 29;
+  public static final int inst_main = 30;
   public static final int constant = 18;
   public static final int instr_read = 20;
   public static final int inst_elif = 13;
@@ -26,6 +26,7 @@ public class ParserSym {
   public static final int EOF = 0;
   public static final int inst_if = 12;
   public static final int id = 2;
+  public static final int dot = 29;
   public static final int inst_else = 14;
   public static final int rparen = 23;
   public static final int error = 1;
@@ -68,6 +69,7 @@ public class ParserSym {
   "semicolon",
   "comma",
   "two_points",
+  "dot",
   "inst_main"
   };
 }

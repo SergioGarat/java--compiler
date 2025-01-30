@@ -153,6 +153,7 @@ RBRACKET        = ("}")
 SEMICOLON       = (";")
 COMMA           = (",")
 TWO_POINTS      = (":")
+DOT             = (".")
 
 %%
 {BLANK}              {/*Ignore*/}
@@ -247,6 +248,11 @@ TWO_POINTS      = (":")
                         Token token = new Token(Tokens.TWO_POINTS,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.TWO_POINTS.name(),ParserSym.two_points);
+                     }
+{DOT}                {
+                        Token token = new Token(Tokens.DOT,yyline,yycolumn, yytext());
+                        writeToken(token);
+                        return symbol(Tokens.DOT.name(),ParserSym.dot);
                      }
 
               //OPERADORES
