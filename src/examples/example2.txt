@@ -1,6 +1,6 @@
 function main() {
 
-    for (i : number := 0; ((i < 3)); i := i + 1){
+    for (i : number := 0; (i < 3); i := i + 1){
           print("He entrado: ");
           print(i);
           print("\n");

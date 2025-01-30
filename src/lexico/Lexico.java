@@ -4,7 +4,7 @@
 
 package lexico;
 
-import errores.LexicalError;
+import errores.CompilerError;
 import lexico.Token.Tokens;
 import sintactico.ParserSym;
 import java_cup.runtime.ComplexSymbolFactory;
@@ -780,9 +780,9 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 1:
             { Token token = new Token(Tokens.ERROR,yyline,yycolumn, yytext());
                         writeToken(token);
-                        try{
-                            throw new LexicalError("[Lexical error]:" + "[" + getLine() + ":" + getColumn() + "]" + " Unkown symbol: "+"'"+this.yytext()+"'");
-                        } catch (LexicalError ex) {
+                        try {
+                           throw new CompilerError("[Lexical error]:" + "[" + getLine() + ":" + getColumn() + "]" + " Unkown symbol: "+"'"+this.yytext()+"'", CompilerError.ErrorType.SYNTAX);
+                        } catch (CompilerError ex) {
                             System.err.println("ERROR: " + ex.getMessage());
                         }
 

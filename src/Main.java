@@ -27,7 +27,7 @@ public class Main {
     public static void main(String[] args) {
         generateJavaFiles();
         //Aquí se debe cambiar el archivo que se quiere escoger para compilar
-        String file = WORK_DIR + "examples\\example2.txt";
+        String file = WORK_DIR + "examples\\example1.txt";
         if (args.length != 0) {
             file = args[0];
         }
