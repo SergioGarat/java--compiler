@@ -1347,7 +1347,7 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 
 -----------------------------------------------
 ----------------- ACTION DONE -----------------
-	ADD : numE
+	ADD : numZ
 -----------------------------------------------
 
 -----------------------------------------------
@@ -1371,9 +1371,9 @@ identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
 identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
 identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
+identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numE TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 
 -----------------------------------------------
@@ -1392,7 +1392,7 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 
 -----------------------------------------------
 ----------------- ACTION DONE -----------------
-	ADD : numD
+	ADD : numF
 -----------------------------------------------
 
 -----------------------------------------------
@@ -1412,14 +1412,14 @@ scope:2, pointing at: 4 value
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
 identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : numF TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
 identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
 identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
+identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numE TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numD TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 
 -----------------------------------------------
@@ -1460,14 +1460,14 @@ identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
 identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
 identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
+identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numE TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numD TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numC TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : numF TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 
 -----------------------------------------------
 
@@ -1485,7 +1485,7 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 
 -----------------------------------------------
 ----------------- ACTION DONE -----------------
-	ADD : numF
+	ADD : numD
 -----------------------------------------------
 
 -----------------------------------------------
@@ -1507,6 +1507,55 @@ identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
 identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
 identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
+identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+identifier : numD TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : numC TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : numF TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
+ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
+ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
+ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : numE
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE DATA -------------- 
+-----------------------------------------------
+
+-----------------------------------------------
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 4 value
+scope:2, pointing at: 4 value
+-----------------------------------------------
+
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
+identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
+identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 identifier : numE TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
@@ -1555,6 +1604,7 @@ identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
 identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
 identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
+identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
@@ -1605,6 +1655,7 @@ identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
 identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
 identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
+identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
@@ -1654,6 +1705,7 @@ identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
 identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
 identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
+identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1

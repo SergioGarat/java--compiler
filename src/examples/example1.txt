@@ -40,6 +40,18 @@ function main() {
 	print(factorial(numA));
 	print("\n");
 
+    print("Inserta un número: ");
+	numZ : number := read();
+	print("Número insertado: ");
+	print(numZ);
+	print("\n");
+
+
+    print("Inserta un número: ");
+	print(read());
+	print("\n");
+
+
 	//Llamada a la función de suma recursiva//
 
 	print("RECURSIVE ADDING ");
@@ -48,18 +60,21 @@ function main() {
 	print(recursiveAdding(numB));
 	print("\n");
 
-	numC, numD, numE : number := 100;
-
+	numC : number := 100;
+	numD : number := 1200;
+	numE : number := 35000;
 	numF : number := 0;
+
 	print(sumaDosNumeros(numC, numD));
     numF := sumaDosNumeros(numC, numE);
+    print(numF);
 
     // Comprobación del funcionamiento del bucle for//
 
-	for (i : number := 0; (i < 3); i := i + 1){
-              print("\n");
-              print("He entrado: ");
-              print(i);
-        }
+	for (i : number := 0; (i < 3); i := i + 1) {
+         print("\n");
+         print("He entrado: ");
+         print(i);
+    }
     print("\nHE SALIDO\n");
 }
