@@ -1,10 +1,10 @@
 package backend;
 
-public class Label {
+public class Etiq {
 
     private String name;
 
-    public Label(String name) {
+    public Etiq(String name) {
         this.name = name;
     }
 

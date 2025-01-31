@@ -5,7 +5,7 @@
 
 package sintactico;
 
-import backend.Backend;
+import backend.BackTables;
 import c3a.GeneratorC3A;
 import c3a.InstructionC3A.Code;
 import errores.CompilerError;
@@ -509,7 +509,7 @@ public class Parser extends java_cup.runtime.lr_parser {
 
 
   private SymbolsTable symbolsTable;
-  private Backend backend;
+  private BackTables backend;
   private Lexico lexico;
   private GeneratorC3A c3a_g;
   private GeneratorAssembler assembler;
@@ -521,7 +521,7 @@ public class Parser extends java_cup.runtime.lr_parser {
     super(lexico, sf);
     this.lexico = lexico;
     this.symbolsTable = new SymbolsTable();
-    this.backend = new Backend(symbolsTable);
+    this.backend = new BackTables(symbolsTable);
     this.c3a_g = new GeneratorC3A();
     this.assembler = new GeneratorAssembler(symbolsTable, backend, c3a_g);
     this.labelTrueStack = new Stack<String>();
@@ -3228,7 +3228,7 @@ class CUP$Parser$actions {
                                   subtype = var_type.getTipoSubyacente();
                                 }
 
-                                if(value.getTipo() == Tipo.dnull && value.getTipoSubyacente() == TipoSubyacente.TS_STRING){
+                                if (value.getTipo() == Tipo.dnull && value.getTipoSubyacente() == TipoSubyacente.TS_STRING) {
                                   var_id = backend.addTempStrVar(value.getStringSize(), (String) value.getValue());
                                   c3a_g.generateC3aInstr(
                                     Code.print,
@@ -3236,7 +3236,7 @@ class CUP$Parser$actions {
                                     (String) value.getValue(),
                                     var_id
                                   );
-                                }else{
+                                } else {
                                   c3a_g.generateC3aInstr(
                                     Code.print,
                                     subtype.toString(),

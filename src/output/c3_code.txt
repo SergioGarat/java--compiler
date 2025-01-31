@@ -206,21 +206,21 @@ print T38
 T39 = "\n"
 print T39
 
-T40 = 0
+T40 = 100
 
-numF_3_2 = T40
+numC_3_2 = T40
 
-T41 = 100
+T41 = 1200
 
-numC_3_2 = T41
+numD_3_2 = T41
 
-T42 = 1200
+T42 = 35000
 
-numD_3_2 = T42
+numE_3_2 = T42
 
-T43 = 35000
+T43 = 0
 
-numE_3_2 = T43
+numF_3_2 = T43
 
 param PROC_sumaDosNumeros(numC_3_2)
 
@@ -241,6 +241,8 @@ call PROC_sumaDosNumeros
 T45 = return PROC_sumaDosNumeros
 
 numF_3_2 = T45
+
+print numF_3_2
 
 T46 = 0
 

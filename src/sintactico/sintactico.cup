@@ -1,6 +1,6 @@
 package sintactico;
 
-import backend.Backend;
+import backend.BackTables;
 import c3a.GeneratorC3A;
 import c3a.InstructionC3A.Code;
 import errores.CompilerError;
@@ -25,7 +25,7 @@ class Parser;
 parser code
 {:
   private SymbolsTable symbolsTable;
-  private Backend backend;
+  private BackTables backend;
   private Lexico lexico;
   private GeneratorC3A c3a_g;
   private GeneratorAssembler assembler;
@@ -37,7 +37,7 @@ parser code
     super(lexico, sf);
     this.lexico = lexico;
     this.symbolsTable = new SymbolsTable();
-    this.backend = new Backend(symbolsTable);
+    this.backend = new BackTables(symbolsTable);
     this.c3a_g = new GeneratorC3A();
     this.assembler = new GeneratorAssembler(symbolsTable, backend, c3a_g);
     this.labelTrueStack = new Stack<String>();

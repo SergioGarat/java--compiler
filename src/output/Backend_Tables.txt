@@ -2,75 +2,75 @@
 ---------------- TABLES INFO ----------------
 ---------------------------------------------
 Variables:
-numD_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -240(%rbp)
-a_0_1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : 16(%rbp)
-T21:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -176(%rbp)
-T20:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -160(%rbp)
-T23:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -16(%rbp)
-numE_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -272(%rbp)
-b_0_1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : 32(%rbp)
-T22:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -192(%rbp)
-T25:	Tamaño: 160	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T25
-T24:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -48(%rbp)
-T27:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -80(%rbp)
-T26:	Tamaño: 48	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T26
-T29:	Tamaño: 304	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T29
-T28:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T28
-i_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -336(%rbp)
-num_1_1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : 16(%rbp)
-numB_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -64(%rbp)
-result_2_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -32(%rbp)
-result_0_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -32(%rbp)
-T30:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -96(%rbp)
-T32:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T32
-numC_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -208(%rbp)
-T31:	Tamaño: 288	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T31
-T34:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -128(%rbp)
-T33:	Tamaño: 304	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T33
-T36:	Tamaño: 272	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T36
-T35:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T35
-T38:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -144(%rbp)
-T37:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T37
-T39:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T39
-T41:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -192(%rbp)
-T40:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -160(%rbp)
-T43:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -256(%rbp)
-T42:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -224(%rbp)
-T45:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -304(%rbp)
-T44:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -288(%rbp)
-T47:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -352(%rbp)
-T46:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -320(%rbp)
-numA_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -32(%rbp)
-T49:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -384(%rbp)
-T48:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 3	|	Offset : -368(%rbp)
-T0:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -16(%rbp)
-T1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Offset : -48(%rbp)
-T2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -16(%rbp)
-T3:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -48(%rbp)
-T4:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 1	|	Offset : -64(%rbp)
-T5:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -80(%rbp)
-numZ_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -112(%rbp)
-T6:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -96(%rbp)
-T7:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -112(%rbp)
-T8:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -128(%rbp)
-T9:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -144(%rbp)
-numF_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -176(%rbp)
-num_2_1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : 16(%rbp)
-result_1_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Offset : -32(%rbp)
-T50:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Offset : -400(%rbp)
-T52:	Tamaño: 192	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T52
-T51:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T51
-T10:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -16(%rbp)
-T53:	Tamaño: 208	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Offset : T53
-T12:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 2	|	Offset : -64(%rbp)
-T11:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -48(%rbp)
-T14:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 2	|	Offset : T14
-T13:	Tamaño: 256	|	Tipo Subyacente:string	|	IdFuncion : 2	|	Offset : T13
-T16:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -96(%rbp)
-T15:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -80(%rbp)
-T18:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -128(%rbp)
-T17:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 2	|	Offset : -112(%rbp)
-T19:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Offset : -144(%rbp)
+numD_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -208(%rbp)
+a_0_1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : 16(%rbp)
+T21:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : -176(%rbp)
+T20:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : -160(%rbp)
+T23:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -16(%rbp)
+numE_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -240(%rbp)
+b_0_1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : 32(%rbp)
+T22:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : -192(%rbp)
+T25:	Tamaño: 160	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T25
+T24:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -48(%rbp)
+T27:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -80(%rbp)
+T26:	Tamaño: 48	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T26
+T29:	Tamaño: 304	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T29
+T28:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T28
+i_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -336(%rbp)
+num_1_1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Desplazamiento : 16(%rbp)
+numB_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -64(%rbp)
+result_2_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : -32(%rbp)
+result_0_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -32(%rbp)
+T30:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -96(%rbp)
+T32:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T32
+numC_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -176(%rbp)
+T31:	Tamaño: 288	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T31
+T34:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -128(%rbp)
+T33:	Tamaño: 304	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T33
+T36:	Tamaño: 272	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T36
+T35:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T35
+T38:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -144(%rbp)
+T37:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T37
+T39:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T39
+T41:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -192(%rbp)
+T40:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -160(%rbp)
+T43:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -256(%rbp)
+T42:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -224(%rbp)
+T45:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -304(%rbp)
+T44:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -288(%rbp)
+T47:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -352(%rbp)
+T46:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -320(%rbp)
+numA_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -32(%rbp)
+T49:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -384(%rbp)
+T48:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 3	|	Desplazamiento : -368(%rbp)
+T0:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -16(%rbp)
+T1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -48(%rbp)
+T2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Desplazamiento : -16(%rbp)
+T3:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Desplazamiento : -48(%rbp)
+T4:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 1	|	Desplazamiento : -64(%rbp)
+T5:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Desplazamiento : -80(%rbp)
+numZ_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -112(%rbp)
+T6:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Desplazamiento : -96(%rbp)
+T7:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Desplazamiento : -112(%rbp)
+T8:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Desplazamiento : -128(%rbp)
+T9:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Desplazamiento : -144(%rbp)
+numF_3_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -272(%rbp)
+num_2_1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : 16(%rbp)
+result_1_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 1	|	Desplazamiento : -32(%rbp)
+T50:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 3	|	Desplazamiento : -400(%rbp)
+T52:	Tamaño: 192	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T52
+T51:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T51
+T10:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : -16(%rbp)
+T53:	Tamaño: 208	|	Tipo Subyacente:string	|	IdFuncion : 3	|	Desplazamiento : T53
+T12:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 2	|	Desplazamiento : -64(%rbp)
+T11:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : -48(%rbp)
+T14:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 2	|	Desplazamiento : T14
+T13:	Tamaño: 256	|	Tipo Subyacente:string	|	IdFuncion : 2	|	Desplazamiento : T13
+T16:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : -96(%rbp)
+T15:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : -80(%rbp)
+T18:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : -128(%rbp)
+T17:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 2	|	Desplazamiento : -112(%rbp)
+T19:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 2	|	Desplazamiento : -144(%rbp)
 
 Procedures:
 PROC_sumaDosNumeros:	Nº de parámetros: 2	|	Tipo: number
@@ -78,7 +78,7 @@ PROC_factorial:	Nº de parámetros: 1	|	Tipo: number
 PROC_recursiveAdding:	Nº de parámetros: 1	|	Tipo: number
 PROC_main:	Nº de parámetros: 0	|	Tipo: null
 
-Labels:
+Etiquetas:
 LABEL_0
 LABEL_1
 LABEL_2

@@ -476,44 +476,44 @@ mov $T39, %rdi
 xor %rax, %rax
 call printf
 
-# T40 = 0
-movl $0, %edi
+# T40 = 100
+movl $100, %edi
 movl %edi, -160(%rbp)
 
-# numF_3_2 = T40
+# numC_3_2 = T40
 movl -160(%rbp), %edi
 movl %edi, -176(%rbp)
 
-# T41 = 100
-movl $100, %edi
+# T41 = 1200
+movl $1200, %edi
 movl %edi, -192(%rbp)
 
-# numC_3_2 = T41
+# numD_3_2 = T41
 movl -192(%rbp), %edi
 movl %edi, -208(%rbp)
 
-# T42 = 1200
-movl $1200, %edi
+# T42 = 35000
+movl $35000, %edi
 movl %edi, -224(%rbp)
 
-# numD_3_2 = T42
+# numE_3_2 = T42
 movl -224(%rbp), %edi
 movl %edi, -240(%rbp)
 
-# T43 = 35000
-movl $35000, %edi
+# T43 = 0
+movl $0, %edi
 movl %edi, -256(%rbp)
 
-# numE_3_2 = T43
+# numF_3_2 = T43
 movl -256(%rbp), %edi
 movl %edi, -272(%rbp)
 
 # param PROC_sumaDosNumeros(numC_3_2)
-movslq -208(%rbp), %rdx
+movslq -176(%rbp), %rdx
 push %rdx
 
 # param PROC_sumaDosNumeros(numD_3_2)
-movslq -240(%rbp), %rdx
+movslq -208(%rbp), %rdx
 push %rdx
 
 # call PROC_sumaDosNumeros
@@ -534,11 +534,11 @@ xor %rax, %rax
 call printf
 
 # param PROC_sumaDosNumeros(numC_3_2)
-movslq -208(%rbp), %rdx
+movslq -176(%rbp), %rdx
 push %rdx
 
 # param PROC_sumaDosNumeros(numE_3_2)
-movslq -272(%rbp), %rdx
+movslq -240(%rbp), %rdx
 push %rdx
 
 # call PROC_sumaDosNumeros
@@ -553,7 +553,14 @@ movl %eax, -304(%rbp)
 
 # numF_3_2 = T45
 movl -304(%rbp), %edi
-movl %edi, -176(%rbp)
+movl %edi, -272(%rbp)
+
+# print numF_3_2
+mov $format_int, %rdi
+xor %rsi, %rsi
+movl -272(%rbp), %esi
+xor %rax, %rax
+call printf
 
 # T46 = 0
 movl $0, %edi
