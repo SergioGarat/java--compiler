@@ -45,7 +45,7 @@ public class GeneratorAssembler {
         assemblyInstructions = new ArrayList<String>();
     }
 
-    public GeneratorAssembler(SymbolsTable symbolTable, Backend backend, GeneratorC3A c3a_g, String filename) {
+    public GeneratorAssembler(SymbolsTable symbolTable, BackTables backend, GeneratorC3A c3a_g, String filename) {
         //this.writer = writer;
         this.symbolsTable = symbolTable;
         this.backend = backend;

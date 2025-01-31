@@ -35,7 +35,7 @@ public class BackTables {
         this.procTable = new ArrayList<>();
         this.labelTable = new ArrayList<>();
     }
-    public Backend(SymbolsTable symbolsTable, String filename) {
+    public BackTables(SymbolsTable symbolsTable, String filename) {
         this.symbolsTable = symbolsTable;
         this.varTable = new HashMap<>();
         this.procTable = new ArrayList<>();

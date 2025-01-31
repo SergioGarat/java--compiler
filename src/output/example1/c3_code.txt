@@ -1,0 +1,289 @@
+-----------------------------------------------
+---------------- C3@ code list ----------------
+-----------------------------------------------
+PROC_sumaDosNumeros:skip
+
+pmb PROC_sumaDosNumeros
+
+T0 = 0
+
+result_0_2 = T0
+
+T1 = a_0_1 add b_0_1
+
+result_0_2 = T1
+
+rtn result_0_2
+
+PROC_factorial:skip
+
+pmb PROC_factorial
+
+T2 = 0
+
+result_1_2 = T2
+
+T3 = 0
+
+T4 = num_1_1 EQ T3
+
+if T4=true goto LABEL_0
+
+go_to LABEL_1
+
+LABEL_0:skip
+
+T5 = 1
+
+result_1_2 = T5
+
+go_to LABEL_2
+
+LABEL_1:skip
+
+T6 = 1
+
+T7 = num_1_1 sub T6
+
+param PROC_factorial(T7)
+
+call PROC_factorial
+
+T8 = return PROC_factorial
+
+T9 = num_1_1 prod T8
+
+result_1_2 = T9
+
+LABEL_2:skip
+
+rtn result_1_2
+
+PROC_recursiveAdding:skip
+
+pmb PROC_recursiveAdding
+
+T10 = 0
+
+result_2_2 = T10
+
+T11 = 1
+
+T12 = num_1_1 LT T11
+
+if T12=true goto LABEL_3
+
+go_to LABEL_4
+
+LABEL_3:skip
+
+T13 = "Invalid number: "
+print T13
+
+print num_1_1
+
+T14 = "\n"
+print T14
+
+T15 = 0
+
+result_2_2 = T15
+
+go_to LABEL_5
+
+LABEL_4:skip
+
+T16 = 1
+
+T17 = num_1_1 EQ T16
+
+if T17=true goto LABEL_6
+
+go_to LABEL_7
+
+LABEL_6:skip
+
+T18 = 1
+
+result_2_2 = T18
+
+LABEL_5:skip
+
+go_to LABEL_8
+
+LABEL_7:skip
+
+T19 = 1
+
+T20 = num_1_1 sub T19
+
+param PROC_recursiveAdding(T20)
+
+call PROC_recursiveAdding
+
+T21 = return PROC_recursiveAdding
+
+T22 = num_1_1 add T21
+
+result_2_2 = T22
+
+LABEL_8:skip
+
+rtn result_2_2
+
+main:skip
+
+pmb PROC_main
+
+T23 = 5
+
+numA_3_2 = T23
+
+T24 = 10
+
+numB_3_2 = T24
+
+T25 = "FACTORIAL "
+print T25
+
+print numA_3_2
+
+T26 = "! :"
+print T26
+
+param PROC_factorial(numA_3_2)
+
+call PROC_factorial
+
+T27 = return PROC_factorial
+
+print T27
+
+T28 = "\n"
+print T28
+
+T29 = "Inserta un número: "
+print T29
+
+T30 = read
+
+numZ_3_2 = T30
+
+T31 = "Número insertado: "
+print T31
+
+print numZ_3_2
+
+T32 = "\n"
+print T32
+
+T33 = "Inserta un número: "
+print T33
+
+T34 = read
+
+print T34
+
+T35 = "\n"
+print T35
+
+T36 = "RECURSIVE ADDING "
+print T36
+
+print numB_3_2
+
+T37 = " :"
+print T37
+
+param PROC_recursiveAdding(numB_3_2)
+
+call PROC_recursiveAdding
+
+T38 = return PROC_recursiveAdding
+
+print T38
+
+T39 = "\n"
+print T39
+
+T40 = 100
+
+numC_3_2 = T40
+
+T41 = 1200
+
+numD_3_2 = T41
+
+T42 = 35000
+
+numE_3_2 = T42
+
+T43 = 0
+
+numF_3_2 = T43
+
+param PROC_sumaDosNumeros(numC_3_2)
+
+param PROC_sumaDosNumeros(numD_3_2)
+
+call PROC_sumaDosNumeros
+
+T44 = return PROC_sumaDosNumeros
+
+print T44
+
+param PROC_sumaDosNumeros(numC_3_2)
+
+param PROC_sumaDosNumeros(numE_3_2)
+
+call PROC_sumaDosNumeros
+
+T45 = return PROC_sumaDosNumeros
+
+numF_3_2 = T45
+
+print numF_3_2
+
+T46 = 0
+
+i_3_2 = T46
+
+LABEL_9:skip
+
+T47 = 3
+
+T48 = i_3_2 LT T47
+
+if T48=true goto LABEL_10
+
+go_to LABEL_11
+
+LABEL_12:skip
+
+T49 = 1
+
+T50 = i_3_2 add T49
+
+i_3_2 = T50
+
+go_to LABEL_9
+
+LABEL_10:skip
+
+T51 = "\n"
+print T51
+
+T52 = "He entrado: "
+print T52
+
+print i_3_2
+
+go_to LABEL_12
+
+LABEL_11:skip
+
+T53 = "\nHE SALIDO\n"
+print T53
+
+rtn
+
