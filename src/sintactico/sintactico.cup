@@ -1,6 +1,6 @@
 package sintactico;
 
-import backend.Backend;
+import backend.BackTables;
 import c3a.GeneratorC3A;
 import c3a.InstructionC3A.Code;
 import errores.CompilerError;
@@ -18,6 +18,7 @@ import symbolsTable.Type.Tipo;
 import symbolsTable.Type.TipoSubyacente;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 class Parser;
@@ -25,7 +26,7 @@ class Parser;
 parser code
 {:
   private SymbolsTable symbolsTable;
-  private Backend backend;
+  private BackTables backend;
   private Lexico lexico;
   private GeneratorC3A c3a_g;
   private GeneratorAssembler assembler;
@@ -38,7 +39,7 @@ parser code
     super(lexico, sf);
     this.lexico = lexico;
     this.symbolsTable = new SymbolsTable();
-    this.backend = new Backend(symbolsTable);
+    this.backend = new BackTables(symbolsTable);
     this.c3a_g = new GeneratorC3A();
     this.assembler = new GeneratorAssembler(symbolsTable, backend, c3a_g);
     this.labelTrueStack = new Stack<String>();
@@ -99,16 +100,20 @@ parser code
 
   private void initTypes() {
     try{
+      //init TUPLE type
+      Type tuple_type = new Type(Tipo.dtype, List.of(), 32);
+      symbolsTable.add("tuple", tuple_type);
+
       //init NUMBER type
-      Type number_type = new Type(Tipo.dtype, TipoSubyacente.TS_NUMBER, 4);
+      Type number_type = new Type(Tipo.dtype, TipoSubyacente.TS_NUMBER, 16);
       symbolsTable.add("number", number_type);
 
       // init String type
-      Type str_type = new Type(Tipo.dtype, TipoSubyacente.TS_STRING, 2);
+      Type str_type = new Type(Tipo.dtype, TipoSubyacente.TS_STRING, 16);
       symbolsTable.add("string", str_type);
 
       //init BOOLEAN type
-      Type bool_type = new Type(Tipo.dtype,TipoSubyacente.TS_BOOLEAN, 2);
+      Type bool_type = new Type(Tipo.dtype,TipoSubyacente.TS_BOOLEAN, 16);
       symbolsTable.add("boolean",bool_type);
 
       //init VOID type
@@ -123,11 +128,11 @@ parser code
 
 /******Declaració de simbols terminals*********/
 
-terminal String id, number, string, bool,  op_relational, op_logical, op_logical_not, op_arithmetical_c, op_arithmetical_b;
+terminal String id, number, string, bool, struct, op_relational, op_logical, op_logical_not, op_arithmetical_c, op_arithmetical_b;
 terminal        op_assig, inst_if, inst_elif, inst_else,
                 inst_while, inst_function, inst_return, constant, inst_for,
                 instr_read, instr_print, lparen, rparen, lbracket, rbracket, semicolon,
-                comma, two_points, inst_main;
+                comma, two_points, dot, inst_main;
 
 /*
   inst_switch, inst_case, inst_break, inst_default, inst_for,
@@ -194,6 +199,11 @@ non terminal  FunctionReturn             FUNCTION_RETURN;
 
 non terminal  CallFunction          CALL_FUNCTION;
 non terminal  CallBody              CALL_BODY;
+
+non terminal              TUPLE_ACCESS;
+non terminal    TupleDeclaration    TUPLE_DECLARATION;
+non terminal            FIELD_LIST;
+non terminal            TUPLE_FIELD;
 
 non terminal  Empty                 EMPTY;
 
@@ -288,6 +298,9 @@ INSTRUCTION                 ::=  DECLARATIONS semicolon
                             {:
                               RESULT = new Instruction();
                             :}
+                            | TUPLE_DECLARATION semicolon
+                            {:
+                            :}
                             | INSTRUCTION_IF
                             {:
                               RESULT = new Instruction();
@@ -365,7 +378,20 @@ DECLARATIONS                ::=  id:var_id comma DECLARATIONS:declarations
                             | DECLARATION:declaration
                             {:
                               RESULT = declaration;
-                            :};
+                            :}
+                            ;
+
+TUPLE_DECLARATION           ::= struct lbracket FIELD_LIST rbracket id
+                            {:
+                            :}
+                            ;
+
+FIELD_LIST                  ::= FIELD_LIST semicolon TUPLE_FIELD
+                            | TUPLE_FIELD
+                            ;
+
+TUPLE_FIELD                 ::= id:identificador two_points id:type
+                            ;
 
 DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_id op_assig VALUE:value
                             {:
@@ -456,7 +482,14 @@ DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_
                                 String message = e.getMessage() + " from "+from+" to "+to;
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC);
                               }
-                            :};
+                            :}
+                            ;
+
+TUPLE_ACCESS                ::= id:tuple dot VALUE:value
+                            {:
+                            System.out.println("Identificador: " + tuple + " | Posicion: " + value.getValue());
+                            :}
+                            ;
 
 CONSTANT                    ::=  constant
                             {:
@@ -1086,7 +1119,12 @@ VALUE                       ::= ID_VALUE:id_val
                               }catch(SymbolsTableError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
-                            :};
+                            :}
+                            | TUPLE_ACCESS
+                            {:
+
+                            :}
+                            ;
 
 BOOLEAN_OPERATION           ::= BOOLEAN_OP_VALUE:bool_val1 op_logical:op BOOLEAN_OP_VALUE:bool_val2
                             {:
@@ -1893,7 +1931,7 @@ INSTRUCTION_OUT             ::= instr_print lparen VALUE:value rparen
                                   subtype = var_type.getTipoSubyacente();
                                 }
 
-                                if(value.getTipo() == Tipo.dnull && value.getTipoSubyacente() == TipoSubyacente.TS_STRING){
+                                if (value.getTipo() == Tipo.dnull && value.getTipoSubyacente() == TipoSubyacente.TS_STRING) {
                                   var_id = backend.addTempStrVar(value.getStringSize(), (String) value.getValue());
                                   c3a_g.generateC3aInstr(
                                     Code.print,
@@ -1901,7 +1939,7 @@ INSTRUCTION_OUT             ::= instr_print lparen VALUE:value rparen
                                     (String) value.getValue(),
                                     var_id
                                   );
-                                }else{
+                                } else {
                                   c3a_g.generateC3aInstr(
                                     Code.print,
                                     subtype.toString(),

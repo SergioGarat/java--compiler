@@ -14,22 +14,22 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Backend {
+public class BackTables {
 
     private SymbolsTable symbolsTable;
 
     static final String BASE_PATH = "src\\output\\";
     private String Filename = "Backend_Tables.txt";
     // TV
-    private HashMap<String, Variable> varTable;
+    private HashMap<String, Var> varTable;
     // TP
-    private ArrayList<Procedure> procTable;
+    private ArrayList<Proc> procTable;
     // TE
-    private ArrayList<Label> labelTable;
+    private ArrayList<Etiq> labelTable;
 
     private static int tmp_n = 0;
 
-    public Backend(SymbolsTable symbolsTable) {
+    public BackTables(SymbolsTable symbolsTable) {
         this.symbolsTable = symbolsTable;
         this.varTable = new HashMap<>();
         this.procTable = new ArrayList<>();
@@ -47,20 +47,20 @@ public class Backend {
     // Adding a new VARIABLE into the table
     public String addVar(String varname, int size, TipoSubyacente type, boolean isParam) {
         int scope = symbolsTable.getActualScope();
-        int idParent = getLastProcedureId();
-        String name = varname + "_" + idParent + "_" + scope;
-        Procedure proc = procTable.get(idParent);
-        int offset = (proc.getSize() + size);
+        int idProcedure = getLastProcedureId();
+        String name = varname + "_" + idProcedure + "_" + scope;
+        Proc proc = procTable.get(idProcedure);
+        int offset = (proc.getMemorySize() + size);
         if (isParam) {
             offset = proc.getOffset() + 16;
             // We update its parent size
-            proc.setOffset(offset);
+            proc.setParamsOffset(offset);
         } else {
             // We update its parent size
-            proc.setSize(proc.getSize() + size);
+            proc.setMemorySize(proc.getMemorySize() + size);
         }
         // We add the variable into the table
-        varTable.put(name, new Variable(name, idParent, offset, size, type, isParam));
+        varTable.put(name, new Var(name, idProcedure, offset, size, type, isParam));
 
         return name;
     }
@@ -71,7 +71,7 @@ public class Backend {
         int scope = symbolsTable.getActualScope();
         String name = varname + "_" + idParent + "_" + scope;
         // We add the variable into the table
-        varTable.put(name, new StrVariable(name, idParent, size, value));
+        varTable.put(name, new Var(name, idParent, size, value));
 
         return name;
     }
@@ -82,7 +82,7 @@ public class Backend {
         tmp_n++;
         int idParent = getLastProcedureId();
         // We add the variable into the table
-        varTable.put(name, new StrVariable(name, idParent, size, value));
+        varTable.put(name, new Var(name, idParent, size, value));
 
         return name;
     }
@@ -92,11 +92,11 @@ public class Backend {
         tmp_n++;
         int idParent = getLastProcedureId();
         // We add the variable into the table
-        Procedure proc = procTable.get(idParent);
-        int offset = (proc.getSize() + size);
-        proc.setSize(offset);
+        Proc proc = procTable.get(idParent);
+        int offset = (proc.getMemorySize() + size);
+        proc.setMemorySize(offset);
         // We add the variable into the table
-        varTable.put(name, new Variable(name, idParent, offset, size, type, false));
+        varTable.put(name, new Var(name, idParent, offset, size, type, false));
         return name;
     }
 
@@ -104,20 +104,20 @@ public class Backend {
     public String addProc(String procName, int params, int size, TipoSubyacente type) {
         String name = "PROC_" + procName;
         // We add the new procedure
-        procTable.add(new Procedure(name, params, size, type));
+        procTable.add(new Proc(name, params, size, type));
         return name;
     }
 
     public String addMain() {
         String name = "PROC_main";
-        this.procTable.add(new Procedure(name, 0, 0, TipoSubyacente.TS_NULL));
+        this.procTable.add(new Proc(name, 0, 0, TipoSubyacente.TS_NULL));
         return name;
     }
 
     public String addLabel() {
         String label = "LABEL_" + labelTable.size();
 
-        labelTable.add(new Label(label));
+        labelTable.add(new Etiq(label));
 
         return label;
     }
@@ -133,12 +133,12 @@ public class Backend {
         }
 
         result += "\nProcedures:\n";
-        for (Procedure procedure : procTable) {
+        for (Proc procedure : procTable) {
             result += procedure + "\n";
         }
 
-        result += "\nLabels:\n";
-        for (Label label : labelTable) {
+        result += "\nEtiquetas:\n";
+        for (Etiq label : labelTable) {
             result += label + "\n";
         }
 
@@ -153,24 +153,24 @@ public class Backend {
             writer.close();
         } catch (IOException ex) {
             System.out.println(" ERROR WRITING BACKEND TABLES");
-            Logger.getLogger(Backend.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BackTables.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public String getVarAssembler(String name) {
-        return this.varTable.get(name).getAssemblerDir();
+        return this.varTable.get(name).getDirection();
     }
 
-    public Variable getVariable(String name) {
+    public Var getVariable(String name) {
         return this.varTable.get(name);
     }
 
-    public Collection<Variable> getVariables() {
+    public Collection<Var> getVariables() {
         return this.varTable.values();
     }
 
-    public Procedure getProcedure(String proc) {
-        for (Procedure procedure : this.procTable) {
+    public Proc getProcedure(String proc) {
+        for (Proc procedure : this.procTable) {
             if (procedure.getName().equals(proc)) {
                 return procedure;
             }
@@ -179,6 +179,6 @@ public class Backend {
     }
 
     private int getLastProcedureId() {
-        return procTable.get(procTable.size() - 1).getNv();
+        return procTable.get(procTable.size() - 1).getVarNumber();
     }
 }

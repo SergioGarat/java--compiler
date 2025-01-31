@@ -1,0 +1,14 @@
+function main() {
+
+    for (i : number := 0; (i < 3); i := i + 1){
+          print("He entrado: ");
+          print(i);
+          print("\n");
+    }
+
+    struct { id1 : number ; id2 : boolean ; id3 : number} persona ;
+
+    entrada : number := read();
+    print(entrada);
+    print("HE SALIDO");
+}
