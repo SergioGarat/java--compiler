@@ -33,7 +33,7 @@ public class SymbolsTable {
     }
 
     public SymbolsTable(String filename) {
-        this.filename = filename + "SymbolsTableData.txt";
+        this.filename = filename + "\\" + "SymbolsTableData.txt";
         reset();
         try {
             out = new BufferedWriter(new FileWriter(SYMBOLS_TABLE_PATH + this.filename));

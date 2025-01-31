@@ -15,6 +15,7 @@ import symbolsTable.Type.Tipo;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,6 +33,8 @@ public class GeneratorAssembler {
     private GeneratorC3A c3a_g;
     // List of instructions
     private ArrayList<String> assemblyInstructions;
+    private HashSet<Code> comparers = new HashSet<>();
+    private Boolean HasPrint = false;
 
     public GeneratorAssembler(SymbolsTable symbolTable, Backend backend, GeneratorC3A c3a_g) {
         //this.writer = writer;
@@ -47,7 +50,7 @@ public class GeneratorAssembler {
         this.symbolsTable = symbolTable;
         this.backend = backend;
         this.c3a_g = c3a_g;
-        this.PATH += filename + "AssemblerCode.s";
+        this.PATH += filename +"\\"+ "AssemblerCode.s";
         assemblyInstructions = new ArrayList<String>();
     }
 
@@ -118,15 +121,17 @@ public class GeneratorAssembler {
     }
 
     private void writePrintBoolFunction() {
-        writeLine("print_bool :");
-        writeLine("cmpw $0,%di");
-        writeLine("je print_false");
-        writeLine("mov $true_label, %rdi");
-        writeLine("jmp print_bool_val");
-        writeLine("print_false : mov $false_label, %rdi");
-        writeLine("print_bool_val : xor %rax, %rax");
-        writeLine("call printf");
-        writeLine("ret");
+        if(HasPrint) {
+            writeLine("print_bool :");
+            writeLine("cmpw $0,%di");
+            writeLine("je print_false");
+            writeLine("mov $true_label, %rdi");
+            writeLine("jmp print_bool_val");
+            writeLine("print_false : mov $false_label, %rdi");
+            writeLine("print_bool_val : xor %rax, %rax");
+            writeLine("call printf");
+            writeLine("ret");
+        }
     }
 
     private void footerWrite() {
@@ -217,6 +222,7 @@ public class GeneratorAssembler {
                 inputInstruction(instruction);
                 break;
             case print:
+                HasPrint = true;
                 outputInstruction(instruction);
                 break;
             default:
@@ -502,8 +508,10 @@ public class GeneratorAssembler {
     }
 
     private String getCMPFunctionLabel(Code code, boolean numCmp) {
+        comparers.add(code);
         return switch (code) {
             case EQ -> {
+
                 if (numCmp) {
                     yield "CMP_EQ_NUM";
                 }
@@ -524,14 +532,31 @@ public class GeneratorAssembler {
     }
 
     private void writeCMPFunctions() {
-        writeEQ();
-        writeNE();
-        writeGT();
-        writeGE();
-        writeLE();
-        writeLT();
-        writeNE_num();
-        writeEQ_num();
+        if(comparers.contains(Code.EQ)){
+            writeEQ();
+            writeEQ_num();
+        }
+
+        if(comparers.contains(Code.NE)){
+            writeNE();
+            writeNE_num();
+        }
+
+        if(comparers.contains(Code.GT)){
+            writeGT();
+        }
+
+        if(comparers.contains(Code.GE)){
+            writeGE();
+        }
+
+        if(comparers.contains(Code.LE)){
+            writeLE();
+        }
+        if(comparers.contains(Code.LT)){
+            writeLT();
+        }
+
     }
 
     private void writeLT() {

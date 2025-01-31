@@ -41,7 +41,7 @@ import java.io.FileWriter;
     public Lexico(java.io.Reader in, ComplexSymbolFactory sf, String filename) {
           this(in);
           this.symbolFactory = sf;
-          this.TOKENS_PATH = filename+this.TOKENS_PATH;
+          this.TOKENS_PATH = filename+"\\"+this.TOKENS_PATH;
 
           try{
                   out = new BufferedWriter(new FileWriter(BASE_TOKENS_PATH + TOKENS_PATH, true));

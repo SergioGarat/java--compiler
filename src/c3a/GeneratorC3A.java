@@ -22,7 +22,7 @@ public class GeneratorC3A {
     }
 
     public GeneratorC3A(String filename) {
-        this.FileName = filename + "c3_code.txt";
+        this.FileName = filename + "\\" + "c3_code.txt";
         this.instructions = new ArrayList<>();
     }
 
