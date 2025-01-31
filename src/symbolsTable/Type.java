@@ -1,9 +1,13 @@
 package symbolsTable;
 
+import java.util.List;
+
 public class Type {
     private Tipo tipo;
 
     private TipoSubyacente tipoSubyacente;
+
+    private List<TipoSubyacente> tiposSubyacentes;
 
     private String backendId = "";
 
@@ -14,6 +18,12 @@ public class Type {
     public Type(Tipo tipo, TipoSubyacente tipoSubyacente, int size) {
         this.tipo = tipo;
         this.tipoSubyacente = tipoSubyacente;
+        this.size = size;
+    }
+
+    public Type(Tipo tipo, List<TipoSubyacente> tiposSubyacentes, int size) {
+        this.tipo = tipo;
+        this.tiposSubyacentes = tiposSubyacentes;
         this.size = size;
     }
 
@@ -80,6 +90,14 @@ public class Type {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public List<TipoSubyacente> getTiposSubyacentes() {
+        return tiposSubyacentes;
+    }
+
+    public void setTiposSubyacentes(List<TipoSubyacente> tiposSubyacentes) {
+        this.tiposSubyacentes = tiposSubyacentes;
     }
 
     public enum Tipo {

@@ -9,6 +9,7 @@ public class Token {
         NUMBER,
         STRING,
         BOOLEAN,
+        STRUCT,
         CONSTANT,
         OP_SUM,
         OP_SUB,
