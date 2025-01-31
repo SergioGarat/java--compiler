@@ -101,10 +101,10 @@ LETTER          = [a-zA-Z]
 BLANK           = (" "|\t|\r|\n)
 COMMENT         = ("//".*"//")
 
-ID              = (({LETTER})({LETTER}|{DIGIT})*)   // ok
-NUMBER          = ("0" | [1-9]{DIGIT}*)                     // ok
-STRING          = \" [^\"]* \"                              // ok
-BOOLEAN         = ("true" | "false")                        // ok
+ID              = (({LETTER})({LETTER}|{DIGIT})*)
+NUMBER          = ("0" | [1-9]{DIGIT}*)
+STRING          = \" [^\"]* \"
+BOOLEAN         = ("true" | "false")
 
 // Operadores
 
@@ -143,6 +143,9 @@ INST_MAIN       = ("main")
 
 INSTR_READ        = ("read")
 INSTR_PRINT       = ("print")
+
+STRUCT          = ("struct")
+
 
 // Caracteres especiales
 
@@ -343,6 +346,13 @@ DOT             = (".")
                      writeToken(token);
                      return symbol(Tokens.CONSTANT.name(),ParserSym.constant, yytext());
                      }
+
+{STRUCT}             {
+                     Token token = new Token(Tokens.STRUCT,yyline,yycolumn, yytext());
+                     writeToken(token);
+                     return symbol(Tokens.STRUCT.name(),ParserSym.struct, yytext());
+                    }
+
 
 {ID}                 {
                      Token token = new Token(Tokens.ID,yyline,yycolumn, yytext());

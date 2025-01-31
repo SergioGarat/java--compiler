@@ -24,6 +24,36 @@ scope:1, pointing at: 0 value
 
 -----------------------------------------------
 ----------------- ACTION DONE -----------------
+	ADD : tuple
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE DATA -------------- 
+-----------------------------------------------
+
+-----------------------------------------------
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+-----------------------------------------------
+
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
 	ADD : number
 -----------------------------------------------
 
@@ -40,6 +70,7 @@ scope:1, pointing at: 0 value
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 
 -----------------------------------------------
@@ -70,6 +101,7 @@ scope:1, pointing at: 0 value
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 
@@ -101,6 +133,7 @@ scope:1, pointing at: 0 value
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
 identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
@@ -133,6 +166,7 @@ scope:1, pointing at: 0 value
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
 identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
@@ -143,1033 +177,6 @@ identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 -----------------------------------------------
 ------------- EXPANSION TABLE -----------------
 
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : sumaDosNumeros
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 1 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 0 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD PARAM: a_0_1 function : sumaDosNumeros
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 1 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 1 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD PARAM: b_0_1 function : sumaDosNumeros
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 1 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 2 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ENTER BLOCK : increase scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 2 value
-scope:2, pointing at: 2 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : result
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 2 value
-scope:2, pointing at: 2 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	LEAVE BLOCK : decrease scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 1 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 2 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : factorial
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 1 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 2 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD PARAM: num_1_1 function : factorial
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 1 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 3 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ENTER BLOCK : increase scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 3 value
-scope:2, pointing at: 3 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : result
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 3 value
-scope:2, pointing at: 3 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ENTER BLOCK : increase scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 3 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 3 value
-scope:2, pointing at: 3 value
-scope:3, pointing at: 3 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	LEAVE BLOCK : decrease scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 3 value
-scope:2, pointing at: 3 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ENTER BLOCK : increase scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 3 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 3 value
-scope:2, pointing at: 3 value
-scope:3, pointing at: 3 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	LEAVE BLOCK : decrease scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 3 value
-scope:2, pointing at: 3 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	LEAVE BLOCK : decrease scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 1 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 3 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : recursiveAdding
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 1 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 3 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD PARAM: num_2_1 function : recursiveAdding
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 1 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ENTER BLOCK : increase scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : result
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ENTER BLOCK : increase scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 3 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
-scope:3, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	LEAVE BLOCK : decrease scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ENTER BLOCK : increase scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 3 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
-scope:3, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	LEAVE BLOCK : decrease scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ENTER BLOCK : increase scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 3 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
-scope:3, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	LEAVE BLOCK : decrease scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	LEAVE BLOCK : decrease scope
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 1 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
 
 -----------------------------------------------
 
@@ -1187,19 +194,17 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 -----------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
+scope:1, pointing at: 0 value
 -----------------------------------------------
 
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
 identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
@@ -1207,10 +212,6 @@ identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 -----------------------------------------------
 ------------- EXPANSION TABLE -----------------
 
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
 
 -----------------------------------------------
 
@@ -1228,20 +229,18 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 -----------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
+scope:1, pointing at: 0 value
+scope:2, pointing at: 0 value
 -----------------------------------------------
 
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
 identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
@@ -1249,332 +248,6 @@ identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 -----------------------------------------------
 ------------- EXPANSION TABLE -----------------
 
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : numA
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : numB
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : numZ
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : numC
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numC TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : numD
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numD TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numC TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : numE
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numE TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numD TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numC TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
-
------------------------------------------------
-
--------------- END SYMBOLS TABLE --------------
-
------------------------------------------------
------------------ ACTION DONE -----------------
-	ADD : numF
------------------------------------------------
-
------------------------------------------------
-------------- SYMBOLS TABLE DATA -------------- 
------------------------------------------------
-
------------------------------------------------
---------------- SCOPE INFO : 2 ----------------
-scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
------------------------------------------------
-
------------------------------------------------
--------------- DESCRIPTION TABLE --------------
-
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numE TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numD TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numC TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : numF TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-
------------------------------------------------
-
------------------------------------------------
-------------- EXPANSION TABLE -----------------
-
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
 
 -----------------------------------------------
 
@@ -1592,39 +265,26 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 -----------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
+scope:1, pointing at: 0 value
+scope:2, pointing at: 0 value
 -----------------------------------------------
 
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numE TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numD TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numC TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : numF TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
 
 -----------------------------------------------
 ------------- EXPANSION TABLE -----------------
 
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
 
 -----------------------------------------------
 
@@ -1642,40 +302,27 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 -----------------------------------------------
 --------------- SCOPE INFO : 3 ----------------
 scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
-scope:3, pointing at: 4 value
+scope:1, pointing at: 0 value
+scope:2, pointing at: 0 value
+scope:3, pointing at: 0 value
 -----------------------------------------------
 
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numE TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numD TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numC TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : numF TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
 
 -----------------------------------------------
 ------------- EXPANSION TABLE -----------------
 
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
 
 -----------------------------------------------
 
@@ -1693,39 +340,64 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 -----------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
-scope:2, pointing at: 4 value
+scope:1, pointing at: 0 value
+scope:2, pointing at: 0 value
 -----------------------------------------------
 
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : numZ TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numA TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
-identifier : numE TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numD TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numC TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
-identifier : numB TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
-identifier : numF TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
 
 -----------------------------------------------
 ------------- EXPANSION TABLE -----------------
 
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : entrada
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE DATA -------------- 
+-----------------------------------------------
+
+-----------------------------------------------
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+scope:2, pointing at: 0 value
+-----------------------------------------------
+
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : entrada TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
 
 -----------------------------------------------
 
@@ -1743,30 +415,24 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 -----------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
-scope:1, pointing at: 4 value
+scope:1, pointing at: 0 value
 -----------------------------------------------
 
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
-identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
-identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
-identifier : factorial TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 2
-identifier : recursiveAdding TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 3
-identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
 
 -----------------------------------------------
 ------------- EXPANSION TABLE -----------------
 
-ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : 1
-ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros NEXT : -1
-ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NEXT : -1
-ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdding NEXT : -1
 
 -----------------------------------------------
 

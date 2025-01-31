@@ -18,6 +18,7 @@ import symbolsTable.Type.Tipo;
 import symbolsTable.Type.TipoSubyacente;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 class Parser;
@@ -86,6 +87,10 @@ parser code
 
   private void initTypes() {
     try{
+      //init TUPLE type
+      Type tuple_type = new Type(Tipo.dtype, List.of(), 32);
+      symbolsTable.add("tuple", tuple_type);
+
       //init NUMBER type
       Type number_type = new Type(Tipo.dtype, TipoSubyacente.TS_NUMBER, 16);
       symbolsTable.add("number", number_type);
@@ -110,7 +115,7 @@ parser code
 
 /******Declaració de simbols terminals*********/
 
-terminal String id, number, string, bool,  op_relational, op_logical, op_logical_not, op_arithmetical_c, op_arithmetical_b;
+terminal String id, number, string, bool, struct, op_relational, op_logical, op_logical_not, op_arithmetical_c, op_arithmetical_b;
 terminal        op_assig, inst_if, inst_elif, inst_else,
                 inst_while, inst_function, inst_return, constant, inst_for,
                 instr_read, instr_print, lparen, rparen, lbracket, rbracket, semicolon,
@@ -182,9 +187,10 @@ non terminal  FunctionReturn             FUNCTION_RETURN;
 non terminal  CallFunction          CALL_FUNCTION;
 non terminal  CallBody              CALL_BODY;
 
-non terminal            TUPLE_VALUE;
-non terminal              TUPLE_TYPE;
 non terminal              TUPLE_ACCESS;
+non terminal    TupleDeclaration    TUPLE_DECLARATION;
+non terminal            FIELD_LIST;
+non terminal            TUPLE_FIELD;
 
 non terminal  Empty                 EMPTY;
 
@@ -279,6 +285,9 @@ INSTRUCTION                 ::=  DECLARATIONS semicolon
                             {:
                               RESULT = new Instruction();
                             :}
+                            | TUPLE_DECLARATION semicolon
+                            {:
+                            :}
                             | INSTRUCTION_IF
                             {:
                               RESULT = new Instruction();
@@ -356,7 +365,20 @@ DECLARATIONS                ::=  id:var_id comma DECLARATIONS:declarations
                             | DECLARATION:declaration
                             {:
                               RESULT = declaration;
-                            :};
+                            :}
+                            ;
+
+TUPLE_DECLARATION           ::= struct lbracket FIELD_LIST rbracket id
+                            {:
+                            :}
+                            ;
+
+FIELD_LIST                  ::= FIELD_LIST semicolon TUPLE_FIELD
+                            | TUPLE_FIELD
+                            ;
+
+TUPLE_FIELD                 ::= id:identificador two_points id:type
+                            ;
 
 DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_id op_assig VALUE:value
                             {:
@@ -448,23 +470,7 @@ DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
-                            | id:id_var CONSTANT:constant two_points TUPLE_TYPE:tuple_type op_assig TUPLE_VALUE:value
                             ;
-
-TUPLE_TYPE                  ::= lparen id:type_1 comma id:type_2 rparen
-                             {:
-                             Type type1 = symbolsTable.get(type_1);
-                             Type type2 = symbolsTable.get(type_2);
-
-                             System.out.println("Primer tipo: " + type1.getTipo() + " | Primer tipoSubyacente: " + type1.getTipoSubyacente());
-                             System.out.println("Segundo tipo: " + type2.getTipo() + " | Segundo tipoSubyacente: " + type2.getTipoSubyacente());
-                             :};
-
-TUPLE_VALUE                 ::= lparen VALUE:value1 comma VALUE:value2 rparen
-                            {:
-                              System.out.println("Primer valor: " + value1);
-                              System.out.println("Segundo valor: " + value2);
-                             :};
 
 TUPLE_ACCESS                ::= id:tuple dot VALUE:value
                             {:
