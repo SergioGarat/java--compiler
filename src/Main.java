@@ -27,12 +27,24 @@ public class Main {
     public static void main(String[] args) {
         generateJavaFiles();
         //Aquí se debe cambiar el archivo que se quiere escoger para compilar
-        String file = WORK_DIR + "examples\\example1.txt";
+
+
+        String file = "example1.txt";
         if (args.length != 0) {
             file = args[0];
         }
-        executeCompiler(file);
+        String fname = file;
+        int pos = fname.lastIndexOf(".");
+        if (pos > 0) {
+            fname = fname.substring(0, pos);
+        }
+        cleanOutputFiles(fname, true);
+
+        executeCompiler(fname);
+
+
     }
+
 
     private static void generateJavaFiles() {
         try {
@@ -74,27 +86,40 @@ public class Main {
         Files.move(sym_o, sym_d);
     }
 
-    private static void executeCompiler(String file) {
+    private static void executeCompiler(String fname) {
         try {
-            cleanOutputFiles();
-            Reader reader = new BufferedReader(new FileReader(file));
+
+
+            cleanOutputFiles(fname, false);
+            Reader reader = new BufferedReader(new FileReader(WORK_DIR + "examples\\" + fname + ".txt"));
             ComplexSymbolFactory symbolFactory = new ComplexSymbolFactory();
-            Lexico scanner = new Lexico(reader, symbolFactory);
-            Parser parser = new Parser(scanner, symbolFactory);
+            Lexico scanner = new Lexico(reader, symbolFactory, fname);
+            Parser parser = new Parser(scanner, symbolFactory, fname);
             parser.parse();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    private static void cleanOutputFiles() {
-        System.out.println("Borramos el contenido de la carpeta output.");
-        File output_dir = new File(OUTPUT_DIR);
-        if (output_dir.isDirectory()) {
-            for (File file : output_dir.listFiles()) {
-                System.out.println("Borrado archivo: " + file.getName());
-                file.delete();
+    private static void cleanOutputFiles(String startName, boolean full) {
+        System.out.println("Deleting contents of the output folder.");
+        File outputDir = new File(OUTPUT_DIR+"\\"+startName);
+
+        if (outputDir.isDirectory()) {
+            File[] files = outputDir.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (full || file.getName().startsWith(startName)) {
+                        if (file.delete()) {
+                            System.out.println("Deleted file: " + file.getName());
+                        } else {
+                            System.out.println("Could not delete file: " + file.getName());
+                        }
+                    }
+                }
             }
         }
+        outputDir.mkdir();
     }
 }

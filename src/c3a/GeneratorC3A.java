@@ -9,13 +9,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GeneratorC3A {
-    private static final String PATH = "src\\output\\c3_code.txt";
+    private static final String PATH = "src\\output\\";
+    private String FileName = "c3_code.txt";
     private ArrayList<InstructionC3A> instructions;
 
     // private Optimizer optimizer; NOT IMPLEMENTED
     private BufferedWriter writer;
 
     public GeneratorC3A() {
+        this.instructions = new ArrayList<>();
+
+    }
+
+    public GeneratorC3A(String filename) {
+        this.FileName = filename + "\\" + "c3_code.txt";
         this.instructions = new ArrayList<>();
     }
 
@@ -35,7 +42,7 @@ public class GeneratorC3A {
             result += instruction + "\n\n";
         }
         try {
-            File file = new File(PATH);
+            File file = new File(PATH + FileName);
 
             if (!file.exists()) {
                 file.createNewFile();

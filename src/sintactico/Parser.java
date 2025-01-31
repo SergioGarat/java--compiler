@@ -519,6 +519,7 @@ public class Parser extends java_cup.runtime.lr_parser {
   private Lexico lexico;
   private GeneratorC3A c3a_g;
   private GeneratorAssembler assembler;
+  private String filename;
 
   private Stack<String> labelTrueStack;
   private Stack<String> labelFalseStack;
@@ -533,6 +534,18 @@ public class Parser extends java_cup.runtime.lr_parser {
     this.labelTrueStack = new Stack<String>();
     this.labelFalseStack = new Stack<String>();
   }
+  public Parser(Lexico lexico, ComplexSymbolFactory sf, String filename){
+      super(lexico, sf);
+      this.lexico = lexico;
+      this.filename = filename;
+      this.symbolsTable = new SymbolsTable(filename);
+      this.backend = new Backend(symbolsTable, filename);
+      this.c3a_g = new GeneratorC3A(filename);
+      this.assembler = new GeneratorAssembler(symbolsTable, backend, c3a_g, filename);
+      this.labelTrueStack = new Stack<String>();
+      this.labelFalseStack = new Stack<String>();
+
+    }
 
   private void closeErrorFiles(){
     SymbolsTableError.closeFile();

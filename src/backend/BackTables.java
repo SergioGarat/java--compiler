@@ -18,7 +18,8 @@ public class BackTables {
 
     private SymbolsTable symbolsTable;
 
-    private final String PATH = "src\\output\\Backend_Tables.txt";
+    static final String BASE_PATH = "src\\output\\";
+    private String Filename = "Backend_Tables.txt";
     // TV
     private HashMap<String, Var> varTable;
     // TP
@@ -34,6 +35,14 @@ public class BackTables {
         this.procTable = new ArrayList<>();
         this.labelTable = new ArrayList<>();
     }
+    public Backend(SymbolsTable symbolsTable, String filename) {
+        this.symbolsTable = symbolsTable;
+        this.varTable = new HashMap<>();
+        this.procTable = new ArrayList<>();
+        this.labelTable = new ArrayList<>();
+        this.Filename = filename +"\\"+ this.Filename;
+    }
+
 
     // Adding a new VARIABLE into the table
     public String addVar(String varname, int size, TipoSubyacente type, boolean isParam) {
@@ -135,7 +144,7 @@ public class BackTables {
 
         try {
             // File Writter
-            File file = new File(PATH);
+            File file = new File(BASE_PATH + Filename);
             if (!file.exists()) {
                 file.createNewFile();
             }

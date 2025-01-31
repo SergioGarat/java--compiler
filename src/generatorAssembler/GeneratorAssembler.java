@@ -15,6 +15,7 @@ import symbolsTable.Type.TipoSubyacente;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +24,7 @@ import java.util.logging.Logger;
 public class GeneratorAssembler {
 
     private BufferedWriter writer;
-    private final String PATH = "src\\output\\AssemblerCode.s";
+    private String PATH = "src\\output\\";
     // Symbols Table
     private SymbolsTable symbolsTable;
     // TS + TV
@@ -32,12 +33,24 @@ public class GeneratorAssembler {
     private GeneratorC3A c3a_g;
     // List of instructions
     private ArrayList<String> assemblyInstructions;
+    private HashSet<Code> comparers = new HashSet<>();
+    private Boolean HasPrint = false;
 
     public GeneratorAssembler(SymbolsTable symbolTable, BackTables backend, GeneratorC3A c3a_g) {
         //this.writer = writer;
         this.symbolsTable = symbolTable;
         this.backend = backend;
         this.c3a_g = c3a_g;
+        this.PATH += "AssemblerCode.s";
+        assemblyInstructions = new ArrayList<String>();
+    }
+
+    public GeneratorAssembler(SymbolsTable symbolTable, Backend backend, GeneratorC3A c3a_g, String filename) {
+        //this.writer = writer;
+        this.symbolsTable = symbolTable;
+        this.backend = backend;
+        this.c3a_g = c3a_g;
+        this.PATH += filename +"\\"+ "AssemblerCode.s";
         assemblyInstructions = new ArrayList<String>();
     }
 
@@ -108,15 +121,17 @@ public class GeneratorAssembler {
     }
 
     private void writePrintBoolFunction() {
-        writeLine("print_bool :");
-        writeLine("cmpw $0,%di");
-        writeLine("je print_false");
-        writeLine("mov $true_label, %rdi");
-        writeLine("jmp print_bool_val");
-        writeLine("print_false : mov $false_label, %rdi");
-        writeLine("print_bool_val : xor %rax, %rax");
-        writeLine("call printf");
-        writeLine("ret");
+        if(HasPrint) {
+            writeLine("print_bool :");
+            writeLine("cmpw $0,%di");
+            writeLine("je print_false");
+            writeLine("mov $true_label, %rdi");
+            writeLine("jmp print_bool_val");
+            writeLine("print_false : mov $false_label, %rdi");
+            writeLine("print_bool_val : xor %rax, %rax");
+            writeLine("call printf");
+            writeLine("ret");
+        }
     }
 
     private void footerWrite() {
@@ -207,6 +222,7 @@ public class GeneratorAssembler {
                 inputInstruction(instruction);
                 break;
             case print:
+                HasPrint = true;
                 outputInstruction(instruction);
                 break;
             default:
@@ -300,10 +316,15 @@ public class GeneratorAssembler {
 
     // Auxiliar method which will be helping with the arithmetical calculations (sum and rest)
     private void calculateSumRes(InstructionC3A instruction, String type) {
+        /*
         boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
-        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp1());
+        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
         String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
         String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
+        */
+
+        String op1 = GetOperand(instruction, 1);
+        String op2 = GetOperand(instruction, 2);
         // For sure that are
         writeLine("movl " + op1 + ", %edi");
         writeLine("movl " + op2 + ", %eax");
@@ -313,11 +334,14 @@ public class GeneratorAssembler {
 
     // Auxiliar method which will help with the / and % operations
     private void calculateDivision(InstructionC3A instruction, String type, int code) {
+        /*
         boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
         boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
         String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
         String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
-
+*/
+        String op1 = GetOperand(instruction, 1);
+        String op2 = GetOperand(instruction, 2);
         writeLine("movl " + op1 + ", %eax");
         writeLine("cdq");
         writeLine("movl " + op2 + ", %edi");
@@ -339,14 +363,31 @@ public class GeneratorAssembler {
 
     // Mulu calculation
     private void calculateMulu(InstructionC3A instruction, String type) {
+        /*
         boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
         boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
         String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
         String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
+        */
+
+        String op1 = GetOperand(instruction, 1);
+        String op2 = GetOperand(instruction, 2);
         writeLine("movl " + op1 + ", " + "%edi");
         writeLine("movl " + op2 + ", " + "%eax");
         writeLine(type + "l" + " %eax" + ", %edi");
         writeLine("movl %edi, " + getVarAssembler(instruction.getDest()));
+    }
+
+
+    private String GetOperand(InstructionC3A instruction, int op){
+
+        if(op == 1){
+            return InstructionC3A.opIsInt(instruction.getOp1()) ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
+        } else if (op == 2) {
+
+            return InstructionC3A.opIsInt(instruction.getOp1()) ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
+        }
+        return "";
     }
 
     // Call Instruction
@@ -467,8 +508,10 @@ public class GeneratorAssembler {
     }
 
     private String getCMPFunctionLabel(Code code, boolean numCmp) {
+        comparers.add(code);
         return switch (code) {
             case EQ -> {
+
                 if (numCmp) {
                     yield "CMP_EQ_NUM";
                 }
@@ -489,14 +532,31 @@ public class GeneratorAssembler {
     }
 
     private void writeCMPFunctions() {
-        writeEQ();
-        writeNE();
-        writeGT();
-        writeGE();
-        writeLE();
-        writeLT();
-        writeNE_num();
-        writeEQ_num();
+        if(comparers.contains(Code.EQ)){
+            writeEQ();
+            writeEQ_num();
+        }
+
+        if(comparers.contains(Code.NE)){
+            writeNE();
+            writeNE_num();
+        }
+
+        if(comparers.contains(Code.GT)){
+            writeGT();
+        }
+
+        if(comparers.contains(Code.GE)){
+            writeGE();
+        }
+
+        if(comparers.contains(Code.LE)){
+            writeLE();
+        }
+        if(comparers.contains(Code.LT)){
+            writeLT();
+        }
+
     }
 
     private void writeLT() {

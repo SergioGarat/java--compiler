@@ -19,12 +19,24 @@ public class SymbolsTable {
     private HashMap<String, Descriptor> descriptionTable;
     private ArrayList<ExpandInfo> expansionTable;
     private static BufferedWriter out;
-    private final String SYMBOLS_TABLE_PATH = "src\\output\\SymbolsTableData.txt";
-
+    private final String SYMBOLS_TABLE_PATH = "src\\output\\";
+    private String filename = "SymbolsTableData.txt";
     public SymbolsTable() {
         reset();
         try {
-            out = new BufferedWriter(new FileWriter(SYMBOLS_TABLE_PATH));
+            out = new BufferedWriter(new FileWriter(SYMBOLS_TABLE_PATH + filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Before deleting the symbols table we do write one last time
+        saveTableInFile(null);
+    }
+
+    public SymbolsTable(String filename) {
+        this.filename = filename + "\\" + "SymbolsTableData.txt";
+        reset();
+        try {
+            out = new BufferedWriter(new FileWriter(SYMBOLS_TABLE_PATH + this.filename));
         } catch (IOException e) {
             e.printStackTrace();
         }
