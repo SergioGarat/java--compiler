@@ -539,7 +539,7 @@ public class Parser extends java_cup.runtime.lr_parser {
       this.lexico = lexico;
       this.filename = filename;
       this.symbolsTable = new SymbolsTable(filename);
-      this.backend = new Backend(symbolsTable, filename);
+      this.backend = new BackTables(symbolsTable, filename);
       this.c3a_g = new GeneratorC3A(filename);
       this.assembler = new GeneratorAssembler(symbolsTable, backend, c3a_g, filename);
       this.labelTrueStack = new Stack<String>();
