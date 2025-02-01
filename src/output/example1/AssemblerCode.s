@@ -82,15 +82,15 @@ xor %rax, %rax # clean return value register
 call CMP_EQ_NUM
 movw %ax,-64(%rbp) # get return value
 
-# if T4=true goto LABEL_0
+# if T4=true goto ETIQ_0
 cmpw $1,-64(%rbp)
-je LABEL_0
+je ETIQ_0
 
-# go_to LABEL_1
-jmp LABEL_1
+# go_to ETIQ_1
+jmp ETIQ_1
 
-# LABEL_0:skip
-LABEL_0:
+# ETIQ_0:skip
+ETIQ_0:
 
 # T5 = 1
 movl $1, %edi
@@ -100,11 +100,11 @@ movl %edi, -80(%rbp)
 movl -80(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# go_to LABEL_2
-jmp LABEL_2
+# go_to ETIQ_2
+jmp ETIQ_2
 
-# LABEL_1:skip
-LABEL_1:
+# ETIQ_1:skip
+ETIQ_1:
 
 # T6 = 1
 movl $1, %edi
@@ -139,8 +139,8 @@ movl %edi, -144(%rbp)
 movl -144(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# LABEL_2:skip
-LABEL_2:
+# ETIQ_2:skip
+ETIQ_2:
 
 # rtn result_1_2
 # Moving function result into %eax or %ax
@@ -177,15 +177,15 @@ xor %rax, %rax # clean return value register
 call CMP_LT
 movw %ax,-64(%rbp) # get return value
 
-# if T12=true goto LABEL_3
+# if T12=true goto ETIQ_3
 cmpw $1,-64(%rbp)
-je LABEL_3
+je ETIQ_3
 
-# go_to LABEL_4
-jmp LABEL_4
+# go_to ETIQ_4
+jmp ETIQ_4
 
-# LABEL_3:skip
-LABEL_3:
+# ETIQ_3:skip
+ETIQ_3:
 
 # T13 = "Invalid number: "
 # print T13
@@ -214,11 +214,11 @@ movl %edi, -80(%rbp)
 movl -80(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# go_to LABEL_5
-jmp LABEL_5
+# go_to ETIQ_5
+jmp ETIQ_5
 
-# LABEL_4:skip
-LABEL_4:
+# ETIQ_4:skip
+ETIQ_4:
 
 # T16 = 1
 movl $1, %edi
@@ -231,15 +231,15 @@ xor %rax, %rax # clean return value register
 call CMP_EQ_NUM
 movw %ax,-112(%rbp) # get return value
 
-# if T17=true goto LABEL_6
+# if T17=true goto ETIQ_6
 cmpw $1,-112(%rbp)
-je LABEL_6
+je ETIQ_6
 
-# go_to LABEL_7
-jmp LABEL_7
+# go_to ETIQ_7
+jmp ETIQ_7
 
-# LABEL_6:skip
-LABEL_6:
+# ETIQ_6:skip
+ETIQ_6:
 
 # T18 = 1
 movl $1, %edi
@@ -249,14 +249,14 @@ movl %edi, -128(%rbp)
 movl -128(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# LABEL_5:skip
-LABEL_5:
+# ETIQ_5:skip
+ETIQ_5:
 
-# go_to LABEL_8
-jmp LABEL_8
+# go_to ETIQ_8
+jmp ETIQ_8
 
-# LABEL_7:skip
-LABEL_7:
+# ETIQ_7:skip
+ETIQ_7:
 
 # T19 = 1
 movl $1, %edi
@@ -291,8 +291,8 @@ movl %edi, -192(%rbp)
 movl -192(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# LABEL_8:skip
-LABEL_8:
+# ETIQ_8:skip
+ETIQ_8:
 
 # rtn result_2_2
 # Moving function result into %eax or %ax
@@ -570,8 +570,8 @@ movl %edi, -320(%rbp)
 movl -320(%rbp), %edi
 movl %edi, -336(%rbp)
 
-# LABEL_9:skip
-LABEL_9:
+# ETIQ_9:skip
+ETIQ_9:
 
 # T47 = 3
 movl $3, %edi
@@ -584,15 +584,15 @@ xor %rax, %rax # clean return value register
 call CMP_LT
 movw %ax,-368(%rbp) # get return value
 
-# if T48=true goto LABEL_10
+# if T48=true goto ETIQ_10
 cmpw $1,-368(%rbp)
-je LABEL_10
+je ETIQ_10
 
-# go_to LABEL_11
-jmp LABEL_11
+# go_to ETIQ_11
+jmp ETIQ_11
 
-# LABEL_12:skip
-LABEL_12:
+# ETIQ_12:skip
+ETIQ_12:
 
 # T49 = 1
 movl $1, %edi
@@ -608,11 +608,11 @@ movl %edi, -400(%rbp)
 movl -400(%rbp), %edi
 movl %edi, -336(%rbp)
 
-# go_to LABEL_9
-jmp LABEL_9
+# go_to ETIQ_9
+jmp ETIQ_9
 
-# LABEL_10:skip
-LABEL_10:
+# ETIQ_10:skip
+ETIQ_10:
 
 # T51 = "\n"
 # print T51
@@ -633,11 +633,11 @@ movl -336(%rbp), %esi
 xor %rax, %rax
 call printf
 
-# go_to LABEL_12
-jmp LABEL_12
+# go_to ETIQ_12
+jmp ETIQ_12
 
-# LABEL_11:skip
-LABEL_11:
+# ETIQ_11:skip
+ETIQ_11:
 
 # T53 = "\nHE SALIDO\n"
 # print T53

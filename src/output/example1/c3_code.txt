@@ -27,19 +27,19 @@ T3 = 0
 
 T4 = num_1_1 EQ T3
 
-if T4=true goto LABEL_0
+if T4=true goto ETIQ_0
 
-go_to LABEL_1
+go_to ETIQ_1
 
-LABEL_0:skip
+ETIQ_0:skip
 
 T5 = 1
 
 result_1_2 = T5
 
-go_to LABEL_2
+go_to ETIQ_2
 
-LABEL_1:skip
+ETIQ_1:skip
 
 T6 = 1
 
@@ -55,7 +55,7 @@ T9 = num_1_1 prod T8
 
 result_1_2 = T9
 
-LABEL_2:skip
+ETIQ_2:skip
 
 rtn result_1_2
 
@@ -71,11 +71,11 @@ T11 = 1
 
 T12 = num_1_1 LT T11
 
-if T12=true goto LABEL_3
+if T12=true goto ETIQ_3
 
-go_to LABEL_4
+go_to ETIQ_4
 
-LABEL_3:skip
+ETIQ_3:skip
 
 T13 = "Invalid number: "
 print T13
@@ -89,29 +89,29 @@ T15 = 0
 
 result_2_2 = T15
 
-go_to LABEL_5
+go_to ETIQ_5
 
-LABEL_4:skip
+ETIQ_4:skip
 
 T16 = 1
 
 T17 = num_1_1 EQ T16
 
-if T17=true goto LABEL_6
+if T17=true goto ETIQ_6
 
-go_to LABEL_7
+go_to ETIQ_7
 
-LABEL_6:skip
+ETIQ_6:skip
 
 T18 = 1
 
 result_2_2 = T18
 
-LABEL_5:skip
+ETIQ_5:skip
 
-go_to LABEL_8
+go_to ETIQ_8
 
-LABEL_7:skip
+ETIQ_7:skip
 
 T19 = 1
 
@@ -127,7 +127,7 @@ T22 = num_1_1 add T21
 
 result_2_2 = T22
 
-LABEL_8:skip
+ETIQ_8:skip
 
 rtn result_2_2
 
@@ -248,17 +248,17 @@ T46 = 0
 
 i_3_2 = T46
 
-LABEL_9:skip
+ETIQ_9:skip
 
 T47 = 3
 
 T48 = i_3_2 LT T47
 
-if T48=true goto LABEL_10
+if T48=true goto ETIQ_10
 
-go_to LABEL_11
+go_to ETIQ_11
 
-LABEL_12:skip
+ETIQ_12:skip
 
 T49 = 1
 
@@ -266,9 +266,9 @@ T50 = i_3_2 add T49
 
 i_3_2 = T50
 
-go_to LABEL_9
+go_to ETIQ_9
 
-LABEL_10:skip
+ETIQ_10:skip
 
 T51 = "\n"
 print T51
@@ -278,9 +278,9 @@ print T52
 
 print i_3_2
 
-go_to LABEL_12
+go_to ETIQ_12
 
-LABEL_11:skip
+ETIQ_11:skip
 
 T53 = "\nHE SALIDO\n"
 print T53

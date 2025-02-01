@@ -109,7 +109,7 @@ public class GeneratorAssembler {
 
     private void declareStringVariables() {
         // Only declare as global string values
-        for (Var var : backend.getVariables()) {
+        for (Var var : backend.getAllVars()) {
             if (var.getType() == TipoSubyacente.TS_STRING) {
                 writeLine(var.getName() + ": .asciz " + "\"" + var.getValue() + "\"");
             }
@@ -245,7 +245,7 @@ public class GeneratorAssembler {
     }
 
     private void unaryInstruction(InstructionC3A instruction) {
-        Var variable = backend.getVariable(instruction.getOp1());
+        Var variable = backend.getVar(instruction.getOp1());
         String suffix = "l";
         String register = "%edi";
         if (variable.getType() == Type.TipoSubyacente.TS_BOOLEAN) {
@@ -295,7 +295,7 @@ public class GeneratorAssembler {
     private void returnInstruction(InstructionC3A instruction) {
         // is function with return value, op1 register that stores return value
         if (instruction.getOp1() != null) {
-            Var variable = backend.getVariable(instruction.getOp1());
+            Var variable = backend.getVar(instruction.getOp1());
             writeLine("# Moving function result into %eax or %ax");
             String suffix = "l";
             String register = "%eax";
@@ -307,7 +307,7 @@ public class GeneratorAssembler {
         }
 
         // delete all reservated space
-        Proc proc = backend.getProcedure(instruction.getDest());
+        Proc proc = backend.getProc(instruction.getDest());
         writeLine("# Delete all reserved space");
         writeLine("addq $" + proc.getMemorySize() + ", %rsp");
         writeLine("leave");
@@ -402,7 +402,7 @@ public class GeneratorAssembler {
     }
 
     private void paramInstruction(InstructionC3A instruction) {
-        Var variable = backend.getVariable(instruction.getOp1());
+        Var variable = backend.getVar(instruction.getOp1());
         String code = "movslq";
         if (variable.getType() == Type.TipoSubyacente.TS_BOOLEAN) {
             code = "movswq";
@@ -417,9 +417,9 @@ public class GeneratorAssembler {
         if (InstructionC3A.opIsInt(instruction.getOp1()) || InstructionC3A.opIsInt(instruction.getOp2())) {
             isNumCmp = true;
         } else {
-            Var var = backend.getVariable(instruction.getOp1());
+            Var var = backend.getVar(instruction.getOp1());
             if (var == null) {
-                var = backend.getVariable(instruction.getOp2());
+                var = backend.getVar(instruction.getOp2());
             }
             isNumCmp = var.getType() == Type.TipoSubyacente.TS_NUMBER;
         }
@@ -461,7 +461,7 @@ public class GeneratorAssembler {
     // Auxiliar method that generates the copy Instruction
     private void copyInstruction(InstructionC3A instruction) {
         if (instruction.getOp1().equals("return")) {
-            Proc procedure = backend.getProcedure(instruction.getOp2());
+            Proc procedure = backend.getProc(instruction.getOp2());
             String suffix = "l";
             String register = "%eax";
             if (procedure.getType() == Type.TipoSubyacente.TS_BOOLEAN) {
@@ -470,7 +470,7 @@ public class GeneratorAssembler {
             }
             writeLine("mov" + suffix + " " + register + ", " + getVarAssembler(instruction.getDest()));
         } else {
-            Var variable = backend.getVariable(instruction.getDest());
+            Var variable = backend.getVar(instruction.getDest());
             boolean isNum = variable.getType() == Type.TipoSubyacente.TS_NUMBER;
             String suffix = "l";
             String register = "%edi";
@@ -496,7 +496,7 @@ public class GeneratorAssembler {
         }
 
         //save space for local variables
-        Proc proc = backend.getProcedure(backFunId);
+        Proc proc = backend.getProc(backFunId);
 
         int procsize = proc.getMemorySize();
         //si alineamos al memoria a 32 funciona -> procsize = 32
