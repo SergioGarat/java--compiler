@@ -1,7 +1,7 @@
 -----------------------------------------------
----------------- C3@ code list ----------------
+---------------- C3@ Code ----------------
 -----------------------------------------------
-PROC_sumaDosNumeros:skip
+PROC_sumaDosNumeros: skip
 
 pmb PROC_sumaDosNumeros
 
@@ -9,13 +9,13 @@ T0 = 0
 
 result_0_2 = T0
 
-T1 = a_0_1 add b_0_1
+T1 = a_0_1 + b_0_1
 
 result_0_2 = T1
 
 rtn result_0_2
 
-PROC_factorial:skip
+PROC_factorial: skip
 
 pmb PROC_factorial
 
@@ -25,25 +25,25 @@ result_1_2 = T2
 
 T3 = 0
 
-T4 = num_1_1 EQ T3
+T4 = num_1_1 == T3
 
-if T4=true goto ETIQ_0
+if T4 == true goto ETIQ_0
 
-go_to ETIQ_1
+goto ETIQ_1
 
-ETIQ_0:skip
+ETIQ_0: skip
 
 T5 = 1
 
 result_1_2 = T5
 
-go_to ETIQ_2
+goto ETIQ_2
 
-ETIQ_1:skip
+ETIQ_1: skip
 
 T6 = 1
 
-T7 = num_1_1 sub T6
+T7 = num_1_1 - T6
 
 param PROC_factorial(T7)
 
@@ -51,15 +51,15 @@ call PROC_factorial
 
 T8 = return PROC_factorial
 
-T9 = num_1_1 prod T8
+T9 = num_1_1 * T8
 
 result_1_2 = T9
 
-ETIQ_2:skip
+ETIQ_2: skip
 
 rtn result_1_2
 
-PROC_recursiveAdding:skip
+PROC_recursiveAdding: skip
 
 pmb PROC_recursiveAdding
 
@@ -69,13 +69,13 @@ result_2_2 = T10
 
 T11 = 1
 
-T12 = num_1_1 LT T11
+T12 = num_1_1 < T11
 
-if T12=true goto ETIQ_3
+if T12 == true goto ETIQ_3
 
-go_to ETIQ_4
+goto ETIQ_4
 
-ETIQ_3:skip
+ETIQ_3: skip
 
 T13 = "Invalid number: "
 print T13
@@ -89,33 +89,33 @@ T15 = 0
 
 result_2_2 = T15
 
-go_to ETIQ_5
+goto ETIQ_5
 
-ETIQ_4:skip
+ETIQ_4: skip
 
 T16 = 1
 
-T17 = num_1_1 EQ T16
+T17 = num_1_1 == T16
 
-if T17=true goto ETIQ_6
+if T17 == true goto ETIQ_6
 
-go_to ETIQ_7
+goto ETIQ_7
 
-ETIQ_6:skip
+ETIQ_6: skip
 
 T18 = 1
 
 result_2_2 = T18
 
-ETIQ_5:skip
+ETIQ_5: skip
 
-go_to ETIQ_8
+goto ETIQ_8
 
-ETIQ_7:skip
+ETIQ_7: skip
 
 T19 = 1
 
-T20 = num_1_1 sub T19
+T20 = num_1_1 - T19
 
 param PROC_recursiveAdding(T20)
 
@@ -123,15 +123,15 @@ call PROC_recursiveAdding
 
 T21 = return PROC_recursiveAdding
 
-T22 = num_1_1 add T21
+T22 = num_1_1 + T21
 
 result_2_2 = T22
 
-ETIQ_8:skip
+ETIQ_8: skip
 
 rtn result_2_2
 
-main:skip
+main: skip
 
 pmb PROC_main
 
@@ -248,27 +248,27 @@ T46 = 0
 
 i_3_2 = T46
 
-ETIQ_9:skip
+ETIQ_9: skip
 
 T47 = 3
 
-T48 = i_3_2 LT T47
+T48 = i_3_2 < T47
 
-if T48=true goto ETIQ_10
+if T48 == true goto ETIQ_10
 
-go_to ETIQ_11
+goto ETIQ_11
 
-ETIQ_12:skip
+ETIQ_12: skip
 
 T49 = 1
 
-T50 = i_3_2 add T49
+T50 = i_3_2 + T49
 
 i_3_2 = T50
 
-go_to ETIQ_9
+goto ETIQ_9
 
-ETIQ_10:skip
+ETIQ_10: skip
 
 T51 = "\n"
 print T51
@@ -278,9 +278,9 @@ print T52
 
 print i_3_2
 
-go_to ETIQ_12
+goto ETIQ_12
 
-ETIQ_11:skip
+ETIQ_11: skip
 
 T53 = "\nHE SALIDO\n"
 print T53

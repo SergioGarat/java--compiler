@@ -21,7 +21,7 @@ format_int: .asciz "%d"
 true_label : .asciz "true"
 false_label : .asciz "false"
 .text
-# PROC_sumaDosNumeros:skip
+# PROC_sumaDosNumeros: skip
 PROC_sumaDosNumeros:
 
 # pmb PROC_sumaDosNumeros
@@ -37,7 +37,7 @@ movl %edi, -16(%rbp)
 movl -16(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# T1 = a_0_1 add b_0_1
+# T1 = a_0_1 + b_0_1
 movl 16(%rbp), %edi
 movl 16(%rbp), %eax
 addl %eax, %edi
@@ -55,7 +55,7 @@ addq $48, %rsp
 leave
 ret
 
-# PROC_factorial:skip
+# PROC_factorial: skip
 PROC_factorial:
 
 # pmb PROC_factorial
@@ -75,21 +75,21 @@ movl %edi, -32(%rbp)
 movl $0, %edi
 movl %edi, -48(%rbp)
 
-# T4 = num_1_1 EQ T3
+# T4 = num_1_1 == T3
 movl -48(%rbp), %edi
 movl 16(%rbp), %esi
 xor %rax, %rax # clean return value register
 call CMP_EQ_NUM
 movw %ax,-64(%rbp) # get return value
 
-# if T4=true goto ETIQ_0
+# if T4 == true goto ETIQ_0
 cmpw $1,-64(%rbp)
 je ETIQ_0
 
-# go_to ETIQ_1
+# goto ETIQ_1
 jmp ETIQ_1
 
-# ETIQ_0:skip
+# ETIQ_0: skip
 ETIQ_0:
 
 # T5 = 1
@@ -100,17 +100,17 @@ movl %edi, -80(%rbp)
 movl -80(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# go_to ETIQ_2
+# goto ETIQ_2
 jmp ETIQ_2
 
-# ETIQ_1:skip
+# ETIQ_1: skip
 ETIQ_1:
 
 # T6 = 1
 movl $1, %edi
 movl %edi, -96(%rbp)
 
-# T7 = num_1_1 sub T6
+# T7 = num_1_1 - T6
 movl 16(%rbp), %edi
 movl 16(%rbp), %eax
 subl %eax, %edi
@@ -129,7 +129,7 @@ pop %rdx
 # T8 = return PROC_factorial
 movl %eax, -128(%rbp)
 
-# T9 = num_1_1 prod T8
+# T9 = num_1_1 * T8
 movl 16(%rbp), %edi
 movl 16(%rbp), %eax
 imull %eax, %edi
@@ -139,7 +139,7 @@ movl %edi, -144(%rbp)
 movl -144(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# ETIQ_2:skip
+# ETIQ_2: skip
 ETIQ_2:
 
 # rtn result_1_2
@@ -150,7 +150,7 @@ addq $144, %rsp
 leave
 ret
 
-# PROC_recursiveAdding:skip
+# PROC_recursiveAdding: skip
 PROC_recursiveAdding:
 
 # pmb PROC_recursiveAdding
@@ -170,21 +170,21 @@ movl %edi, -32(%rbp)
 movl $1, %edi
 movl %edi, -48(%rbp)
 
-# T12 = num_1_1 LT T11
+# T12 = num_1_1 < T11
 movl -48(%rbp), %edi
 movl 16(%rbp), %esi
 xor %rax, %rax # clean return value register
 call CMP_LT
 movw %ax,-64(%rbp) # get return value
 
-# if T12=true goto ETIQ_3
+# if T12 == true goto ETIQ_3
 cmpw $1,-64(%rbp)
 je ETIQ_3
 
-# go_to ETIQ_4
+# goto ETIQ_4
 jmp ETIQ_4
 
-# ETIQ_3:skip
+# ETIQ_3: skip
 ETIQ_3:
 
 # T13 = "Invalid number: "
@@ -214,31 +214,31 @@ movl %edi, -80(%rbp)
 movl -80(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# go_to ETIQ_5
+# goto ETIQ_5
 jmp ETIQ_5
 
-# ETIQ_4:skip
+# ETIQ_4: skip
 ETIQ_4:
 
 # T16 = 1
 movl $1, %edi
 movl %edi, -96(%rbp)
 
-# T17 = num_1_1 EQ T16
+# T17 = num_1_1 == T16
 movl -96(%rbp), %edi
 movl 16(%rbp), %esi
 xor %rax, %rax # clean return value register
 call CMP_EQ_NUM
 movw %ax,-112(%rbp) # get return value
 
-# if T17=true goto ETIQ_6
+# if T17 == true goto ETIQ_6
 cmpw $1,-112(%rbp)
 je ETIQ_6
 
-# go_to ETIQ_7
+# goto ETIQ_7
 jmp ETIQ_7
 
-# ETIQ_6:skip
+# ETIQ_6: skip
 ETIQ_6:
 
 # T18 = 1
@@ -249,20 +249,20 @@ movl %edi, -128(%rbp)
 movl -128(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# ETIQ_5:skip
+# ETIQ_5: skip
 ETIQ_5:
 
-# go_to ETIQ_8
+# goto ETIQ_8
 jmp ETIQ_8
 
-# ETIQ_7:skip
+# ETIQ_7: skip
 ETIQ_7:
 
 # T19 = 1
 movl $1, %edi
 movl %edi, -144(%rbp)
 
-# T20 = num_1_1 sub T19
+# T20 = num_1_1 - T19
 movl 16(%rbp), %edi
 movl 16(%rbp), %eax
 subl %eax, %edi
@@ -281,7 +281,7 @@ pop %rdx
 # T21 = return PROC_recursiveAdding
 movl %eax, -176(%rbp)
 
-# T22 = num_1_1 add T21
+# T22 = num_1_1 + T21
 movl 16(%rbp), %edi
 movl 16(%rbp), %eax
 addl %eax, %edi
@@ -291,7 +291,7 @@ movl %edi, -192(%rbp)
 movl -192(%rbp), %edi
 movl %edi, -32(%rbp)
 
-# ETIQ_8:skip
+# ETIQ_8: skip
 ETIQ_8:
 
 # rtn result_2_2
@@ -302,7 +302,7 @@ addq $192, %rsp
 leave
 ret
 
-# main:skip
+# main: skip
 main:
 
 # pmb PROC_main
@@ -570,35 +570,35 @@ movl %edi, -320(%rbp)
 movl -320(%rbp), %edi
 movl %edi, -336(%rbp)
 
-# ETIQ_9:skip
+# ETIQ_9: skip
 ETIQ_9:
 
 # T47 = 3
 movl $3, %edi
 movl %edi, -352(%rbp)
 
-# T48 = i_3_2 LT T47
+# T48 = i_3_2 < T47
 movl -352(%rbp), %edi
 movl -336(%rbp), %esi
 xor %rax, %rax # clean return value register
 call CMP_LT
 movw %ax,-368(%rbp) # get return value
 
-# if T48=true goto ETIQ_10
+# if T48 == true goto ETIQ_10
 cmpw $1,-368(%rbp)
 je ETIQ_10
 
-# go_to ETIQ_11
+# goto ETIQ_11
 jmp ETIQ_11
 
-# ETIQ_12:skip
+# ETIQ_12: skip
 ETIQ_12:
 
 # T49 = 1
 movl $1, %edi
 movl %edi, -384(%rbp)
 
-# T50 = i_3_2 add T49
+# T50 = i_3_2 + T49
 movl -336(%rbp), %edi
 movl -336(%rbp), %eax
 addl %eax, %edi
@@ -608,10 +608,10 @@ movl %edi, -400(%rbp)
 movl -400(%rbp), %edi
 movl %edi, -336(%rbp)
 
-# go_to ETIQ_9
+# goto ETIQ_9
 jmp ETIQ_9
 
-# ETIQ_10:skip
+# ETIQ_10: skip
 ETIQ_10:
 
 # T51 = "\n"
@@ -633,10 +633,10 @@ movl -336(%rbp), %esi
 xor %rax, %rax
 call printf
 
-# go_to ETIQ_12
+# goto ETIQ_12
 jmp ETIQ_12
 
-# ETIQ_11:skip
+# ETIQ_11: skip
 ETIQ_11:
 
 # T53 = "\nHE SALIDO\n"

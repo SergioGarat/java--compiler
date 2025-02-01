@@ -63,9 +63,20 @@ public class BackTables {
                          .orElse(null);
     }
     
+    // String var
+    public String addStringVariable(String nameVar, int size, String value) {
+        int scope = tableSymbols.getActualScope();
+        int procId = tableProcs.get(tableProcs.size() - 1).getVarNumber();
+
+        String name = nameVar + "_" + procId + "_" + scope;
+
+        tableVars.put(name, new Var(name, procId, size, value));
+
+        return name;
+    }
 
     // Adding variable to table
-    public String addVar(String nameVar, int size, TipoSubyacente type, boolean isParam) {
+    public String addVariable(String nameVar, TipoSubyacente type, int size, boolean isParam) {
         int scope = tableSymbols.getActualScope();
         int procId = tableProcs.get(tableProcs.size() - 1).getVarNumber();
 
@@ -85,20 +96,8 @@ public class BackTables {
         return name;
     }
 
-    // String var
-    public String addStrVar(String nameVar, int size, String value) {
-        int scope = tableSymbols.getActualScope();
-        int procId = tableProcs.get(tableProcs.size() - 1).getVarNumber();
-
-        String name = nameVar + "_" + procId + "_" + scope;
-
-        tableVars.put(name, new Var(name, procId, size, value));
-
-        return name;
-    }
-
     // Temporal String var
-    public String addTempStrVar(int size, String value) {
+    public String addTemporalStringVariable(int size, String value) {
         int procId = tableProcs.get(tableProcs.size() - 1).getVarNumber();
 
         String name = "T" + cntr;
@@ -126,7 +125,7 @@ public class BackTables {
     }
 
     // Procedure
-    public String addProc(String procName, int params, int size, TipoSubyacente type) {
+    public String addProcedure(String procName, int params, int size, TipoSubyacente type) {
         String name = "PROC_" + procName;
 
         tableProcs.add(new Proc(name, params, size, type));
@@ -144,7 +143,7 @@ public class BackTables {
     }
 
     // Label
-    public String addLabel() {
+    public String addEtiq() {
         String label = "ETIQ_" + tableLbls.size();
 
         tableLbls.add(new Etiq(label));
@@ -153,7 +152,7 @@ public class BackTables {
     }
 
 
-    public void storeTables() {
+    public void guardarTablasBack() {
         StringBuilder result = new StringBuilder();
         result.append("---------------------------------------------\n")
               .append("---------------- TABLES INFO ----------------\n")

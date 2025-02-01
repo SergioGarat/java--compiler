@@ -78,7 +78,7 @@ public class GeneratorAssembler {
     private void writeGasAssemblerCode(File fileGAS) throws IOException, SymbolsTableError {
         writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileGAS), StandardCharsets.UTF_8));
         headerWrite();
-        ArrayList<InstructionC3A> instructions = c3a_g.getInstructions();
+        ArrayList<InstructionC3A> instructions = c3a_g.getAllC3DirInstr();
         for (InstructionC3A ins : instructions) {
             toAssembly(ins);
         }

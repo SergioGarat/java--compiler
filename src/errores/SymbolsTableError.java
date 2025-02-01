@@ -5,34 +5,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class SymbolsTableError extends Exception {
-    private static BufferedWriter out = null;
-    private final String PATH = "src\\output\\symbolTableError.txt";
+    private static BufferedWriter out;
+    private static final String PATH = "src\\output\\symbolTableError.txt";
 
     public SymbolsTableError(String error) {
         super(error);
-        if (out == null) {
-            try {
-                out = new BufferedWriter(new FileWriter(PATH));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
         try {
+            if (out == null) {
+                out = new BufferedWriter(new FileWriter(PATH, true));
+            }
             out.write(error);
+            out.newLine();
+            out.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void closeFile() {
-        try {
-            if (out != null) {
+        if (out != null) {
+            try {
                 out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
-
-

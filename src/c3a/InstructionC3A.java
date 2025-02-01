@@ -1,138 +1,75 @@
 package c3a;
 
+import java.util.Map;
+
 public class InstructionC3A {
 
-    // All posible operations that our c3@ will be able to use
+    public Code code;
+    public String op1, op2, destino;
+
+/* 
+    LT, // <    jl
+    LE, // <=   jle
+    EQ, // =    je
+    NE, // !=   jne
+    GE, // >=   jge
+    GT, // >    jg
+*/
     public enum Code {
-        copy,
-        neg,
-        add,
-        sub,
-        prod,
-        div,
-        mod,
-        and,
-        or,
-        not,
-        skip,
-        go_to, // UN-conditional jump
-        jump_cond,
-        LT, // <    jl
-        LE, // <=   jle
-        EQ, // =    je
-        NE, // !=   jne
-        GE, // >=   jge
-        GT, // >    jg
-        pmb,
-        call,
-        param,
-        rtn,
-        read,
-        print
+        copy, neg, add, sub, prod, div, mod, and, or, not, skip,
+        go_to, jump_cond, LT, LE, EQ, NE, GE, GT, pmb, call, param,
+        rtn, read, print
     }
 
-    public Code opCode;
-    public String op1, op2, dest;
-
-    public InstructionC3A(Code opCode, String op1, String op2, String dest) {
-        this.opCode = opCode;
+    public InstructionC3A(Code code, String op1, String op2, String destino) {
+        this.code = code;
         this.op1 = op1;
         this.op2 = op2;
-        this.dest = dest;
+        this.destino = destino;
     }
 
-    @Override
-    public String toString() {
-        String result = "";
-        switch (opCode) {
-            /* UNARY OP */
-            case not:
-            case neg:
-                result += this.dest + " = " + this.opCode + " " + this.op1;
-                break;
-            /* ARITHMETICAL OP */
-            case add, sub, div, prod, mod:
-                /* BOOLEAN OP */
-            case and, or:
-                /* RELATIONAL OP */
-            case EQ, GE, GT, LE, LT, NE:
-                result += this.dest + " = " + this.op1 + " " + this.opCode + " " + this.op2;
-                break;
-            case call, pmb:
-                result += this.opCode + " " + this.dest;
-                break;
-            case copy:
-                result += this.dest + " = " + this.op1;
-                if (this.op1.equals("return")) {
-                    result += " " + this.op2;
-                }
-                break;
-            /* JUMPS */
-            case go_to:
-                result += this.opCode + " " + this.dest;
-                break;
-            case jump_cond:
-                result += "if " + this.op1 + "=" + this.op2 + " goto " + this.dest;
-                break;
-            /* OTHER OPERATIONS*/
-            case read:
-                result += this.dest + " = " + this.opCode;
-                break;
-            case print:
-                if (this.op2 != null) {
-                    result += this.dest + " = \"" + this.op2 + "\"\n";
-                }
-                result += this.opCode + " " + this.dest;
-                break;
-            case param:
-                result += this.opCode + " " + this.dest + "(" + this.op1 + ")";
-                break;
-            case rtn:
-                result += this.opCode;
-                if (this.op1 != null) {
-                    result += " " + this.op1;
-                }
-                break;
-            case skip:
-                result += this.dest + ":" + this.opCode;
-                break;
-            default:
-                break;
-        }
-
-        return result;
-    }
+    private static final Map<Code, InstructionFormatter> FORMATTERS = Map.ofEntries(
+            Map.entry(Code.not, (op1, op2, destino) -> destino + " = not " + op1),
+            Map.entry(Code.neg, (op1, op2, destino) -> destino + " = neg " + op1),
+            Map.entry(Code.add, (op1, op2, destino) -> destino + " = " + op1 + " + " + op2),
+            Map.entry(Code.sub, (op1, op2, destino) -> destino + " = " + op1 + " - " + op2),
+            Map.entry(Code.prod, (op1, op2, destino) -> destino + " = " + op1 + " * " + op2),
+            Map.entry(Code.div, (op1, op2, destino) -> destino + " = " + op1 + " / " + op2),
+            Map.entry(Code.mod, (op1, op2, destino) -> destino + " = " + op1 + " % " + op2),
+            Map.entry(Code.and, (op1, op2, destino) -> destino + " = " + op1 + " && " + op2),
+            Map.entry(Code.or, (op1, op2, destino) -> destino + " = " + op1 + " || " + op2),
+            Map.entry(Code.EQ, (op1, op2, destino) -> destino + " = " + op1 + " == " + op2),
+            Map.entry(Code.GE, (op1, op2, destino) -> destino + " = " + op1 + " >= " + op2),
+            Map.entry(Code.GT, (op1, op2, destino) -> destino + " = " + op1 + " > " + op2),
+            Map.entry(Code.LE, (op1, op2, destino) -> destino + " = " + op1 + " <= " + op2),
+            Map.entry(Code.LT, (op1, op2, destino) -> destino + " = " + op1 + " < " + op2),
+            Map.entry(Code.NE, (op1, op2, destino) -> destino + " = " + op1 + " != " + op2),
+            Map.entry(Code.call, (op1, op2, destino) -> "call " + destino),
+            Map.entry(Code.pmb, (op1, op2, destino) -> "pmb " + destino),
+            Map.entry(Code.copy, (op1, op2, destino) -> destino + " = " + op1 + (op2 != null ? " " + op2 : "")),
+            Map.entry(Code.go_to, (op1, op2, destino) -> "goto " + destino),
+            Map.entry(Code.jump_cond, (op1, op2, destino) -> "if " + op1 + " == " + op2 + " goto " + destino),
+            Map.entry(Code.read, (op1, op2, destino) -> destino + " = read"),
+            Map.entry(Code.print, (op1, op2, destino) -> (op2 != null ? destino + " = \"" + op2 + "\"\n" : "") + "print " + destino),
+            Map.entry(Code.param, (op1, op2, destino) -> "param " + destino + "(" + op1 + ")"),
+            Map.entry(Code.rtn, (op1, op2, destino) -> "rtn" + (op1 != null ? " " + op1 : "")),
+            Map.entry(Code.skip, (op1, op2, destino) -> destino + ": skip")
+    );
 
     public Code getOpCode() {
-        return opCode;
-    }
-
-    public void setOpCode(Code opCode) {
-        this.opCode = opCode;
+        return code;
     }
 
     public String getOp1() {
         return op1;
     }
 
-    public void setOp1(String op1) {
-        this.op1 = op1;
-    }
-
     public String getOp2() {
         return op2;
     }
 
-    public void setOp2(String op2) {
-        this.op2 = op2;
-    }
-
     public String getDest() {
-        return dest;
-    }
-
-    public void setDest(String dest) {
-        this.dest = dest;
+        return destino;
     }
 
     public static boolean opIsInt(String n) {
@@ -141,6 +78,20 @@ public class InstructionC3A {
 
     public static boolean opIsBoolean(String n) {
         return n.equals("true") || n.equals("false");
+    }
+
+    @Override
+    public String toString() {
+        InstructionFormatter formatter = FORMATTERS.get(code);
+        if (formatter != null) {
+            return formatter.format(op1, op2, destino);
+        }
+        return ""; 
+    }
+
+    @FunctionalInterface
+    private interface InstructionFormatter {
+        String format(String op1, String op2, String destino);
     }
 
 }

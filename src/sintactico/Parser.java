@@ -660,9 +660,9 @@ class CUP$Parser$actions {
 		
                             // close SymbolsTableData.txt file
                               symbolsTable.closeSymbolsTableFiles();
-                              backend.storeTables();
+                              backend.guardarTablasBack();
 
-                              c3a_g.savec3aInFile();
+                              c3a_g.guardarC3Dir();
                               assembler.generateAssembler();
 
                               closeErrorFiles();
@@ -929,9 +929,9 @@ class CUP$Parser$actions {
 
                                 if(type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
                                   String value = declarations.getValue();
-                                  backId = backend.addStrVar(var_id, type.getSize(), value);
+                                  backId = backend.addStringVariable(var_id, type.getSize(), value);
                                 }else{
-                                  backId = backend.addVar(var_id, type.getSize(), type.getTipoSubyacente(), false);
+                                  backId = backend.addVariable(var_id, type.getTipoSubyacente(), type.getSize(), false);
                                 }
 
                                 type.setBackendId(backId);
@@ -1086,9 +1086,9 @@ class CUP$Parser$actions {
                                 String var_id;
                                 if(type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
                                   String str_value = (String) value.getValue();
-                                  var_id = backend.addStrVar(id_var, type.getSize(), str_value);
+                                  var_id = backend.addStringVariable(id_var, type.getSize(), str_value);
                                 }else{
-                                  var_id = backend.addVar(id_var, type.getSize(), type.getTipoSubyacente(), false);
+                                  var_id = backend.addVariable(id_var, type.getTipoSubyacente(), type.getSize(), false);
                                 }
 
                                 var_type.setBackendId(var_id);
@@ -2709,8 +2709,8 @@ class CUP$Parser$actions {
 		
                                 String var_id = bool_val.getVarId();
 
-                                String true_label = backend.addLabel();
-                                String false_label = backend.addLabel();
+                                String true_label = backend.addEtiq();
+                                String false_label = backend.addEtiq();
 
                                 labelTrueStack.push(true_label);
                                 labelFalseStack.push(false_label);
@@ -2792,7 +2792,7 @@ class CUP$Parser$actions {
             {
               End RESULT =null;
 		
-                              String label = backend.addLabel();
+                              String label = backend.addEtiq();
 
                               c3a_g.generateC3aInstr(
                                 Code.go_to,
@@ -2880,7 +2880,7 @@ class CUP$Parser$actions {
             {
               WhileLabel RESULT =null;
 		
-                              String label = backend.addLabel();
+                              String label = backend.addEtiq();
 
                               c3a_g.generateC3aInstr(
                                 Code.skip,
@@ -2959,7 +2959,7 @@ class CUP$Parser$actions {
             {
               ForLabel RESULT =null;
 		
-                              String label = backend.addLabel();
+                              String label = backend.addEtiq();
 
                               c3a_g.generateC3aInstr(
                                 Code.skip,
@@ -3004,7 +3004,7 @@ class CUP$Parser$actions {
             {
               LabelPostFor RESULT =null;
 		
-                              String label = backend.addLabel();
+                              String label = backend.addEtiq();
 
                               c3a_g.generateC3aInstr(
                                 Code.skip,
@@ -3245,7 +3245,7 @@ class CUP$Parser$actions {
                                 }
 
                                 if (value.getTipo() == Tipo.dnull && value.getTipoSubyacente() == TipoSubyacente.TS_STRING) {
-                                  var_id = backend.addTempStrVar(value.getStringSize(), (String) value.getValue());
+                                  var_id = backend.addTemporalStringVariable(value.getStringSize(), (String) value.getValue());
                                   c3a_g.generateC3aInstr(
                                     Code.print,
                                     subtype.toString(),
@@ -3346,7 +3346,7 @@ class CUP$Parser$actions {
 
                                 TipoSubyacente subType = return_fun_type.getTipoSubyacente();
                                 ArrayList<Parameter> params = fun_params.getParams();
-                                String backId = backend.addProc(fun_id, params.size(), 0, subType);
+                                String backId = backend.addProcedure(fun_id, params.size(), 0, subType);
 
                                 Type fun_type = new Type(backId, Tipo.dfun, type_id);
 
@@ -3356,7 +3356,7 @@ class CUP$Parser$actions {
                                 for(Parameter param : params){
                                   Type param_type = param.getType();
                                   TipoSubyacente param_subType = symbolsTable.get(param.getType().getTypeName()).getTipoSubyacente();
-                                  String param_backId = backend.addVar(param.getVarId(), param.getSize(), param_subType, true);
+                                  String param_backId = backend.addVariable(param.getVarId(), param_subType, param.getSize(), true);
                                   param_type.setBackendId(param_backId);
                                   symbolsTable.addParam(fun_id, param_backId, param.getVarId(), param_type);
                                 }
