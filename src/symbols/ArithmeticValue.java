@@ -7,13 +7,13 @@ public class ArithmeticValue extends SymbolBase {
     private boolean isConstant;
 
     public ArithmeticValue(String idVar) {
-        super("Arithmetic Value", 0);
+        super("Arithmetic val", 0);
         this.idVar = idVar;
         this.isConstant = false;
     }
 
     public ArithmeticValue(String idVar, Integer val) {
-        super("Arithmetic Value", 0);
+        super("Arithmetic val", 0);
         this.idVar = idVar;
         this.val = val;
         this.isConstant = true;

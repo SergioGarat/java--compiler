@@ -5,7 +5,7 @@ public class ArithmeticOperator extends SymbolBase {
 	private String op;
 
     public ArithmeticOperator(String op) {
-        super("Arithmetical Operator", 0);
+        super("Arithmetic operator", 0);
         this.op = op;
     }
 

@@ -8,7 +8,7 @@ public class FunctionInit extends SymbolBase {
     private TipoSubyacente tipoSubyacente;
 
     public FunctionInit(String idFunc, TipoSubyacente tipoSubyacente) {
-        super("Function Init", 0);
+        super("Function init", 0);
         this.idFunc = idFunc;
         this.tipoSubyacente = tipoSubyacente;
 

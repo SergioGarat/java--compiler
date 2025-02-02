@@ -7,7 +7,7 @@ public class CallBody extends SymbolBase {
     private int nparams;
 
     public CallBody(String idFunc, String idBackFunc, int nparams) {
-        super("Call Body", 0);
+        super("Call-Body", 0);
         this.idFunc = idFunc;
         this.idBackFunc = idBackFunc;
         this.nparams = nparams;

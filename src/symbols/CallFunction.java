@@ -6,7 +6,7 @@ public class CallFunction extends SymbolBase {
     private String idBackFunc;
 
     public CallFunction(String idFunc, String idBackFunc) {
-        super("Function", 0);
+        super("Call-Function", 0);
         this.idFunc = idFunc;
         this.idBackFunc = idBackFunc;
     }

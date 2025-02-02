@@ -7,13 +7,13 @@ public class BooleanOperator extends SymbolBase {
     private boolean isConst;
 
     public BooleanOperator(String idVar) {
-        super("Boolean Operator", 0);
+        super("Boolean operator", 0);
         this.idVar = idVar;
         this.isConst = false;
     }
 
     public BooleanOperator(String idVar, Boolean val) {
-        super("Boolean Operator", 0);
+        super("Boolean operator", 0);
         this.idVar = idVar;
         this.val = val;
         this.isConst = true;
@@ -30,6 +30,6 @@ public class BooleanOperator extends SymbolBase {
     public boolean getIsConst() {
         return this.isConst;
     }
-    
+
 }
 

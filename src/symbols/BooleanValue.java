@@ -5,7 +5,7 @@ public class BooleanValue extends SymbolBase {
     private Boolean val;
 
     public BooleanValue(Boolean val) {
-        super("Boolean Value", 0);
+        super("Boolean val", 0);
         this.val = val;
     }
 

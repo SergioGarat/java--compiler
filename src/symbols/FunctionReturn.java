@@ -8,12 +8,12 @@ public class FunctionReturn extends SymbolBase {
     private TipoSubyacente tipoSubyacente;
 
     public FunctionReturn() {
-        super("Function Return", 0);
+        super("Function return", 0);
         this.tipoSubyacente = TipoSubyacente.TS_NULL;
     }
 
     public FunctionReturn(String idVar, TipoSubyacente tipoSubyacente) {
-        super("Function Return", 0);
+        super("Function return", 0);
         this.idVar = idVar;
         this.tipoSubyacente = tipoSubyacente;
     }

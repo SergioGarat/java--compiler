@@ -5,7 +5,7 @@ public class StringValue extends SymbolBase {
     private String s;
 
     public StringValue(String s) {
-        super("String Value", 0);
+        super("String val", 0);
         this.s = s;
     }
 

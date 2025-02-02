@@ -3,6 +3,6 @@ package symbols;
 public class InstructionIf extends SymbolBase {
 
     public InstructionIf() {
-        super("Instruction If", 0);
+        super("Instruction if", 0);
     }
 }

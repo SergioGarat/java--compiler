@@ -5,7 +5,7 @@ public class ForBody extends SymbolBase {
     private String label;
 
     public ForBody(String label) {
-        super("For Body", 0);
+        super("For body", 0);
         this.label = label;
     }
 

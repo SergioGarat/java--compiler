@@ -7,13 +7,13 @@ public class BooleanOperationValue extends SymbolBase {
     private boolean isConstant;
 
     public BooleanOperationValue(String idVar) {
-        super("Boolean Operation Value", 0);
+        super("Boolean operation", 0);
         this.isConstant = false;
         this.idVar = idVar;
     }
 
     public BooleanOperationValue(String idVar, Boolean val) {
-        super("Boolean Operation Value", 0);
+        super("Boolean operation", 0);
         this.val = val;
         this.isConstant = true;
         this.idVar = idVar;

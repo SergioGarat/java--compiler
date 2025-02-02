@@ -5,8 +5,6 @@ import symbolsTable.Type.TipoSubyacente;
 
 public class Value extends SymbolBase {
 
-
-
     private String idVar;
     private String name;
     private Object val;

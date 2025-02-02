@@ -9,19 +9,19 @@ public class Declarations extends SymbolBase {
     private Type type;
 
     public Declarations() {
-        super("Declaration", 0);
-    }
-
-    public Declarations(String idVar, Type type) {
-        super("Declaration", 0);
-        this.idVar = idVar;
-        this.type = type;
+        super("Declarations", 0);
     }
 
     public Declarations(String idVar, Type type, String val) {
-        super("Declaration", 0);
+        super("Declarations", 0);
         this.idVar = idVar;
         this.val = val;
+        this.type = type;
+    }
+
+    public Declarations(String idVar, Type type) {
+        super("Declarations", 0);
+        this.idVar = idVar;
         this.type = type;
     }
 

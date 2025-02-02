@@ -5,7 +5,7 @@ public class WhileLabel extends SymbolBase {
     private String label;
 
     public WhileLabel(String label) {
-        super("M_While", 0);
+        super("Label while", 0);
         this.label = label;
     }
 

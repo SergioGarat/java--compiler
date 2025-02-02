@@ -3,6 +3,6 @@ package symbols;
 public class DefineFunction extends SymbolBase {
 
     public DefineFunction() {
-        super("Define Function", 0);
+        super("Define function", 0);
     }
 }

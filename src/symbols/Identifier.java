@@ -12,7 +12,7 @@ public class Identifier extends SymbolBase {
     private String name;
 
     public Identifier(String identifier, Tipo tipo, String name) {
-        super("Identifier Value", 0);
+        super("Identifier", 0);
         this.identifier = identifier;
         this.tipo = tipo;
         this.name = name;
@@ -20,7 +20,7 @@ public class Identifier extends SymbolBase {
     }
 
     public Identifier(String identifier, Tipo tipo, String name, Object val) {
-        super("Identifier Value", 0);
+        super("Identifier", 0);
         this.identifier = identifier;
         this.tipo = tipo;
         this.name = name;

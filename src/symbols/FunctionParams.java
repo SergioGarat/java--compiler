@@ -10,11 +10,11 @@ public class FunctionParams extends SymbolBase {
     private ArrayList<Parameter> parameters = new ArrayList<Parameter>();
 
     public FunctionParams() {
-        super("Function Params", 0);
+        super("Function parameters", 0);
     }
 
     public FunctionParams(ArrayList<Parameter> parameters) {
-        super("Function Params", 0);
+        super("Function parameters", 0);
         this.parameters = parameters;
     }
 
