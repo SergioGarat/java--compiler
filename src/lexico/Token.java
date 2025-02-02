@@ -55,6 +55,8 @@ public class Token {
         INSTR_PRINT,
         LPAREN,
         RPAREN,
+        LBRACE,
+        RBRACE,
         LBRACKET,
         RBRACKET,
         SEMICOLON,

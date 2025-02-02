@@ -39,10 +39,7 @@ public class Main {
             fname = fname.substring(0, pos);
         }
         cleanOutputFiles(fname, true);
-
         executeCompiler(fname);
-
-
     }
 
 
@@ -88,8 +85,6 @@ public class Main {
 
     private static void executeCompiler(String fname) {
         try {
-
-
             cleanOutputFiles(fname, false);
             Reader reader = new BufferedReader(new FileReader(WORK_DIR + "examples\\" + fname + ".txt"));
             ComplexSymbolFactory symbolFactory = new ComplexSymbolFactory();
@@ -104,7 +99,7 @@ public class Main {
 
     private static void cleanOutputFiles(String startName, boolean full) {
         System.out.println("Deleting contents of the output folder.");
-        File outputDir = new File(OUTPUT_DIR+"\\"+startName);
+        File outputDir = new File(OUTPUT_DIR + "\\" + startName);
 
         if (outputDir.isDirectory()) {
             File[] files = outputDir.listFiles();

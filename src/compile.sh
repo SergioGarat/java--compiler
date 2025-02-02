@@ -1,6 +1,6 @@
 #!/bin/sh
 rm -f ./program
-gcc -no-pie ./output/AssemblerCode.s -o program
+gcc -no-pie ./output/example1/AssemblerCode.s -o program
 FILE=./program
 if [ -f "$FILE" ]; then
   $FILE
