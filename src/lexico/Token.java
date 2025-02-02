@@ -43,7 +43,7 @@ public class Token {
         OP_OR,
         OP_NOT,
         OP_ASSIG,
-        INST_IF,
+        IF,
         INST_ELSE,
         INST_ELIF,
         INST_FOR,

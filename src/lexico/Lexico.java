@@ -313,46 +313,30 @@ public class Lexico implements java_cup.runtime.Scanner {
   private boolean zzEOFDone;
 
   /* user code: */
+
+    public String tkn_dir = "Tokens.txt";
+    public static final String BASE_tkn_dir = "src\\output\\";
+    private static BufferedWriter out;
+    private ComplexSymbolFactory sf;
+
     public Lexico(java.io.Reader in, ComplexSymbolFactory sf) {
       this(in);
-      this.symbolFactory = sf;
-
+      this.sf = sf;
     }
 
     public Lexico(java.io.Reader in, ComplexSymbolFactory sf, String filename) {
           this(in);
-          this.symbolFactory = sf;
-          this.TOKENS_PATH = filename+"\\"+this.TOKENS_PATH;
+          this.sf = sf;
+          this.tkn_dir = filename+"\\"+this.tkn_dir;
 
           try{
-                  out = new BufferedWriter(new FileWriter(BASE_TOKENS_PATH + TOKENS_PATH, true));
+                  out = new BufferedWriter(new FileWriter(BASE_tkn_dir + tkn_dir, true));
                   out.write("*** Tokens ***\n");
               }catch(Exception e){
                   System.out.println("Error writing Tokens : " + e);
                   e.printStackTrace();
               }
-
         }
-
-    public String TOKENS_PATH = "Tokens.txt";
-
-    public static final String TOKENS_ERROR_PATH = "src\\output\\Error_Tokens.txt";
-
-    public static final String BASE_TOKENS_PATH = "src\\output\\";
-
-    private static BufferedWriter out;
-
-    private ComplexSymbolFactory symbolFactory;
-
-    public void closeTokensFile(int line, int column){
-        try{
-            out.write("Stopped processing tokens due to a syntax or semantic error on line : " + line + " and column : "+ column);
-            out.close();
-        }catch(Exception e){
-            System.out.println("Error closing Tokens file : " + e);
-            e.printStackTrace();
-        }
-    }
 
     public int getLine(){
         return yyline + 1;
@@ -360,6 +344,16 @@ public class Lexico implements java_cup.runtime.Scanner {
 
     public int getColumn(){
         return yycolumn + 1;
+    }
+
+    public void closeFile(int line, int column){
+        try{
+            out.write("Token processing halted due to a syntax or semantic error at line " + line + " and column " + column + ".");
+            out.close();
+        }catch(Exception e){
+            System.out.println("Error closing Tokens file : " + e);
+            e.printStackTrace();
+        }
     }
 
     public void writeToken(Token token){
@@ -371,12 +365,12 @@ public class Lexico implements java_cup.runtime.Scanner {
         }
     }
 
-    private Symbol symbol(String plainname,int type){
-        return symbolFactory.newSymbol(plainname, type, new Location(getLine(), getColumn()), new Location(getColumn(), yycolumn+yylength()));
+    private Symbol symbol(String pname, int tipo, String lexema){
+        return sf.newSymbol(pname, tipo, new Location(getLine(), getColumn()), new Location(getLine(), yycolumn + yylength()), lexema);
     }
 
-    private Symbol symbol(String plainname, int type, String lexeme){
-        return symbolFactory.newSymbol(plainname, type, new Location(getLine(), getColumn()), new Location(getLine(), yycolumn+yylength()), lexeme);
+    private Symbol symbol(String pname,int tipo){
+        return sf.newSymbol(pname, tipo, new Location(getLine(), getColumn()), new Location(getColumn(), yycolumn + yylength()));
     }
 
 
@@ -386,15 +380,6 @@ public class Lexico implements java_cup.runtime.Scanner {
    * @param   in  the java.io.Reader to read input from.
    */
   public Lexico(java.io.Reader in) {
-      /*
-      try{
-        out = new BufferedWriter(new FileWriter(BASE_TOKENS_PATH + TOKENS_PATH, true));
-        out.write("*** Tokens ***\n");
-    }catch(Exception e){
-        System.out.println("Error writing Tokens : " + e);
-        e.printStackTrace();
-    }
-     */
     this.zzReader = in;
   }
 
@@ -641,7 +626,7 @@ public class Lexico implements java_cup.runtime.Scanner {
     
     try {
         writeToken(new Token(Tokens.EOF,yyline,yycolumn, ""));
-        out.write("\n\n*** All token data shown! ***");
+        out.write("\n***** End of File *****");
         out.close();
     }catch(Exception e){
         System.out.println("Error writing Tokens : " + e);
@@ -996,9 +981,9 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 68: break;
           case 28:
-            { Token token = new Token(Tokens.INST_IF,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.IF,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_IF.name(), ParserSym.inst_if);
+                        return symbol(Tokens.IF.name(), ParserSym.IF);
             }
             // fall through
           case 69: break;
@@ -1024,9 +1009,9 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 72: break;
           case 32:
-            { Token token = new Token(Tokens.INST_ELSE,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.ELSE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_ELSE.name(), ParserSym.inst_else);
+                        return symbol(Tokens.ELSE.name(), ParserSym.ELSE);
             }
             // fall through
           case 73: break;

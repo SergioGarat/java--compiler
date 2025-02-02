@@ -17,6 +17,7 @@ public class ParserSym {
   public static final int inst_elif = 14;
   public static final int two_points = 29;
   public static final int lbracket = 25;
+  public static final int IF = 13;
   public static final int semicolon = 27;
   public static final int inst_function = 17;
   public static final int op_assig = 12;
@@ -24,7 +25,6 @@ public class ParserSym {
   public static final int bool = 5;
   public static final int inst_return = 18;
   public static final int EOF = 0;
-  public static final int inst_if = 13;
   public static final int id = 2;
   public static final int dot = 30;
   public static final int struct = 6;
@@ -54,7 +54,7 @@ public class ParserSym {
   "op_arithmetical_c",
   "op_arithmetical_b",
   "op_assig",
-  "inst_if",
+  "IF",
   "inst_elif",
   "inst_else",
   "inst_while",

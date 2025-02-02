@@ -19,59 +19,31 @@ import java.io.FileWriter;
 %column
 %full
 
-%init{
-    /*
-      try{
-        out = new BufferedWriter(new FileWriter(BASE_TOKENS_PATH + TOKENS_PATH, true));
-        out.write("*** Tokens ***\n");
-    }catch(Exception e){
-        System.out.println("Error writing Tokens : " + e);
-        e.printStackTrace();
-    }
-     */
-%init}
-
 %{
+
+    public String tkn_dir = "Tokens.txt";
+    public static final String BASE_tkn_dir = "src\\output\\";
+    private static BufferedWriter out;
+    private ComplexSymbolFactory sf;
+
     public Lexico(java.io.Reader in, ComplexSymbolFactory sf) {
       this(in);
-      this.symbolFactory = sf;
-
+      this.sf = sf;
     }
 
     public Lexico(java.io.Reader in, ComplexSymbolFactory sf, String filename) {
           this(in);
-          this.symbolFactory = sf;
-          this.TOKENS_PATH = filename+"\\"+this.TOKENS_PATH;
+          this.sf = sf;
+          this.tkn_dir = filename+"\\"+this.tkn_dir;
 
           try{
-                  out = new BufferedWriter(new FileWriter(BASE_TOKENS_PATH + TOKENS_PATH, true));
+                  out = new BufferedWriter(new FileWriter(BASE_tkn_dir + tkn_dir, true));
                   out.write("*** Tokens ***\n");
               }catch(Exception e){
                   System.out.println("Error writing Tokens : " + e);
                   e.printStackTrace();
               }
-
         }
-
-    public String TOKENS_PATH = "Tokens.txt";
-
-    public static final String TOKENS_ERROR_PATH = "src\\output\\Error_Tokens.txt";
-
-    public static final String BASE_TOKENS_PATH = "src\\output\\";
-
-    private static BufferedWriter out;
-
-    private ComplexSymbolFactory symbolFactory;
-
-    public void closeTokensFile(int line, int column){
-        try{
-            out.write("Stopped processing tokens due to a syntax or semantic error on line : " + line + " and column : "+ column);
-            out.close();
-        }catch(Exception e){
-            System.out.println("Error closing Tokens file : " + e);
-            e.printStackTrace();
-        }
-    }
 
     public int getLine(){
         return yyline + 1;
@@ -79,6 +51,16 @@ import java.io.FileWriter;
 
     public int getColumn(){
         return yycolumn + 1;
+    }
+
+    public void closeFile(int line, int column){
+        try{
+            out.write("Token processing halted due to a syntax or semantic error at line " + line + " and column " + column + ".");
+            out.close();
+        }catch(Exception e){
+            System.out.println("Error closing Tokens file : " + e);
+            e.printStackTrace();
+        }
     }
 
     public void writeToken(Token token){
@@ -90,19 +72,19 @@ import java.io.FileWriter;
         }
     }
 
-    private Symbol symbol(String plainname,int type){
-        return symbolFactory.newSymbol(plainname, type, new Location(getLine(), getColumn()), new Location(getColumn(), yycolumn+yylength()));
+    private Symbol symbol(String pname, int tipo, String lexema){
+        return sf.newSymbol(pname, tipo, new Location(getLine(), getColumn()), new Location(getLine(), yycolumn + yylength()), lexema);
     }
 
-    private Symbol symbol(String plainname, int type, String lexeme){
-        return symbolFactory.newSymbol(plainname, type, new Location(getLine(), getColumn()), new Location(getLine(), yycolumn+yylength()), lexeme);
+    private Symbol symbol(String pname,int tipo){
+        return sf.newSymbol(pname, tipo, new Location(getLine(), getColumn()), new Location(getColumn(), yycolumn + yylength()));
     }
 %}
 
 %eof{
     try {
         writeToken(new Token(Tokens.EOF,yyline,yycolumn, ""));
-        out.write("\n\n*** All token data shown! ***");
+        out.write("\n***** End of File *****");
         out.close();
     }catch(Exception e){
         System.out.println("Error writing Tokens : " + e);
@@ -148,7 +130,7 @@ CONSTANT        = ("constant")
 
 // Operaciones
 
-INST_IF         = ("if")
+IF         = ("if")
 INST_ELSE       = ("else")
 INST_ELIF       = ("elif")
 
@@ -182,10 +164,10 @@ DOT             = (".")
 {BLANK}              {/*Ignore*/}
 {COMMENT}            {/*Ignore*/}
 
-{INST_IF}            {
-                        Token token = new Token(Tokens.INST_IF,yyline,yycolumn, yytext());
+{IF}            {
+                        Token token = new Token(Tokens.IF,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_IF.name(), ParserSym.inst_if);
+                        return symbol(Tokens.IF.name(), ParserSym.IF);
                      }
 {INST_ELSE}          {
                         Token token = new Token(Tokens.INST_ELSE,yyline,yycolumn, yytext());

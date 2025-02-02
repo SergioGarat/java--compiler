@@ -88,7 +88,7 @@ parser code
         expected_names.add(symbl_name_from_id(i));
       }
 
-      lexico.closeTokensFile((s.left+1), (s.right+1));
+      lexico.closeFile((s.left+1), (s.right+1));
 
       ComplexSymbol complexSymbol = (ComplexSymbol) s; 
 
@@ -129,7 +129,7 @@ parser code
 /******Declaració de simbols terminals*********/
 
 terminal String id, number, string, bool, struct, op_relational, op_logical, op_logical_not, op_arithmetical_c, op_arithmetical_b;
-terminal        op_assig, inst_if, inst_elif, inst_else,
+terminal        op_assig, IF, inst_elif, ELSE,
                 inst_while, inst_function, inst_return, constant, inst_for,
                 instr_read, instr_print, lparen, rparen, lbracket, rbracket, semicolon,
                 comma, two_points, dot, inst_main;
@@ -1614,7 +1614,7 @@ COND_F                      ::=
                                 RESULT = new ConditionFalse();
                               :};
 
-INSTRUCTION_IF              ::= inst_if COND lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket ELIF ELSE
+INSTRUCTION_IF              ::= IF COND lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket ELIF ELSE
                             {:
                               RESULT = new InstructionIf();
                             :};
