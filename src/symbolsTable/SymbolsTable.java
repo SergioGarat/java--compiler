@@ -87,7 +87,7 @@ public class SymbolsTable {
 
         while (idxe != -1 && !expansionTable.get(idxe).getId().equals(idParam)) {
             idxep = idxe;
-            idxe = ((ExpandInfo) expansionTable.get(idxe)).getNext();
+            idxe = ((ParamsDescriptor) expansionTable.get(idxe)).getNext();
         }
 
         if (idxe != -1) {
@@ -96,7 +96,7 @@ public class SymbolsTable {
 
         idxe = scopeTable.get(scope);
         scopeTable.set(scope, idxe + 1);
-        ExpandInfo exp = new ExpandInfo(type, idFun, idParamBack, idParam, -1, -1);
+        ParamsDescriptor exp = new ParamsDescriptor(type, idFun, idParamBack, idParam, -1, -1);
         expansionTable.add(idxe, exp);
         if (idxep == -1) {
             funDes.setFirst(idxe);

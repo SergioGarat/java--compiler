@@ -13,7 +13,7 @@ public class Parameter {
         this.n = size;
     }
 
-    public String getidVar() {
+    public String getVarId() {
         return this.idVar;
     }
 
