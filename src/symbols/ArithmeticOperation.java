@@ -7,13 +7,13 @@ public class ArithmeticOperation extends SymbolBase {
     private boolean isConst;
 
     public ArithmeticOperation(String var_id) {
-        super("Symbol Arithmetical Operation", 0);
+        super("Arithmetical Operation", 0);
         this.var_id = var_id;
         this.isConst = false;
     }
 
     public ArithmeticOperation(String var_id, Integer value) {
-        super("Symbol Arithmetical Operation", 0);
+        super("Arithmetical Operation", 0);
         this.var_id = var_id;
         this.value = value;
         this.isConst = true;

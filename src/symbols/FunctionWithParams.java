@@ -10,13 +10,13 @@ public class FunctionWithParams extends SymbolBase {
     private ArrayList<Parameter> params;
 
     public FunctionWithParams(Parameter param) {
-        super("Symbol Function With Params", 0);
+        super("Function With Params", 0);
         this.params = new ArrayList<>();
         this.params.add(param);
     }
 
     public FunctionWithParams(Parameter param, FunctionWithParams prev) {
-        super("Symbol Function With Params", 0);
+        super("Function With Params", 0);
         this.params = new ArrayList<>(prev.params);
         this.params.add(param);
     }

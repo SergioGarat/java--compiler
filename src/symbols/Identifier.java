@@ -13,7 +13,7 @@ public class Identifier extends SymbolBase {
     private boolean isConst;
 
     public Identifier(String id, Tipo tipo, String typeName) {
-        super("Symbol Identifier Value", 0);
+        super("Identifier Value", 0);
         this.id = id;
         this.tipo = tipo;
         this.typeName = typeName;
@@ -21,7 +21,7 @@ public class Identifier extends SymbolBase {
     }
 
     public Identifier(String id, Tipo tipo, String typeName, Object value) {
-        super("Symbol Identifier Value", 0);
+        super("Identifier Value", 0);
         this.id = id;
         this.tipo = tipo;
         this.typeName = typeName;

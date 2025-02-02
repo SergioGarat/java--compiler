@@ -7,7 +7,7 @@ public class CallBody extends SymbolBase {
     private int num_params;
 
     public CallBody(String fun_id, String fun_back_id, int num_params) {
-        super("Symbol Call Body", 0);
+        super("Call Body", 0);
         this.fun_id = fun_id;
         this.fun_back_id = fun_back_id;
         this.num_params = num_params;

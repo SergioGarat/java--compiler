@@ -7,13 +7,13 @@ public class BooleanOperator extends SymbolBase {
     private boolean isConst;
 
     public BooleanOperator(String var_id) {
-        super("Symbol Boolean Operator", 0);
+        super("Boolean Operator", 0);
         this.var_id = var_id;
         this.isConst = false;
     }
 
     public BooleanOperator(String var_id, Boolean value) {
-        super("Symbol Boolean Operator", 0);
+        super("Boolean Operator", 0);
         this.var_id = var_id;
         this.value = value;
         this.isConst = true;

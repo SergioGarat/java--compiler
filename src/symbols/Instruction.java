@@ -3,6 +3,6 @@ package symbols;
 public class Instruction extends SymbolBase {
 
     public Instruction() {
-        super("SymbolInstruction", 0);
+        super("Instruction", 0);
     }
 }

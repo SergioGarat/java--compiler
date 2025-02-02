@@ -7,13 +7,13 @@ public class ValuesComparison extends SymbolBase {
     private Boolean value;
 
     public ValuesComparison(String var_id) {
-        super("Symbol Value Comparison", 0);
+        super("Value Comparison", 0);
         this.isConstant = false;
         this.var_id = var_id;
     }
 
     public ValuesComparison(String var_id, Boolean value) {
-        super("Symbol Value Comparison", 0);
+        super("Value Comparison", 0);
         this.isConstant = false;
         this.var_id = var_id;
         this.value = value;

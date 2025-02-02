@@ -5,7 +5,7 @@ public class Const extends SymbolBase {
     private boolean isConst;
 
     public Const(boolean isConst) {
-        super("Symbol Constant Value", 0);
+        super("Constant Value", 0);
         this.isConst = isConst;
     }
 

@@ -11,17 +11,17 @@ public class Declarations extends SymbolBase {
     private String value;
 
     public Declarations() {
-        super("SymbolDeclarations", 0);
+        super("Declaration", 0);
     }
 
     public Declarations(String var_id, Type type) {
-        super("SymbolDeclarations", 0);
+        super("Declaration", 0);
         this.type = type;
         this.var_id = var_id;
     }
 
     public Declarations(String var_id, Type type, String value) {
-        super("SymbolDeclarations", 0);
+        super("Declaration", 0);
         this.type = type;
         this.var_id = var_id;
         this.value = value;

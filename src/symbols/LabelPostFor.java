@@ -4,7 +4,7 @@ public class LabelPostFor extends SymbolBase {
     private String label;
 
     public LabelPostFor(String label) {
-        super("Symbol Label For Post Instruction", 0);
+        super("Label For Post Instruction", 0);
         this.label = label;
     }
 
