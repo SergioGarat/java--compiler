@@ -9,7 +9,7 @@ import backend.BackTables;
 import c3a.GeneratorC3A;
 import c3a.InstructionC3A.Code;
 import errores.CompilerError;
-import errores.SymbolsTableError;
+import errores.SymTabError;
 import generatorAssembler.GeneratorAssembler;
 import java_cup.runtime.ComplexSymbolFactory;
 import java_cup.runtime.ComplexSymbolFactory.ComplexSymbol;
@@ -548,7 +548,7 @@ public class Parser extends java_cup.runtime.lr_parser {
     }
 
   private void closeErrorFiles(){
-    SymbolsTableError.closeFile();
+    SymTabError.closeFile();
     CompilerError.closeFiles();
   }
 
@@ -608,7 +608,7 @@ public class Parser extends java_cup.runtime.lr_parser {
       //init VOID type
       Type void_type = new Type(Tipo.dtype, TipoSubyacente.TS_NULL, 0);
       symbolsTable.add("void", void_type);
-    }catch (SymbolsTableError e){
+    }catch (SymTabError e){
       closeErrorFiles();
     }
   }
@@ -904,7 +904,7 @@ class CUP$Parser$actions {
                               try{
                                 symbolsTable.leaveBlock();
                                 RESULT = new BlockOut();
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -947,7 +947,7 @@ class CUP$Parser$actions {
 
                                   RESULT = declarations;
 
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
                                 String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -1113,7 +1113,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = symDcls;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = id_varxleft.getLine() + ":" + id_varxleft.getColumn();
                                 String to = id_varxright.getLine() + ":" + id_varxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -1208,7 +1208,7 @@ class CUP$Parser$actions {
                                    );
 
                                    RESULT = new Assignation();
-                              } catch (SymbolsTableError e) {
+                              } catch (SymTabError e) {
                                   String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
                                   String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
                                   String message = e.getMessage() + " from " + from + " to " + to;
@@ -1335,7 +1335,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -1376,7 +1376,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -1473,7 +1473,7 @@ class CUP$Parser$actions {
                               );
 
                               RESULT = new ArithmeticValue(var_id, value);
-                            }catch(SymbolsTableError e){
+                            }catch(SymTabError e){
                               throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                             }
                           
@@ -1519,7 +1519,7 @@ class CUP$Parser$actions {
                               }
 
                               RESULT = sym;
-                            }catch(SymbolsTableError e){
+                            }catch(SymTabError e){
                               throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                             }
                           
@@ -1577,7 +1577,7 @@ class CUP$Parser$actions {
                               );
 
                               RESULT = new ArithmeticValue(var_id);
-                            }catch(SymbolsTableError e){
+                            }catch(SymTabError e){
                               String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
                               String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                               String message = e.getMessage() + " from "+from+" to "+to;
@@ -1629,7 +1629,7 @@ class CUP$Parser$actions {
                               }
 
                               RESULT = new ArithmeticValue(var_id);
-                            }catch(SymbolsTableError e){
+                            }catch(SymTabError e){
                               String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
                               String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                               String message = e.getMessage() + " from "+from+" to "+to;
@@ -1657,7 +1657,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = id_valxleft.getLine() + ":" + id_valxleft.getColumn();
                                 String to = id_valxright.getLine() + ":" + id_valxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -1724,7 +1724,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -1775,7 +1775,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -1861,7 +1861,7 @@ class CUP$Parser$actions {
                                 Value sym = new Value(value, stringSize);
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -1891,7 +1891,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new Value(var_id, TipoSubyacente.TS_BOOLEAN, value);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -1922,7 +1922,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new Value(var_id, TipoSubyacente.TS_NUMBER, value);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -1983,7 +1983,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -2064,7 +2064,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new Value(var_id, Tipo.dfun, fn_type.getTypeName());
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -2089,7 +2089,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new Value(var_id, number_type.getTipoSubyacente());
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -2175,7 +2175,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -2225,7 +2225,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -2255,7 +2255,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new BooleanOperationValue(var_id, value);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -2300,7 +2300,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -2377,7 +2377,7 @@ class CUP$Parser$actions {
                                   sym = new BooleanOperationValue(var_id);
                                 }
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -2414,7 +2414,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new BooleanOperationValue(var_id);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -2461,7 +2461,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new BooleanOperationValue(var_id);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -2677,7 +2677,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -3053,7 +3053,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new CallFunction(fun_id, backId);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = fun_idxleft.getLine() + ":" + fun_idxleft.getColumn();
                                 String to = fun_idxright.getLine() + ":" + fun_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -3098,7 +3098,7 @@ class CUP$Parser$actions {
 
 
                                 RESULT = new CallFunction(fun_id, fun_backId);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -3156,7 +3156,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new CallBody(fun_id, fun_back_id, num_params+1);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -3214,7 +3214,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new CallBody(fun_id, fun_back_id, 0+1);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = fun_idxleft.getLine() + ":" + fun_idxleft.getColumn();
                                 String to = fun_idxright.getLine() + ":" + fun_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -3261,7 +3261,7 @@ class CUP$Parser$actions {
                                   );
                                 }
                                 RESULT = new InstructionOut();
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             
@@ -3376,7 +3376,7 @@ class CUP$Parser$actions {
                                 );
 
                                 RESULT = new FunctionInit(backId, subType);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -3447,7 +3447,7 @@ class CUP$Parser$actions {
                                 Parameter param = new Parameter(id, param_type, type_type.getSize());
 
                                 RESULT = new FunctionWithParams(param, prev_params);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -3490,7 +3490,7 @@ class CUP$Parser$actions {
                                 Parameter param = new Parameter(id, param_type, type_type.getSize());
 
                                 RESULT = new FunctionWithParams(param);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -3545,7 +3545,7 @@ class CUP$Parser$actions {
                                 }
 
                                 RESULT = new FunctionReturn(value.getVarId(), subType);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             

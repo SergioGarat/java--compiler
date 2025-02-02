@@ -1,6 +1,6 @@
 package symbolsTable;
 
-import errores.SymbolsTableError;
+import errores.SymTabError;
 import symbolsTable.Type.Tipo;
 
 import java.io.BufferedWriter;
@@ -44,19 +44,19 @@ public class SymbolsTable {
         saveTableInFile(null);
     }
 
-    public void add(String id, Type type) throws SymbolsTableError {
+    public void add(String id, Type type) throws SymTabError {
         Descriptor oldDescription = descriptionTable.get(id);
 
         // if oldDes.scope > scope can override
         if (oldDescription != null && oldDescription.getScope() <= scope) {
             if (oldDescription.getScope() == scope) {
-                throw new SymbolsTableError(id + "cannot be added because it already exists in actual scope");
+                throw new SymTabError(id + "cannot be added because it already exists in actual scope");
             }
             if (oldDescription.getType().getTipo() == Tipo.dfun) {
-                throw new SymbolsTableError(id + "cannot be added because it already exists and is a function");
+                throw new SymTabError(id + "cannot be added because it already exists and is a function");
             }
             if (oldDescription.getType().getTipo() == Tipo.dtype) {
-                throw new SymbolsTableError(id + "cannot be added because it is a reserved word");
+                throw new SymTabError(id + "cannot be added because it is a reserved word");
             }
             // move oldDescription to expansionTable
             int expIndex = scopeTable.get(scope);
@@ -71,15 +71,15 @@ public class SymbolsTable {
         saveTableInFile("ADD : " + id);
     }
 
-    public void addParam(String idFun, String idParamBack, String idParam, Type type) throws SymbolsTableError {
+    public void addParam(String idFun, String idParamBack, String idParam, Type type) throws SymTabError {
         Descriptor funDes = descriptionTable.get(idFun);
         // CHECK TYPE
         if (funDes == null) {
-            throw new SymbolsTableError(idFun + "does not exist.");
+            throw new SymTabError(idFun + "does not exist.");
 
         }
         if (funDes.getType().getTipo() != Tipo.dfun) {
-            throw new SymbolsTableError(idFun + "is not a function");
+            throw new SymTabError(idFun + "is not a function");
         }
 
         int idxe = funDes.getFirst();
@@ -87,16 +87,16 @@ public class SymbolsTable {
 
         while (idxe != -1 && !expansionTable.get(idxe).getId().equals(idParam)) {
             idxep = idxe;
-            idxe = ((ParamsDescriptor) expansionTable.get(idxe)).getNext();
+            idxe = ((ExpandInfo) expansionTable.get(idxe)).getNext();
         }
 
         if (idxe != -1) {
-            throw new SymbolsTableError(idParam + "already exists as function param");
+            throw new SymTabError(idParam + "already exists as function param");
         }
 
         idxe = scopeTable.get(scope);
         scopeTable.set(scope, idxe + 1);
-        ParamsDescriptor exp = new ParamsDescriptor(type, idFun, idParamBack, idParam, -1, -1);
+        ExpandInfo exp = new ExpandInfo(type, idFun, idParamBack, idParam, -1, -1);
         expansionTable.add(idxe, exp);
         if (idxep == -1) {
             funDes.setFirst(idxe);
@@ -110,7 +110,7 @@ public class SymbolsTable {
         saveTableInFile("ADD PARAM: " + idParamBack + " function : " + idFun);
     }
 
-    public Type get(String id) throws SymbolsTableError {
+    public Type get(String id) throws SymTabError {
         if (!descriptionTable.containsKey(id)) {
             //first check if is param inside expansion
             for (ExpandInfo expansion : expansionTable) {
@@ -121,21 +121,21 @@ public class SymbolsTable {
                     }
                 }
             }
-            throw new SymbolsTableError("Unknown id: " + id);
+            throw new SymTabError("Unknown id: " + id);
         }
         return descriptionTable.get(id).getType();
     }
 
-    public int getNumParams(String idFun) throws SymbolsTableError {
+    public int getNumParams(String idFun) throws SymTabError {
         Descriptor funDes = descriptionTable.get(idFun);
         int count = 0;
         // CHECK TYPE
         if (funDes == null) {
-            throw new SymbolsTableError(idFun + "function not found");
+            throw new SymTabError(idFun + "function not found");
 
         }
         if (funDes.getType().getTipo() != Tipo.dfun) {
-            throw new SymbolsTableError(idFun + "is not a function");
+            throw new SymTabError(idFun + "is not a function");
         }
 
         int idxe = funDes.getFirst();
@@ -148,15 +148,15 @@ public class SymbolsTable {
         return count;
     }
 
-    public Type getParam(String idFun, int index) throws SymbolsTableError {
+    public Type getParam(String idFun, int index) throws SymTabError {
         Descriptor funDes = descriptionTable.get(idFun);
         // CHECK TYPE
         if (funDes == null) {
-            throw new SymbolsTableError(idFun + "function not found");
+            throw new SymTabError(idFun + "function not found");
 
         }
         if (funDes.getType().getTipo() != Tipo.dfun) {
-            throw new SymbolsTableError(idFun + "is not a function");
+            throw new SymTabError(idFun + "is not a function");
         }
 
         int idxe = funDes.getFirst();
@@ -168,7 +168,7 @@ public class SymbolsTable {
         }
 
         if (idxe == -1) {
-            throw new SymbolsTableError(idFun + "has" + " param at index" + index + " does not exist");
+            throw new SymTabError(idFun + "has" + " param at index" + index + " does not exist");
         }
 
         return expansionTable.get(idxe).getType();
@@ -180,9 +180,9 @@ public class SymbolsTable {
         saveTableInFile("ENTER BLOCK : increase scope");
     }
 
-    public void leaveBlock() throws SymbolsTableError {
+    public void leaveBlock() throws SymTabError {
         if (scope == 1) {
-            throw new SymbolsTableError("Compiler error : out of scope 1");
+            throw new SymTabError("Compiler error : out of scope 1");
         }
         this.scope--;
         // remove out of scope variables, or

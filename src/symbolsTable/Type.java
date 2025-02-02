@@ -100,15 +100,6 @@ public class Type {
         this.tiposSubyacentes = tiposSubyacentes;
     }
 
-    public enum Tipo {
-        dnull,
-        dtype,
-        dconst,
-        dvar,
-        dfun,
-        darg
-    }
-
     public enum TipoSubyacente {
         TS_BOOLEAN,
         TS_NUMBER,
@@ -121,7 +112,17 @@ public class Type {
                 case TS_NULL -> "null";
                 case TS_NUMBER -> "number";
                 case TS_STRING -> "string";
+                default -> "";
             };
         }
+    }
+
+    public enum Tipo {
+        dvar,
+        dtype,
+        dconst,
+        dnull,
+        dfun,
+        darg
     }
 }

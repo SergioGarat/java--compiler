@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GeneratorC3A {
-    private static final String PATH = "src\\output\\";
+    private static final String dir = "src\\output\\";
     private String FileName = "c3_code.txt";
     private ArrayList<InstructionC3A> instructionList;
 
@@ -45,7 +45,7 @@ public class GeneratorC3A {
             contenido.append(instruccion).append("\n\n");
         }
         
-        File archivo = new File(PATH + FileName);
+        File archivo = new File(dir + FileName);
         archivo.getParentFile().mkdirs();
     
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo))) {

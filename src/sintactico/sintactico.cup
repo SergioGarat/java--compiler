@@ -4,7 +4,7 @@ import backend.BackTables;
 import c3a.GeneratorC3A;
 import c3a.InstructionC3A.Code;
 import errores.CompilerError;
-import errores.SymbolsTableError;
+import errores.SymTabError;
 import generatorAssembler.GeneratorAssembler;
 import java_cup.runtime.ComplexSymbolFactory;
 import java_cup.runtime.ComplexSymbolFactory.ComplexSymbol;
@@ -59,7 +59,7 @@ parser code
     }
 
   private void closeErrorFiles(){
-    SymbolsTableError.closeFile();
+    SymTabError.closeFile();
     CompilerError.closeFiles();
   }
 
@@ -119,7 +119,7 @@ parser code
       //init VOID type
       Type void_type = new Type(Tipo.dtype, TipoSubyacente.TS_NULL, 0);
       symbolsTable.add("void", void_type);
-    }catch (SymbolsTableError e){
+    }catch (SymTabError e){
       closeErrorFiles();
     }
   }
@@ -337,7 +337,7 @@ BLOCK_OUT                   ::=
                               try{
                                 symbolsTable.leaveBlock();
                                 RESULT = new BlockOut();
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :};
@@ -368,7 +368,7 @@ DECLARATIONS                ::=  id:var_id comma DECLARATIONS:declarations
 
                                   RESULT = declarations;
 
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
                                 String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -476,7 +476,7 @@ DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_
                                 }
 
                                 RESULT = symDcls;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = id_varxleft.getLine() + ":" + id_varxleft.getColumn();
                                 String to = id_varxright.getLine() + ":" + id_varxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -536,7 +536,7 @@ OPERATOR_ASSIG              ::= id:var_id op_assig VALUE:value
                                    );
 
                                    RESULT = new Assignation();
-                              } catch (SymbolsTableError e) {
+                              } catch (SymTabError e) {
                                   String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
                                   String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
                                   String message = e.getMessage() + " from " + from + " to " + to;
@@ -629,7 +629,7 @@ ARITHMETICAL_OPERATION      ::= ARITHMETICAL_VALUE:arith_val1 ARITH_OP:op ARITHM
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -657,7 +657,7 @@ ARITHMETICAL_OPERATION      ::= ARITHMETICAL_VALUE:arith_val1 ARITH_OP:op ARITHM
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -703,7 +703,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                               );
 
                               RESULT = new ArithmeticValue(var_id, value);
-                            }catch(SymbolsTableError e){
+                            }catch(SymTabError e){
                               throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                             }
                           :}
@@ -739,7 +739,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                               }
 
                               RESULT = sym;
-                            }catch(SymbolsTableError e){
+                            }catch(SymTabError e){
                               throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                             }
                           :}
@@ -777,7 +777,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                               );
 
                               RESULT = new ArithmeticValue(var_id);
-                            }catch(SymbolsTableError e){
+                            }catch(SymTabError e){
                               String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
                               String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                               String message = e.getMessage() + " from "+from+" to "+to;
@@ -816,7 +816,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                               }
 
                               RESULT = new ArithmeticValue(var_id);
-                            }catch(SymbolsTableError e){
+                            }catch(SymTabError e){
                               String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
                               String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                               String message = e.getMessage() + " from "+from+" to "+to;
@@ -835,7 +835,7 @@ ID_VALUE                    ::= id:id_val
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = id_valxleft.getLine() + ":" + id_valxleft.getColumn();
                                 String to = id_valxright.getLine() + ":" + id_valxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -879,7 +879,7 @@ ID_VALUE                    ::= id:id_val
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -917,7 +917,7 @@ ID_VALUE                    ::= id:id_val
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :};
@@ -965,7 +965,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 Value sym = new Value(value, stringSize);
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -985,7 +985,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 );
 
                                 RESULT = new Value(var_id, TipoSubyacente.TS_BOOLEAN, value);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1006,7 +1006,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 );
 
                                 RESULT = new Value(var_id, TipoSubyacente.TS_NUMBER, value);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1047,7 +1047,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1098,7 +1098,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 );
 
                                 RESULT = new Value(var_id, Tipo.dfun, fn_type.getTypeName());
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1116,7 +1116,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 );
 
                                 RESULT = new Value(var_id, number_type.getTipoSubyacente());
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1181,7 +1181,7 @@ BOOLEAN_OPERATION           ::= BOOLEAN_OP_VALUE:bool_val1 op_logical:op BOOLEAN
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1211,7 +1211,7 @@ BOOLEAN_OPERATION           ::= BOOLEAN_OP_VALUE:bool_val1 op_logical:op BOOLEAN
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :};
@@ -1232,7 +1232,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                 );
 
                                 RESULT = new BooleanOperationValue(var_id, value);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1267,7 +1267,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                 }
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1314,7 +1314,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                   sym = new BooleanOperationValue(var_id);
                                 }
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1341,7 +1341,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                 );
 
                                 RESULT = new BooleanOperationValue(var_id);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1375,7 +1375,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                 );
 
                                 RESULT = new BooleanOperationValue(var_id);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1549,7 +1549,7 @@ VALUE_COMPARISON            ::= lparen VALUE:val1 op_relational:op VALUE:val2 rp
                                 );
 
                                 RESULT = sym;
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1787,7 +1787,7 @@ CALL_FUNCTION               ::= id:fun_id lparen:lp rparen:rp
                                 );
 
                                 RESULT = new CallFunction(fun_id, backId);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = fun_idxleft.getLine() + ":" + fun_idxleft.getColumn();
                                 String to = fun_idxright.getLine() + ":" + fun_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -1819,7 +1819,7 @@ CALL_FUNCTION               ::= id:fun_id lparen:lp rparen:rp
 
 
                                 RESULT = new CallFunction(fun_id, fun_backId);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :};
@@ -1865,7 +1865,7 @@ CALL_BODY                   ::= CALL_BODY:body comma VALUE:value
                                 );
 
                                 RESULT = new CallBody(fun_id, fun_back_id, num_params+1);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
@@ -1910,7 +1910,7 @@ CALL_BODY                   ::= CALL_BODY:body comma VALUE:value
                                 );
 
                                 RESULT = new CallBody(fun_id, fun_back_id, 0+1);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = fun_idxleft.getLine() + ":" + fun_idxleft.getColumn();
                                 String to = fun_idxright.getLine() + ":" + fun_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -1948,7 +1948,7 @@ INSTRUCTION_OUT             ::= instr_print lparen VALUE:value rparen
                                   );
                                 }
                                 RESULT = new InstructionOut();
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :};
@@ -2036,7 +2036,7 @@ FUNCTION_INIT               ::= inst_function id:fun_id FUNCTION_PARAMS:fun_para
                                 );
 
                                 RESULT = new FunctionInit(backId, subType);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -2076,7 +2076,7 @@ FUNCTION_W_PARAMS           ::= FUNCTION_W_PARAMS:prev_params comma id:id two_po
                                 Parameter param = new Parameter(id, param_type, type_type.getSize());
 
                                 RESULT = new FunctionWithParams(param, prev_params);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -2106,7 +2106,7 @@ FUNCTION_W_PARAMS           ::= FUNCTION_W_PARAMS:prev_params comma id:id two_po
                                 Parameter param = new Parameter(id, param_type, type_type.getSize());
 
                                 RESULT = new FunctionWithParams(param);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -2139,7 +2139,7 @@ FUNCTION_RETURN             ::= inst_return VALUE:value semicolon
                                 }
 
                                 RESULT = new FunctionReturn(value.getVarId(), subType);
-                              }catch(SymbolsTableError e){
+                              }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}

@@ -3,25 +3,26 @@ package sintactico;
 import symbolsTable.Type;
 
 public class Parameter {
-    private String varId;
-    private Type type;
-    private int size;
+    private String idVar;
+    private Type dataType;
+    private int n;
 
-    public Parameter(String varId, Type type, int size) {
-        this.varId = varId;
-        this.type = type;
-        this.size = size;
+    public Parameter(String idVar, Type type, int size) {
+        this.idVar = idVar;
+        this.dataType = type;
+        this.n = size;
     }
 
-    public String getVarId() {
-        return this.varId;
-    }
-
-    public int getSize() {
-        return this.size;
+    public String getidVar() {
+        return this.idVar;
     }
 
     public Type getType() {
-        return this.type;
+        return this.dataType;
     }
+
+    public int getSize() {
+        return this.n;
+    }
+
 }

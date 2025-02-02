@@ -4,15 +4,15 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class SymbolsTableError extends Exception {
+public class SymTabError extends Exception {
     private static BufferedWriter out;
-    private static final String PATH = "src\\output\\symbolTableError.txt";
+    private static final String dir = "src\\output\\symbolTableError.txt";
 
-    public SymbolsTableError(String error) {
+    public SymTabError(String error) {
         super(error);
         try {
             if (out == null) {
-                out = new BufferedWriter(new FileWriter(PATH, true));
+                out = new BufferedWriter(new FileWriter(dir, true));
             }
             out.write(error);
             out.newLine();

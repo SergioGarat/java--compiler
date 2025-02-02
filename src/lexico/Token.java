@@ -2,6 +2,23 @@ package lexico;
 
 public class Token {
 
+    private Tokens identifier;
+    private int col;
+    private int linea;
+    private String lexema;
+
+    public Token(Tokens id, int linea, int col, String lexema) {
+        this.identifier = id;
+        this.linea = linea;
+        this.col = col;
+        this.lexema = lexema;
+    }
+
+    @Override
+    public String toString() {
+        return "\t" + identifier + "[" + lexema + "](" + linea + ":" + col + ")\n\n";
+    }
+
     public enum Tokens {
         ID,
         DIGIT,
@@ -48,28 +65,4 @@ public class Token {
         EOF,
     }
 
-    private Tokens id;
-    private int line;
-    private int column;
-    private String lexeme;
-
-    public Token(Tokens in, int line, int column, String lexeme) {
-        this.id = in;
-        this.line = line;
-        this.column = column;
-        this.lexeme = lexeme;
-    }
-
-    @Override
-    public String toString() {
-
-        String result = "\t" + this.id.toString();
-
-        result += "[" + this.lexeme + "]";
-        result += "(" + this.line + ":" + this.column + ")";
-        result += "\n\n";
-
-
-        return result;
-    }
 }

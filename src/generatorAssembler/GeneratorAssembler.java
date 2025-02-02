@@ -6,7 +6,7 @@ import backend.Var;
 import c3a.GeneratorC3A;
 import c3a.InstructionC3A;
 import c3a.InstructionC3A.Code;
-import errores.SymbolsTableError;
+import errores.SymTabError;
 import symbolsTable.SymbolsTable;
 import symbolsTable.Type;
 import symbolsTable.Type.Tipo;
@@ -75,7 +75,7 @@ public class GeneratorAssembler {
         }
     }
 
-    private void writeGasAssemblerCode(File fileGAS) throws IOException, SymbolsTableError {
+    private void writeGasAssemblerCode(File fileGAS) throws IOException, SymTabError {
         writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileGAS), StandardCharsets.UTF_8));
         headerWrite();
         ArrayList<InstructionC3A> instructions = c3a_g.getAllC3DirInstr();
@@ -141,7 +141,7 @@ public class GeneratorAssembler {
         writePrintBoolFunction();
     }
 
-    public void toAssembly(InstructionC3A instruction) throws SymbolsTableError {
+    public void toAssembly(InstructionC3A instruction) throws SymTabError {
         writeC3A_Comment(instruction);
         switch (instruction.getOpCode()) {
             case skip:
@@ -483,7 +483,7 @@ public class GeneratorAssembler {
         }
     }
 
-    private void pmbInstruction(InstructionC3A instruction) throws SymbolsTableError {
+    private void pmbInstruction(InstructionC3A instruction) throws SymTabError {
         writeLine("push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.");
         writeLine("mov %rsp, %rbp");
         //Declarar parametros del procedimiento como variables.
