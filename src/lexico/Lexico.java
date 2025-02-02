@@ -351,7 +351,7 @@ public class Lexico implements java_cup.runtime.Scanner {
             out.write("Token processing halted due to a syntax or semantic error at line " + line + " and column " + column + ".");
             out.close();
         }catch(Exception e){
-            System.out.println("Error closing Tokens file : " + e);
+            System.out.println("Error closing Tokens file: " + e);
             e.printStackTrace();
         }
     }
@@ -360,7 +360,7 @@ public class Lexico implements java_cup.runtime.Scanner {
         try{
             out.write(token.toString());
         }catch(Exception e){
-            System.out.println("Error writing Tokens : " + e);
+            System.out.println("Error writing Tokens: " + e);
             e.printStackTrace();
         }
     }
