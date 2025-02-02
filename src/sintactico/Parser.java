@@ -16,7 +16,7 @@ import java_cup.runtime.ComplexSymbolFactory.ComplexSymbol;
 import java_cup.runtime.ComplexSymbolFactory.Location;
 import java_cup.runtime.Symbol;
 import lexico.Lexico;
-import symbols.*;
+import core.*;
 import symbolsTable.SymbolsTable;
 import symbolsTable.Type;
 import symbolsTable.Type.Tipo;
