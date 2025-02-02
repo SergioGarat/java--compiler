@@ -41,15 +41,15 @@ public class GeneratorAssembler {
     /**
      * Constructor for GeneratorAssembler
      * @param symbolTable the symbols table
-     * @param backend the backend tables
-     * @param c3a_g the C3A generator
-     * @param filename the output filename
+     * @param backend     the backend tables
+     * @param c3a_g       the C3A generator
+     * @param filename    the output filename
      */
     public GeneratorAssembler(SymbolsTable symbolTable, BackTables backend, GeneratorC3A c3a_g, String filename) {
         this.symbolsTable = symbolTable;
         this.backend = backend;
         this.c3a_g = c3a_g;
-        this.PATH += filename +"\\"+ "AssemblerCode.s";
+        this.PATH += filename + "\\" + "AssemblerCode.s";
         initializeHandlers();
     }
 
@@ -115,47 +115,47 @@ public class GeneratorAssembler {
      * Initializes the handlers for different C3A instructions
      */
     private void initializeHandlers() {
-            // Basic instructions
-            instructionHandlers.put(Code.skip, this::skipInstruction);
-            instructionHandlers.put(Code.rtn, this::returnInstruction);
-            instructionHandlers.put(Code.go_to, i -> writeLine("jmp " + i.getDest()));
+        // Basic instructions
+        instructionHandlers.put(Code.skip, this::skipInstruction);
+        instructionHandlers.put(Code.rtn, this::returnInstruction);
+        instructionHandlers.put(Code.go_to, i -> writeLine("jmp " + i.getDest()));
 
-            // Arithmetic operations
-            instructionHandlers.put(Code.add, i -> calculateSumRes(i, "add"));
-            instructionHandlers.put(Code.sub, i -> calculateSumRes(i, "sub"));
-            instructionHandlers.put(Code.mod, i -> calculateDivision(i, "idiv", 2));
-            instructionHandlers.put(Code.prod, i -> calculateMulu(i, "imul"));
-            instructionHandlers.put(Code.div, i -> calculateDivision(i, "idiv", 1));
+        // Arithmetic operations
+        instructionHandlers.put(Code.add, i -> calculateSumRes(i, "add"));
+        instructionHandlers.put(Code.sub, i -> calculateSumRes(i, "sub"));
+        instructionHandlers.put(Code.mod, i -> calculateDivision(i, "idiv", 2));
+        instructionHandlers.put(Code.prod, i -> calculateMulu(i, "imul"));
+        instructionHandlers.put(Code.div, i -> calculateDivision(i, "idiv", 1));
 
-            // Function handling
-            instructionHandlers.put(Code.call, this::callInstruction);
-            instructionHandlers.put(Code.param, this::paramInstruction);
-            instructionHandlers.put(Code.pmb, this::pmbInstruction);
-            instructionHandlers.put(Code.copy, this::copyInstruction);
+        // Function handling
+        instructionHandlers.put(Code.call, this::callInstruction);
+        instructionHandlers.put(Code.param, this::paramInstruction);
+        instructionHandlers.put(Code.pmb, this::pmbInstruction);
+        instructionHandlers.put(Code.copy, this::copyInstruction);
 
-            // Control flow
-            instructionHandlers.put(Code.jump_cond, this::jumpCondInstruction);
+        // Control flow
+        instructionHandlers.put(Code.jump_cond, this::jumpCondInstruction);
 
-            // Logic operations
-            instructionHandlers.put(Code.and, this::logicalInstruction);
-            instructionHandlers.put(Code.or, this::logicalInstruction);
-            instructionHandlers.put(Code.not, this::unaryInstruction);
-            instructionHandlers.put(Code.neg, this::unaryInstruction);
+        // Logic operations
+        instructionHandlers.put(Code.and, this::logicalInstruction);
+        instructionHandlers.put(Code.or, this::logicalInstruction);
+        instructionHandlers.put(Code.not, this::unaryInstruction);
+        instructionHandlers.put(Code.neg, this::unaryInstruction);
 
-            // Comparisons
-            instructionHandlers.put(Code.LT, i -> substractCMP(i, Code.LT));
-            instructionHandlers.put(Code.LE, i -> substractCMP(i, Code.LE));
-            instructionHandlers.put(Code.EQ, i -> substractCMP(i, Code.EQ));
-            instructionHandlers.put(Code.NE, i -> substractCMP(i, Code.NE));
-            instructionHandlers.put(Code.GE, i -> substractCMP(i, Code.GE));
-            instructionHandlers.put(Code.GT, i -> substractCMP(i, Code.GT));
+        // Comparisons
+        instructionHandlers.put(Code.LT, i -> substractCMP(i, Code.LT));
+        instructionHandlers.put(Code.LE, i -> substractCMP(i, Code.LE));
+        instructionHandlers.put(Code.EQ, i -> substractCMP(i, Code.EQ));
+        instructionHandlers.put(Code.NE, i -> substractCMP(i, Code.NE));
+        instructionHandlers.put(Code.GE, i -> substractCMP(i, Code.GE));
+        instructionHandlers.put(Code.GT, i -> substractCMP(i, Code.GT));
 
-            // I/O operations
-            instructionHandlers.put(Code.read, this::inputInstruction);
-            instructionHandlers.put(Code.print, i -> {
-                HasPrint = true;
-                outputInstruction(i);
-            });
+        // I/O operations
+        instructionHandlers.put(Code.read, this::inputInstruction);
+        instructionHandlers.put(Code.print, i -> {
+            HasPrint = true;
+            outputInstruction(i);
+        });
 
     }
 
@@ -218,7 +218,7 @@ public class GeneratorAssembler {
      * Writes the print boolean function in the assembly program
      */
     private void writePrintBoolFunction() {
-        if(!HasPrint) return;
+        if (!HasPrint) return;
 
         writeLine("print_bool :");
         writeLine("cmpw $0,%di");
@@ -273,6 +273,7 @@ public class GeneratorAssembler {
 
     /**
      * Handles logical instructions (and, or)
+     *
      * @param instruction the C3A instruction
      */
     private void logicalInstruction(InstructionC3A instruction) {
@@ -345,7 +346,7 @@ public class GeneratorAssembler {
     /**
      * Handles arithmetic calculations (sum and subtraction)
      * @param instruction the C3A instruction
-     * @param type the type of arithmetic operation (add or sub)
+     * @param type        the type of arithmetic operation (add or sub)
      */
     private void calculateSumRes(InstructionC3A instruction, String type) {
         String op1 = GetOperand(instruction, 1);
@@ -360,8 +361,8 @@ public class GeneratorAssembler {
     /**
      * Handles division and modulus calculations
      * @param instruction the C3A instruction
-     * @param type the type of division operation (idiv)
-     * @param code the code indicating division (1) or modulus (2)
+     * @param type        the type of division operation (idiv)
+     * @param code        the code indicating division (1) or modulus (2)
      */
     private void calculateDivision(InstructionC3A instruction, String type, int code) {
         String op1 = GetOperand(instruction, 1);
@@ -377,7 +378,7 @@ public class GeneratorAssembler {
     /**
      * Checks the status of the division operation
      * @param instruction the C3A instruction
-     * @param code the code indicating division (1) or modulus (2)
+     * @param code        the code indicating division (1) or modulus (2)
      */
     private void checkDivisionStatus(InstructionC3A instruction, int code) {
         if (code == 1) {
@@ -392,7 +393,7 @@ public class GeneratorAssembler {
     /**
      * Handles multiplication calculations
      * @param instruction the C3A instruction
-     * @param type the type of multiplication operation (imul)
+     * @param type        the type of multiplication operation (imul)
      */
     private void calculateMulu(InstructionC3A instruction, String type) {
         String op1 = GetOperand(instruction, 1);
@@ -406,11 +407,11 @@ public class GeneratorAssembler {
     /**
      * Gets the operand for the instruction
      * @param instruction the C3A instruction
-     * @param op the operand number (1 or 2)
+     * @param op          the operand number (1 or 2)
      * @return the operand as a string
      */
-    private String GetOperand(InstructionC3A instruction, int op){
-        if(op == 1){
+    private String GetOperand(InstructionC3A instruction, int op) {
+        if (op == 1) {
             return InstructionC3A.opIsInt(instruction.getOp1()) ? "$" + instruction.getOp1() : backend.getVarAssembler(instruction.getOp1());
         } else if (op == 2) {
             return InstructionC3A.opIsInt(instruction.getOp2()) ? "$" + instruction.getOp2() : backend.getVarAssembler(instruction.getOp2());
@@ -449,7 +450,7 @@ public class GeneratorAssembler {
     /**
      * Handles comparison instructions
      * @param instruction the C3A instruction
-     * @param type the type of comparison (LT, LE, EQ, NE, GE, GT)
+     * @param type        the type of comparison (LT, LE, EQ, NE, GE, GT)
      */
     private void substractCMP(InstructionC3A instruction, Code type) {
         boolean isNumCmp;
@@ -543,7 +544,7 @@ public class GeneratorAssembler {
         Type type = null;
         try {
             type = symbolsTable.get(funId);
-        }catch (SymTabError e){
+        } catch (SymTabError e) {
             System.out.println("ERROR: " + e.getMessage());
         }
 
@@ -551,7 +552,6 @@ public class GeneratorAssembler {
             throw new Error("Invalid function");
         }
 
-        //save space for local variables
         Proc proc = backend.getProc(backFunId);
 
         int procsize = proc.getMemorySize();
@@ -595,7 +595,8 @@ public class GeneratorAssembler {
     /**
      * Configuration for comparison functions. Helper record
      */
-    private record CMPConfig(String jumpInstruction, String reg1, String reg2) {}
+    private record CMPConfig(String jumpInstruction, String reg1, String reg2) {
+    }
 
     /**
      * Map of comparison functions to their parameters.

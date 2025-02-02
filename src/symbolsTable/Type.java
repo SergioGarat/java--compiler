@@ -8,6 +8,7 @@ public class Type {
         TS_BOOLEAN,
         TS_NUMBER,
         TS_STRING,
+        TS_TUPLE,
         TS_NULL;
 
         public String toString() {
@@ -16,7 +17,7 @@ public class Type {
                 case TS_NULL -> "null";
                 case TS_NUMBER -> "number";
                 case TS_STRING -> "string";
-                default -> "";
+                case TS_TUPLE -> "tuple";
             };
         }
     }

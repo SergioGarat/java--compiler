@@ -158,8 +158,10 @@ DOT             = (".")
 
 LPAREN          = ("(")
 RPAREN          = (")")
-LBRACKET        = ("{")
-RBRACKET        = ("}")
+LBRACE          = ("{")
+RBRACE          = ("}")
+LBRACKET        = ("[")
+RBRACKET        = ("]")
 
 %%
 {BLANK}              {/*Ignore*/}
@@ -229,6 +231,16 @@ RBRACKET        = ("}")
                         Token token = new Token(Tokens.RPAREN,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.RPAREN.name(),ParserSym.rparen);
+                     }
+{LBRACE}             {
+                        Token token = new Token(Tokens.LBRACE,yyline,yycolumn, yytext());
+                        writeToken(token);
+                        return symbol(Tokens.LBRACE.name(),ParserSym.lbrace);
+                     }
+{RBRACE}             {
+                        Token token = new Token(Tokens.RBRACE,yyline,yycolumn, yytext());
+                        writeToken(token);
+                        return symbol(Tokens.RBRACE.name(),ParserSym.rbrace);
                      }
 {LBRACKET}           {
                         Token token = new Token(Tokens.LBRACKET,yyline,yycolumn, yytext());

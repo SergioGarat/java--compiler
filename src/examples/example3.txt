@@ -8,6 +8,8 @@ function main() {
 
     struct { id1 : number ; id2 : boolean ; id3 : number} persona ;
 
+    p: persona := [1, true, 2];
+
     entrada : number := read();
     print(entrada);
     print("HE SALIDO");

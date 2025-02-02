@@ -5,18 +5,18 @@ T27: .asciz "FACTORIAL "
 T28: .asciz "! :"
 T30: .asciz "\n"
 T31: .asciz "Inserta un número: "
-T34: .asciz "\n"
-T33: .asciz "Número insertado: "
-T35: .asciz "Inserta un número: "
+T34: .asciz "Inserta un número para calcular la suma recursiva: "
+T33: .asciz "\n"
+T36: .asciz "Número insertado: "
 T38: .asciz "RECURSIVE ADDING "
 T37: .asciz "\n"
 T39: .asciz " :"
 T41: .asciz "\n"
-T54: .asciz "He entrado: "
-T53: .asciz "\n"
+T52: .asciz "He entrado: "
+T51: .asciz "\n"
+T53: .asciz "\nHE SALIDO\n"
 T12: .asciz "\n"
 T11: .asciz "NUM: "
-T55: .asciz "\nHE SALIDO\n"
 T16: .asciz "\n"
 T15: .asciz "Invalid number: "
 format_int: .asciz "%d"
@@ -187,15 +187,15 @@ mov $T12, %rdi
 xor %rax, %rax
 call printf
 
-# T13 = 7
-movl $7, %edi
+# T13 = 0
+movl $0, %edi
 movl %edi, -48(%rbp)
 
-# T14 = num_1_1 == T13
+# T14 = num_1_1 < T13
 movl 16(%rbp), %edi
 movl -48(%rbp), %esi
 xor %rax, %rax # clean return value register
-call CMP_EQ_NUM
+call CMP_LT
 movw %ax,-64(%rbp) # get return value
 
 # if T14 == true goto ETIQ_3
@@ -329,7 +329,7 @@ main:
 # pmb PROC_main
 push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.
 mov %rsp, %rbp
-sub $400, %rsp
+sub $352, %rsp
 
 # T25 = 5
 movl $5, %edi
@@ -404,42 +404,42 @@ mov $format_int, %rdi
 leaq -96(%rbp), %rsi
 call scanf
 
-# numZ_3_2 = T32
-movl -96(%rbp), %edi
-movl %edi, -112(%rbp)
+# print T32
+mov $format_int, %rdi
+xor %rsi, %rsi
+movl -96(%rbp), %esi
+xor %rax, %rax
+call printf
 
-# T33 = "Número insertado: "
+# T33 = "\n"
 # print T33
 mov $T33, %rdi
 xor %rax, %rax
 call printf
 
-# print numZ_3_2
-mov $format_int, %rdi
-xor %rsi, %rsi
-movl -112(%rbp), %esi
-xor %rax, %rax
-call printf
-
-# T34 = "\n"
+# T34 = "Inserta un número para calcular la suma recursiva: "
 # print T34
 mov $T34, %rdi
 xor %rax, %rax
 call printf
 
-# T35 = "Inserta un número: "
-# print T35
-mov $T35, %rdi
+# T35 = read
+xor %rax, %rax
+mov $format_int, %rdi
+leaq -112(%rbp), %rsi
+call scanf
+
+# numZ_3_2 = T35
+movl -112(%rbp), %edi
+movl %edi, -128(%rbp)
+
+# T36 = "Número insertado: "
+# print T36
+mov $T36, %rdi
 xor %rax, %rax
 call printf
 
-# T36 = read
-xor %rax, %rax
-mov $format_int, %rdi
-leaq -128(%rbp), %rsi
-call scanf
-
-# print T36
+# print numZ_3_2
 mov $format_int, %rdi
 xor %rsi, %rsi
 movl -128(%rbp), %esi
@@ -458,10 +458,10 @@ mov $T38, %rdi
 xor %rax, %rax
 call printf
 
-# print numB_3_2
+# print numZ_3_2
 mov $format_int, %rdi
 xor %rsi, %rsi
-movl -64(%rbp), %esi
+movl -128(%rbp), %esi
 xor %rax, %rax
 call printf
 
@@ -471,8 +471,8 @@ mov $T39, %rdi
 xor %rax, %rax
 call printf
 
-# param PROC_recursiveAdding(numB_3_2)
-movslq -64(%rbp), %rdx
+# param PROC_recursiveAdding(numZ_3_2)
+movslq -128(%rbp), %rdx
 push %rdx
 
 # call PROC_recursiveAdding
@@ -521,14 +521,6 @@ movl %edi, -224(%rbp)
 movl -224(%rbp), %edi
 movl %edi, -240(%rbp)
 
-# T45 = 0
-movl $0, %edi
-movl %edi, -256(%rbp)
-
-# numF_3_2 = T45
-movl -256(%rbp), %edi
-movl %edi, -272(%rbp)
-
 # param PROC_sumaDosNumeros(numC_3_2)
 movslq -176(%rbp), %rdx
 push %rdx
@@ -544,69 +536,40 @@ call PROC_sumaDosNumeros
 pop %rdx
 pop %rdx
 
-# T46 = return PROC_sumaDosNumeros
-movl %eax, -288(%rbp)
+# T45 = return PROC_sumaDosNumeros
+movl %eax, -256(%rbp)
 
-# print T46
+# print T45
 mov $format_int, %rdi
 xor %rsi, %rsi
-movl -288(%rbp), %esi
+movl -256(%rbp), %esi
 xor %rax, %rax
 call printf
 
-# param PROC_sumaDosNumeros(numC_3_2)
-movslq -176(%rbp), %rdx
-push %rdx
-
-# param PROC_sumaDosNumeros(numE_3_2)
-movslq -240(%rbp), %rdx
-push %rdx
-
-# call PROC_sumaDosNumeros
-xor %rax, %rax   # clean return register
-call PROC_sumaDosNumeros
-# pop all params
-pop %rdx
-pop %rdx
-
-# T47 = return PROC_sumaDosNumeros
-movl %eax, -304(%rbp)
-
-# numF_3_2 = T47
-movl -304(%rbp), %edi
+# T46 = 0
+movl $0, %edi
 movl %edi, -272(%rbp)
 
-# print numF_3_2
-mov $format_int, %rdi
-xor %rsi, %rsi
-movl -272(%rbp), %esi
-xor %rax, %rax
-call printf
-
-# T48 = 0
-movl $0, %edi
-movl %edi, -320(%rbp)
-
-# i_3_2 = T48
-movl -320(%rbp), %edi
-movl %edi, -336(%rbp)
+# i_3_2 = T46
+movl -272(%rbp), %edi
+movl %edi, -288(%rbp)
 
 # ETIQ_9: skip
 ETIQ_9:
 
-# T49 = 3
+# T47 = 3
 movl $3, %edi
-movl %edi, -352(%rbp)
+movl %edi, -304(%rbp)
 
-# T50 = i_3_2 < T49
-movl -336(%rbp), %edi
-movl -352(%rbp), %esi
+# T48 = i_3_2 < T47
+movl -288(%rbp), %edi
+movl -304(%rbp), %esi
 xor %rax, %rax # clean return value register
 call CMP_LT
-movw %ax,-368(%rbp) # get return value
+movw %ax,-320(%rbp) # get return value
 
-# if T50 == true goto ETIQ_10
-cmpw $1,-368(%rbp)
+# if T48 == true goto ETIQ_10
+cmpw $1,-320(%rbp)
 je ETIQ_10
 
 # goto ETIQ_11
@@ -615,19 +578,19 @@ jmp ETIQ_11
 # ETIQ_12: skip
 ETIQ_12:
 
-# T51 = 1
+# T49 = 1
 movl $1, %edi
-movl %edi, -384(%rbp)
-
-# T52 = i_3_2 + T51
-movl -336(%rbp), %edi
-movl -384(%rbp), %eax
-addl %eax, %edi
-movl %edi, -400(%rbp)
-
-# i_3_2 = T52
-movl -400(%rbp), %edi
 movl %edi, -336(%rbp)
+
+# T50 = i_3_2 + T49
+movl -288(%rbp), %edi
+movl -336(%rbp), %eax
+addl %eax, %edi
+movl %edi, -352(%rbp)
+
+# i_3_2 = T50
+movl -352(%rbp), %edi
+movl %edi, -288(%rbp)
 
 # goto ETIQ_9
 jmp ETIQ_9
@@ -635,22 +598,22 @@ jmp ETIQ_9
 # ETIQ_10: skip
 ETIQ_10:
 
-# T53 = "\n"
-# print T53
-mov $T53, %rdi
+# T51 = "\n"
+# print T51
+mov $T51, %rdi
 xor %rax, %rax
 call printf
 
-# T54 = "He entrado: "
-# print T54
-mov $T54, %rdi
+# T52 = "He entrado: "
+# print T52
+mov $T52, %rdi
 xor %rax, %rax
 call printf
 
 # print i_3_2
 mov $format_int, %rdi
 xor %rsi, %rsi
-movl -336(%rbp), %esi
+movl -288(%rbp), %esi
 xor %rax, %rax
 call printf
 
@@ -660,15 +623,15 @@ jmp ETIQ_12
 # ETIQ_11: skip
 ETIQ_11:
 
-# T55 = "\nHE SALIDO\n"
-# print T55
-mov $T55, %rdi
+# T53 = "\nHE SALIDO\n"
+# print T53
+mov $T53, %rdi
 xor %rax, %rax
 call printf
 
 # rtn
 # Delete all reserved space
-addq $400, %rsp
+addq $352, %rsp
 leave
 ret
 

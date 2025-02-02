@@ -44,33 +44,29 @@ function main() {
 	print("\n");
 
     print("Inserta un número: ");
-	numZ : number := read();
-	print("Número insertado: ");
-	print(numZ);
-	print("\n");
-
-
-    print("Inserta un número: ");
 	print(read());
 	print("\n");
 
 
 	//Llamada a la función de suma recursiva//
 
+	print("Inserta un número para calcular la suma recursiva: ");
+    numZ : number := read();
+    print("Número insertado: ");
+    print(numZ);
+    print("\n");
+
 	print("RECURSIVE ADDING ");
-	print(numB);
+	print(numZ);
 	print(" :");
-	print(recursiveAdding(numB));
+	print(recursiveAdding(numZ));
 	print("\n");
 
 	numC : number := 100;
 	numD : number := 1200;
 	numE : number := 35000;
-	numF : number := 0;
 
 	print(sumaDosNumeros(numC, numD));
-    numF := sumaDosNumeros(numC, numE);
-    print(numF);
 
     // Comprobación del funcionamiento del bucle for//
 
