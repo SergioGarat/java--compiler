@@ -129,7 +129,7 @@ parser code
 /******Declaració de simbols terminals*********/
 
 terminal String id, number, string, bool, struct, op_relational, op_logical, op_logical_not, op_arithmetical_c, op_arithmetical_b;
-terminal        op_assig, IF, inst_elif, ELSE,
+terminal        op_assig, IF, inst_elif, inst_else,
                 inst_while, inst_function, inst_return, constant, inst_for,
                 instr_read, instr_print, lparen, rparen, lbracket, rbracket, semicolon,
                 comma, two_points, dot, inst_main;

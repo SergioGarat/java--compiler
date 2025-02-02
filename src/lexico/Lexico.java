@@ -1009,9 +1009,9 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 72: break;
           case 32:
-            { Token token = new Token(Tokens.ELSE,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.INST_ELSE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.ELSE.name(), ParserSym.ELSE);
+                        return symbol(Tokens.INST_ELSE.name(), ParserSym.inst_else);
             }
             // fall through
           case 73: break;
