@@ -14,13 +14,15 @@ import symbolsTable.Type.TipoSubyacente;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.*;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// IMPORTANTE: El lenguaje ensablador escogido es
-// GAS - Gnu ASsembler
+
+/**
+ * GAS - Gnu Assembler constructor
+ */
 public class GeneratorAssembler {
 
     private BufferedWriter writer;
@@ -31,40 +33,37 @@ public class GeneratorAssembler {
     private BackTables backend;
 
     private GeneratorC3A c3a_g;
-    // List of instructions
-    private ArrayList<String> assemblyInstructions;
-    private HashSet<Code> comparers = new HashSet<>();
+    private StringBuilder assemblyBuilder = new StringBuilder();
+    private final EnumMap<Code, Consumer<InstructionC3A>> instructionHandlers = new EnumMap<>(Code.class);
+    private Set<String> requiredComparers = new HashSet<>();
     private Boolean HasPrint = false;
 
-    public GeneratorAssembler(SymbolsTable symbolTable, BackTables backend, GeneratorC3A c3a_g) {
-        //this.writer = writer;
-        this.symbolsTable = symbolTable;
-        this.backend = backend;
-        this.c3a_g = c3a_g;
-        this.PATH += "AssemblerCode.s";
-        assemblyInstructions = new ArrayList<String>();
-    }
-
+    /**
+     * Constructor for GeneratorAssembler
+     * @param symbolTable the symbols table
+     * @param backend the backend tables
+     * @param c3a_g the C3A generator
+     * @param filename the output filename
+     */
     public GeneratorAssembler(SymbolsTable symbolTable, BackTables backend, GeneratorC3A c3a_g, String filename) {
-        //this.writer = writer;
         this.symbolsTable = symbolTable;
         this.backend = backend;
         this.c3a_g = c3a_g;
         this.PATH += filename +"\\"+ "AssemblerCode.s";
-        assemblyInstructions = new ArrayList<String>();
+        initializeHandlers();
     }
 
+    /**
+     * Generates the assembler code and writes it to a file
+     */
     public void generateAssembler() {
         try {
-
-            File fileGAS = new File(PATH);
-            if (!fileGAS.exists()) {
-                fileGAS.createNewFile();
+            File GASfile = new File(PATH);
+            if (!GASfile.exists()) {
+                GASfile.createNewFile();
             }
+            writeToOutput(GASfile);
 
-            writeGasAssemblerCode(fileGAS);
-
-            assemblyInstructions.clear();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GeneratorAssembler.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ERROR: CANNOT WRITE IN FILE");
@@ -75,38 +74,133 @@ public class GeneratorAssembler {
         }
     }
 
-    private void writeGasAssemblerCode(File fileGAS) throws IOException, SymTabError {
+    /**
+     * Writes the generated assembler code to the output file
+     * @param fileGAS the output file
+     * @throws IOException if an I/O error occurs
+     * @throws SymTabError if a symbol table error occurs
+     */
+    private void writeToOutput(File fileGAS) throws IOException, SymTabError {
         writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileGAS), StandardCharsets.UTF_8));
+
         headerWrite();
-        ArrayList<InstructionC3A> instructions = c3a_g.getAllC3DirInstr();
-        for (InstructionC3A ins : instructions) {
+        // Convert from C3A to Assembly
+        for (InstructionC3A ins : c3a_g.getAllC3DirInstr()) {
             toAssembly(ins);
         }
         footerWrite();
-        for (String inst : assemblyInstructions) {
-            writer.write(inst);
-        }
+        // Write to file
+        writer.write(assemblyBuilder.toString());
         writer.close();
     }
 
+    /**
+     * Writes a line to the assembly builder
+     * @param input the line to write
+     */
     private void writeLine(String input) {
-        assemblyInstructions.add(input + "\n");
+        assemblyBuilder.append(input).append('\n');
     }
 
-    public void writeC3A_Comment(InstructionC3A instruction) {
-        assemblyInstructions.add("# " + instruction.toString().replace("\n", "\n# ") + "\n");
+    /**
+     * Adds a comment line to the assembly builder
+     * @param instruction the instruction to comment
+     */
+    public void commentLine(InstructionC3A instruction) {
+        assemblyBuilder.append("# ").append(instruction.toString().replace("\n", "\n# ")).append('\n');
     }
 
-    // Generates the header of program
+
+    /**
+     * Initializes the handlers for different C3A instructions
+     */
+    private void initializeHandlers() {
+            // Basic instructions
+            instructionHandlers.put(Code.skip, this::skipInstruction);
+            instructionHandlers.put(Code.rtn, this::returnInstruction);
+            instructionHandlers.put(Code.go_to, i -> writeLine("jmp " + i.getDest()));
+
+            // Arithmetic operations
+            instructionHandlers.put(Code.add, i -> calculateSumRes(i, "add"));
+            instructionHandlers.put(Code.sub, i -> calculateSumRes(i, "sub"));
+            instructionHandlers.put(Code.mod, i -> calculateDivision(i, "idiv", 2));
+            instructionHandlers.put(Code.prod, i -> calculateMulu(i, "imul"));
+            instructionHandlers.put(Code.div, i -> calculateDivision(i, "idiv", 1));
+
+            // Function handling
+            instructionHandlers.put(Code.call, this::callInstruction);
+            instructionHandlers.put(Code.param, this::paramInstruction);
+            instructionHandlers.put(Code.pmb, this::pmbInstruction);
+            instructionHandlers.put(Code.copy, this::copyInstruction);
+
+            // Control flow
+            instructionHandlers.put(Code.jump_cond, this::jumpCondInstruction);
+
+            // Logic operations
+            instructionHandlers.put(Code.and, this::logicalInstruction);
+            instructionHandlers.put(Code.or, this::logicalInstruction);
+            instructionHandlers.put(Code.not, this::unaryInstruction);
+            instructionHandlers.put(Code.neg, this::unaryInstruction);
+
+            // Comparisons
+            instructionHandlers.put(Code.LT, i -> substractCMP(i, Code.LT));
+            instructionHandlers.put(Code.LE, i -> substractCMP(i, Code.LE));
+            instructionHandlers.put(Code.EQ, i -> substractCMP(i, Code.EQ));
+            instructionHandlers.put(Code.NE, i -> substractCMP(i, Code.NE));
+            instructionHandlers.put(Code.GE, i -> substractCMP(i, Code.GE));
+            instructionHandlers.put(Code.GT, i -> substractCMP(i, Code.GT));
+
+            // I/O operations
+            instructionHandlers.put(Code.read, this::inputInstruction);
+            instructionHandlers.put(Code.print, i -> {
+                HasPrint = true;
+                outputInstruction(i);
+            });
+
+    }
+
+    /**
+     * Converts a C3A instruction to assembly
+     * @param instruction the C3A instruction
+     * @throws SymTabError if a symbol table error occurs
+     */
+    public void toAssembly(InstructionC3A instruction) throws SymTabError {
+        commentLine(instruction);
+        Consumer<InstructionC3A> handler = instructionHandlers.get(instruction.getOpCode());
+        if (handler != null) {
+            handler.accept(instruction);
+        } else {
+            throw new SymTabError("No handler found for instruction: " + instruction.getOpCode());
+        }
+
+        writeLine("");
+    }
+
+    /**
+     * Generates the header of the assembly program
+     */
     private void headerWrite() {
         writeLine(".global main");
-        /* C functions declaration */
+        // C functions declaration
         writeLine(".extern printf, scanf");
         writeLine(".data");
         declareStringVariables();
         writeLine(".text");
     }
 
+    /**
+     * Generates the footer of the assembly program
+     */
+    private void footerWrite() {
+        writeLine("# exit");
+        writeLine("\n# auxiliar functions");
+        writeCMPFunctions();
+        writePrintBoolFunction();
+    }
+
+    /**
+     * Declares string variables in the assembly program
+     */
     private void declareStringVariables() {
         // Only declare as global string values
         for (Var var : backend.getAllVars()) {
@@ -120,130 +214,50 @@ public class GeneratorAssembler {
         writeLine("false_label : .asciz \"false\"");
     }
 
+    /**
+     * Writes the print boolean function in the assembly program
+     */
     private void writePrintBoolFunction() {
-        if(HasPrint) {
-            writeLine("print_bool :");
-            writeLine("cmpw $0,%di");
-            writeLine("je print_false");
-            writeLine("mov $true_label, %rdi");
-            writeLine("jmp print_bool_val");
-            writeLine("print_false : mov $false_label, %rdi");
-            writeLine("print_bool_val : xor %rax, %rax");
-            writeLine("call printf");
-            writeLine("ret");
-        }
+        if(!HasPrint) return;
+
+        writeLine("print_bool :");
+        writeLine("cmpw $0,%di");
+        writeLine("je print_false");
+        writeLine("mov $true_label, %rdi");
+        writeLine("jmp print_bool_val");
+        writeLine("print_false : mov $false_label, %rdi");
+        writeLine("print_bool_val : xor %rax, %rax");
+        writeLine("call printf");
+        writeLine("ret");
+
     }
 
-    private void footerWrite() {
-        writeLine("# exit");
-        writeLine("\n# auxiliar functions");
-        writeCMPFunctions();
-        writePrintBoolFunction();
-    }
-
-    public void toAssembly(InstructionC3A instruction) throws SymTabError {
-        writeC3A_Comment(instruction);
-        switch (instruction.getOpCode()) {
-            case skip:
-                skipInstruction(instruction);
-                break;
-            case rtn:
-                returnInstruction(instruction);
-                break;
-            // "jump X place"
-            case go_to:
-                writeLine("jmp " + instruction.getDest());
-                break;
-            // Arithmetical expressions
-            // Sume
-            case add:
-                calculateSumRes(instruction, "add");
-                break;
-            // Substract
-            case sub:
-                calculateSumRes(instruction, "sub");
-                break;
-            // Modul
-            case mod:
-                calculateDivision(instruction, "idiv", 2);
-                break;
-            // Product
-            case prod:
-                calculateMulu(instruction, "imul");
-                break;
-            // Division
-            case div:
-                calculateDivision(instruction, "idiv", 1);
-                break;
-            // Funtion related expressions
-            case call:
-                callInstruction(instruction);
-                break;
-            case param:
-                paramInstruction(instruction);
-                break;
-            // Preamble expression
-            case pmb:
-                pmbInstruction(instruction);
-                break;
-            // Copy expression
-            case copy:
-                copyInstruction(instruction);
-                break;
-
-            // In order to obtain which branch is we are using an auxiliar method
-            // called substract Jump
-            case jump_cond:
-                jumpCondInstruction(instruction);
-                break;
-            // Lower than
-            case LT:
-                // Lower/equals
-            case LE:
-                // Equals
-            case EQ:
-                // Negative
-            case NE:
-                // Greater/equals
-            case GE:
-                // Greater
-            case GT:
-                substractCMP(instruction, instruction.getOpCode());
-                break;
-            case and:
-            case or:
-                logicalInstruction(instruction);
-                break;
-            case not:
-            case neg:
-                unaryInstruction(instruction);
-                break;
-            case read:
-                inputInstruction(instruction);
-                break;
-            case print:
-                HasPrint = true;
-                outputInstruction(instruction);
-                break;
-            default:
-                break;
-        }
-        writeLine("");
-    }
-
+    /**
+     * Handles the conditional jump instruction
+     * @param instruction the C3A instruction
+     */
     private void jumpCondInstruction(InstructionC3A instruction) {
-        writeLine("cmpw $1," + getVarAssembler(instruction.getOp1()));
+
+        writeLine("cmpw $1," + backend.getVarAssembler(instruction.getOp1()));
         writeLine("je " + instruction.getDest());
     }
 
+    /**
+     * Handles the input instruction
+     * @param instruction the C3A instruction
+     */
     private void inputInstruction(InstructionC3A instruction) {
-        String dest = getVarAssembler(instruction.getDest());
+        String dest = backend.getVarAssembler(instruction.getDest());
         writeLine("xor %rax, %rax");
         writeLine("mov $format_int, %rdi");
         writeLine("leaq " + dest + ", %rsi");
         writeLine("call scanf");
     }
 
+    /**
+     * Handles unary instructions (not, neg)
+     * @param instruction the C3A instruction
+     */
     private void unaryInstruction(InstructionC3A instruction) {
         Var variable = backend.getVar(instruction.getOp1());
         String suffix = "l";
@@ -254,24 +268,32 @@ public class GeneratorAssembler {
         }
         writeLine("mov" + suffix + " " + variable.getDirection() + ", " + register);
         writeLine(instruction.getOpCode() + suffix + " " + register);
-        writeLine("mov" + suffix + " " + register + ", " + getVarAssembler(instruction.getDest()));
+        writeLine("mov" + suffix + " " + register + ", " + backend.getVarAssembler(instruction.getDest()));
     }
 
+    /**
+     * Handles logical instructions (and, or)
+     * @param instruction the C3A instruction
+     */
     private void logicalInstruction(InstructionC3A instruction) {
         // For sure that are boolean values
         // AND or OR
-        writeLine("movw " + getVarAssembler(instruction.getOp1()) + ", %di");
-        writeLine("movw " + getVarAssembler(instruction.getOp2()) + ", %ax");
+        writeLine("movw " + backend.getVarAssembler(instruction.getOp1()) + ", %di");
+        writeLine("movw " + backend.getVarAssembler(instruction.getOp2()) + ", %ax");
         writeLine(instruction.getOpCode() + "w" + " %ax, %di");
-        writeLine("movw %di, " + getVarAssembler(instruction.getDest()));
+        writeLine("movw %di, " + backend.getVarAssembler(instruction.getDest()));
     }
 
+    /**
+     * Handles the output instruction
+     * @param instruction the C3A instruction
+     */
     private void outputInstruction(InstructionC3A instruction) {
         /* when we call output, op1 stores type of dest in string format */
         if (instruction.getOp1().equals(Type.TipoSubyacente.TS_NUMBER.toString())) {
             writeLine("mov $format_int, %rdi");
             writeLine("xor %rsi, %rsi");
-            writeLine("movl " + getVarAssembler(instruction.getDest()) + ", %esi");
+            writeLine("movl " + backend.getVarAssembler(instruction.getDest()) + ", %esi");
             writeLine("xor %rax, %rax");
             writeLine("call printf");
         }
@@ -281,17 +303,23 @@ public class GeneratorAssembler {
             writeLine("call printf");
         }
         if (instruction.getOp1().equals(Type.TipoSubyacente.TS_BOOLEAN.toString())) {
-            writeLine("movw " + getVarAssembler(instruction.getDest()) + ", %di");
+            writeLine("movw " + backend.getVarAssembler(instruction.getDest()) + ", %di");
             writeLine("call print_bool");
         }
     }
 
-    // Auxiliar method for the skip Instruction
+    /**
+     * Handles the skip instruction
+     * @param instruction the C3A instruction
+     */
     private void skipInstruction(InstructionC3A instruction) {
-        writeLine(instruction.getDest() + ":");
+        writeLine(instruction.getDest() + ':');
     }
 
-    // Auxiliar method for return Instruction
+    /**
+     * Handles the return instruction
+     * @param instruction the C3A instruction
+     */
     private void returnInstruction(InstructionC3A instruction) {
         // is function with return value, op1 register that stores return value
         if (instruction.getOp1() != null) {
@@ -314,32 +342,28 @@ public class GeneratorAssembler {
         writeLine("ret");
     }
 
-    // Auxiliar method which will be helping with the arithmetical calculations (sum and rest)
+    /**
+     * Handles arithmetic calculations (sum and subtraction)
+     * @param instruction the C3A instruction
+     * @param type the type of arithmetic operation (add or sub)
+     */
     private void calculateSumRes(InstructionC3A instruction, String type) {
-        /*
-        boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
-        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
-        String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
-        String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
-        */
-
         String op1 = GetOperand(instruction, 1);
         String op2 = GetOperand(instruction, 2);
         // For sure that are
         writeLine("movl " + op1 + ", %edi");
         writeLine("movl " + op2 + ", %eax");
         writeLine(type + "l" + " %eax, %edi");
-        writeLine("movl %edi, " + getVarAssembler(instruction.getDest()));
+        writeLine("movl %edi, " + backend.getVarAssembler(instruction.getDest()));
     }
 
-    // Auxiliar method which will help with the / and % operations
+    /**
+     * Handles division and modulus calculations
+     * @param instruction the C3A instruction
+     * @param type the type of division operation (idiv)
+     * @param code the code indicating division (1) or modulus (2)
+     */
     private void calculateDivision(InstructionC3A instruction, String type, int code) {
-        /*
-        boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
-        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
-        String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
-        String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
-*/
         String op1 = GetOperand(instruction, 1);
         String op2 = GetOperand(instruction, 2);
         writeLine("movl " + op1 + ", %eax");
@@ -350,47 +374,54 @@ public class GeneratorAssembler {
     }
 
 
-    // Auxiliar method to caculate if the instruction is a division or a modulus
+    /**
+     * Checks the status of the division operation
+     * @param instruction the C3A instruction
+     * @param code the code indicating division (1) or modulus (2)
+     */
     private void checkDivisionStatus(InstructionC3A instruction, int code) {
         if (code == 1) {
             //Division
-            writeLine("movl %eax, " + getVarAssembler(instruction.getDest()));
+            writeLine("movl %eax, " + backend.getVarAssembler(instruction.getDest()));
         } else if (code == 2) {
             //modulus
-            writeLine("movl %edx, " + getVarAssembler(instruction.getDest()));
+            writeLine("movl %edx, " + backend.getVarAssembler(instruction.getDest()));
         }
     }
 
-    // Mulu calculation
+    /**
+     * Handles multiplication calculations
+     * @param instruction the C3A instruction
+     * @param type the type of multiplication operation (imul)
+     */
     private void calculateMulu(InstructionC3A instruction, String type) {
-        /*
-        boolean op1Lit = InstructionC3A.opIsInt(instruction.getOp1());
-        boolean op2Lit = InstructionC3A.opIsInt(instruction.getOp2());
-        String op1 = op1Lit ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
-        String op2 = op2Lit ? "$" + instruction.getOp2() : getVarAssembler(instruction.getOp2());
-        */
-
         String op1 = GetOperand(instruction, 1);
         String op2 = GetOperand(instruction, 2);
         writeLine("movl " + op1 + ", " + "%edi");
         writeLine("movl " + op2 + ", " + "%eax");
         writeLine(type + "l" + " %eax" + ", %edi");
-        writeLine("movl %edi, " + getVarAssembler(instruction.getDest()));
+        writeLine("movl %edi, " + backend.getVarAssembler(instruction.getDest()));
     }
 
-
+    /**
+     * Gets the operand for the instruction
+     * @param instruction the C3A instruction
+     * @param op the operand number (1 or 2)
+     * @return the operand as a string
+     */
     private String GetOperand(InstructionC3A instruction, int op){
-
         if(op == 1){
-            return InstructionC3A.opIsInt(instruction.getOp1()) ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
+            return InstructionC3A.opIsInt(instruction.getOp1()) ? "$" + instruction.getOp1() : backend.getVarAssembler(instruction.getOp1());
         } else if (op == 2) {
-
-            return InstructionC3A.opIsInt(instruction.getOp1()) ? "$" + instruction.getOp1() : getVarAssembler(instruction.getOp1());
+            return InstructionC3A.opIsInt(instruction.getOp2()) ? "$" + instruction.getOp2() : backend.getVarAssembler(instruction.getOp2());
         }
         return "";
     }
 
-    // Call Instruction
+    /**
+     * Handles the call instruction
+     * @param instruction the C3A instruction
+     */
     private void callInstruction(InstructionC3A instruction) {
         writeLine("xor %rax, %rax   # clean return register");
         writeLine("call " + instruction.getDest());
@@ -401,6 +432,10 @@ public class GeneratorAssembler {
         }
     }
 
+    /**
+     * Handles the parameter instruction
+     * @param instruction the C3A instruction
+     */
     private void paramInstruction(InstructionC3A instruction) {
         Var variable = backend.getVar(instruction.getOp1());
         String code = "movslq";
@@ -411,7 +446,11 @@ public class GeneratorAssembler {
         writeLine("push %rdx");
     }
 
-    // Auxiliar method which indicates what kind of jump are we analyzing
+    /**
+     * Handles comparison instructions
+     * @param instruction the C3A instruction
+     * @param type the type of comparison (LT, LE, EQ, NE, GE, GT)
+     */
     private void substractCMP(InstructionC3A instruction, Code type) {
         boolean isNumCmp;
         if (InstructionC3A.opIsInt(instruction.getOp1()) || InstructionC3A.opIsInt(instruction.getOp2())) {
@@ -431,22 +470,27 @@ public class GeneratorAssembler {
             register1 = "%di";
             register2 = "%si";
         }
-        writeLine("mov" + suffix + " " + checkLiteral(instruction.getOp2()) + ", " + register1);
-        writeLine("mov" + suffix + " " + checkLiteral(instruction.getOp1()) + ", " + register2);
+        writeLine("mov" + suffix + " " + checkLiteral(instruction.getOp1()) + ", " + register1);
+        writeLine("mov" + suffix + " " + checkLiteral(instruction.getOp2()) + ", " + register2);
         writeLine("xor %rax, %rax # clean return value register");
         String functionLabel = getCMPFunctionLabel(type, isNumCmp);
         writeLine("call " + functionLabel);
-        writeLine("movw %ax," + getVarAssembler(instruction.getDest()) + " # get return value");
+        writeLine("movw %ax," + backend.getVarAssembler(instruction.getDest()) + " # get return value");
     }
 
+    /**
+     * Checks if the operand is a literal (integer or boolean) and returns its assembly representation.
+     * @param operand the operand to check
+     * @return the assembly representation of the operand
+     */
     private String checkLiteral(String operand) {
         boolean opInt = InstructionC3A.opIsInt(operand);
         boolean opBool = InstructionC3A.opIsBoolean(operand);
-        //literall number
+        // number
         if (opInt) {
             return "$" + operand;
         }
-        // literall boolean
+        // boolean
         if (opBool) {
             // true
             if (operand.equals("true")) {
@@ -455,10 +499,13 @@ public class GeneratorAssembler {
             // false
             return "$0";
         }
-        return getVarAssembler(operand);
+        return backend.getVarAssembler(operand);
     }
 
-    // Auxiliar method that generates the copy Instruction
+    /**
+     * Generates the assembly code for the copy instruction.
+     * @param instruction the C3A instruction
+     */
     private void copyInstruction(InstructionC3A instruction) {
         if (instruction.getOp1().equals("return")) {
             Proc procedure = backend.getProc(instruction.getOp2());
@@ -468,7 +515,7 @@ public class GeneratorAssembler {
                 suffix = "w";
                 register = "%ax";
             }
-            writeLine("mov" + suffix + " " + register + ", " + getVarAssembler(instruction.getDest()));
+            writeLine("mov" + suffix + " " + register + ", " + backend.getVarAssembler(instruction.getDest()));
         } else {
             Var variable = backend.getVar(instruction.getDest());
             boolean isNum = variable.getType() == Type.TipoSubyacente.TS_NUMBER;
@@ -479,17 +526,26 @@ public class GeneratorAssembler {
                 register = "%di";
             }
             writeLine("mov" + suffix + " " + checkLiteral(instruction.getOp1()) + ", " + register);
-            writeLine("mov" + suffix + " " + register + ", " + getVarAssembler(instruction.getDest()));
+            writeLine("mov" + suffix + " " + register + ", " + backend.getVarAssembler(instruction.getDest()));
         }
     }
 
-    private void pmbInstruction(InstructionC3A instruction) throws SymTabError {
+    /**
+     * Generates the assembly code for the procedure prologue.
+     * @param instruction the C3A instruction
+     */
+    private void pmbInstruction(InstructionC3A instruction) {
         writeLine("push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.");
         writeLine("mov %rsp, %rbp");
         //Declarar parametros del procedimiento como variables.
         String backFunId = instruction.getDest();
         String funId = backFunId.replace("PROC_", "");
-        Type type = symbolsTable.get(funId);
+        Type type = null;
+        try {
+            type = symbolsTable.get(funId);
+        }catch (SymTabError e){
+            System.out.println("ERROR: " + e.getMessage());
+        }
 
         if (type == null || type.getTipo() != Tipo.dfun) {
             throw new Error("Invalid function");
@@ -499,159 +555,77 @@ public class GeneratorAssembler {
         Proc proc = backend.getProc(backFunId);
 
         int procsize = proc.getMemorySize();
-        //si alineamos al memoria a 32 funciona -> procsize = 32
-        writeLine("sub $" + procsize + ", %rsp");
+        int alignedSize = (procsize + 15) & ~15;
+        //si alineamos al memoria a 16 funciona
+        writeLine("sub $" + alignedSize + ", %rsp");
     }
 
-    private String getVarAssembler(String varName) {
-        return backend.getVarAssembler(varName);
-    }
-
+    /**
+     * Gets the label for the comparison function based on the comparison type and whether it is a numeric comparison.
+     * @param code the comparison type
+     * @param numCmp whether it is a numeric comparison
+     * @return the label for the comparison function
+     */
     private String getCMPFunctionLabel(Code code, boolean numCmp) {
-        comparers.add(code);
-        return switch (code) {
-            case EQ -> {
-
-                if (numCmp) {
-                    yield "CMP_EQ_NUM";
-                }
-                yield "CMP_EQ";
-            }
-            case NE -> {
-                if (numCmp) {
-                    yield "CMP_NE_NUM";
-                }
-                yield "CMP_NE";
-            }
-            case GE -> "CMP_GE";
-            case GT -> "CMP_GT";
-            case LE -> "CMP_LE";
+        String base = switch (code) {
+            case EQ -> numCmp ? "CMP_EQ_NUM" : "CMP_EQ";
+            case NE -> numCmp ? "CMP_NE_NUM" : "CMP_NE";
             case LT -> "CMP_LT";
+            case LE -> "CMP_LE";
+            case GT -> "CMP_GT";
+            case GE -> "CMP_GE";
             default -> "";
         };
+        requiredComparers.add(base);
+        return base;
     }
 
+    /**
+     * Writes the comparison functions to the assembly code.
+     */
     private void writeCMPFunctions() {
-        if(comparers.contains(Code.EQ)){
-            writeEQ();
-            writeEQ_num();
-        }
-
-        if(comparers.contains(Code.NE)){
-            writeNE();
-            writeNE_num();
-        }
-
-        if(comparers.contains(Code.GT)){
-            writeGT();
-        }
-
-        if(comparers.contains(Code.GE)){
-            writeGE();
-        }
-
-        if(comparers.contains(Code.LE)){
-            writeLE();
-        }
-        if(comparers.contains(Code.LT)){
-            writeLT();
-        }
-
+        // Using LinkedHashSet for insertion-order iteration
+        new LinkedHashSet<>(requiredComparers).forEach(funcName -> {
+            if (CMP_FUNCTIONS.containsKey(funcName)) {
+                generateComparisonFunction(funcName);
+            }
+        });
     }
 
-    private void writeLT() {
-        // comparation between two integers
-        writeLine("# boolean value assignation LT");
-        writeLine("CMP_LT :");
-        writeLine("\tcmp %edi, %esi");
-        writeLine("\tjge CMP_LT_GE");
+    /**
+     * Configuration for comparison functions. Helper record
+     */
+    private record CMPConfig(String jumpInstruction, String reg1, String reg2) {}
+
+    /**
+     * Map of comparison functions to their parameters.
+     */
+    private static final Map<String, CMPConfig> CMP_FUNCTIONS = Map.ofEntries(
+            Map.entry("CMP_LT", new CMPConfig("jge", "esi", "edi")),
+            Map.entry("CMP_LE", new CMPConfig("jg", "esi", "edi")),
+            Map.entry("CMP_GT", new CMPConfig("jle", "esi", "edi")),
+            Map.entry("CMP_GE", new CMPConfig("jl", "esi", "edi")),
+            Map.entry("CMP_EQ", new CMPConfig("jne", "di", "si")),
+            Map.entry("CMP_EQ_NUM", new CMPConfig("jne", "edi", "esi")),
+            Map.entry("CMP_NE", new CMPConfig("je", "di", "si")),
+            Map.entry("CMP_NE_NUM", new CMPConfig("je", "edi", "esi"))
+    );
+
+    /**
+     * Generates the assembly code for a comparison function.
+     * @param funcName the name of the comparison function
+     */
+    private void generateComparisonFunction(String funcName) {
+        CMPConfig config = CMP_FUNCTIONS.get(funcName);
+        String falseLabel = funcName + "_FALSE";
+
+        writeLine("# " + funcName.replace("_", " ") + " comparison");
+        writeLine(funcName + ":");
+        writeLine("\tcmp %" + config.reg1() + ", %" + config.reg2());
+        writeLine("\t" + config.jumpInstruction() + " " + falseLabel);
         writeLine("\tmov $1, %ax");
         writeLine("\tret");
-        writeLine("CMP_LT_GE :");
-        writeLine("\tmov $0, %ax");
-        writeLine("\tret\n");
-    }
-
-    private void writeLE() {
-        writeLine("# boolean value assignation LE");
-        writeLine("CMP_LE :");
-        writeLine("\tcmp %edi, %esi");
-        writeLine("\tjg CMP_LE_G");
-        writeLine("\tmov $1, %ax");
-        writeLine("\tret");
-        writeLine("CMP_LE_G :");
-        writeLine("\tmov $0, %ax");
-        writeLine("\tret\n");
-    }
-
-    private void writeGE() {
-        writeLine("# boolean value assignation GE");
-        writeLine("CMP_GE :");
-        writeLine("\tcmp %edi, %esi");
-        writeLine("\tjl CMP_GE_L");
-        writeLine("\tmov $1, %ax");
-        writeLine("\tret");
-        writeLine("CMP_GE_L :");
-        writeLine("\tmov $0, %ax");
-        writeLine("\tret\n");
-    }
-
-    private void writeGT() {
-        writeLine("# boolean value assignation GT");
-        writeLine("CMP_GT :");
-        writeLine("\tcmp %edi, %esi");
-        writeLine("\tjle CMP_GT_LE");
-        writeLine("\tmov $1, %ax");
-        writeLine("\tret");
-        writeLine("CMP_GT_LE :");
-        writeLine("\tmov $0, %ax");
-        writeLine("\tret\n");
-    }
-
-    private void writeNE() {
-        writeLine("# boolean value assignation NE");
-        writeLine("CMP_NE :");
-        writeLine("\tcmp %di, %si");
-        writeLine("\tje CMP_NE_E");
-        writeLine("\tmov $1, %rax");
-        writeLine("\tret");
-        writeLine("CMP_NE_E :");
-        writeLine("\tmov $0, %rax");
-        writeLine("\tret\n");
-    }
-
-    private void writeEQ() {
-        writeLine("# boolean value assignation EQ");
-        writeLine("CMP_EQ :");
-        writeLine("\tcmp %di, %si");
-        writeLine("\tjne CMP_EQ_NE");
-        writeLine("\tmov $1, %rax");
-        writeLine("\tret");
-        writeLine("CMP_EQ_NE :");
-        writeLine("\tmov $0, %rax");
-        writeLine("\tret\n");
-    }
-
-    private void writeNE_num() {
-        writeLine("# boolean value assignation NE num");
-        writeLine("CMP_NE_NUM :");
-        writeLine("\tcmp %edi, %esi");
-        writeLine("\tje CMP_NE_E_NUM");
-        writeLine("\tmov $1, %ax");
-        writeLine("\tret");
-        writeLine("CMP_NE_E_NUM :");
-        writeLine("\tmov $0, %ax");
-        writeLine("\tret\n");
-    }
-
-    private void writeEQ_num() {
-        writeLine("# boolean value assignation EQ num");
-        writeLine("CMP_EQ_NUM :");
-        writeLine("\tcmp %edi, %esi");
-        writeLine("\tjne CMP_EQ_NE_NUM");
-        writeLine("\tmov $1, %ax");
-        writeLine("\tret");
-        writeLine("CMP_EQ_NE_NUM :");
+        writeLine(falseLabel + ":");
         writeLine("\tmov $0, %ax");
         writeLine("\tret\n");
     }

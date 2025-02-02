@@ -16,7 +16,10 @@ function factorial(num : number) : number {
 
 function recursiveAdding(num : number) : number {
 	result : number := 0;
-	if(num < 1){
+	print("NUM: ");
+	print(num);
+	print("\n");
+	if(num < 0){
 		print("Invalid number: ");
 		print(num);
 		print("\n");

@@ -530,7 +530,7 @@ public class Parser extends java_cup.runtime.lr_parser {
     this.symbolsTable = new SymbolsTable();
     this.backend = new BackTables(symbolsTable);
     this.c3a_g = new GeneratorC3A();
-    this.assembler = new GeneratorAssembler(symbolsTable, backend, c3a_g);
+    this.assembler = new GeneratorAssembler(symbolsTable, backend, c3a_g, "Example");
     this.labelTrueStack = new Stack<String>();
     this.labelFalseStack = new Stack<String>();
   }
