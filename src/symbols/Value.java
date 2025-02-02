@@ -5,103 +5,101 @@ import symbolsTable.Type.TipoSubyacente;
 
 public class Value extends SymbolBase {
 
+
+
+    private String idVar;
+    private String name;
+    private Object val;
     private Tipo tipo;
     private TipoSubyacente tipoSubyacente;
-
-    private String typeName;
     public boolean isConstant;
-    private Object value;
-
-    private String var_id;
-
-    private boolean isString;
-    private int stringSize;
+    private boolean ok;
+    private int size;
 
 
     public Value() {
-        super("value", 0);
+        super("Val", 0);
         this.tipo = Tipo.dnull;
         this.tipoSubyacente = TipoSubyacente.TS_NULL;
         this.isConstant = false;
     }
 
 
-    public Value(String var_id, TipoSubyacente tipoSubyacente) {
-        super("value", 0);
-        this.var_id = var_id;
-        this.tipo = Tipo.dnull;
-        this.tipoSubyacente = tipoSubyacente;
-        this.isConstant = false;
-    }
-
-    // Literall or constant
-    public Value(String var_id, TipoSubyacente tipoSubyacente, Object value) {
-        super("value", 0);
-        this.var_id = var_id;
-        this.tipo = Tipo.dnull;
-        this.tipoSubyacente = tipoSubyacente;
-        this.isConstant = true;
-        this.value = value;
-    }
-
-    // Literall string
-    public Value(String value, int stringSize) {
-        super("value", 0);
+    // String
+    public Value(String val, int size) {
+        super("Val", 0);
         this.tipo = Tipo.dnull;
         this.tipoSubyacente = TipoSubyacente.TS_STRING;
         this.isConstant = true;
-        this.value = value;
-        this.isString = true;
-        this.stringSize = stringSize;
+        this.val = val;
+        this.ok = true;
+        this.size = size;
+    }
+    
+    // Constant
+    public Value(String idVar, TipoSubyacente tipoSubyacente, Object val) {
+        super("Val", 0);
+        this.idVar = idVar;
+        this.tipo = Tipo.dnull;
+        this.tipoSubyacente = tipoSubyacente;
+        this.isConstant = true;
+        this.val = val;
     }
 
-    public Value(String var_id, Tipo tipo, String typeName) {
-        super("value", 0);
-        this.var_id = var_id;
-        this.tipo = tipo;
-        this.typeName = typeName;
+    public Value(String idVar, TipoSubyacente tipoSubyacente) {
+        super("Val", 0);
+        this.idVar = idVar;
+        this.tipo = Tipo.dnull;
+        this.tipoSubyacente = tipoSubyacente;
         this.isConstant = false;
     }
 
-    public Value(String var_id, Tipo tipo, String typeName, Object value) {
-        super("value", 0);
-        this.var_id = var_id;
+    public Value(String idVar, Tipo tipo, String name) {
+        super("Val", 0);
+        this.idVar = idVar;
         this.tipo = tipo;
-        this.typeName = typeName;
-        this.isConstant = true;
-        this.value = value;
+        this.name = name;
+        this.isConstant = false;
     }
 
-    public Tipo getTipo() {
-        return this.tipo;
+    public Value(String idVar, Tipo tipo, String name, Object val) {
+        super("Val", 0);
+        this.idVar = idVar;
+        this.tipo = tipo;
+        this.name = name;
+        this.isConstant = true;
+        this.val = val;
     }
 
     public String getVarId() {
-        return this.var_id;
+        return this.idVar;
     }
 
     public TipoSubyacente getTipoSubyacente() {
         return this.tipoSubyacente;
     }
 
-    public String getTypeName() {
-        return this.typeName;
+    public Tipo getTipo() {
+        return this.tipo;
     }
 
+    public String getTypeName() {
+        return this.name;
+    }
+
+    public Object getValue() {
+        return this.val;
+    }
 
     public boolean getIsConst() {
         return this.isConstant;
     }
 
-    public Object getValue() {
-        return this.value;
-    }
-
     public boolean getIsString() {
-        return this.isString;
+        return this.ok;
     }
 
     public int getStringSize() {
-        return this.stringSize;
+        return this.size;
     }
 }

@@ -2,33 +2,33 @@ package symbols;
 
 public class ArithmeticOperation extends SymbolBase {
 
-    private String var_id;
-    private Integer value;
-    private boolean isConst;
+    private String idVar;
+    private Integer val;
+    private boolean isConstant;
 
-    public ArithmeticOperation(String var_id) {
+    public ArithmeticOperation(String idVar) {
         super("Arithmetical Operation", 0);
-        this.var_id = var_id;
-        this.isConst = false;
+        this.idVar = idVar;
+        this.isConstant = false;
     }
 
-    public ArithmeticOperation(String var_id, Integer value) {
+    public ArithmeticOperation(String idVar, Integer val) {
         super("Arithmetical Operation", 0);
-        this.var_id = var_id;
-        this.value = value;
-        this.isConst = true;
+        this.idVar = idVar;
+        this.val = val;
+        this.isConstant = true;
     }
 
     public String getVarId() {
-        return this.var_id;
-    }
-
-    public boolean getIsConst() {
-        return this.isConst;
+        return this.idVar;
     }
 
     public Integer getValue() {
-        return this.value;
+        return this.val;
+    }
+
+    public boolean getIsConst() {
+        return this.isConstant;
     }
     
 }

@@ -4,38 +4,37 @@ import symbolsTable.Type;
 
 public class Declarations extends SymbolBase {
 
+    private String idVar;
+    private String val;
     private Type type;
-    private String var_id;
-
-    // if string declaration
-    private String value;
 
     public Declarations() {
         super("Declaration", 0);
     }
 
-    public Declarations(String var_id, Type type) {
+    public Declarations(String idVar, Type type) {
         super("Declaration", 0);
+        this.idVar = idVar;
         this.type = type;
-        this.var_id = var_id;
     }
 
-    public Declarations(String var_id, Type type, String value) {
+    public Declarations(String idVar, Type type, String val) {
         super("Declaration", 0);
+        this.idVar = idVar;
+        this.val = val;
         this.type = type;
-        this.var_id = var_id;
-        this.value = value;
+    }
+
+    public String getVarId() {
+        return this.idVar;
+    }
+
+    public String getValue() {
+        return this.val;
     }
 
     public Type getType() {
         return this.type;
     }
 
-    public String getVarId() {
-        return this.var_id;
-    }
-
-    public String getValue() {
-        return this.value;
-    }
 }

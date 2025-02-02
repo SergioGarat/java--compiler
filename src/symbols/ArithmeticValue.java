@@ -2,32 +2,32 @@ package symbols;
 
 public class ArithmeticValue extends SymbolBase {
 
-    private String var_id;
-    private Integer value;
-    private boolean isConst;
+    private String idVar;
+    private Integer val;
+    private boolean isConstant;
 
-    public ArithmeticValue(String var_id) {
-        super("Arithmetical Value", 0);
-        this.var_id = var_id;
-        this.isConst = false;
+    public ArithmeticValue(String idVar) {
+        super("Arithmetic Value", 0);
+        this.idVar = idVar;
+        this.isConstant = false;
     }
 
-    public ArithmeticValue(String var_id, Integer value) {
-        super("Arithmetical Value", 0);
-        this.var_id = var_id;
-        this.value = value;
-        this.isConst = true;
+    public ArithmeticValue(String idVar, Integer val) {
+        super("Arithmetic Value", 0);
+        this.idVar = idVar;
+        this.val = val;
+        this.isConstant = true;
     }
 
     public String getVarId() {
-        return this.var_id;
+        return this.idVar;
     }
 
     public boolean getIsConst() {
-        return this.isConst;
+        return this.isConstant;
     }
 
     public Object getValue() {
-        return this.value;
+        return this.val;
     }
 }

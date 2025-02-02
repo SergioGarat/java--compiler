@@ -2,14 +2,14 @@ package symbols;
 
 public class StringValue extends SymbolBase {
 
-    private String string;
+    private String s;
 
-    public StringValue(String string) {
+    public StringValue(String s) {
         super("String Value", 0);
-        this.string = string;
+        this.s = s;
     }
 
     public String getString() {
-        return this.string;
+        return this.s;
     }
 }

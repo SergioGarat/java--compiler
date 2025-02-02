@@ -2,32 +2,33 @@ package symbols;
 
 public class ValuesComparison extends SymbolBase {
 
-    private String var_id;
+    private String idVar;
+    private Boolean val;
     private boolean isConstant;
-    private Boolean value;
 
-    public ValuesComparison(String var_id) {
+    public ValuesComparison(String idVar) {
         super("Value Comparison", 0);
+        this.idVar = idVar;
         this.isConstant = false;
-        this.var_id = var_id;
     }
 
-    public ValuesComparison(String var_id, Boolean value) {
+    public ValuesComparison(String idVar, Boolean val) {
         super("Value Comparison", 0);
+        this.idVar = idVar;
+        this.val = val;
         this.isConstant = false;
-        this.var_id = var_id;
-        this.value = value;
     }
 
     public String getVarId() {
-        return this.var_id;
+        return this.idVar;
+    }
+
+    public Boolean getValue() {
+        return this.val;
     }
 
     public boolean getIsConst() {
         return this.isConstant;
     }
 
-    public Boolean getValue() {
-        return this.value;
-    }
 }

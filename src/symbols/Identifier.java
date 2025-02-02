@@ -5,47 +5,46 @@ import symbolsTable.Type.Tipo;
 
 public class Identifier extends SymbolBase {
 
-    private String id;
+    private String identifier;
     private Tipo tipo;
-    private String typeName;
+    private Object val;
+    private boolean isConstant;
+    private String name;
 
-    private Object value;
-    private boolean isConst;
-
-    public Identifier(String id, Tipo tipo, String typeName) {
+    public Identifier(String identifier, Tipo tipo, String name) {
         super("Identifier Value", 0);
-        this.id = id;
+        this.identifier = identifier;
         this.tipo = tipo;
-        this.typeName = typeName;
-        this.isConst = false;
+        this.name = name;
+        this.isConstant = false;
     }
 
-    public Identifier(String id, Tipo tipo, String typeName, Object value) {
+    public Identifier(String identifier, Tipo tipo, String name, Object val) {
         super("Identifier Value", 0);
-        this.id = id;
+        this.identifier = identifier;
         this.tipo = tipo;
-        this.typeName = typeName;
-        this.isConst = true;
-        this.value = value;
+        this.name = name;
+        this.isConstant = true;
+        this.val = val;
     }
 
     public String getId() {
-        return this.id;
+        return this.identifier;
+    }
+
+    public String getTypeName() {
+        return this.name;
+    }
+
+    public Object getValue() {
+        return this.val;
     }
 
     public Tipo getTipo() {
         return this.tipo;
     }
 
-    public String getTypeName() {
-        return this.typeName;
-    }
-
-    public Object getValue() {
-        return this.value;
-    }
-
     public boolean getIsConst() {
-        return this.isConst;
+        return this.isConstant;
     }
 }

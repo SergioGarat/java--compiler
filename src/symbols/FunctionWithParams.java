@@ -7,21 +7,21 @@ import java.util.ArrayList;
 
 public class FunctionWithParams extends SymbolBase {
 
-    private ArrayList<Parameter> params;
+    private ArrayList<Parameter> parameters;
 
-    public FunctionWithParams(Parameter param) {
+    public FunctionWithParams(Parameter p) {
         super("Function With Params", 0);
-        this.params = new ArrayList<>();
-        this.params.add(param);
+        this.parameters = new ArrayList<>();
+        this.parameters.add(p);
     }
 
-    public FunctionWithParams(Parameter param, FunctionWithParams prev) {
+    public FunctionWithParams(Parameter p, FunctionWithParams prev) {
         super("Function With Params", 0);
-        this.params = new ArrayList<>(prev.params);
-        this.params.add(param);
+        this.parameters = new ArrayList<>(prev.parameters);
+        this.parameters.add(p);
     }
 
     public ArrayList<Parameter> getParams() {
-        return this.params;
+        return this.parameters;
     }
 }

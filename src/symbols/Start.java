@@ -2,15 +2,15 @@ package symbols;
 
 public class Start extends SymbolBase {
 
-    public Boolean hasFinished;
+    public Boolean last;
 
-    public Start(boolean hasFinished) {
-        super("Start!", 0);
-        this.hasFinished = hasFinished;
+    public Start(boolean last) {
+        super("Start", 0);
+        this.last = last;
     }
 
     @Override
     public String toString() {
-        return "Arrived to root!!";
+        return "Reached the root";
     }
 }

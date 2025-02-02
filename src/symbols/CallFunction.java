@@ -2,20 +2,20 @@ package symbols;
 
 public class CallFunction extends SymbolBase {
 
-    private String functionId;
-    private String functionBackId;
+    private String idFunc;
+    private String idBackFunc;
 
-    public CallFunction(String functionId, String functionBackId) {
+    public CallFunction(String idFunc, String idBackFunc) {
         super("Function", 0);
-        this.functionId = functionId;
-        this.functionBackId = functionBackId;
+        this.idFunc = idFunc;
+        this.idBackFunc = idBackFunc;
     }
 
     public String getFunctionId() {
-        return this.functionId;
+        return this.idFunc;
     }
 
     public String getBackendId() {
-        return this.functionBackId;
+        return this.idBackFunc;
     }
 }

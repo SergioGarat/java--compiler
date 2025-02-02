@@ -5,7 +5,7 @@ public class End extends SymbolBase {
     private String label;
 
     public End(String label) {
-        super("M_End", 0);
+        super("End", 0);
         this.label = label;
     }
 

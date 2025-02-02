@@ -2,33 +2,33 @@ package symbols;
 
 public class BooleanOperationValue extends SymbolBase {
 
-    private Boolean value;
+    private String idVar;
+    private Boolean val;
     private boolean isConstant;
-    private String var_id;
 
-    public BooleanOperationValue(String var_id) {
+    public BooleanOperationValue(String idVar) {
         super("Boolean Operation Value", 0);
         this.isConstant = false;
-        this.var_id = var_id;
+        this.idVar = idVar;
     }
 
-    public BooleanOperationValue(String var_id, Boolean value) {
+    public BooleanOperationValue(String idVar, Boolean val) {
         super("Boolean Operation Value", 0);
-        this.value = value;
+        this.val = val;
         this.isConstant = true;
-        this.var_id = var_id;
+        this.idVar = idVar;
+    }
+
+    public String getVarId() {
+        return this.idVar;
     }
 
     public Boolean getValue() {
-        return this.value;
+        return this.val;
     }
 
     public boolean getIsConst() {
         return this.isConstant;
-    }
-
-    public String getVarId() {
-        return this.var_id;
     }
 
 }

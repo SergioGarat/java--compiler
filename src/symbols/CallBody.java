@@ -2,26 +2,26 @@ package symbols;
 
 public class CallBody extends SymbolBase {
 
-    private String fun_id;
-    private String fun_back_id;
-    private int num_params;
+    private String idFunc;
+    private String idBackFunc;
+    private int nparams;
 
-    public CallBody(String fun_id, String fun_back_id, int num_params) {
+    public CallBody(String idFunc, String idBackFunc, int nparams) {
         super("Call Body", 0);
-        this.fun_id = fun_id;
-        this.fun_back_id = fun_back_id;
-        this.num_params = num_params;
-    }
-
-    public int getNumParams() {
-        return this.num_params;
+        this.idFunc = idFunc;
+        this.idBackFunc = idBackFunc;
+        this.nparams = nparams;
     }
 
     public String getFunId() {
-        return this.fun_id;
+        return this.idFunc;
     }
 
     public String getFunBackId() {
-        return this.fun_back_id;
+        return this.idBackFunc;
+    }
+
+    public int getNumParams() {
+        return this.nparams;
     }
 }

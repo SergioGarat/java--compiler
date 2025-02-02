@@ -2,14 +2,14 @@ package symbols;
 
 public class NumericValue extends SymbolBase {
 
-    private Integer value;
+    private Integer n;
 
-    public NumericValue(int value) {
+    public NumericValue(int n) {
         super("Number Value", 0);
-        this.value = value;
+        this.n = n;
     }
 
     public Integer getValue() {
-        return this.value;
+        return this.n;
     }
 }

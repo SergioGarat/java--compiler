@@ -2,14 +2,14 @@ package symbols;
 
 public class ArithmeticOperator extends SymbolBase {
 
-	private String operator;
+	private String op;
 
-    public ArithmeticOperator(String operator) {
-        super("Symbol Arithmetical Operator", 0);
-        this.operator = operator;
+    public ArithmeticOperator(String op) {
+        super("Arithmetical Operator", 0);
+        this.op = op;
     }
 
     public String getOperator() {
-        return this.operator;
+        return this.op;
     }
 }

@@ -178,8 +178,8 @@ non terminal  BooleanOperationValue           BOOLEAN_OP_VALUE;
 non terminal  ValuesComparison       VALUE_COMPARISON;
 non terminal  End                  M_END;
 non terminal  Condition             COND;
-non terminal  ConditionFalse        COND_F;
-non terminal  ConditionTrue         COND_T;
+non terminal  CondFalse        COND_F;
+non terminal  CondTrue         COND_T;
 non terminal  InstructionIf         INSTRUCTION_IF;
 non terminal  ElseIf                  ELIF;
 non terminal  Else                  ELSE;
@@ -1597,7 +1597,7 @@ COND_T                      ::=
                                   label
                                 );
 
-                                RESULT = new ConditionTrue();
+                                RESULT = new CondTrue();
                               :};
 
 COND_F                      ::=
@@ -1611,7 +1611,7 @@ COND_F                      ::=
                                   label
                                 );
 
-                                RESULT = new ConditionFalse();
+                                RESULT = new CondFalse();
                               :};
 
 INSTRUCTION_IF              ::= IF COND lbracket BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbracket ELIF ELSE

@@ -2739,7 +2739,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 78: // COND_T ::= 
             {
-              ConditionTrue RESULT =null;
+              CondTrue RESULT =null;
 		
                                 String label = labelTrueStack.pop();
 
@@ -2750,7 +2750,7 @@ class CUP$Parser$actions {
                                   label
                                 );
 
-                                RESULT = new ConditionTrue();
+                                RESULT = new CondTrue();
                               
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("COND_T",28, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -2759,7 +2759,7 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 79: // COND_F ::= 
             {
-              ConditionFalse RESULT =null;
+              CondFalse RESULT =null;
 		
                                 String label = labelFalseStack.pop();
 
@@ -2770,7 +2770,7 @@ class CUP$Parser$actions {
                                   label
                                 );
 
-                                RESULT = new ConditionFalse();
+                                RESULT = new CondFalse();
                               
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("COND_F",27, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }

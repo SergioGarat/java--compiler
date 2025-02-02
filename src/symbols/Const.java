@@ -2,14 +2,14 @@ package symbols;
 
 public class Const extends SymbolBase {
 
-    private boolean isConst;
+    private boolean isConstant;
 
-    public Const(boolean isConst) {
+    public Const(boolean isConstant) {
         super("Constant Value", 0);
-        this.isConst = isConst;
+        this.isConstant = isConstant;
     }
 
     public boolean getIsConst() {
-        return this.isConst;
+        return this.isConstant;
     }
 }
