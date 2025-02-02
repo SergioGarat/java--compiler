@@ -355,7 +355,7 @@ DECLARATIONS                ::=  id:var_id comma DECLARATIONS:declarations
                                   backId = backend.addVariable(var_id, type.getTipoSubyacente(), type.getSize(), false);
                                 }
 
-                                type.setBackendId(backId);
+                                type.setIdBack(backId);
 
                                 symbolsTable.add(var_id, type);
 
@@ -454,7 +454,7 @@ DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_
                                   var_id = backend.addVariable(id_var, type.getTipoSubyacente(), type.getSize(), false);
                                 }
 
-                                var_type.setBackendId(var_id);
+                                var_type.setIdBack(var_id);
 
                                 String val_id = value.getVarId();
                                 symbolsTable.add(id_var, var_type);
@@ -2017,7 +2017,7 @@ FUNCTION_INIT               ::= inst_function id:fun_id FUNCTION_PARAMS:fun_para
                                   Type param_type = param.getType();
                                   TipoSubyacente param_subType = symbolsTable.get(param.getType().getTypeName()).getTipoSubyacente();
                                   String param_backId = backend.addVariable(param.getVarId(), param_subType, param.getSize(), true);
-                                  param_type.setBackendId(param_backId);
+                                  param_type.setIdBack(param_backId);
                                   symbolsTable.addParam(fun_id, param_backId, param.getVarId(), param_type);
                                 }
 

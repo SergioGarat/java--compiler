@@ -3,13 +3,38 @@ package symbolsTable;
 import java.util.List;
 
 public class Type {
+
+    public enum TipoSubyacente {
+        TS_BOOLEAN,
+        TS_NUMBER,
+        TS_STRING,
+        TS_NULL;
+
+        public String toString() {
+            return switch (this) {
+                case TS_BOOLEAN -> "boolean";
+                case TS_NULL -> "null";
+                case TS_NUMBER -> "number";
+                case TS_STRING -> "string";
+                default -> "";
+            };
+        }
+    }
+
+    public enum Tipo {
+        dvar,
+        dtype,
+        dconst,
+        dnull,
+        dfun,
+        darg
+    }
+
+
     private Tipo tipo;
-
     private TipoSubyacente tipoSubyacente;
-
     private List<TipoSubyacente> tiposSubyacentes;
-
-    private String backendId = "";
+    private String idBack = "";
 
     private int size;
     private Object value;
@@ -32,8 +57,8 @@ public class Type {
         this.typeName = typeName;
     }
 
-    public Type(String backendId, Tipo tipo, String typeName) {
-        this.backendId = backendId;
+    public Type(String idBack, Tipo tipo, String typeName) {
+        this.idBack = idBack;
         this.tipo = tipo;
         this.typeName = typeName;
     }
@@ -56,16 +81,12 @@ public class Type {
         return tipoSubyacente;
     }
 
-    public void setTipoSubyacente(TipoSubyacente tipoSubyacente) {
-        this.tipoSubyacente = tipoSubyacente;
-    }
-
     public String getBackendId() {
-        return backendId;
+        return idBack;
     }
 
-    public void setBackendId(String backendId) {
-        this.backendId = backendId;
+    public void setIdBack(String idBack) {
+        this.idBack = idBack;
     }
 
     public int getSize() {
@@ -98,31 +119,5 @@ public class Type {
 
     public void setTiposSubyacentes(List<TipoSubyacente> tiposSubyacentes) {
         this.tiposSubyacentes = tiposSubyacentes;
-    }
-
-    public enum TipoSubyacente {
-        TS_BOOLEAN,
-        TS_NUMBER,
-        TS_STRING,
-        TS_NULL;
-
-        public String toString() {
-            return switch (this) {
-                case TS_BOOLEAN -> "boolean";
-                case TS_NULL -> "null";
-                case TS_NUMBER -> "number";
-                case TS_STRING -> "string";
-                default -> "";
-            };
-        }
-    }
-
-    public enum Tipo {
-        dvar,
-        dtype,
-        dconst,
-        dnull,
-        dfun,
-        darg
     }
 }

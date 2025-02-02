@@ -10,7 +10,7 @@ import java_cup.runtime.Symbol;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-%%                              //INICIO DE OPCIONES
+%%                              
 
 %class Lexico
 %cup
@@ -58,7 +58,7 @@ import java.io.FileWriter;
             out.write("Token processing halted due to a syntax or semantic error at line " + line + " and column " + column + ".");
             out.close();
         }catch(Exception e){
-            System.out.println("Error closing Tokens file : " + e);
+            System.out.println("Error closing Tokens file: " + e);
             e.printStackTrace();
         }
     }
@@ -67,7 +67,7 @@ import java.io.FileWriter;
         try{
             out.write(token.toString());
         }catch(Exception e){
-            System.out.println("Error writing Tokens : " + e);
+            System.out.println("Error writing Tokens: " + e);
             e.printStackTrace();
         }
     }
@@ -151,14 +151,15 @@ STRUCT          = ("struct")
 
 // Caracteres especiales
 
-LPAREN          = ("(")
-RPAREN          = (")")
-LBRACKET        = ("{")
-RBRACKET        = ("}")
 SEMICOLON       = (";")
 COMMA           = (",")
 TWO_POINTS      = (":")
 DOT             = (".")
+
+LPAREN          = ("(")
+RPAREN          = (")")
+LBRACKET        = ("{")
+RBRACKET        = ("}")
 
 %%
 {BLANK}              {/*Ignore*/}
