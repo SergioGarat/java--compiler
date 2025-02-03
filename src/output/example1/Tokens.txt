@@ -1,5 +1,5 @@
 *** Tokens ***
-	INST_FUNCTION[function](0:0)
+	FUNC[function](0:0)
 
 	ID[sumaDosNumeros](0:9)
 
@@ -55,7 +55,7 @@
 
 	SEMICOLON[;](2:21)
 
-	INST_RETURN[return](3:4)
+	RETURN[return](3:4)
 
 	ID[result](3:11)
 
@@ -63,7 +63,7 @@
 
 	RBRACE[}](4:0)
 
-	INST_FUNCTION[function](6:0)
+	FUNC[function](6:0)
 
 	ID[factorial](6:9)
 
@@ -119,7 +119,7 @@
 
 	RBRACE[}](10:1)
 
-	INST_ELSE[else](10:2)
+	ELSE[else](10:2)
 
 	LBRACE[{](10:6)
 
@@ -147,7 +147,7 @@
 
 	RBRACE[}](12:1)
 
-	INST_RETURN[return](13:1)
+	RETURN[return](13:1)
 
 	ID[result](13:8)
 
@@ -155,7 +155,7 @@
 
 	RBRACE[}](14:0)
 
-	INST_FUNCTION[function](16:0)
+	FUNC[function](16:0)
 
 	ID[recursiveAdding](16:9)
 
@@ -187,7 +187,7 @@
 
 	SEMICOLON[;](17:21)
 
-	INSTR_PRINT[print](18:1)
+	PRINT[print](18:1)
 
 	LPAREN[(](18:6)
 
@@ -197,7 +197,7 @@
 
 	SEMICOLON[;](18:15)
 
-	INSTR_PRINT[print](19:1)
+	PRINT[print](19:1)
 
 	LPAREN[(](19:6)
 
@@ -207,7 +207,7 @@
 
 	SEMICOLON[;](19:11)
 
-	INSTR_PRINT[print](20:1)
+	PRINT[print](20:1)
 
 	LPAREN[(](20:6)
 
@@ -231,7 +231,7 @@
 
 	LBRACE[{](21:12)
 
-	INSTR_PRINT[print](22:2)
+	PRINT[print](22:2)
 
 	LPAREN[(](22:7)
 
@@ -241,7 +241,7 @@
 
 	SEMICOLON[;](22:27)
 
-	INSTR_PRINT[print](23:2)
+	PRINT[print](23:2)
 
 	LPAREN[(](23:7)
 
@@ -251,7 +251,7 @@
 
 	SEMICOLON[;](23:12)
 
-	INSTR_PRINT[print](24:2)
+	PRINT[print](24:2)
 
 	LPAREN[(](24:7)
 
@@ -271,7 +271,7 @@
 
 	RBRACE[}](26:1)
 
-	INST_ELSE[elif](27:1)
+	ELSE[elif](27:1)
 
 	LPAREN[(](27:6)
 
@@ -295,7 +295,7 @@
 
 	RBRACE[}](29:1)
 
-	INST_ELSE[else](30:1)
+	ELSE[else](30:1)
 
 	LBRACE[{](30:5)
 
@@ -323,7 +323,7 @@
 
 	RBRACE[}](32:1)
 
-	INST_RETURN[return](33:1)
+	RETURN[return](33:1)
 
 	ID[result](33:8)
 
@@ -331,9 +331,9 @@
 
 	RBRACE[}](34:0)
 
-	INST_FUNCTION[function](36:0)
+	FUNC[function](36:0)
 
-	INST_MAIN[main](36:9)
+	MAIN[main](36:9)
 
 	LPAREN[(](36:13)
 
@@ -365,7 +365,7 @@
 
 	SEMICOLON[;](38:20)
 
-	INSTR_PRINT[print](39:1)
+	PRINT[print](39:1)
 
 	LPAREN[(](39:6)
 
@@ -375,7 +375,7 @@
 
 	SEMICOLON[;](39:20)
 
-	INSTR_PRINT[print](40:1)
+	PRINT[print](40:1)
 
 	LPAREN[(](40:6)
 
@@ -385,7 +385,7 @@
 
 	SEMICOLON[;](40:12)
 
-	INSTR_PRINT[print](41:1)
+	PRINT[print](41:1)
 
 	LPAREN[(](41:6)
 
@@ -395,7 +395,7 @@
 
 	SEMICOLON[;](41:13)
 
-	INSTR_PRINT[print](42:1)
+	PRINT[print](42:1)
 
 	LPAREN[(](42:6)
 
@@ -411,7 +411,7 @@
 
 	SEMICOLON[;](42:23)
 
-	INSTR_PRINT[print](43:1)
+	PRINT[print](43:1)
 
 	LPAREN[(](43:6)
 
@@ -421,7 +421,7 @@
 
 	SEMICOLON[;](43:12)
 
-	INSTR_PRINT[print](45:4)
+	PRINT[print](45:4)
 
 	LPAREN[(](45:9)
 
@@ -431,11 +431,11 @@
 
 	SEMICOLON[;](45:32)
 
-	INSTR_PRINT[print](46:1)
+	PRINT[print](46:1)
 
 	LPAREN[(](46:6)
 
-	INSTR_READ[read](46:7)
+	READ[read](46:7)
 
 	LPAREN[(](46:11)
 
@@ -445,7 +445,7 @@
 
 	SEMICOLON[;](46:14)
 
-	INSTR_PRINT[print](47:1)
+	PRINT[print](47:1)
 
 	LPAREN[(](47:6)
 
@@ -455,7 +455,7 @@
 
 	SEMICOLON[;](47:12)
 
-	INSTR_PRINT[print](52:1)
+	PRINT[print](52:1)
 
 	LPAREN[(](52:6)
 
@@ -473,7 +473,7 @@
 
 	OP_ASSIG[:=](53:18)
 
-	INSTR_READ[read](53:21)
+	READ[read](53:21)
 
 	LPAREN[(](53:25)
 
@@ -481,7 +481,7 @@
 
 	SEMICOLON[;](53:27)
 
-	INSTR_PRINT[print](54:4)
+	PRINT[print](54:4)
 
 	LPAREN[(](54:9)
 
@@ -491,7 +491,7 @@
 
 	SEMICOLON[;](54:31)
 
-	INSTR_PRINT[print](55:4)
+	PRINT[print](55:4)
 
 	LPAREN[(](55:9)
 
@@ -501,7 +501,7 @@
 
 	SEMICOLON[;](55:15)
 
-	INSTR_PRINT[print](56:4)
+	PRINT[print](56:4)
 
 	LPAREN[(](56:9)
 
@@ -511,7 +511,7 @@
 
 	SEMICOLON[;](56:15)
 
-	INSTR_PRINT[print](58:1)
+	PRINT[print](58:1)
 
 	LPAREN[(](58:6)
 
@@ -521,7 +521,7 @@
 
 	SEMICOLON[;](58:27)
 
-	INSTR_PRINT[print](59:1)
+	PRINT[print](59:1)
 
 	LPAREN[(](59:6)
 
@@ -531,7 +531,7 @@
 
 	SEMICOLON[;](59:12)
 
-	INSTR_PRINT[print](60:1)
+	PRINT[print](60:1)
 
 	LPAREN[(](60:6)
 
@@ -541,7 +541,7 @@
 
 	SEMICOLON[;](60:12)
 
-	INSTR_PRINT[print](61:1)
+	PRINT[print](61:1)
 
 	LPAREN[(](61:6)
 
@@ -557,7 +557,7 @@
 
 	SEMICOLON[;](61:29)
 
-	INSTR_PRINT[print](62:1)
+	PRINT[print](62:1)
 
 	LPAREN[(](62:6)
 
@@ -603,7 +603,7 @@
 
 	SEMICOLON[;](66:23)
 
-	INSTR_PRINT[print](68:1)
+	PRINT[print](68:1)
 
 	LPAREN[(](68:6)
 
@@ -623,7 +623,7 @@
 
 	SEMICOLON[;](68:34)
 
-	INST_FOR[for](72:1)
+	FOR[for](72:1)
 
 	LPAREN[(](72:5)
 
@@ -665,7 +665,7 @@
 
 	LBRACE[{](72:44)
 
-	INSTR_PRINT[print](73:9)
+	PRINT[print](73:9)
 
 	LPAREN[(](73:14)
 
@@ -675,7 +675,7 @@
 
 	SEMICOLON[;](73:20)
 
-	INSTR_PRINT[print](74:9)
+	PRINT[print](74:9)
 
 	LPAREN[(](74:14)
 
@@ -685,7 +685,7 @@
 
 	SEMICOLON[;](74:30)
 
-	INSTR_PRINT[print](75:9)
+	PRINT[print](75:9)
 
 	LPAREN[(](75:14)
 
@@ -697,7 +697,7 @@
 
 	RBRACE[}](76:4)
 
-	INSTR_PRINT[print](77:4)
+	PRINT[print](77:4)
 
 	LPAREN[(](77:9)
 

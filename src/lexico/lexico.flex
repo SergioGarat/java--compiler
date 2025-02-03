@@ -131,20 +131,20 @@ CONSTANT        = ("constant")
 // Operaciones
 
 IF         = ("if")
-INST_ELSE       = ("else")
-INST_ELIF       = ("elif")
+ELSE       = ("else")
+ELIF       = ("elif")
 
-INST_WHILE      = ("while")
-INST_FOR        = ("for")
+WHILE      = ("while")
+FOR        = ("for")
 
-INST_FUNCTION   = ("function")
-INST_RETURN     = ("return")
-INST_MAIN       = ("main")
+FUNC   = ("function")
+RETURN     = ("return")
+MAIN       = ("main")
 
 // Entrada/salida
 
-INSTR_READ        = ("read")
-INSTR_PRINT       = ("print")
+READ        = ("read")
+PRINT       = ("print")
 
 STRUCT          = ("struct")
 
@@ -172,54 +172,54 @@ RBRACKET        = ("]")
                         writeToken(token);
                         return symbol(Tokens.IF.name(), ParserSym.IF);
                      }
-{INST_ELSE}          {
-                        Token token = new Token(Tokens.INST_ELSE,yyline,yycolumn, yytext());
+{ELSE}          {
+                        Token token = new Token(Tokens.ELSE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_ELSE.name(), ParserSym.inst_else);
+                        return symbol(Tokens.ELSE.name(), ParserSym.ELSE);
                      }
-{INST_ELIF}          {
-                        Token token = new Token(Tokens.INST_ELSE,yyline,yycolumn, yytext());
+{ELIF}          {
+                        Token token = new Token(Tokens.ELSE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_ELSE.name(),ParserSym.inst_elif);
-                     }
-
-{INST_WHILE}         {
-                        Token token = new Token(Tokens.INST_WHILE,yyline,yycolumn, yytext());
-                        writeToken(token);
-                        return symbol(Tokens.INST_WHILE.name(),ParserSym.inst_while);
+                        return symbol(Tokens.ELSE.name(),ParserSym.ELIF);
                      }
 
-{INST_FOR}           {
-                        Token token = new Token(Tokens.INST_FOR,yyline,yycolumn, yytext());
+{WHILE}         {
+                        Token token = new Token(Tokens.WHILE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_FOR.name(), ParserSym.inst_for);
+                        return symbol(Tokens.WHILE.name(),ParserSym.WHILE);
+                     }
+
+{FOR}           {
+                        Token token = new Token(Tokens.FOR,yyline,yycolumn, yytext());
+                        writeToken(token);
+                        return symbol(Tokens.FOR.name(), ParserSym.FOR);
                     }
 
-{INST_FUNCTION}      {
-                        Token token = new Token(Tokens.INST_FUNCTION,yyline,yycolumn, yytext());
+{FUNC}      {
+                        Token token = new Token(Tokens.FUNC,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_FUNCTION.name(),ParserSym.inst_function);
+                        return symbol(Tokens.FUNC.name(),ParserSym.FUNC);
                      }
-{INST_RETURN}        {
-                        Token token = new Token(Tokens.INST_RETURN,yyline,yycolumn, yytext());
+{RETURN}        {
+                        Token token = new Token(Tokens.RETURN,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_RETURN.name(),ParserSym.inst_return);
+                        return symbol(Tokens.RETURN.name(),ParserSym.RETURN);
                      }
-{INST_MAIN}          {
-                        Token token = new Token(Tokens.INST_MAIN,yyline,yycolumn, yytext());
+{MAIN}          {
+                        Token token = new Token(Tokens.MAIN,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_MAIN.name(),ParserSym.inst_main);
+                        return symbol(Tokens.MAIN.name(),ParserSym.MAIN);
                      }
 
-{INSTR_READ}         {
-                        Token token = new Token(Tokens.INSTR_READ,yyline,yycolumn, yytext());
+{READ}         {
+                        Token token = new Token(Tokens.READ,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INSTR_READ.name(),ParserSym.instr_read);
+                        return symbol(Tokens.READ.name(),ParserSym.READ);
                      }
-{INSTR_PRINT}        {
-                        Token token = new Token(Tokens.INSTR_PRINT,yyline,yycolumn, yytext());
+{PRINT}        {
+                        Token token = new Token(Tokens.PRINT,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INSTR_PRINT.name(),ParserSym.instr_print);
+                        return symbol(Tokens.PRINT.name(),ParserSym.PRINT);
                      }
 
 {LPAREN}             {

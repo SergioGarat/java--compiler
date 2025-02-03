@@ -126,27 +126,23 @@ parser code
 
 :};
 
-/******Declaració de simbols terminals*********/
+// Terminal Symbols
 
 terminal String id, number, string, bool, struct, op_relational, op_logical, op_logical_not, op_arithmetical_c, op_arithmetical_b;
-terminal        op_assig, IF, inst_elif, inst_else,
-                inst_while, inst_function, inst_return, constant, inst_for,
-                instr_read, instr_print, lparen, rparen, lbrace, rbrace, lbracket, rbracket,
-                semicolon, comma, two_points, dot, inst_main;
 
-/*
-  inst_switch, inst_case, inst_break, inst_default, inst_for,
-  character,spc_asgmul,spc_asgdec, spc_dec,spc_asgdiv,spc_asginc,spc_inc
-*/
+terminal        op_assig, IF, ELIF, ELSE,
+                WHILE, FUNC, RETURN, constant, FOR,
+                READ, PRINT, lparen, rparen, lbrace, rbrace, lbracket, rbracket,
+                semicolon, comma, two_points, dot, MAIN;
 
 
-/******Declaració de simbols no terminals*********/
+// Non-terminal Symbols
 
 non terminal  Start                STARTS;
 non terminal  Init                  INIT;
 
 non terminal  MainLabel                 M_MAIN;
-non terminal  MainS                  MAIN;
+non terminal  MainS                  MAIN_S;
 non terminal  MainInstructions             MAIN_INSTRUCTIONS;
 
 non terminal  Instructions          INSTRUCTIONS;
@@ -181,8 +177,8 @@ non terminal  Condition             COND;
 non terminal  CondFalse        COND_F;
 non terminal  CondTrue         COND_T;
 non terminal  InstructionIf         INSTRUCTION_IF;
-non terminal  ElseIf                  ELIF;
-non terminal  Else                  ELSE;
+non terminal  ElseIf                  INSTRUCT_ELIF;
+non terminal  Else                  INSTRUCT_ELSE;
 non terminal  WhileLabel                M_WHILE;
 non terminal  ForBody               FOR_BODY;
 non terminal  ForLabel              LABEL_FOR;
@@ -238,12 +234,12 @@ DECLARE_FUNCTIONS           ::= DEFINE_FUNCTION DECLARE_FUNCTIONS
                             {:
                               RESULT = new DeclareFunctions();
                             :}
-                            | MAIN
+                            | MAIN_S
                             {:
                               RESULT = new DeclareFunctions();
                             :};
 
-MAIN                        ::= inst_function inst_main M_MAIN lparen rparen lbrace BLOCK_IN MAIN_INSTRUCTIONS BLOCK_OUT rbrace {:
+MAIN_S                        ::= FUNC MAIN M_MAIN lparen rparen lbrace BLOCK_IN MAIN_INSTRUCTIONS BLOCK_OUT rbrace {:
                               c3a_g.generateC3aInstr(
                                 Code.rtn,
                                 null,
@@ -1171,7 +1167,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
                             :}
-                            | instr_read lparen rparen
+                            | READ lparen rparen
                             {:
                               try{
                                 Type number_type = symbolsTable.get("number");
@@ -1702,7 +1698,7 @@ COND_F                      ::=
                                 RESULT = new CondFalse();
                               :};
 
-INSTRUCTION_IF              ::= IF COND lbrace BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbrace ELIF ELSE
+INSTRUCTION_IF              ::= IF COND lbrace BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbrace INSTRUCT_ELIF INSTRUCT_ELSE
                             {:
                               RESULT = new InstructionIf();
                             :};
@@ -1721,7 +1717,7 @@ M_END                       ::= EMPTY
                               RESULT = new End(label);
                             :};
 
-ELIF                        ::= M_END:mend inst_elif COND_F COND lbrace BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbrace ELIF
+INSTRUCT_ELIF                ::= M_END:mend ELIF COND_F COND lbrace BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbrace INSTRUCT_ELIF
                             {:
                               String label = mend.getLabel();
 
@@ -1739,7 +1735,7 @@ ELIF                        ::= M_END:mend inst_elif COND_F COND lbrace BLOCK_IN
                               RESULT = new ElseIf();
                             :};
 
-ELSE                        ::= M_END:mend inst_else lbrace BLOCK_IN COND_F INSTRUCTIONS BLOCK_OUT rbrace
+INSTRUCT_ELSE                        ::= M_END:mend ELSE lbrace BLOCK_IN COND_F INSTRUCTIONS BLOCK_OUT rbrace
                             {:
                               String label = mend.getLabel();
 
@@ -1771,7 +1767,7 @@ M_WHILE                     ::= EMPTY
                               RESULT = new WhileLabel(label);
                             :};
 
-INSTRUCTION_WHILE           ::= inst_while M_WHILE:mwhile COND lbrace BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbrace
+INSTRUCTION_WHILE           ::= WHILE M_WHILE:mwhile COND lbrace BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbrace
                             {:
                               String loop_label = mwhile.getLabel();
                               c3a_g.generateC3aInstr(
@@ -1792,7 +1788,7 @@ INSTRUCTION_WHILE           ::= inst_while M_WHILE:mwhile COND lbrace BLOCK_IN C
                               RESULT = new InstructionWhile();
                             :};
 
-INSTRUCTION_FOR             ::= inst_for lparen FOR_BODY:forBody rparen lbrace BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbrace
+INSTRUCTION_FOR             ::= FOR lparen FOR_BODY:forBody rparen lbrace BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT rbrace
                             {:
                               String postInstrLabel = forBody.getLabel();
                               c3a_g.generateC3aInstr(
@@ -2006,7 +2002,7 @@ CALL_BODY                   ::= CALL_BODY:body comma VALUE:value
                               }
                             :};
 
-INSTRUCTION_OUT             ::= instr_print lparen VALUE:value rparen
+INSTRUCTION_OUT             ::= PRINT lparen VALUE:value rparen
                             {:
                               try{
                                 String var_id = value.getVarId();
@@ -2074,7 +2070,7 @@ DEFINE_FUNCTION             ::= FUNCTION_INIT:fun_init lbrace BLOCK_IN FUNCTION_
                               RESULT = new DefineFunction();
                             :};
 
-FUNCTION_INIT               ::= inst_function id:fun_id FUNCTION_PARAMS:fun_params rparen two_points id:type_id
+FUNCTION_INIT               ::= FUNC id:fun_id FUNCTION_PARAMS:fun_params rparen two_points id:type_id
                             {:
                               try{
                                 // check return type
@@ -2211,7 +2207,7 @@ FUNCTION_INSTRUCTIONS       ::= INSTRUCTIONS
                               RESULT = new FunctionInstructions();
                             :};
 
-FUNCTION_RETURN             ::= inst_return VALUE:value semicolon
+FUNCTION_RETURN             ::= RETURN VALUE:value semicolon
                             {:
                               try{
                                 // is literall

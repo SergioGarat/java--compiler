@@ -9,39 +9,39 @@ package sintactico;
 public class ParserSym {
   /* terminals */
   public static final int string = 4;
+  public static final int READ = 21;
   public static final int op_logical = 8;
   public static final int number = 3;
-  public static final int inst_main = 33;
+  public static final int ELSE = 15;
   public static final int constant = 19;
-  public static final int instr_read = 21;
-  public static final int inst_elif = 14;
+  public static final int WHILE = 16;
   public static final int two_points = 31;
+  public static final int RETURN = 18;
   public static final int lbracket = 27;
   public static final int IF = 13;
   public static final int semicolon = 29;
-  public static final int inst_function = 17;
   public static final int op_assig = 12;
   public static final int op_logical_not = 9;
   public static final int bool = 5;
-  public static final int inst_return = 18;
+  public static final int FUNC = 17;
   public static final int EOF = 0;
+  public static final int MAIN = 33;
   public static final int id = 2;
   public static final int dot = 32;
   public static final int struct = 6;
-  public static final int inst_else = 15;
   public static final int rbrace = 26;
   public static final int rparen = 24;
+  public static final int ELIF = 14;
+  public static final int PRINT = 22;
   public static final int error = 1;
   public static final int op_arithmetical_c = 10;
   public static final int rbracket = 28;
   public static final int op_arithmetical_b = 11;
-  public static final int instr_print = 22;
   public static final int op_relational = 7;
+  public static final int FOR = 20;
   public static final int lbrace = 25;
   public static final int lparen = 23;
   public static final int comma = 30;
-  public static final int inst_for = 20;
-  public static final int inst_while = 16;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -57,15 +57,15 @@ public class ParserSym {
   "op_arithmetical_b",
   "op_assig",
   "IF",
-  "inst_elif",
-  "inst_else",
-  "inst_while",
-  "inst_function",
-  "inst_return",
+  "ELIF",
+  "ELSE",
+  "WHILE",
+  "FUNC",
+  "RETURN",
   "constant",
-  "inst_for",
-  "instr_read",
-  "instr_print",
+  "FOR",
+  "READ",
+  "PRINT",
   "lparen",
   "rparen",
   "lbrace",
@@ -76,7 +76,7 @@ public class ParserSym {
   "comma",
   "two_points",
   "dot",
-  "inst_main"
+  "MAIN"
   };
 }
 

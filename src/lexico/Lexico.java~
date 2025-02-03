@@ -1022,37 +1022,37 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 74: break;
           case 32:
-            { Token token = new Token(Tokens.INST_FOR,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.FOR,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_FOR.name(), ParserSym.inst_for);
+                        return symbol(Tokens.FOR.name(), ParserSym.FOR);
             }
             // fall through
           case 75: break;
           case 33:
-            { Token token = new Token(Tokens.INST_ELSE,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.ELSE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_ELSE.name(),ParserSym.inst_elif);
+                        return symbol(Tokens.ELSE.name(),ParserSym.ELIF);
             }
             // fall through
           case 76: break;
           case 34:
-            { Token token = new Token(Tokens.INST_ELSE,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.ELSE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_ELSE.name(), ParserSym.inst_else);
+                        return symbol(Tokens.ELSE.name(), ParserSym.ELSE);
             }
             // fall through
           case 77: break;
           case 35:
-            { Token token = new Token(Tokens.INST_MAIN,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.MAIN,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_MAIN.name(),ParserSym.inst_main);
+                        return symbol(Tokens.MAIN.name(),ParserSym.MAIN);
             }
             // fall through
           case 78: break;
           case 36:
-            { Token token = new Token(Tokens.INSTR_READ,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.READ,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INSTR_READ.name(),ParserSym.instr_read);
+                        return symbol(Tokens.READ.name(),ParserSym.READ);
             }
             // fall through
           case 79: break;
@@ -1064,23 +1064,23 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 80: break;
           case 38:
-            { Token token = new Token(Tokens.INSTR_PRINT,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.PRINT,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INSTR_PRINT.name(),ParserSym.instr_print);
+                        return symbol(Tokens.PRINT.name(),ParserSym.PRINT);
             }
             // fall through
           case 81: break;
           case 39:
-            { Token token = new Token(Tokens.INST_WHILE,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.WHILE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_WHILE.name(),ParserSym.inst_while);
+                        return symbol(Tokens.WHILE.name(),ParserSym.WHILE);
             }
             // fall through
           case 82: break;
           case 40:
-            { Token token = new Token(Tokens.INST_RETURN,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.RETURN,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_RETURN.name(),ParserSym.inst_return);
+                        return symbol(Tokens.RETURN.name(),ParserSym.RETURN);
             }
             // fall through
           case 83: break;
@@ -1099,9 +1099,9 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 85: break;
           case 43:
-            { Token token = new Token(Tokens.INST_FUNCTION,yyline,yycolumn, yytext());
+            { Token token = new Token(Tokens.FUNC,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.INST_FUNCTION.name(),ParserSym.inst_function);
+                        return symbol(Tokens.FUNC.name(),ParserSym.FUNC);
             }
             // fall through
           case 86: break;
