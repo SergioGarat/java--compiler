@@ -2,12 +2,9 @@
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 0 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -31,12 +28,9 @@ scope:1, pointing at: 0 value
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 0 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -61,12 +55,9 @@ identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 0 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -92,12 +83,9 @@ identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 0 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -124,12 +112,9 @@ identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 0 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -157,12 +142,9 @@ identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 0 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -191,12 +173,9 @@ identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 0 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -226,12 +205,9 @@ identifier : sumaDosNumeros TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 1 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -262,12 +238,9 @@ ID : a_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 2 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -299,13 +272,10 @@ ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 2 value
 scope:2, pointing at: 2 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -337,13 +307,10 @@ ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 2 value
 scope:2, pointing at: 2 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -376,12 +343,9 @@ ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 2 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -413,12 +377,9 @@ ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 2 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -451,12 +412,9 @@ ID : b_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : sumaDosNumeros
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 3 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -490,13 +448,10 @@ ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NE
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 3 value
 scope:2, pointing at: 3 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -530,13 +485,10 @@ ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NE
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 3 value
 scope:2, pointing at: 3 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -571,14 +523,11 @@ ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NE
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 3 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 3 value
 scope:2, pointing at: 3 value
 scope:3, pointing at: 3 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -613,13 +562,10 @@ ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NE
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 3 value
 scope:2, pointing at: 3 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -654,15 +600,12 @@ ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NE
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 3 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 3 value
 scope:2, pointing at: 3 value
 scope:3, pointing at: 3 value
 -----------------------------------------------
-
------------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
 identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
@@ -696,14 +639,11 @@ ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NE
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 3 value
 scope:2, pointing at: 3 value
 -----------------------------------------------
-
------------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
 identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
@@ -737,12 +677,9 @@ ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NE
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 3 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -776,12 +713,9 @@ ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NE
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 3 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -816,12 +750,9 @@ ID : num_1_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : factorial NE
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -857,13 +788,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -899,13 +827,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -942,14 +867,11 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 3 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
 scope:3, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -986,13 +908,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1029,14 +948,11 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 3 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
 scope:3, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1073,13 +989,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1116,15 +1029,12 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 3 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
 scope:3, pointing at: 4 value
 -----------------------------------------------
-
------------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
 identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
@@ -1160,14 +1070,11 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
 -----------------------------------------------
-
------------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
 identifier : result TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
@@ -1203,12 +1110,9 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1244,12 +1148,9 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1286,13 +1187,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1329,13 +1227,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1373,13 +1268,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1418,13 +1310,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1464,13 +1353,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1511,13 +1397,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1559,13 +1442,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1608,13 +1488,10 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
@@ -1658,15 +1535,12 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 3 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
 scope:3, pointing at: 4 value
 -----------------------------------------------
-
------------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
 identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
@@ -1709,14 +1583,11 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 2 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
 scope:2, pointing at: 4 value
 -----------------------------------------------
-
------------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
 identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
@@ -1759,12 +1630,9 @@ ID : num_2_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : recursiveAdd
 ------------- SYMBOLS TABLE DATA -------------- 
 -----------------------------------------------
 
------------------------------------------------
 --------------- SCOPE INFO : 1 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 4 value
------------------------------------------------
-
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
