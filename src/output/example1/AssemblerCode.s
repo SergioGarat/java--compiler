@@ -12,9 +12,9 @@ T38: .asciz "RECURSIVE ADDING "
 T37: .asciz "\n"
 T39: .asciz " :"
 T41: .asciz "\n"
-T52: .asciz "He entrado: "
-T51: .asciz "\n"
-T53: .asciz "\nHE SALIDO\n"
+T47: .asciz "\n"
+T48: .asciz "He entrado: "
+T52: .asciz "\nHE SALIDO\n"
 T12: .asciz "\n"
 T11: .asciz "NUM: "
 T16: .asciz "\n"
@@ -329,7 +329,7 @@ main:
 # pmb PROC_main
 push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.
 mov %rsp, %rbp
-sub $352, %rsp
+sub $384, %rsp
 
 # T25 = 5
 movl $5, %edi
@@ -497,79 +497,30 @@ mov $T41, %rdi
 xor %rax, %rax
 call printf
 
-# T42 = 100
-movl $100, %edi
+# T42 = 0
+movl $0, %edi
 movl %edi, -160(%rbp)
 
-# numC_3_2 = T42
+# i_3_2 = T42
 movl -160(%rbp), %edi
 movl %edi, -176(%rbp)
-
-# T43 = 1200
-movl $1200, %edi
-movl %edi, -192(%rbp)
-
-# numD_3_2 = T43
-movl -192(%rbp), %edi
-movl %edi, -208(%rbp)
-
-# T44 = 35000
-movl $35000, %edi
-movl %edi, -224(%rbp)
-
-# numE_3_2 = T44
-movl -224(%rbp), %edi
-movl %edi, -240(%rbp)
-
-# param PROC_sumaDosNumeros(numC_3_2)
-movslq -176(%rbp), %rdx
-push %rdx
-
-# param PROC_sumaDosNumeros(numD_3_2)
-movslq -208(%rbp), %rdx
-push %rdx
-
-# call PROC_sumaDosNumeros
-xor %rax, %rax   # clean return register
-call PROC_sumaDosNumeros
-# pop all params
-pop %rdx
-pop %rdx
-
-# T45 = return PROC_sumaDosNumeros
-movl %eax, -256(%rbp)
-
-# print T45
-mov $format_int, %rdi
-xor %rsi, %rsi
-movl -256(%rbp), %esi
-xor %rax, %rax
-call printf
-
-# T46 = 0
-movl $0, %edi
-movl %edi, -272(%rbp)
-
-# i_3_2 = T46
-movl -272(%rbp), %edi
-movl %edi, -288(%rbp)
 
 # ETIQ_9: skip
 ETIQ_9:
 
-# T47 = 3
+# T43 = 3
 movl $3, %edi
-movl %edi, -304(%rbp)
+movl %edi, -192(%rbp)
 
-# T48 = i_3_2 < T47
-movl -288(%rbp), %edi
-movl -304(%rbp), %esi
+# T44 = i_3_2 < T43
+movl -176(%rbp), %edi
+movl -192(%rbp), %esi
 xor %rax, %rax # clean return value register
 call CMP_LT
-movw %ax,-320(%rbp) # get return value
+movw %ax,-208(%rbp) # get return value
 
-# if T48 == true goto ETIQ_10
-cmpw $1,-320(%rbp)
+# if T44 == true goto ETIQ_10
+cmpw $1,-208(%rbp)
 je ETIQ_10
 
 # goto ETIQ_11
@@ -578,19 +529,19 @@ jmp ETIQ_11
 # ETIQ_12: skip
 ETIQ_12:
 
-# T49 = 1
+# T45 = 1
 movl $1, %edi
-movl %edi, -336(%rbp)
+movl %edi, -224(%rbp)
 
-# T50 = i_3_2 + T49
-movl -288(%rbp), %edi
-movl -336(%rbp), %eax
+# T46 = i_3_2 + T45
+movl -176(%rbp), %edi
+movl -224(%rbp), %eax
 addl %eax, %edi
-movl %edi, -352(%rbp)
+movl %edi, -240(%rbp)
 
-# i_3_2 = T50
-movl -352(%rbp), %edi
-movl %edi, -288(%rbp)
+# i_3_2 = T46
+movl -240(%rbp), %edi
+movl %edi, -176(%rbp)
 
 # goto ETIQ_9
 jmp ETIQ_9
@@ -598,22 +549,22 @@ jmp ETIQ_9
 # ETIQ_10: skip
 ETIQ_10:
 
-# T51 = "\n"
-# print T51
-mov $T51, %rdi
+# T47 = "\n"
+# print T47
+mov $T47, %rdi
 xor %rax, %rax
 call printf
 
-# T52 = "He entrado: "
-# print T52
-mov $T52, %rdi
+# T48 = "He entrado: "
+# print T48
+mov $T48, %rdi
 xor %rax, %rax
 call printf
 
 # print i_3_2
 mov $format_int, %rdi
 xor %rsi, %rsi
-movl -288(%rbp), %esi
+movl -176(%rbp), %esi
 xor %rax, %rax
 call printf
 
@@ -623,15 +574,39 @@ jmp ETIQ_12
 # ETIQ_11: skip
 ETIQ_11:
 
-# T53 = "\nHE SALIDO\n"
-# print T53
-mov $T53, %rdi
+# T49 = 1
+movl $1, %edi
+movl %edi, -304(%rbp)
+
+# T50 = true
+movw $1, %di
+movw %di, -320(%rbp)
+
+# T51 = 2
+movl $2, %edi
+movl %edi, -336(%rbp)
+
+# id3_3_2 = T49
+movl -304(%rbp), %edi
+movl %edi, -288(%rbp)
+
+# id2_3_2 = T50
+movw -320(%rbp), %di
+movw %di, -272(%rbp)
+
+# id3_3_2 = T51
+movl -336(%rbp), %edi
+movl %edi, -288(%rbp)
+
+# T52 = "\nHE SALIDO\n"
+# print T52
+mov $T52, %rdi
 xor %rax, %rax
 call printf
 
 # rtn
 # Delete all reserved space
-addq $352, %rsp
+addq $384, %rsp
 leave
 ret
 

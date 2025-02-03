@@ -196,7 +196,6 @@ non terminal  FunctionReturn             FUNCTION_RETURN;
 non terminal  CallFunction          CALL_FUNCTION;
 non terminal  CallBody              CALL_BODY;
 
-non terminal                        TUPLE_ACCESS;
 non terminal    TupleDeclaration    TUPLE_DECLARATION;
 non terminal    FieldList           FIELD_LIST;
 non terminal    TupleField          TUPLE_FIELD;
@@ -384,7 +383,7 @@ TUPLE_DECLARATION           ::= struct lbrace FIELD_LIST:field_list rbrace id:va
                             {:
                             Type type = symbolsTable.get("tuple");
                             type.setSize(field_list.getSize());
-                            type.setTiposSubyacentes(field_list.getTiposSubyacentes());
+                            type.setTupleTypes(field_list.getTypes());
                             symbolsTable.add(var_id, type);
                             RESULT = new TupleDeclaration(var_id, field_list, field_list.getSize());
                             :}
@@ -413,9 +412,10 @@ TUPLE_FIELD                 ::= id:id_var two_points id:type_id
                               throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC);
                             }
 
-                            String backId;
-                            backId = backTables.addVariable(id_var, type.getTipoSubyacente(), type.getSize(), false);
+                            String backId = backTables.addVariable(id_var, type.getTipoSubyacente(), type.getSize(), false);
                             type.setIdBack(backId);
+
+                            symbolsTable.add(id_var, type);
 
                             RESULT = new TupleField(id_var, type);
                             :}
@@ -530,7 +530,7 @@ DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_
                             }
 
                             //COMPROBAMOS QUE LA CANTIDAD DE VALORES COINCIDA CON LA CANTIDAD DE VARIABLES DE LA TUPLA
-                            if(type.getTiposSubyacentes().size() != tuple_value.getValues().size()){
+                            if(type.getTupleTypes().size() != tuple_value.getValues().size()){
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                 String message = "TUPLE_DECLARATION: Invalid number of values" + " from "+from+" to "+to;
@@ -539,7 +539,7 @@ DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_
 
                             //COMPROBAMOS QUE LOS TIPOS DE LOS VALUES SEAN COMPATIBLES CON LOS TIPOS DE LA TUPLA
                             for (int i = 0; i < tuple_value.getValues().size(); i++){
-                                if(type.getTiposSubyacentes().get(i) != tuple_value.getValues().get(i).getTipoSubyacente()){
+                                if(type.getTupleTypes().get(i).getTipoSubyacente() != tuple_value.getValues().get(i).getTipoSubyacente()){
                                     String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                     String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                     String message = "TUPLE_DECLARATION: Invalid subjacentType of value" + " from "+from+" to "+to;
@@ -547,12 +547,21 @@ DECLARATION                 ::=  id:id_var CONSTANT:constant two_points id:type_
                                 }
                             }
 
-                            :}
-                            ;
+                            for (int i = 0; i < tuple_value.getValues().size(); i++){
+                                var value = tuple_value.getValues().get(i);
+                                var varType = type.getTupleTypes().get(i);
+                                    c3a_g.generateC3aInstr(
+                                           Code.copy,
+                                           value.getVarId(),
+                                           null,
+                                           varType.getBackendId()
+                                   );
+                            }
 
-TUPLE_ACCESS                ::= id:tuple dot id:attribute
-                            {:
-                            System.out.println("Identificador: " + tuple + " | Atributo: " + attribute);
+                            backTables.addVariable(id_var, type.getTipoSubyacente(), type.getSize(), false);
+
+                            RESULT = new Declarations();
+
                             :}
                             ;
 
@@ -1184,10 +1193,6 @@ VALUE                       ::= ID_VALUE:id_val
                               }catch(SymTabError e){
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC);
                               }
-                            :}
-                            | TUPLE_ACCESS
-                            {:
-
                             :}
                             ;
 

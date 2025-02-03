@@ -214,59 +214,37 @@ print T40
 T41 = "\n"
 print T41
 
-T42 = 100
+T42 = 0
 
-numC_3_2 = T42
-
-T43 = 1200
-
-numD_3_2 = T43
-
-T44 = 35000
-
-numE_3_2 = T44
-
-param PROC_sumaDosNumeros(numC_3_2)
-
-param PROC_sumaDosNumeros(numD_3_2)
-
-call PROC_sumaDosNumeros
-
-T45 = return PROC_sumaDosNumeros
-
-print T45
-
-T46 = 0
-
-i_3_2 = T46
+i_3_2 = T42
 
 ETIQ_9: skip
 
-T47 = 3
+T43 = 3
 
-T48 = i_3_2 < T47
+T44 = i_3_2 < T43
 
-if T48 == true goto ETIQ_10
+if T44 == true goto ETIQ_10
 
 goto ETIQ_11
 
 ETIQ_12: skip
 
-T49 = 1
+T45 = 1
 
-T50 = i_3_2 + T49
+T46 = i_3_2 + T45
 
-i_3_2 = T50
+i_3_2 = T46
 
 goto ETIQ_9
 
 ETIQ_10: skip
 
-T51 = "\n"
-print T51
+T47 = "\n"
+print T47
 
-T52 = "He entrado: "
-print T52
+T48 = "He entrado: "
+print T48
 
 print i_3_2
 
@@ -274,8 +252,20 @@ goto ETIQ_12
 
 ETIQ_11: skip
 
-T53 = "\nHE SALIDO\n"
-print T53
+T49 = 1
+
+T50 = true
+
+T51 = 2
+
+id3_3_2 = T49
+
+id2_3_2 = T50
+
+id3_3_2 = T51
+
+T52 = "\nHE SALIDO\n"
+print T52
 
 rtn
 

@@ -21,12 +21,12 @@ public class FieldList extends SymbolBase {
         this.size = x;
     }
 
-    public List<Type.TipoSubyacente> getTiposSubyacentes() {
-        var tiposSubyacentes = new ArrayList<Type.TipoSubyacente>();
+    public List<Type> getTypes() {
+        var types = new ArrayList<Type>();
         for (var field : fields) {
-            tiposSubyacentes.add(field.getType().getTipoSubyacente());
+            types.add(field.getType());
         }
-        return tiposSubyacentes;
+        return types;
     }
 
     public ArrayList<TupleField> getFields() {
