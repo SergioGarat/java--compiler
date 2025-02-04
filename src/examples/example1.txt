@@ -62,12 +62,6 @@ function main() {
 	print(recursiveAdding(numZ));
 	print("\n");
 
-	numC : number := 100;
-	numD : number := 1200;
-	numE : number := 35000;
-
-	print(sumaDosNumeros(numC, numD));
-
     // Comprobación del funcionamiento del bucle for//
 
 	for (i : number := 0; (i < 3); i := i + 1) {
@@ -75,5 +69,10 @@ function main() {
          print("He entrado: ");
          print(i);
     }
+
+    struct { id1 : number ; id2 : boolean ; id3 : number} persona ;
+
+    p: persona := [1, true, 2];
+
     print("\nHE SALIDO\n");
 }

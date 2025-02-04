@@ -34,9 +34,8 @@ public class Type {
 
     private Tipo tipo;
     private TipoSubyacente tipoSubyacente;
-    private List<TipoSubyacente> tiposSubyacentes;
+    private List<Type> tupleTypes;
     private String idBack = "";
-
     private int size;
     private Object value;
     private String typeName;
@@ -47,9 +46,9 @@ public class Type {
         this.size = size;
     }
 
-    public Type(Tipo tipo, List<TipoSubyacente> tiposSubyacentes, int size) {
+    public Type(Tipo tipo, List<Type> tupleTypes, int size) {
         this.tipo = tipo;
-        this.tiposSubyacentes = tiposSubyacentes;
+        this.tupleTypes = tupleTypes;
         this.size = size;
     }
 
@@ -114,11 +113,11 @@ public class Type {
         this.typeName = typeName;
     }
 
-    public List<TipoSubyacente> getTiposSubyacentes() {
-        return tiposSubyacentes;
+    public List<Type> getTupleTypes() {
+        return tupleTypes;
     }
 
-    public void setTiposSubyacentes(List<TipoSubyacente> tiposSubyacentes) {
-        this.tiposSubyacentes = tiposSubyacentes;
+    public void setTupleTypes(List<Type> tupleTypes) {
+        this.tupleTypes = tupleTypes;
     }
 }
