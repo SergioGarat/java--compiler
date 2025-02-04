@@ -541,7 +541,7 @@
 
 	SEMICOLON[;](60:12)
 
-	PRINT[print](61:1)
+	PRINT[pRint](61:1)
 
 	LPAREN[(](61:6)
 
@@ -557,7 +557,7 @@
 
 	SEMICOLON[;](61:29)
 
-	PRINT[print](62:1)
+	PRINT[prInt](62:1)
 
 	LPAREN[(](62:6)
 

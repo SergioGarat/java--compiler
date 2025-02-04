@@ -22,10 +22,6 @@ public class CompilerError extends Exception {
         LEXICAL, SYNTAX, SEMANTIC
     }
 
-    public CompilerError(String message, ErrorType type){
-        this(message, type, "");
-    }
-
     public CompilerError(String message, ErrorType type, String filename) {
         super(message);
         this.type = type;
@@ -33,62 +29,56 @@ public class CompilerError extends Exception {
 
         if (out == null) {
             try {
-                switch (type) {
-                    case LEXICAL:
-                        outLexical = new BufferedWriter(new FileWriter(BASE_PATH + filename + LEXICAL_FILE));
-                        out = outLexical;
-                        break;
-                    case SYNTAX:
-                        outSyntax = new BufferedWriter(new FileWriter(BASE_PATH + filename + SYNTAX_FILE));
-                        out = outSyntax;
-                        break;
-                    case SEMANTIC:
-                        outSemantic = new BufferedWriter(new FileWriter(BASE_PATH + filename + SEMANTIC_FILE));
-                        out = outSemantic;
-                        break;
-                }
+                out = switch (type) {
+                    case LEXICAL -> {
+                        outLexical = new BufferedWriter(new FileWriter(BASE_PATH + filename + "\\" + LEXICAL_FILE));
+                        yield outLexical;
+                    }
+                    case SYNTAX -> {
+                        outSyntax = new BufferedWriter(new FileWriter(BASE_PATH + filename + "\\" + SYNTAX_FILE));
+                        yield outSyntax;
+                    }
+                    case SEMANTIC -> {
+                        outSemantic = new BufferedWriter(new FileWriter(BASE_PATH + filename + "\\" + SEMANTIC_FILE));
+                        yield outSemantic;
+                    }
+                };
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("ERROR CREANDO EL ARCHIVO DE ERROR: " + e.getMessage());
             }
         }
-
         try {
             out.write(message + "\n");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("ERROR ESCRIBIENDO EN EL ARCHIVO DE ERROR: " + e.getMessage());
         }
-
     }
 
 
-    public CompilerError(ComplexSymbol s, ArrayList<String> expectedName, boolean recovered) {
-        this(buildSyntaxErrorMessage(s, expectedName), ErrorType.SYNTAX);
+    public CompilerError(ComplexSymbol s, ArrayList<String> expectedName, boolean recovered, String filename) {
+        this(buildSyntaxErrorMessage(s, expectedName), ErrorType.SYNTAX, filename);
     }
 
     private static String buildSyntaxErrorMessage(ComplexSymbol s, ArrayList<String> expectedName) {
         String from = s.xleft.getLine() + ":" + s.xleft.getColumn();
         String to = s.xright.getLine() + ":" + s.xright.getColumn();
         String error = "Syntax Error: " + (s.value != null ? s.value : "") + " spanning from " + from + " to " + to;
-        if (expectedName != null && expectedName.size() > 0) {
+        if (expectedName != null && !expectedName.isEmpty()) {
             error += "\t\n Token/s Expected: ";
             for (String token : expectedName) {
-                error += token + " ";
+                error += token + ", ";
             }
+            error = error.substring(0, error.length() - 2);
         }
         return error;
     }
 
     private BufferedWriter getBufferedWriter(ErrorType type) {
-        switch (type) {
-            case LEXICAL:
-                return outLexical;
-            case SYNTAX:
-                return outSyntax;
-            case SEMANTIC:
-                return outSemantic;
-            default:
-                return null;
-        }
+        return switch (type) {
+            case LEXICAL -> outLexical;
+            case SYNTAX -> outSyntax;
+            case SEMANTIC -> outSemantic;
+        };
     }
 
     public static void closeFiles() {

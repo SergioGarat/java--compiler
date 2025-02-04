@@ -59,8 +59,8 @@ function main() {
 	print("RECURSIVE ADDING ");
 	print(numZ);
 	print(" :");
-	print(recursiveAdding(numZ));
-	print("\n");
+	pRint(recursiveAdding(numZ));
+	prInt("\n");
 
     // Comprobación del funcionamiento del bucle for//
 
