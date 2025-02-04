@@ -62,7 +62,6 @@ public class Token {
         SEMICOLON,
         COMMA,
         TWO_POINTS,
-        DOT,
         ERROR,
         EOF,
     }

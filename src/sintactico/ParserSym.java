@@ -8,74 +8,72 @@ package sintactico;
 /** CUP generated class containing symbol constants. */
 public class ParserSym {
   /* terminals */
-  public static final int string = 4;
   public static final int READ = 21;
-  public static final int op_logical = 8;
-  public static final int number = 3;
+  public static final int SEMICOLON = 29;
   public static final int ELSE = 15;
-  public static final int constant = 19;
+  public static final int STRUCT = 6;
+  public static final int RBRACE = 26;
+  public static final int RPAREN = 24;
   public static final int WHILE = 16;
-  public static final int two_points = 31;
+  public static final int CONSTANT = 19;
   public static final int RETURN = 18;
-  public static final int lbracket = 27;
+  public static final int OP_LOGICAL_NOT = 9;
+  public static final int OP_ARITHMETICAL_C = 10;
   public static final int IF = 13;
-  public static final int semicolon = 29;
-  public static final int op_assig = 12;
-  public static final int op_logical_not = 9;
-  public static final int bool = 5;
+  public static final int LBRACKET = 27;
+  public static final int LBRACE = 25;
+  public static final int LPAREN = 23;
+  public static final int OP_ARITHMETICAL_B = 11;
+  public static final int OP_RELATIONAL = 7;
+  public static final int ID = 2;
+  public static final int RBRACKET = 28;
+  public static final int STRING = 4;
+  public static final int COMMA = 30;
   public static final int FUNC = 17;
   public static final int EOF = 0;
-  public static final int MAIN = 33;
-  public static final int id = 2;
-  public static final int dot = 32;
-  public static final int struct = 6;
-  public static final int rbrace = 26;
-  public static final int rparen = 24;
+  public static final int NUMBER = 3;
+  public static final int OP_ASSIG = 12;
+  public static final int MAIN = 32;
+  public static final int OP_LOGICAL = 8;
   public static final int ELIF = 14;
   public static final int PRINT = 22;
   public static final int error = 1;
-  public static final int op_arithmetical_c = 10;
-  public static final int rbracket = 28;
-  public static final int op_arithmetical_b = 11;
-  public static final int op_relational = 7;
+  public static final int TWO_POINTS = 31;
+  public static final int BOOL = 5;
   public static final int FOR = 20;
-  public static final int lbrace = 25;
-  public static final int lparen = 23;
-  public static final int comma = 30;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "id",
-  "number",
-  "string",
-  "bool",
-  "struct",
-  "op_relational",
-  "op_logical",
-  "op_logical_not",
-  "op_arithmetical_c",
-  "op_arithmetical_b",
-  "op_assig",
+  "ID",
+  "NUMBER",
+  "STRING",
+  "BOOL",
+  "STRUCT",
+  "OP_RELATIONAL",
+  "OP_LOGICAL",
+  "OP_LOGICAL_NOT",
+  "OP_ARITHMETICAL_C",
+  "OP_ARITHMETICAL_B",
+  "OP_ASSIG",
   "IF",
   "ELIF",
   "ELSE",
   "WHILE",
   "FUNC",
   "RETURN",
-  "constant",
+  "CONSTANT",
   "FOR",
   "READ",
   "PRINT",
-  "lparen",
-  "rparen",
-  "lbrace",
-  "rbrace",
-  "lbracket",
-  "rbracket",
-  "semicolon",
-  "comma",
-  "two_points",
-  "dot",
+  "LPAREN",
+  "RPAREN",
+  "LBRACE",
+  "RBRACE",
+  "LBRACKET",
+  "RBRACKET",
+  "SEMICOLON",
+  "COMMA",
+  "TWO_POINTS",
   "MAIN"
   };
 }
