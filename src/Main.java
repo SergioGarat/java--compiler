@@ -1,12 +1,12 @@
+import errores.CompilerError;
+import errores.SymTabError;
 import java_cup.runtime.ComplexSymbolFactory;
 import jflex.exceptions.SilentExit;
 import lexico.Lexico;
 import sintactico.Parser;
+import symbolsTable.SymbolsTable;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,16 +24,17 @@ public class Main {
 
     private static final String OUTPUT_DIR = WORK_DIR + "output\\";
 
-    public static void main(String[] args) {
+    //todo: Aquí se debe cambiar el archivo que se quiere escoger para compilar
+    public static String fileToCompile = "example1.txt";
+
+    public static void main(String[] args) throws IOException {
         generateJavaFiles();
-        //Aquí se debe cambiar el archivo que se quiere escoger para compilar
 
-
-        String file = "example1.txt";
         if (args.length != 0) {
-            file = args[0];
+            fileToCompile = args[0];
         }
-        String fname = file;
+
+        String fname = fileToCompile;
         int pos = fname.lastIndexOf(".");
         if (pos > 0) {
             fname = fname.substring(0, pos);
@@ -48,13 +49,13 @@ public class Main {
             generateFlexFile();
             System.out.println("Léxico generado");
         } catch (Exception e) {
-            System.out.println("ERROR GENERANDO EL ARCHIVO: " + e.getMessage());
+            System.out.println("ERROR GENERANDO LOS ARCHIVOS DEL ANALISIS LÉXICO: " + e.getMessage());
         }
         try {
             generateCupFile();
             System.out.println("Parser generado");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("ERROR GENERANDO LOS ARCHIVOS DEL ANALISIS SINTÁCTICO: " + e.getMessage());
         }
     }
 
@@ -83,7 +84,18 @@ public class Main {
         Files.move(sym_o, sym_d);
     }
 
-    private static void executeCompiler(String fname) {
+    private static void closeFiles() throws IOException {
+        Lexico.closeFile(0, 0);
+        SymbolsTable.closeFiles();
+    }
+
+    private static void closeErrorFiles() {
+        SymTabError.closeFile();
+        CompilerError.closeFiles();
+    }
+
+
+    private static void executeCompiler(String fname) throws IOException {
         try {
             cleanOutputFiles(fname, false);
             Reader reader = new BufferedReader(new FileReader(WORK_DIR + "examples\\" + fname + ".txt"));
@@ -93,7 +105,8 @@ public class Main {
             parser.parse();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            e.printStackTrace();
+            closeFiles();
+            closeErrorFiles();
         }
     }
 

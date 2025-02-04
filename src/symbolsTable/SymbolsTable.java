@@ -220,9 +220,9 @@ public class SymbolsTable {
         StringBuilder result = new StringBuilder();
         if (action != null) {
             result.append("-----------------------------------------------\n")
-                  .append("----------------- ACTION DONE -----------------\n")
-                  .append("\t").append(action).append("\n")
-                  .append("-----------------------------------------------\n\n");
+                    .append("----------------- ACTION DONE -----------------\n")
+                    .append("\t").append(action).append("\n")
+                    .append("-----------------------------------------------\n\n");
         }
 
         appendTableData(result);
@@ -236,9 +236,9 @@ public class SymbolsTable {
 
     private void appendTableData(StringBuilder result) {
         result.append("-----------------------------------------------\n")
-              .append("------------- SYMBOLS TABLE -------------- \n")
-              .append("-----------------------------------------------\n\n")
-              .append("--------------- SCOPE INFO : ").append(this.scope).append(" ----------------\n");
+                .append("------------- SYMBOLS TABLE -------------- \n")
+                .append("-----------------------------------------------\n\n")
+                .append("--------------- SCOPE INFO : ").append(this.scope).append(" ----------------\n");
 
         for (int i = 0; i < this.scopeTable.size(); i++) {
             result.append("scope:").append(i).append(", pointing at: ").append(scopeTable.get(i)).append(" value\n");
@@ -250,7 +250,7 @@ public class SymbolsTable {
 
     private void appendDescriptionTableData(StringBuilder result) {
         result.append("-----------------------------------------------\n")
-              .append("-------------- DESCRIPTION TABLE --------------\n\n");
+                .append("-------------- DESCRIPTION TABLE --------------\n\n");
         for (String key : this.descriptionTable.keySet()) {
             result.append(descriptionTable.get(key).toString()).append("\n");
         }
@@ -259,12 +259,12 @@ public class SymbolsTable {
 
     private void appendExpansionTableData(StringBuilder result) {
         result.append("-----------------------------------------------\n")
-              .append("------------- EXPANSION TABLE -----------------\n\n");
+                .append("------------- EXPANSION TABLE -----------------\n\n");
         for (ExpandInfo expansion : this.expansionTable) {
             result.append(expansion.toString()).append("\n");
         }
         result.append("\n-----------------------------------------------\n\n")
-              .append("-------------- END SYMBOLS TABLE --------------\n\n");
+                .append("-------------- END SYMBOLS TABLE --------------\n\n");
     }
 
     public int getActualScope() {
@@ -277,5 +277,9 @@ public class SymbolsTable {
         } catch (IOException e) {
             handleIOException(e);
         }
+    }
+
+    public static void closeFiles() throws IOException {
+        out.close();
     }
 }
