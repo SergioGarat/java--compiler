@@ -44,12 +44,12 @@ public class Lexico implements java_cup.runtime.Scanner {
   private static final char [] ZZ_CMAP = {
      0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  2,  3,  3,  2,  0,  0, 
      0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
-     1,  4,  5,  0,  0,  6,  7,  0,  8,  9, 10, 11, 12, 13, 14, 15, 
-    16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 19, 20, 21, 22,  0, 
-     0, 23, 24, 25, 26, 27, 28, 24, 29, 30, 24, 24, 31, 32, 33, 34, 
-    35, 24, 36, 37, 38, 39, 24, 40, 24, 24, 24, 41,  0, 42,  0,  0, 
-     0, 23, 24, 25, 26, 27, 28, 24, 29, 30, 24, 24, 31, 32, 33, 34, 
-    35, 24, 36, 37, 38, 39, 24, 40, 24, 24, 24, 43, 44, 45,  0,  0, 
+     1,  4,  5,  0,  0,  6,  7,  0,  8,  9, 10, 11, 12, 13,  0, 14, 
+    15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 18, 19, 20, 21,  0, 
+     0, 22, 23, 24, 25, 26, 27, 23, 28, 29, 23, 23, 30, 31, 32, 33, 
+    34, 23, 35, 36, 37, 38, 23, 39, 23, 23, 23, 40,  0, 41,  0,  0, 
+     0, 22, 23, 24, 25, 26, 27, 23, 28, 29, 23, 23, 30, 31, 32, 33, 
+    34, 23, 35, 36, 37, 38, 23, 39, 23, 23, 23, 42, 43, 44,  0,  0, 
      0,  0,  0,  0,  0,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
      0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
      0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
@@ -67,16 +67,16 @@ public class Lexico implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\3\1\1\1\4\1\1\1\5"+
-    "\1\6\1\7\1\10\1\11\1\12\1\13\1\14\2\15"+
-    "\1\16\1\17\1\20\1\1\1\21\13\22\1\23\1\24"+
-    "\1\25\1\1\1\26\1\27\1\0\1\30\1\31\1\0"+
-    "\1\32\1\33\1\34\1\35\5\22\1\36\6\22\1\37"+
-    "\1\0\4\22\1\40\10\22\1\2\1\22\1\41\1\42"+
-    "\1\22\1\43\1\22\1\44\2\22\1\45\3\22\1\46"+
-    "\2\22\1\47\2\22\1\50\1\51\2\22\1\52\1\53";
+    "\1\6\1\7\1\10\1\11\1\12\1\13\2\14\1\15"+
+    "\1\16\1\17\1\1\1\20\13\21\1\22\1\23\1\24"+
+    "\1\1\1\25\1\26\1\0\1\27\1\30\1\0\1\31"+
+    "\1\32\1\33\1\34\5\21\1\35\6\21\1\36\1\0"+
+    "\4\21\1\37\10\21\1\2\1\21\1\40\1\41\1\21"+
+    "\1\42\1\21\1\43\2\21\1\44\3\21\1\45\2\21"+
+    "\1\46\2\21\1\47\1\50\2\21\1\51\1\52";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[100];
+    int [] result = new int[99];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -101,22 +101,22 @@ public class Lexico implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\56\0\56\0\134\0\212\0\56\0\270\0\56"+
-    "\0\56\0\56\0\56\0\56\0\56\0\56\0\346\0\56"+
-    "\0\u0114\0\u0142\0\56\0\u0170\0\u019e\0\u01cc\0\u01fa\0\u0228"+
-    "\0\u0256\0\u0284\0\u02b2\0\u02e0\0\u030e\0\u033c\0\u036a\0\u0398"+
-    "\0\u03c6\0\56\0\56\0\56\0\u03f4\0\56\0\56\0\212"+
-    "\0\56\0\56\0\u0422\0\56\0\56\0\56\0\56\0\u0450"+
-    "\0\u047e\0\u04ac\0\u04da\0\u0508\0\u01fa\0\u0536\0\u0564\0\u0592"+
-    "\0\u05c0\0\u05ee\0\u061c\0\56\0\u064a\0\u0678\0\u06a6\0\u06d4"+
-    "\0\u0702\0\u01fa\0\u0730\0\u075e\0\u078c\0\u07ba\0\u07e8\0\u0816"+
-    "\0\u0844\0\u0872\0\u064a\0\u08a0\0\u01fa\0\u01fa\0\u08ce\0\u01fa"+
-    "\0\u08fc\0\u01fa\0\u092a\0\u0958\0\u01fa\0\u0986\0\u09b4\0\u09e2"+
-    "\0\u01fa\0\u0a10\0\u0a3e\0\u01fa\0\u0a6c\0\u0a9a\0\u01fa\0\u01fa"+
-    "\0\u0ac8\0\u0af6\0\u01fa\0\u01fa";
+    "\0\0\0\55\0\55\0\132\0\207\0\55\0\264\0\55"+
+    "\0\55\0\55\0\55\0\55\0\55\0\341\0\55\0\u010e"+
+    "\0\u013b\0\55\0\u0168\0\u0195\0\u01c2\0\u01ef\0\u021c\0\u0249"+
+    "\0\u0276\0\u02a3\0\u02d0\0\u02fd\0\u032a\0\u0357\0\u0384\0\u03b1"+
+    "\0\55\0\55\0\55\0\u03de\0\55\0\55\0\207\0\55"+
+    "\0\55\0\u040b\0\55\0\55\0\55\0\55\0\u0438\0\u0465"+
+    "\0\u0492\0\u04bf\0\u04ec\0\u01ef\0\u0519\0\u0546\0\u0573\0\u05a0"+
+    "\0\u05cd\0\u05fa\0\55\0\u0627\0\u0654\0\u0681\0\u06ae\0\u06db"+
+    "\0\u01ef\0\u0708\0\u0735\0\u0762\0\u078f\0\u07bc\0\u07e9\0\u0816"+
+    "\0\u0843\0\u0627\0\u0870\0\u01ef\0\u01ef\0\u089d\0\u01ef\0\u08ca"+
+    "\0\u01ef\0\u08f7\0\u0924\0\u01ef\0\u0951\0\u097e\0\u09ab\0\u01ef"+
+    "\0\u09d8\0\u0a05\0\u01ef\0\u0a32\0\u0a5f\0\u01ef\0\u01ef\0\u0a8c"+
+    "\0\u0ab9\0\u01ef\0\u01ef";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[100];
+    int [] result = new int[99];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -141,53 +141,53 @@ public class Lexico implements java_cup.runtime.Scanner {
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\2\2\3\1\2\1\4\1\5\1\6\1\7\1\10"+
     "\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1\20"+
-    "\1\21\1\22\1\23\1\24\1\25\1\26\2\27\1\30"+
-    "\1\27\1\31\1\32\1\27\1\33\1\27\1\34\2\27"+
-    "\1\35\1\36\1\37\1\40\1\27\1\41\1\42\1\43"+
-    "\1\44\1\45\1\46\103\0\1\47\30\0\5\50\1\51"+
-    "\50\50\7\0\1\52\65\0\1\53\56\0\2\21\61\0"+
-    "\1\54\55\0\1\55\55\0\1\56\55\0\1\57\50\0"+
-    "\2\27\5\0\22\27\25\0\2\27\5\0\13\27\1\60"+
-    "\6\27\25\0\2\27\5\0\10\27\1\61\11\27\25\0"+
-    "\2\27\5\0\1\62\12\27\1\63\4\27\1\64\1\27"+
-    "\25\0\2\27\5\0\5\27\1\65\14\27\25\0\2\27"+
-    "\5\0\1\66\21\27\25\0\2\27\5\0\15\27\1\67"+
-    "\4\27\25\0\2\27\5\0\4\27\1\70\15\27\25\0"+
-    "\2\27\5\0\17\27\1\71\2\27\25\0\2\27\5\0"+
-    "\15\27\1\72\4\27\25\0\2\27\5\0\6\27\1\73"+
-    "\13\27\61\0\1\74\1\0\2\53\2\0\13\53\1\75"+
-    "\36\53\20\0\2\27\5\0\12\27\1\76\7\27\25\0"+
-    "\2\27\5\0\7\27\1\77\6\27\1\100\3\27\25\0"+
-    "\2\27\5\0\10\27\1\101\11\27\25\0\2\27\5\0"+
-    "\15\27\1\102\4\27\25\0\2\27\5\0\12\27\1\103"+
-    "\7\27\25\0\2\27\5\0\7\27\1\104\12\27\25\0"+
-    "\2\27\5\0\7\27\1\105\12\27\25\0\2\27\5\0"+
-    "\1\106\16\27\1\107\2\27\25\0\2\27\5\0\15\27"+
-    "\1\110\4\27\25\0\2\27\5\0\20\27\1\111\1\27"+
-    "\25\0\2\27\5\0\7\27\1\112\12\27\5\0\2\53"+
-    "\2\0\13\53\1\113\36\53\20\0\2\27\5\0\16\27"+
-    "\1\114\3\27\25\0\2\27\5\0\5\27\1\115\14\27"+
-    "\25\0\2\27\5\0\4\27\1\116\15\27\25\0\2\27"+
-    "\5\0\16\27\1\111\3\27\25\0\2\27\5\0\2\27"+
-    "\1\117\17\27\25\0\2\27\5\0\12\27\1\120\7\27"+
-    "\25\0\2\27\5\0\12\27\1\121\7\27\25\0\2\27"+
-    "\5\0\3\27\1\122\16\27\25\0\2\27\5\0\20\27"+
-    "\1\123\1\27\25\0\2\27\5\0\20\27\1\124\1\27"+
-    "\25\0\2\27\5\0\4\27\1\125\15\27\25\0\2\27"+
-    "\5\0\10\27\1\126\11\27\25\0\2\27\5\0\17\27"+
-    "\1\127\2\27\25\0\2\27\5\0\17\27\1\130\2\27"+
-    "\25\0\2\27\5\0\17\27\1\131\2\27\25\0\2\27"+
-    "\5\0\15\27\1\132\4\27\25\0\2\27\5\0\2\27"+
-    "\1\133\17\27\25\0\2\27\5\0\4\27\1\134\15\27"+
-    "\25\0\2\27\5\0\1\135\21\27\25\0\2\27\5\0"+
-    "\7\27\1\136\12\27\25\0\2\27\5\0\12\27\1\137"+
-    "\7\27\25\0\2\27\5\0\17\27\1\140\2\27\25\0"+
-    "\2\27\5\0\12\27\1\141\7\27\25\0\2\27\5\0"+
-    "\13\27\1\142\6\27\25\0\2\27\5\0\17\27\1\143"+
-    "\2\27\25\0\2\27\5\0\12\27\1\144\7\27\5\0";
+    "\1\21\1\22\1\23\1\24\1\25\2\26\1\27\1\26"+
+    "\1\30\1\31\1\26\1\32\1\26\1\33\2\26\1\34"+
+    "\1\35\1\36\1\37\1\26\1\40\1\41\1\42\1\43"+
+    "\1\44\1\45\101\0\1\46\30\0\5\47\1\50\47\47"+
+    "\7\0\1\51\63\0\1\52\55\0\2\20\60\0\1\53"+
+    "\54\0\1\54\54\0\1\55\54\0\1\56\47\0\2\26"+
+    "\5\0\22\26\24\0\2\26\5\0\13\26\1\57\6\26"+
+    "\24\0\2\26\5\0\10\26\1\60\11\26\24\0\2\26"+
+    "\5\0\1\61\12\26\1\62\4\26\1\63\1\26\24\0"+
+    "\2\26\5\0\5\26\1\64\14\26\24\0\2\26\5\0"+
+    "\1\65\21\26\24\0\2\26\5\0\15\26\1\66\4\26"+
+    "\24\0\2\26\5\0\4\26\1\67\15\26\24\0\2\26"+
+    "\5\0\17\26\1\70\2\26\24\0\2\26\5\0\15\26"+
+    "\1\71\4\26\24\0\2\26\5\0\6\26\1\72\13\26"+
+    "\60\0\1\73\1\0\2\52\2\0\12\52\1\74\36\52"+
+    "\17\0\2\26\5\0\12\26\1\75\7\26\24\0\2\26"+
+    "\5\0\7\26\1\76\6\26\1\77\3\26\24\0\2\26"+
+    "\5\0\10\26\1\100\11\26\24\0\2\26\5\0\15\26"+
+    "\1\101\4\26\24\0\2\26\5\0\12\26\1\102\7\26"+
+    "\24\0\2\26\5\0\7\26\1\103\12\26\24\0\2\26"+
+    "\5\0\7\26\1\104\12\26\24\0\2\26\5\0\1\105"+
+    "\16\26\1\106\2\26\24\0\2\26\5\0\15\26\1\107"+
+    "\4\26\24\0\2\26\5\0\20\26\1\110\1\26\24\0"+
+    "\2\26\5\0\7\26\1\111\12\26\5\0\2\52\2\0"+
+    "\12\52\1\112\36\52\17\0\2\26\5\0\16\26\1\113"+
+    "\3\26\24\0\2\26\5\0\5\26\1\114\14\26\24\0"+
+    "\2\26\5\0\4\26\1\115\15\26\24\0\2\26\5\0"+
+    "\16\26\1\110\3\26\24\0\2\26\5\0\2\26\1\116"+
+    "\17\26\24\0\2\26\5\0\12\26\1\117\7\26\24\0"+
+    "\2\26\5\0\12\26\1\120\7\26\24\0\2\26\5\0"+
+    "\3\26\1\121\16\26\24\0\2\26\5\0\20\26\1\122"+
+    "\1\26\24\0\2\26\5\0\20\26\1\123\1\26\24\0"+
+    "\2\26\5\0\4\26\1\124\15\26\24\0\2\26\5\0"+
+    "\10\26\1\125\11\26\24\0\2\26\5\0\17\26\1\126"+
+    "\2\26\24\0\2\26\5\0\17\26\1\127\2\26\24\0"+
+    "\2\26\5\0\17\26\1\130\2\26\24\0\2\26\5\0"+
+    "\15\26\1\131\4\26\24\0\2\26\5\0\2\26\1\132"+
+    "\17\26\24\0\2\26\5\0\4\26\1\133\15\26\24\0"+
+    "\2\26\5\0\1\134\21\26\24\0\2\26\5\0\7\26"+
+    "\1\135\12\26\24\0\2\26\5\0\12\26\1\136\7\26"+
+    "\24\0\2\26\5\0\17\26\1\137\2\26\24\0\2\26"+
+    "\5\0\12\26\1\140\7\26\24\0\2\26\5\0\13\26"+
+    "\1\141\6\26\24\0\2\26\5\0\17\26\1\142\2\26"+
+    "\24\0\2\26\5\0\12\26\1\143\7\26\5\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[2852];
+    int [] result = new int[2790];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -230,12 +230,12 @@ public class Lexico implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\11\2\1\1\11\1\1\7\11\1\1\1\11"+
+    "\1\0\2\11\2\1\1\11\1\1\6\11\1\1\1\11"+
     "\2\1\1\11\16\1\3\11\1\1\2\11\1\0\2\11"+
     "\1\0\4\11\14\1\1\11\1\0\47\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[100];
+    int [] result = new int[99];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -807,299 +807,292 @@ public class Lexico implements java_cup.runtime.Scanner {
                         return symbol(Tokens.ERROR.name(), ParserSym.error);
             }
             // fall through
-          case 44: break;
+          case 43: break;
           case 2:
             { /*Ignore*/
             }
             // fall through
-          case 45: break;
+          case 44: break;
           case 3:
             { Token token = new Token(Tokens.OP_NOT,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_NOT.name(),ParserSym.op_logical_not, yytext());
+                        return symbol(Tokens.OP_NOT.name(),ParserSym.OP_LOGICAL_NOT, yytext());
             }
             // fall through
-          case 46: break;
+          case 45: break;
           case 4:
             { Token token = new Token(Tokens.OP_MOD,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_MOD.name(),ParserSym.op_arithmetical_c, yytext());
+                        return symbol(Tokens.OP_MOD.name(),ParserSym.OP_ARITHMETICAL_C, yytext());
             }
             // fall through
-          case 47: break;
+          case 46: break;
           case 5:
             { Token token = new Token(Tokens.LPAREN,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.LPAREN.name(),ParserSym.lparen);
+                        return symbol(Tokens.LPAREN.name(),ParserSym.LPAREN);
             }
             // fall through
-          case 48: break;
+          case 47: break;
           case 6:
             { Token token = new Token(Tokens.RPAREN,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.RPAREN.name(),ParserSym.rparen);
+                        return symbol(Tokens.RPAREN.name(),ParserSym.RPAREN);
             }
             // fall through
-          case 49: break;
+          case 48: break;
           case 7:
             { Token token = new Token(Tokens.OP_MULT,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_MULT.name(),ParserSym.op_arithmetical_c, yytext());
+                        return symbol(Tokens.OP_MULT.name(),ParserSym.OP_ARITHMETICAL_C, yytext());
             }
             // fall through
-          case 50: break;
+          case 49: break;
           case 8:
             { Token token = new Token(Tokens.OP_SUM,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_SUM.name(),ParserSym.op_arithmetical_b, yytext());
+                        return symbol(Tokens.OP_SUM.name(),ParserSym.OP_ARITHMETICAL_B, yytext());
             }
             // fall through
-          case 51: break;
+          case 50: break;
           case 9:
             { Token token = new Token(Tokens.COMMA,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.COMMA.name(),ParserSym.comma);
+                        return symbol(Tokens.COMMA.name(),ParserSym.COMMA);
             }
             // fall through
-          case 52: break;
+          case 51: break;
           case 10:
             { Token token = new Token(Tokens.OP_SUB,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_SUB.name(),ParserSym.op_arithmetical_b, yytext());
+                        return symbol(Tokens.OP_SUB.name(),ParserSym.OP_ARITHMETICAL_B, yytext());
+            }
+            // fall through
+          case 52: break;
+          case 11:
+            { Token token = new Token(Tokens.OP_DIV,yyline,yycolumn, yytext());
+                        writeToken(token);
+                        return symbol(Tokens.OP_DIV.name(),ParserSym.OP_ARITHMETICAL_C, yytext());
             }
             // fall through
           case 53: break;
-          case 11:
-            { Token token = new Token(Tokens.DOT,yyline,yycolumn, yytext());
-                        writeToken(token);
-                        return symbol(Tokens.DOT.name(),ParserSym.dot);
+          case 12:
+            { Token token = new Token(Tokens.NUMBER,yyline,yycolumn, yytext());
+                     writeToken(token);
+                     return symbol(Tokens.NUMBER.name(),ParserSym.NUMBER, yytext());
             }
             // fall through
           case 54: break;
-          case 12:
-            { Token token = new Token(Tokens.OP_DIV,yyline,yycolumn, yytext());
+          case 13:
+            { Token token = new Token(Tokens.TWO_POINTS,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_DIV.name(),ParserSym.op_arithmetical_c, yytext());
+                        return symbol(Tokens.TWO_POINTS.name(),ParserSym.TWO_POINTS);
             }
             // fall through
           case 55: break;
-          case 13:
-            { Token token = new Token(Tokens.NUMBER,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(Tokens.NUMBER.name(),ParserSym.number, yytext());
+          case 14:
+            { Token token = new Token(Tokens.SEMICOLON,yyline,yycolumn, yytext());
+                        writeToken(token);
+                        return symbol(Tokens.SEMICOLON.name(),ParserSym.SEMICOLON);
             }
             // fall through
           case 56: break;
-          case 14:
-            { Token token = new Token(Tokens.TWO_POINTS,yyline,yycolumn, yytext());
+          case 15:
+            { Token token = new Token(Tokens.OP_LT,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.TWO_POINTS.name(),ParserSym.two_points);
+                        return symbol(Tokens.OP_LT.name(),ParserSym.OP_RELATIONAL, yytext());
             }
             // fall through
           case 57: break;
-          case 15:
-            { Token token = new Token(Tokens.SEMICOLON,yyline,yycolumn, yytext());
+          case 16:
+            { Token token = new Token(Tokens.OP_GT,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.SEMICOLON.name(),ParserSym.semicolon);
+                        return symbol(Tokens.OP_GT.name(),ParserSym.OP_RELATIONAL, yytext());
             }
             // fall through
           case 58: break;
-          case 16:
-            { Token token = new Token(Tokens.OP_LT,yyline,yycolumn, yytext());
-                        writeToken(token);
-                        return symbol(Tokens.OP_LT.name(),ParserSym.op_relational, yytext());
+          case 17:
+            { Token token = new Token(Tokens.ID,yyline,yycolumn, yytext());
+                     writeToken(token);
+                     return symbol(Tokens.ID.name(),ParserSym.ID, yytext());
             }
             // fall through
           case 59: break;
-          case 17:
-            { Token token = new Token(Tokens.OP_GT,yyline,yycolumn, yytext());
+          case 18:
+            { Token token = new Token(Tokens.LBRACKET,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_GT.name(),ParserSym.op_relational, yytext());
+                        return symbol(Tokens.LBRACKET.name(),ParserSym.LBRACKET);
             }
             // fall through
           case 60: break;
-          case 18:
-            { Token token = new Token(Tokens.ID,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(Tokens.ID.name(),ParserSym.id, yytext());
+          case 19:
+            { Token token = new Token(Tokens.RBRACKET,yyline,yycolumn, yytext());
+                        writeToken(token);
+                        return symbol(Tokens.RBRACKET.name(),ParserSym.RBRACKET);
             }
             // fall through
           case 61: break;
-          case 19:
-            { Token token = new Token(Tokens.LBRACKET,yyline,yycolumn, yytext());
+          case 20:
+            { Token token = new Token(Tokens.LBRACE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.LBRACKET.name(),ParserSym.lbracket);
+                        return symbol(Tokens.LBRACE.name(),ParserSym.LBRACE);
             }
             // fall through
           case 62: break;
-          case 20:
-            { Token token = new Token(Tokens.RBRACKET,yyline,yycolumn, yytext());
+          case 21:
+            { Token token = new Token(Tokens.RBRACE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.RBRACKET.name(),ParserSym.rbracket);
+                        return symbol(Tokens.RBRACE.name(),ParserSym.RBRACE);
             }
             // fall through
           case 63: break;
-          case 21:
-            { Token token = new Token(Tokens.LBRACE,yyline,yycolumn, yytext());
+          case 22:
+            { Token token = new Token(Tokens.OP_NEQ,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.LBRACE.name(),ParserSym.lbrace);
+                        return symbol(Tokens.OP_NEQ.name(),ParserSym.OP_RELATIONAL, yytext());
             }
             // fall through
           case 64: break;
-          case 22:
-            { Token token = new Token(Tokens.RBRACE,yyline,yycolumn, yytext());
+          case 23:
+            { Token token = new Token(Tokens.STRING,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.RBRACE.name(),ParserSym.rbrace);
+                        return symbol(Tokens.STRING.name(),ParserSym.STRING, yytext());
             }
             // fall through
           case 65: break;
-          case 23:
-            { Token token = new Token(Tokens.OP_NEQ,yyline,yycolumn, yytext());
+          case 24:
+            { Token token = new Token(Tokens.OP_AND,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_NEQ.name(),ParserSym.op_relational, yytext());
+                        return symbol(Tokens.OP_AND.name(),ParserSym.OP_LOGICAL, yytext());
             }
             // fall through
           case 66: break;
-          case 24:
-            { Token token = new Token(Tokens.STRING,yyline,yycolumn, yytext());
+          case 25:
+            { Token token = new Token(Tokens.OP_ASSIG,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.STRING.name(),ParserSym.string, yytext());
+                        return symbol(Tokens.OP_ASSIG.name(),ParserSym.OP_ASSIG, yytext());
             }
             // fall through
           case 67: break;
-          case 25:
-            { Token token = new Token(Tokens.OP_AND,yyline,yycolumn, yytext());
+          case 26:
+            { Token token = new Token(Tokens.OP_LE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_AND.name(),ParserSym.op_logical, yytext());
+                        return symbol(Tokens.OP_LE.name(),ParserSym.OP_RELATIONAL, yytext());
             }
             // fall through
           case 68: break;
-          case 26:
-            { Token token = new Token(Tokens.OP_ASSIG,yyline,yycolumn, yytext());
+          case 27:
+            { Token token = new Token(Tokens.OP_EQ,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_ASSIG.name(),ParserSym.op_assig, yytext());
+                        return symbol(Tokens.OP_EQ.name(),ParserSym.OP_RELATIONAL, yytext());
             }
             // fall through
           case 69: break;
-          case 27:
-            { Token token = new Token(Tokens.OP_LE,yyline,yycolumn, yytext());
+          case 28:
+            { Token token = new Token(Tokens.OP_GE,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_LE.name(),ParserSym.op_relational, yytext());
+                        return symbol(Tokens.OP_GE.name(),ParserSym.OP_RELATIONAL, yytext());
             }
             // fall through
           case 70: break;
-          case 28:
-            { Token token = new Token(Tokens.OP_EQ,yyline,yycolumn, yytext());
-                        writeToken(token);
-                        return symbol(Tokens.OP_EQ.name(),ParserSym.op_relational, yytext());
-            }
-            // fall through
-          case 71: break;
           case 29:
-            { Token token = new Token(Tokens.OP_GE,yyline,yycolumn, yytext());
-                        writeToken(token);
-                        return symbol(Tokens.OP_GE.name(),ParserSym.op_relational, yytext());
-            }
-            // fall through
-          case 72: break;
-          case 30:
             { Token token = new Token(Tokens.IF,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.IF.name(), ParserSym.IF);
             }
             // fall through
-          case 73: break;
-          case 31:
+          case 71: break;
+          case 30:
             { Token token = new Token(Tokens.OP_OR,yyline,yycolumn, yytext());
                         writeToken(token);
-                        return symbol(Tokens.OP_OR.name(),ParserSym.op_logical, yytext());
+                        return symbol(Tokens.OP_OR.name(),ParserSym.OP_LOGICAL, yytext());
             }
             // fall through
-          case 74: break;
-          case 32:
+          case 72: break;
+          case 31:
             { Token token = new Token(Tokens.FOR,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.FOR.name(), ParserSym.FOR);
             }
             // fall through
-          case 75: break;
-          case 33:
+          case 73: break;
+          case 32:
             { Token token = new Token(Tokens.ELSE,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.ELSE.name(),ParserSym.ELIF);
             }
             // fall through
-          case 76: break;
-          case 34:
+          case 74: break;
+          case 33:
             { Token token = new Token(Tokens.ELSE,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.ELSE.name(), ParserSym.ELSE);
             }
             // fall through
-          case 77: break;
-          case 35:
+          case 75: break;
+          case 34:
             { Token token = new Token(Tokens.MAIN,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.MAIN.name(),ParserSym.MAIN);
             }
             // fall through
-          case 78: break;
-          case 36:
+          case 76: break;
+          case 35:
             { Token token = new Token(Tokens.READ,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.READ.name(),ParserSym.READ);
             }
             // fall through
-          case 79: break;
-          case 37:
+          case 77: break;
+          case 36:
             { Token token = new Token(Tokens.BOOLEAN,yyline,yycolumn, yytext());
                      writeToken(token);
-                     return symbol(Tokens.BOOLEAN.name(),ParserSym.bool, yytext());
+                     return symbol(Tokens.BOOLEAN.name(),ParserSym.BOOL, yytext());
             }
             // fall through
-          case 80: break;
-          case 38:
+          case 78: break;
+          case 37:
             { Token token = new Token(Tokens.PRINT,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.PRINT.name(),ParserSym.PRINT);
             }
             // fall through
-          case 81: break;
-          case 39:
+          case 79: break;
+          case 38:
             { Token token = new Token(Tokens.WHILE,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.WHILE.name(),ParserSym.WHILE);
             }
             // fall through
-          case 82: break;
-          case 40:
+          case 80: break;
+          case 39:
             { Token token = new Token(Tokens.RETURN,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.RETURN.name(),ParserSym.RETURN);
             }
             // fall through
-          case 83: break;
-          case 41:
+          case 81: break;
+          case 40:
             { Token token = new Token(Tokens.STRUCT,yyline,yycolumn, yytext());
                      writeToken(token);
-                     return symbol(Tokens.STRUCT.name(),ParserSym.struct, yytext());
+                     return symbol(Tokens.STRUCT.name(),ParserSym.STRUCT, yytext());
             }
             // fall through
-          case 84: break;
-          case 42:
+          case 82: break;
+          case 41:
             { Token token = new Token(Tokens.CONSTANT,yyline,yycolumn, yytext());
                      writeToken(token);
-                     return symbol(Tokens.CONSTANT.name(),ParserSym.constant, yytext());
+                     return symbol(Tokens.CONSTANT.name(),ParserSym.CONSTANT, yytext());
             }
             // fall through
-          case 85: break;
-          case 43:
+          case 83: break;
+          case 42:
             { Token token = new Token(Tokens.FUNC,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.FUNC.name(),ParserSym.FUNC);
             }
             // fall through
-          case 86: break;
+          case 84: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

@@ -30,6 +30,7 @@ parser code
   private Lexico lexico;
   private GeneratorC3A c3a_g;
   private GeneratorAssembler assembler;
+  private String filename;
   private String filenamePath;
 
   private Stack<String> labelTrueStack;
@@ -140,74 +141,74 @@ terminal String ID, NUMBER, STRING, BOOL, STRUCT, OP_RELATIONAL, OP_LOGICAL, OP_
 terminal        OP_ASSIG, IF, ELIF, ELSE,
                 WHILE, FUNC, RETURN, CONSTANT, FOR,
                 READ, PRINT, LPAREN, RPAREN, LBRACE, RBRACE, LBRACKET, RBRACKET,
-                SEMICOLON, COMMA, TWO_POINTS, DOT, MAIN;
+                SEMICOLON, COMMA, TWO_POINTS, MAIN;
 
 
 // Non-terminal Symbols
 
-non terminal  Start                STARTS;
+non terminal  Start                 STARTS;
 non terminal  Init                  INIT;
 
-non terminal  MainLabel                 M_MAIN;
-non terminal  MainS                  MAIN_S;
-non terminal  MainInstructions             MAIN_INSTRUCTIONS;
+non terminal  MainLabel             m_main;
+non terminal  MainS                 main_s;
+non terminal  MainInstructions      main_instructions;
 
-non terminal  Instructions          INSTRUCTIONS;
-non terminal  Instruction           INSTRUCTION;
+non terminal  Instructions          instructions;
+non terminal  Instruction           instruction;
 
-non terminal  BlockIn               BLOCK_IN;
-non terminal  BlockOut              BLOCK_OUT;
+non terminal  BlockIn               block_in;
+non terminal  BlockOut              block_out;
 
-non terminal  Declarations          DECLARATIONS, DECLARATION;
+non terminal  Declarations          declarations, declaration;
 
-non terminal  Const              CONSTANT;
+non terminal  Const                 constant;
 
-non terminal  NumericValue             NUMBER_VALUE;
-non terminal  Identifier                 ID_VALUE;
-non terminal  StringValue             STRING_VALUE;
-non terminal  BooleanValue               BOOLEAN_VALUE;
+non terminal  NumericValue          number_value;
+non terminal  Identifier            id_value;
+non terminal  StringValue           string_value;
+non terminal  BooleanValue          boolean_value;
 
-non terminal  Value                 VALUE;
+non terminal  Value                 value;
 
-non terminal  Assignation   OPERATOR_ASSIG;
-non terminal  InstructionOut        INSTRUCTION_OUT;
+non terminal  Assignation           operator_assig;
+non terminal  InstructionOut        instruction_out;
 
-non terminal  ArithmeticOperator         ARITH_OP;
-non terminal  ArithmeticOperation        ARITHMETICAL_OPERATION;
-non terminal  ArithmeticValue            ARITHMETICAL_VALUE;
+non terminal  ArithmeticOperator    arith_op;
+non terminal  ArithmeticOperation   arithmetical_operation;
+non terminal  ArithmeticValue       arithmetical_value;
 
-non terminal  BooleanOperator                BOOLEAN_OPERATION;
-non terminal  BooleanOperationValue           BOOLEAN_OP_VALUE;
-non terminal  ValuesComparison       VALUE_COMPARISON;
-non terminal  End                  M_END;
-non terminal  Condition             COND;
-non terminal  CondFalse        COND_F;
-non terminal  CondTrue         COND_T;
-non terminal  InstructionIf         INSTRUCTION_IF;
-non terminal  ElseIf                  INSTRUCT_ELIF;
-non terminal  Else                  INSTRUCT_ELSE;
-non terminal  WhileLabel                M_WHILE;
-non terminal  ForBody               FOR_BODY;
-non terminal  ForLabel              LABEL_FOR;
-non terminal  LabelPostFor          LABEL_POST_FOR;
-non terminal  InstructionWhile      INSTRUCTION_WHILE;
-non terminal  InstructionFor        INSTRUCTION_FOR;
-non terminal  DeclareFunctions      DECLARE_FUNCTIONS;
-non terminal  DefineFunction           DEFINE_FUNCTION;
-non terminal  FunctionInit               FUNCTION_INIT;
-non terminal  FunctionParams             FUNCTION_PARAMS;
-non terminal  FunctionWithParams            FUNCTION_W_PARAMS;
-non terminal  FunctionInstructions       FUNCTION_INSTRUCTIONS;
-non terminal  FunctionReturn             FUNCTION_RETURN;
+non terminal  BooleanOperator       boolean_operation;
+non terminal  BooleanOperationValue boolean_op_value;
+non terminal  ValuesComparison      value_comparison;
+non terminal  End                   m_end;
+non terminal  Condition             cond;
+non terminal  CondFalse             cond_f;
+non terminal  CondTrue              cond_t;
+non terminal  InstructionIf         instruction_if;
+non terminal  ElseIf                instruction_elif;
+non terminal  Else                  instruction_else;
+non terminal  WhileLabel            m_while;
+non terminal  ForBody               for_body;
+non terminal  ForLabel              label_for;
+non terminal  LabelPostFor          label_post_for;
+non terminal  InstructionWhile      instruction_while;
+non terminal  InstructionFor        instruction_for;
+non terminal  DeclareFunctions      declare_functions;
+non terminal  DefineFunction        define_function;
+non terminal  FunctionInit          function_init;
+non terminal  FunctionParams        function_params;
+non terminal  FunctionWithParams    function_w_params;
+non terminal  FunctionInstructions  function_instructions;
+non terminal  FunctionReturn        function_return;
 
-non terminal  CallFunction          CALL_FUNCTION;
-non terminal  CallBody              CALL_BODY;
+non terminal  CallFunction          call_function;
+non terminal  CallBody              call_body;
 
-non terminal    TupleDeclaration    TUPLE_DECLARATION;
-non terminal    FieldList           FIELD_LIST;
-non terminal    TupleField          TUPLE_FIELD;
-non terminal    TupleValues         TUPLE_VALUE;
-non terminal    TupleValues         TUPLE_VALUES;
+non terminal  TupleDeclaration      tuple_declaration;
+non terminal  FieldList             field_list;
+non terminal  TupleField            tuple_field;
+non terminal  TupleValues           tuple_value;
+non terminal  TupleValues           tuple_values;
 
 non terminal  Empty                 EMPTY;
 
@@ -219,7 +220,7 @@ precedence left OP_LOGICAL_NOT;
 
 start with STARTS;
 
-STARTS                      ::=  INIT DECLARE_FUNCTIONS
+STARTS                      ::=  INIT declare_functions
                             {:
                             // close SymbolsTableData.txt file
                               symbolsTable.closeSymbolsTableFiles();
@@ -236,16 +237,16 @@ INIT                        ::= {:
                               RESULT = new Init();
                             :};
 
-DECLARE_FUNCTIONS           ::= DEFINE_FUNCTION DECLARE_FUNCTIONS
+declare_functions           ::= define_function declare_functions
                             {:
                               RESULT = new DeclareFunctions();
                             :}
-                            | MAIN_S
+                            | main_s
                             {:
                               RESULT = new DeclareFunctions();
                             :};
 
-MAIN_S                        ::= FUNC MAIN M_MAIN LPAREN RPAREN LBRACE BLOCK_IN MAIN_INSTRUCTIONS BLOCK_OUT RBRACE {:
+main_s                        ::= FUNC MAIN m_main LPAREN RPAREN LBRACE block_in main_instructions block_out RBRACE {:
                               c3a_g.generateC3aInstr(
                                 Code.rtn,
                                 null,
@@ -256,7 +257,7 @@ MAIN_S                        ::= FUNC MAIN M_MAIN LPAREN RPAREN LBRACE BLOCK_IN
                               RESULT = new MainS();
                             :};
 
-M_MAIN                      ::=
+m_main                      ::=
                             {:
 
                               String backId = backTables.addMain();
@@ -280,7 +281,7 @@ M_MAIN                      ::=
                               RESULT = new MainLabel();
                             :};
 
-MAIN_INSTRUCTIONS           ::= INSTRUCTIONS
+main_instructions           ::= instructions
                             {:
                               RESULT = new MainInstructions();
                             :}
@@ -289,55 +290,55 @@ MAIN_INSTRUCTIONS           ::= INSTRUCTIONS
                               RESULT = new MainInstructions();
                             :};
 
-INSTRUCTIONS                ::= INSTRUCTIONS INSTRUCTION
+instructions                ::= instructions instruction
                             {:
                               RESULT = new Instructions();
                             :}
-                            | INSTRUCTION
+                            | instruction
                             {:
                               RESULT = new Instructions();
                             :};
 
-INSTRUCTION                 ::=  DECLARATIONS SEMICOLON
+instruction                 ::=  declarations SEMICOLON
                             {:
                               RESULT = new Instruction();
                             :}
-                            | TUPLE_DECLARATION SEMICOLON
+                            | tuple_declaration SEMICOLON
                             {:
                               RESULT = new Instruction();
                             :}
-                            | INSTRUCTION_IF
+                            | instruction_if
                             {:
                               RESULT = new Instruction();
                             :}
-                            | INSTRUCTION_WHILE
+                            | instruction_while
                             {:
                               RESULT = new Instruction();
                             :}
-                            | INSTRUCTION_FOR
+                            | instruction_for
                             {:
                               RESULT = new Instruction();
                             :}
-                            | OPERATOR_ASSIG SEMICOLON
+                            | operator_assig SEMICOLON
                             {:
                               RESULT = new Instruction();
                             :}
-                            | INSTRUCTION_OUT SEMICOLON
+                            | instruction_out SEMICOLON
                             {:
                               RESULT = new Instruction();
                             :}
-                            | CALL_FUNCTION SEMICOLON
+                            | call_function SEMICOLON
                             {:
                               RESULT = new Instruction();
                             :};
 
-BLOCK_IN                    ::=
+block_in                    ::=
                             {:
                               symbolsTable.enterBlock();
                               RESULT = new BlockIn();
                             :};
 
-BLOCK_OUT                   ::=
+block_out                   ::=
                             {:
                               try{
                                 symbolsTable.leaveBlock();
@@ -347,7 +348,7 @@ BLOCK_OUT                   ::=
                               }
                             :};
 
-DECLARATIONS                ::=  ID:var_id COMMA DECLARATIONS:declarations
+declarations                ::=  ID:var_id COMMA declarations:declarations
                             {:
                               try{
                                 Type type = declarations.getType();
@@ -380,13 +381,13 @@ DECLARATIONS                ::=  ID:var_id COMMA DECLARATIONS:declarations
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | DECLARATION:declaration
+                            | declaration:declaration
                             {:
                               RESULT = declaration;
                             :}
                             ;
 
-TUPLE_DECLARATION           ::= STRUCT LBRACE FIELD_LIST:field_list RBRACE ID:var_id
+tuple_declaration           ::= STRUCT LBRACE field_list:field_list RBRACE ID:var_id
                             {:
                             Type type = symbolsTable.get("tuple");
                             type.setSize(field_list.getSize());
@@ -396,12 +397,12 @@ TUPLE_DECLARATION           ::= STRUCT LBRACE FIELD_LIST:field_list RBRACE ID:va
                             :}
                             ;
 
-FIELD_LIST                  ::= FIELD_LIST:field_list SEMICOLON TUPLE_FIELD:field
+field_list                  ::= field_list:field_list SEMICOLON tuple_field:field
                             {:
                             field_list.addField(field);
                             RESULT = field_list;
                             :}
-                            | TUPLE_FIELD:field
+                            | tuple_field:field
                             {:
                             ArrayList<TupleField> tupleFields = new ArrayList<>();
                             tupleFields.add(field);
@@ -409,7 +410,7 @@ FIELD_LIST                  ::= FIELD_LIST:field_list SEMICOLON TUPLE_FIELD:fiel
                             :}
                             ;
 
-TUPLE_FIELD                 ::= ID:id_var TWO_POINTS ID:type_id
+tuple_field                 ::= ID:id_var TWO_POINTS ID:type_id
                             {:
                             Type type = symbolsTable.get(type_id);
                             if(type == null || type.getTipo() != Tipo.dtype){
@@ -428,7 +429,7 @@ TUPLE_FIELD                 ::= ID:id_var TWO_POINTS ID:type_id
                             :}
                             ;
 
-DECLARATION                 ::=  ID:id_var CONSTANT:constant TWO_POINTS ID:type_id OP_ASSIG VALUE:value
+declaration                 ::=  ID:id_var constant:constant TWO_POINTS ID:type_id OP_ASSIG value:value
                             {:
                               try {
 
@@ -518,7 +519,7 @@ DECLARATION                 ::=  ID:id_var CONSTANT:constant TWO_POINTS ID:type_
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | ID:id_var CONSTANT TWO_POINTS ID:type_id OP_ASSIG TUPLE_VALUE:tuple_value
+                            | ID:id_var constant TWO_POINTS ID:type_id OP_ASSIG tuple_value:tuple_value
                             {:
                             Type type = symbolsTable.get(type_id);
 
@@ -572,7 +573,7 @@ DECLARATION                 ::=  ID:id_var CONSTANT:constant TWO_POINTS ID:type_
                             :}
                             ;
 
-CONSTANT                    ::=  CONSTANT
+constant                    ::=  CONSTANT
                             {:
                               RESULT = new Const(true);
                             :}
@@ -581,7 +582,7 @@ CONSTANT                    ::=  CONSTANT
                               RESULT = new Const(false);
                             :};
 
-OPERATOR_ASSIG              ::= ID:var_id OP_ASSIG VALUE:value
+operator_assig              ::= ID:var_id OP_ASSIG value:value
                             {:
                               try {
                                    Type varType = symbolsTable.get(var_id);
@@ -625,12 +626,12 @@ OPERATOR_ASSIG              ::= ID:var_id OP_ASSIG VALUE:value
                               }
                             :};
 
-ARITH_OP                    ::= OP_ARITHMETICAL_B:op
+arith_op                    ::= OP_ARITHMETICAL_B:op
                             {: RESULT = new ArithmeticOperator(op); :}
                             | OP_ARITHMETICAL_C:op
                             {: RESULT = new ArithmeticOperator(op); :};
 
-ARITHMETICAL_OPERATION      ::= ARITHMETICAL_VALUE:arith_val1 ARITH_OP:op ARITHMETICAL_VALUE:arith_val2
+arithmetical_operation      ::= arithmetical_value:arith_val1 arith_op:op arithmetical_value:arith_val2
                             {:
                               try{
                                 ArithmeticOperation sym;
@@ -714,7 +715,7 @@ ARITHMETICAL_OPERATION      ::= ARITHMETICAL_VALUE:arith_val1 ARITH_OP:op ARITHM
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | OP_ARITHMETICAL_B:op LPAREN ARITHMETICAL_OPERATION:arith_op RPAREN
+                            | OP_ARITHMETICAL_B:op LPAREN arithmetical_operation:arith_op RPAREN
                             {:
                               try{
                                 ArithmeticOperation sym = arith_op;
@@ -742,21 +743,21 @@ ARITHMETICAL_OPERATION      ::= ARITHMETICAL_VALUE:arith_val1 ARITH_OP:op ARITHM
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | LPAREN ARITHMETICAL_OPERATION:arith_op RPAREN
+                            | LPAREN arithmetical_operation:arith_op RPAREN
                             {:
                               RESULT = arith_op;
                             :};
 
-NUMBER_VALUE                ::= NUMBER:n_val
+number_value                ::= NUMBER:n_val
                             {:
                               Integer value = Integer.valueOf(n_val);
                               RESULT = new NumericValue(value);
                             :}
-                            | LPAREN NUMBER_VALUE:n_val RPAREN
+                            | LPAREN number_value:n_val RPAREN
                             {:
                               RESULT = n_val;
                             :}
-                            | OP_ARITHMETICAL_B:op NUMBER_VALUE:n_val
+                            | OP_ARITHMETICAL_B:op number_value:n_val
                             {:
                               NumericValue sym = n_val;
                               if(op.equals("-")){
@@ -767,7 +768,7 @@ NUMBER_VALUE                ::= NUMBER:n_val
                               RESULT = sym;
                             :};
 
-ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
+arithmetical_value         ::= number_value:n_val
                           {:
                             try{
                               Integer value = n_val.getValue();
@@ -788,7 +789,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                               throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                             }
                           :}
-                          | ID_VALUE:id_val
+                          | id_value:id_val
                           {:
                             try{
                               Tipo main_var_type = id_val.getTipo();
@@ -824,7 +825,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                               throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                             }
                           :}
-                          | ARITHMETICAL_OPERATION:arith_op
+                          | arithmetical_operation:arith_op
                           {:
                             ArithmeticValue sym;
                             if(arith_op.getIsConst()){
@@ -835,7 +836,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
 
                             RESULT = sym;
                           :}
-                          | CALL_FUNCTION:call_fn
+                          | call_function:call_fn
                           {:
                             try{
                               Type fn_type = symbolsTable.get(call_fn.getFunctionId());
@@ -865,7 +866,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                               throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                             }
                           :}
-                          | OP_ARITHMETICAL_B:op CALL_FUNCTION:call_fn
+                          | OP_ARITHMETICAL_B:op call_function:call_fn
                           {:
                             try{
                               Type fn_type = symbolsTable.get(call_fn.getFunctionId());
@@ -905,7 +906,7 @@ ARITHMETICAL_VALUE         ::= NUMBER_VALUE:n_val
                             }
                           :};
 
-ID_VALUE                    ::= ID:id_val
+id_value                    ::= ID:id_val
                             {:
                               try{
                                 Type id_type = symbolsTable.get(id_val);
@@ -923,11 +924,11 @@ ID_VALUE                    ::= ID:id_val
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | LPAREN ID_VALUE:id_val RPAREN
+                            | LPAREN id_value:id_val RPAREN
                             {:
                               RESULT = id_val;
                             :}
-                            | OP_LOGICAL_NOT:op ID_VALUE:id_val
+                            | OP_LOGICAL_NOT:op id_value:id_val
                             {:
                               try{
 
@@ -964,7 +965,7 @@ ID_VALUE                    ::= ID:id_val
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | OP_ARITHMETICAL_B:op ID_VALUE:id_val
+                            | OP_ARITHMETICAL_B:op id_value:id_val
                             {:
                               try {
                                 Identifier sym = id_val;
@@ -1003,16 +1004,16 @@ ID_VALUE                    ::= ID:id_val
                               }
                             :};
 
-STRING_VALUE                ::= STRING:string_val
+string_value                ::= STRING:string_val
                             {:
                               RESULT = new StringValue(string_val);
                             :}
-                            | LPAREN STRING_VALUE:string_val RPAREN
+                            | LPAREN string_value:string_val RPAREN
                             {:
                               RESULT = string_val;
                             :};
 
-VALUE                       ::= ID_VALUE:id_val
+value                       ::= id_value:id_val
                             {:
                               Value sym;
 
@@ -1027,7 +1028,7 @@ VALUE                       ::= ID_VALUE:id_val
 
                               RESULT = sym;
                             :}
-                            | STRING_VALUE:str_value
+                            | string_value:str_value
                             {:
                               try{
                                 String value = str_value.getString().replace("\"", "");
@@ -1050,7 +1051,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | BOOLEAN_VALUE:bool_val
+                            | boolean_value:bool_val
                             {:
                               try{
                                 Boolean value = bool_val.getValue();
@@ -1070,7 +1071,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | NUMBER_VALUE:n_val
+                            | number_value:n_val
                             {:
                               try{
                                 Integer value = n_val.getValue();
@@ -1091,7 +1092,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | VALUE_COMPARISON:comp_val
+                            | value_comparison:comp_val
                             {:
                               Value sym;
                               String id = comp_val.getVarId();
@@ -1105,7 +1106,7 @@ VALUE                       ::= ID_VALUE:id_val
 
                               RESULT = sym;
                             :}
-                            | OP_LOGICAL_NOT VALUE_COMPARISON:comp_val
+                            | OP_LOGICAL_NOT value_comparison:comp_val
                             {:
                               try{
                                 Value sym;
@@ -1132,7 +1133,7 @@ VALUE                       ::= ID_VALUE:id_val
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | ARITHMETICAL_OPERATION:arith_op
+                            | arithmetical_operation:arith_op
                             {:
                               Value sym;
                               String var_id = arith_op.getVarId();
@@ -1144,7 +1145,7 @@ VALUE                       ::= ID_VALUE:id_val
 
                               RESULT = sym;
                             :}
-                            | BOOLEAN_OPERATION:bool_op
+                            | boolean_operation:bool_op
                             {:
                               Value sym;
                               String var_id = new String(bool_op.getVarId());
@@ -1156,7 +1157,7 @@ VALUE                       ::= ID_VALUE:id_val
 
                               RESULT = sym;
                             :}
-                            | CALL_FUNCTION:call_fn
+                            | call_function:call_fn
                             {:
                               try{
                                 Type fn_type = symbolsTable.get(call_fn.getFunctionId());
@@ -1203,18 +1204,18 @@ VALUE                       ::= ID_VALUE:id_val
                             :}
                             ;
 
-TUPLE_VALUE                 ::= LBRACKET TUPLE_VALUES:tuple_values RBRACKET
+tuple_value                 ::= LBRACKET tuple_values:tuple_values RBRACKET
                             {:
                             RESULT = tuple_values;
                             :}
                             ;
 
-TUPLE_VALUES                ::=  TUPLE_VALUES:values COMMA VALUE:value
+tuple_values                ::=  tuple_values:values COMMA value:value
                             {:
                             values.addValue(value);
                             RESULT = values;
                             :}
-                            |   VALUE:value
+                            |   value:value
                             {:
                             RESULT = new TupleValues(new ArrayList<>(List.of(value)));
                             :}
@@ -1222,7 +1223,7 @@ TUPLE_VALUES                ::=  TUPLE_VALUES:values COMMA VALUE:value
 
 
 
-BOOLEAN_OPERATION           ::= BOOLEAN_OP_VALUE:bool_val1 OP_LOGICAL:op BOOLEAN_OP_VALUE:bool_val2
+boolean_operation           ::= boolean_op_value:bool_val1 OP_LOGICAL:op boolean_op_value:bool_val2
                             {:
                               try{
                                 BooleanOperator sym;
@@ -1281,11 +1282,11 @@ BOOLEAN_OPERATION           ::= BOOLEAN_OP_VALUE:bool_val1 OP_LOGICAL:op BOOLEAN
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | LPAREN BOOLEAN_OPERATION:bool_op RPAREN
+                            | LPAREN boolean_operation:bool_op RPAREN
                             {:
                               RESULT = bool_op;
                             :}
-                            | OP_LOGICAL_NOT LPAREN BOOLEAN_OPERATION:bool_op RPAREN
+                            | OP_LOGICAL_NOT LPAREN boolean_operation:bool_op RPAREN
                             {:
                               try{
                                 BooleanOperator sym;
@@ -1312,7 +1313,7 @@ BOOLEAN_OPERATION           ::= BOOLEAN_OP_VALUE:bool_val1 OP_LOGICAL:op BOOLEAN
                               }
                             :};
 
-BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
+boolean_op_value            ::= boolean_value:bool_val
                             {:
                               try{
                                 Boolean value = bool_val.getValue();
@@ -1332,7 +1333,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | ID_VALUE:id_val
+                            | id_value:id_val
                             {:
                               try{
                                 Tipo main_var_type = id_val.getTipo();
@@ -1348,7 +1349,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                 if(var_dtype.getTipoSubyacente() != TipoSubyacente.TS_BOOLEAN){
                                   String from = id_valxleft.getLine() + ":" + id_valxleft.getColumn();
                                   String to = id_valxright.getLine() + ":" + id_valxright.getColumn();
-                                  String message = "BOOLEAN_OP_VALUE: Invalid subjacent type" + " from "+from+" to "+to;
+                                  String message = "boolean_op_value: Invalid subjacent type" + " from "+from+" to "+to;
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -1367,7 +1368,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | BOOLEAN_OPERATION:bool_op
+                            | boolean_operation:bool_op
                             {:
                               BooleanOperationValue sym;
                               if(bool_op.getIsConst()){
@@ -1377,7 +1378,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                               }
                               RESULT = sym;
                             :}
-                            | VALUE_COMPARISON:comp_val
+                            | value_comparison:comp_val
                             {:
                               BooleanOperationValue sym;
                               String id = new String(comp_val.getVarId());
@@ -1389,7 +1390,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
 
                               RESULT = sym;
                             :}
-                            | OP_LOGICAL_NOT VALUE_COMPARISON:comp_val
+                            | OP_LOGICAL_NOT value_comparison:comp_val
                             {:
                               try{
                                 Type type_bool = symbolsTable.get("boolean");
@@ -1414,7 +1415,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | CALL_FUNCTION:call_fn
+                            | call_function:call_fn
                             {:
                               try{
                                 Type fn_type = symbolsTable.get(call_fn.getFunctionId());
@@ -1441,7 +1442,7 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | OP_LOGICAL_NOT:op CALL_FUNCTION:call_fn
+                            | OP_LOGICAL_NOT:op call_function:call_fn
                             {:
                               try{
                                 Type fn_type = symbolsTable.get(call_fn.getFunctionId());
@@ -1477,23 +1478,23 @@ BOOLEAN_OP_VALUE            ::= BOOLEAN_VALUE:bool_val
                             :}
                             ;
 
-BOOLEAN_VALUE               ::= BOOL:bool_val
+boolean_value               ::= BOOL:bool_val
                             {:
                               Boolean value = Boolean.valueOf(bool_val);
                               RESULT = new BooleanValue(value);
                             :}
-                            | OP_LOGICAL_NOT BOOLEAN_VALUE:bool_val
+                            | OP_LOGICAL_NOT boolean_value:bool_val
                             {:
                               Boolean value = ! bool_val.getValue().booleanValue();
                               RESULT = new BooleanValue(value);
                             :}
-                            | LPAREN BOOLEAN_VALUE:bool_val RPAREN
+                            | LPAREN boolean_value:bool_val RPAREN
                             {:
                               RESULT = bool_val;
                             :}
                             ;
 
-VALUE_COMPARISON            ::= LPAREN VALUE:val1 OP_RELATIONAL:op VALUE:val2 RPAREN
+value_comparison            ::= LPAREN value:val1 OP_RELATIONAL:op value:val2 RPAREN
                             {:
                               try{
                                 ValuesComparison sym;
@@ -1649,12 +1650,12 @@ VALUE_COMPARISON            ::= LPAREN VALUE:val1 OP_RELATIONAL:op VALUE:val2 RP
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | LPAREN VALUE_COMPARISON:cmp_val RPAREN
+                            | LPAREN value_comparison:cmp_val RPAREN
                             {:
                               RESULT = cmp_val;
                             :};
 
-COND                        ::= BOOLEAN_OP_VALUE:bool_val
+cond                        ::= boolean_op_value:bool_val
                               {:
                                 String var_id = bool_val.getVarId();
 
@@ -1682,7 +1683,7 @@ COND                        ::= BOOLEAN_OP_VALUE:bool_val
                                 RESULT = new Condition();
                               :};
 
-COND_T                      ::=
+cond_t                      ::=
                               {:
                                 String label = labelTrueStack.pop();
 
@@ -1696,7 +1697,7 @@ COND_T                      ::=
                                 RESULT = new CondTrue();
                               :};
 
-COND_F                      ::=
+cond_f                      ::=
                               {:
                                 String label = labelFalseStack.pop();
 
@@ -1710,12 +1711,12 @@ COND_F                      ::=
                                 RESULT = new CondFalse();
                               :};
 
-INSTRUCTION_IF              ::= IF COND LBRACE BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT RBRACE INSTRUCT_ELIF INSTRUCT_ELSE
+instruction_if              ::= IF cond LBRACE block_in cond_t instructions block_out RBRACE instruction_elif instruction_else
                             {:
                               RESULT = new InstructionIf();
                             :};
 
-M_END                       ::= EMPTY
+m_end                       ::= EMPTY
                             {:
                               String label = backTables.addEtiq();
 
@@ -1729,7 +1730,7 @@ M_END                       ::= EMPTY
                               RESULT = new End(label);
                             :};
 
-INSTRUCT_ELIF                ::= M_END:mend ELIF COND_F COND LBRACE BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT RBRACE INSTRUCT_ELIF
+instruction_elif                ::= m_end:mend ELIF cond_f cond LBRACE block_in cond_t instructions block_out RBRACE instruction_elif
                             {:
                               String label = mend.getLabel();
 
@@ -1747,7 +1748,7 @@ INSTRUCT_ELIF                ::= M_END:mend ELIF COND_F COND LBRACE BLOCK_IN CON
                               RESULT = new ElseIf();
                             :};
 
-INSTRUCT_ELSE                        ::= M_END:mend ELSE LBRACE BLOCK_IN COND_F INSTRUCTIONS BLOCK_OUT RBRACE
+instruction_else                        ::= m_end:mend ELSE LBRACE block_in cond_f instructions block_out RBRACE
                             {:
                               String label = mend.getLabel();
 
@@ -1760,12 +1761,12 @@ INSTRUCT_ELSE                        ::= M_END:mend ELSE LBRACE BLOCK_IN COND_F 
 
                               RESULT = new Else();
                             :}
-                            | COND_F
+                            | cond_f
                             {:
                               RESULT = new Else();
                             :};
 
-M_WHILE                     ::= EMPTY
+m_while                     ::= EMPTY
                             {:
                               String label = backTables.addEtiq();
 
@@ -1779,7 +1780,7 @@ M_WHILE                     ::= EMPTY
                               RESULT = new WhileLabel(label);
                             :};
 
-INSTRUCTION_WHILE           ::= WHILE M_WHILE:mwhile COND LBRACE BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT RBRACE
+instruction_while           ::= WHILE m_while:mwhile cond LBRACE block_in cond_t instructions block_out RBRACE
                             {:
                               String loop_label = mwhile.getLabel();
                               c3a_g.generateC3aInstr(
@@ -1800,7 +1801,7 @@ INSTRUCTION_WHILE           ::= WHILE M_WHILE:mwhile COND LBRACE BLOCK_IN COND_T
                               RESULT = new InstructionWhile();
                             :};
 
-INSTRUCTION_FOR             ::= FOR LPAREN FOR_BODY:forBody RPAREN LBRACE BLOCK_IN COND_T INSTRUCTIONS BLOCK_OUT RBRACE
+instruction_for             ::= FOR LPAREN for_body:forBody RPAREN LBRACE block_in cond_t instructions block_out RBRACE
                             {:
                               String postInstrLabel = forBody.getLabel();
                               c3a_g.generateC3aInstr(
@@ -1820,7 +1821,7 @@ INSTRUCTION_FOR             ::= FOR LPAREN FOR_BODY:forBody RPAREN LBRACE BLOCK_
                               RESULT = new InstructionFor();
                             :};
 
-LABEL_FOR                   ::= EMPTY
+label_for                   ::= EMPTY
                             {:
                               String label = backTables.addEtiq();
 
@@ -1834,7 +1835,7 @@ LABEL_FOR                   ::= EMPTY
                               RESULT = new ForLabel(label);
                             :};
 
-FOR_BODY                    ::= DECLARATION SEMICOLON LABEL_FOR:labelFor COND SEMICOLON LABEL_POST_FOR:labelPostFor OPERATOR_ASSIG
+for_body                    ::= declaration SEMICOLON label_for:labelFor cond SEMICOLON label_post_for:labelPostFor operator_assig
                                 {:
                                     String iniForLabel = labelFor.getLabel();
                                     c3a_g.generateC3aInstr(
@@ -1847,7 +1848,7 @@ FOR_BODY                    ::= DECLARATION SEMICOLON LABEL_FOR:labelFor COND SE
                                     RESULT = new ForBody(labelPostFor.getLabel());
                                 :};
 
-LABEL_POST_FOR              ::= EMPTY
+label_post_for              ::= EMPTY
                             {:
                               String label = backTables.addEtiq();
 
@@ -1861,7 +1862,7 @@ LABEL_POST_FOR              ::= EMPTY
                               RESULT = new LabelPostFor(label);
                             :};
 
-CALL_FUNCTION               ::= ID:fun_id LPAREN:lp RPAREN:rp
+call_function               ::= ID:fun_id LPAREN:lp RPAREN:rp
                             {:
                               try{
                                 // Check if function and has params
@@ -1890,7 +1891,7 @@ CALL_FUNCTION               ::= ID:fun_id LPAREN:lp RPAREN:rp
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | CALL_BODY:body RPAREN:rp
+                            | call_body:body RPAREN:rp
                             {:
                               try{
                                 int body_params = body.getNumParams();
@@ -1920,7 +1921,7 @@ CALL_FUNCTION               ::= ID:fun_id LPAREN:lp RPAREN:rp
                               }
                             :};
 
-CALL_BODY                   ::= CALL_BODY:body COMMA VALUE:value
+call_body                   ::= call_body:body COMMA value:value
                             {:
                               try{
                                 String fun_id = body.getFunId();
@@ -1965,7 +1966,7 @@ CALL_BODY                   ::= CALL_BODY:body COMMA VALUE:value
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             :}
-                            | ID:fun_id LPAREN VALUE:value
+                            | ID:fun_id LPAREN value:value
                             {:
                               try{
                                 TipoSubyacente subType;
@@ -2014,7 +2015,7 @@ CALL_BODY                   ::= CALL_BODY:body COMMA VALUE:value
                               }
                             :};
 
-INSTRUCTION_OUT             ::= PRINT LPAREN VALUE:value RPAREN
+instruction_out             ::= PRINT LPAREN value:value RPAREN
                             {:
                               try{
                                 String var_id = value.getVarId();
@@ -2049,7 +2050,7 @@ INSTRUCTION_OUT             ::= PRINT LPAREN VALUE:value RPAREN
                               }
                             :};
 
-DEFINE_FUNCTION             ::= FUNCTION_INIT:fun_init LBRACE BLOCK_IN FUNCTION_INSTRUCTIONS FUNCTION_RETURN:fun_ret BLOCK_OUT RBRACE
+define_function             ::= function_init:fun_init LBRACE block_in function_instructions function_return:fun_ret block_out RBRACE
                             {:
                               //check if fun type and return type are the same
                               if(fun_init.getTipoSubyacente() != fun_ret.getTipoSubyacente()) {
@@ -2082,7 +2083,7 @@ DEFINE_FUNCTION             ::= FUNCTION_INIT:fun_init LBRACE BLOCK_IN FUNCTION_
                               RESULT = new DefineFunction();
                             :};
 
-FUNCTION_INIT               ::= FUNC ID:fun_id FUNCTION_PARAMS:fun_params RPAREN TWO_POINTS ID:type_id
+function_init               ::= FUNC ID:fun_id function_params:fun_params RPAREN TWO_POINTS ID:type_id
                             {:
                               try{
                                 // check return type
@@ -2140,7 +2141,7 @@ FUNCTION_INIT               ::= FUNC ID:fun_id FUNCTION_PARAMS:fun_params RPAREN
                               }
                             :};
 
-FUNCTION_PARAMS             ::= FUNCTION_W_PARAMS:params
+function_params             ::= function_w_params:params
                             {:
                               RESULT = new FunctionParams(params.getParams());
                             :}
@@ -2149,7 +2150,7 @@ FUNCTION_PARAMS             ::= FUNCTION_W_PARAMS:params
                               RESULT = new FunctionParams();
                             :};
 
-FUNCTION_W_PARAMS           ::= FUNCTION_W_PARAMS:prev_params COMMA ID:id TWO_POINTS ID:type_id
+function_w_params           ::= function_w_params:prev_params COMMA ID:id TWO_POINTS ID:type_id
                             {:
                               try{
                                 //check param type
@@ -2210,7 +2211,7 @@ FUNCTION_W_PARAMS           ::= FUNCTION_W_PARAMS:prev_params COMMA ID:id TWO_PO
                               }
                             :};
 
-FUNCTION_INSTRUCTIONS       ::= INSTRUCTIONS
+function_instructions       ::= instructions
                             {:
                               RESULT = new FunctionInstructions();
                             :}
@@ -2219,7 +2220,7 @@ FUNCTION_INSTRUCTIONS       ::= INSTRUCTIONS
                               RESULT = new FunctionInstructions();
                             :};
 
-FUNCTION_RETURN             ::= RETURN VALUE:value SEMICOLON
+function_return             ::= RETURN value:value SEMICOLON
                             {:
                               try{
                                 // is literall

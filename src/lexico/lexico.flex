@@ -163,7 +163,6 @@ STRUCT      = [sS][tT][rR][uU][cC][tT]
 SEMICOLON   = (";")
 COMMA       = (",")
 TWO_POINTS  = (":")
-DOT         = (".")
 
 LPAREN      = ("(")
 RPAREN      = (")")
@@ -275,11 +274,6 @@ RBRACKET    = ("]")
                         Token token = new Token(Tokens.TWO_POINTS,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.TWO_POINTS.name(),ParserSym.TWO_POINTS);
-                     }
-{DOT}                {
-                        Token token = new Token(Tokens.DOT,yyline,yycolumn, yytext());
-                        writeToken(token);
-                        return symbol(Tokens.DOT.name(),ParserSym.DOT);
                      }
 
     //OPERADORES
