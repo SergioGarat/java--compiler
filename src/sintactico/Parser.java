@@ -775,16 +775,19 @@ class CUP$Parser$actions {
                                 // check return type
                                 Type return_tp = symbolsTable.get(type_id);
                                 if (return_tp.getTipo() != Tipo.dtype) {
-                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid function declaration: incorrect type" + " from " + from + " to " + to;
+                                  String message = "Invalid function declaration: incorrect type from " + 
+                                  type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                  " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
                                 if (TipoSubyacente.TS_STRING==return_tp.getTipoSubyacente()) {
-                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid return type: " + type_id + ". Expected boolean or number" + " from " + from + " to " + to;
+                                  String message = "Invalid return type: " + type_id + 
+                                  ". Expected boolean or number from " + 
+                                  type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                  " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -809,9 +812,10 @@ class CUP$Parser$actions {
                                 RESULT = new FunctionInit(backId, subType);
 
                               } catch (SymTabError e) {
-                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                String message = e.getMessage() + " from " + from + " to "+to;
+                                  String message = e.getMessage() + " from " + 
+                                  type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                  " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -858,31 +862,32 @@ class CUP$Parser$actions {
 		Location type_idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		String type_id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
-                                //check param type
+                              try {
+                                //Check parameter type
                                 Type type_type = symbolsTable.get(type_id);
-                                if(type_type.getTipo() != Tipo.dtype){
-                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid param type" + " from "+from+" to "+to;
-                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                                if (type_type.getTipo() != Tipo.dtype) {
+                                  String message = "Invalid parameter type from " + 
+                                  idxleft.getLine() + ":" + idxleft.getColumn() + 
+                                  " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
                                 }
-                                if(type_type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
-                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid param type : "+type_id+". Valid params types are : boolean or number" + " from "+from+" to "+to;
+                                
+                                if (type_type.getTipoSubyacente() == TipoSubyacente.TS_STRING) {
+                                  String message = "Invalid parameter type: " + type_id + ". Expected boolean or number, found from " + 
+                                  idxleft.getLine() + ":" + idxleft.getColumn() + 
+                                  " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
                                 Type param_type = new Type(Tipo.darg, type_id);
-
                                 Parameter param = new Parameter(id, param_type, type_type.getSize());
-
                                 RESULT = new FunctionWithParams(param, prev_params);
-                              }catch(SymTabError e){
-                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                String message = e.getMessage() + " from "+from+" to "+to;
+
+                              } catch (SymTabError e) {
+                                String message = e.getMessage() + " from " + 
+                                type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -904,16 +909,18 @@ class CUP$Parser$actions {
                               try{
                                 //check param type
                                 Type type_type = symbolsTable.get(type_id);
-                                if(type_type.getTipo() != Tipo.dtype){
-                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid param type" + " from "+from+" to "+to;
+                                if (type_type.getTipo() != Tipo.dtype) {
+                                  String message = "Invalid parameter type from " + 
+                                  idxleft.getLine() + ":" + idxleft.getColumn() + 
+                                  " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
-                                if(type_type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
-                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid param type : "+type_id+". Valid params types are : boolean or number" + " from "+from+" to "+to;
+                                if (type_type.getTipoSubyacente() == TipoSubyacente.TS_STRING) {
+                                  String message = "Invalid parameter type: " + type_id + ". Expected boolean or number, found from " + 
+                                  idxleft.getLine() + ":" + idxleft.getColumn() + 
+                                  " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -922,10 +929,11 @@ class CUP$Parser$actions {
                                 Parameter param = new Parameter(id, param_type, type_type.getSize());
 
                                 RESULT = new FunctionWithParams(param);
-                              }catch(SymTabError e){
-                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                String message = e.getMessage() + " from "+from+" to "+to;
+                              } catch (SymTabError e) {
+                                String message = e.getMessage() + " from " + 
+                                type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -964,20 +972,21 @@ class CUP$Parser$actions {
 		Value value = (Value)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                               try{
-                                // is literall
+                                // Literal
                                 TipoSubyacente subType = null;
-                                if(value.getTipo() == Tipo.dnull){
+                                if (value.getTipo() == Tipo.dnull) {
                                   subType = value.getTipoSubyacente();
                                 }
 
-                                // is variable
-                                if(value.getTipo() != Tipo.dnull){
+                                // Var
+                                if (value.getTipo() != Tipo.dnull) {
                                   Type type_type = symbolsTable.get(value.getTypeName());
                                   subType = type_type.getTipoSubyacente();
                                 }
 
                                 RESULT = new FunctionReturn(value.getVarId(), subType);
-                              }catch(SymTabError e){
+
+                              } catch(SymTabError e) {
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -1002,7 +1011,6 @@ class CUP$Parser$actions {
               MainS RESULT =null;
 		
                               c3a_g.generarC3A(Code.rtn,null,null,"PROC_main");
-
                               RESULT = new MainS();
                             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("main_s",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-9)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -1177,10 +1185,12 @@ class CUP$Parser$actions {
             {
               BlockOut RESULT =null;
 		
-                              try{
+                              try {
                                 symbolsTable.leaveBlock();
+
                                 RESULT = new BlockOut();
-                              }catch(SymTabError e){
+
+                              } catch(SymTabError e) {
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -1217,9 +1227,10 @@ class CUP$Parser$actions {
                                 RESULT = declarations;
 
                               } catch(SymTabError e) {
-                                String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
-                                String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
-                                String message = e.getMessage() + " from "+from+" to "+to;
+                                String message = e.getMessage() + " from " + 
+                                var_idxleft.getLine() + ":" + var_idxleft.getColumn() + 
+                                " to " + var_idxright.getLine() + ":" + var_idxright.getColumn();
+
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -1349,55 +1360,58 @@ class CUP$Parser$actions {
                                 Type type = symbolsTable.get(type_id);
 
                                 if (type == null || type.getTipo() != Tipo.dtype) {
-                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid type" + " from "+from+" to "+to;
+                                  String message = "Invalid type from " + 
+                                  type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                  " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
                                 if (type.getTipoSubyacente() != TipoSubyacente.TS_BOOLEAN
                                   && type.getTipoSubyacente() != TipoSubyacente.TS_NUMBER
                                   && type.getTipoSubyacente() != TipoSubyacente.TS_STRING) {
-                                    String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                    String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                    String message = "DECLARATION: Invalid subjacent type" + " from "+from+" to "+to;
+                                    String message = "Declaration: Invalid subjacent type from " + 
+                                    type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                    " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                     throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
                                 //IF LITERALL (type = null) CHECK SUBJACENT Tipo
                                 if (value.getTipo() == Tipo.dnull && type.getTipoSubyacente() != value.getTipoSubyacente()) {
-                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Value and type must have same subjacent type" + " from "+from+" to "+to;
+                                  String message = "Value and type must match the same subjacent type from " + 
+                                                  type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                                  " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
                                 if (value.getTipo() != Tipo.dnull && !value.getTypeName().equals(type_id)) {
-                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Value and type must have same subjacent type" + " from "+from+" to "+to;
+                                  String message = "Value and type must match the same subjacent type, from " + 
+                                  type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                  " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
                                 Type var_type;
 
-                                if(isConst){
+                                if (isConst) {
                                   var_type = new Type(Tipo.dconst, type_id, value.getValue());
-                                }
-                                else{
+                                } else {
                                   var_type = new Type(Tipo.dvar, type_id);
                                 }
 
                                 int size = type.getSize();
-                                if(value.getIsString()){
+                                if (value.getIsString()) {
                                   size = value.getStringSize();
                                 }
 
                                 String var_id;
-                                if(type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
+                                if (type.getTipoSubyacente() == TipoSubyacente.TS_STRING) {
                                   String str_value = (String) value.getValue();
                                   var_id = backTables.addStringVariable(id_var, type.getSize(), str_value);
-                                }else{
+                                } else {
                                   var_id = backTables.addVariable(id_var, type.getTipoSubyacente(), type.getSize(), false);
                                 }
 
@@ -1420,9 +1434,10 @@ class CUP$Parser$actions {
                                 RESULT = symDcls;
 
                               } catch(SymTabError e) {
-                                String from = id_varxleft.getLine() + ":" + id_varxleft.getColumn();
-                                String to = id_varxright.getLine() + ":" + id_varxright.getColumn();
-                                String message = e.getMessage() + " from "+from+" to "+to;
+                                String message = e.getMessage() + " from " + 
+                                id_varxleft.getLine() + ":" + id_varxleft.getColumn() + 
+                                " to " + id_varxright.getLine() + ":" + id_varxright.getColumn();
+
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -1447,33 +1462,35 @@ class CUP$Parser$actions {
                             Type type = symbolsTable.get(type_id);
 
                             if (type == null || type.getTipo() != Tipo.dtype) {
-                              String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                              String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                              String message = "Invalid type" + " from "+from+" to "+to;
+                              String message = "Invalid type from " + 
+                              type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                              " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                               throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                             }
 
                             if (type.getTipoSubyacente() != TipoSubyacente.TS_TUPLE) {
-                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                String message = "DECLARATION: Invalid subjacent type" + " from "+from+" to "+to;
+                                String message = "Declaration: Invalid subjacent type from " + 
+                                type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                             }
 
-                            //COMPROBAMOS QUE LA CANTIDAD DE VALORES COINCIDA CON LA CANTIDAD DE VARIABLES DE LA TUPLA
                             if (type.getTupleTypes().size() != tuple_value.getValues().size()) {
-                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                String message = "TUPLE_DECLARATION: Invalid number of values" + " from "+from+" to "+to;
+                                String message = "Tuple Declaration: Invalid number of values from " + 
+                                type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                             }
 
-                            //COMPROBAMOS QUE LOS TIPOS DE LOS VALUES SEAN COMPATIBLES CON LOS TIPOS DE LA TUPLA
                             for (int i = 0; i < tuple_value.getValues().size(); i++) {
-                                if(type.getTupleTypes().get(i).getTipoSubyacente() != tuple_value.getValues().get(i).getTipoSubyacente()){
-                                    String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                    String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                    String message = "TUPLE_DECLARATION: Invalid subjacentType of value" + " from "+from+" to "+to;
+                                if (type.getTupleTypes().get(i).getTipoSubyacente() != tuple_value.getValues().get(i).getTipoSubyacente()) {
+                                    String message = "TUPLE_DECLARATION: Invalid subjacent type of value from " + 
+                                    type_idxleft.getLine() + ":" + type_idxleft.getColumn() + 
+                                    " to " + type_idxright.getLine() + ":" + type_idxright.getColumn();
+
                                     throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
                             }
@@ -1531,24 +1548,26 @@ class CUP$Parser$actions {
                                    String type_id = varType.getTypeName();
 
                                    if (varType.getTipo() == Tipo.dconst) {
-                                       String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
-                                       String to = valuexright.getLine() + ":" + valuexright.getColumn();
-                                       String message = "Cant assign value to constant" + " from " + from + " to " + to;
+                                      String message = "Can't assign a value to a constant, from " + 
+                                      var_idxleft.getLine() + ":" + var_idxleft.getColumn() + 
+                                      " to " + valuexright.getLine() + ":" + valuexright.getColumn();
+
                                        throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                    }
 
                                    //IF LITERALL (type = null) CHECK SUBJACENT Tipo
                                    if (value.getTipo() == Tipo.dnull && varType.getTipoSubyacente() == value.getTipoSubyacente()) {
-                                       String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
-                                       String to = valuexright.getLine() + ":" + valuexright.getColumn();
-                                       String message = "Value and type must have same subjacent type" + " from " + from + " to " + to;
+                                      String message = "Value and type must match the same subjacent type from " + 
+                                      var_idxleft.getLine() + ":" + var_idxleft.getColumn() + 
+                                      " to " + valuexright.getLine() + ":" + valuexright.getColumn();
+
                                        throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                    }
 
                                    if (value.getTipo() != Tipo.dnull && !value.getTypeName().equals(type_id)) {
-                                       String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
-                                       String to = valuexright.getLine() + ":" + valuexright.getColumn();
-                                       String message = "ValueType and type_id must be the same type" + " from " + from + " to " + to;
+                                      String message = "Value type and type_id must be the same type" + 
+                                                      " from " + var_idxleft.getLine() + ":" + var_idxleft.getColumn() + 
+                                                      " to " + valuexright.getLine() + ":" + valuexright.getColumn();
                                        throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                    }
 
@@ -1556,9 +1575,9 @@ class CUP$Parser$actions {
 
                                    RESULT = new Assignation();
                               } catch (SymTabError e) {
-                                  String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
-                                  String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
-                                  String message = e.getMessage() + " from " + from + " to " + to;
+                                  String message = e.getMessage() + 
+                                  " from " + var_idxleft.getLine() + ":" + var_idxleft.getColumn() + 
+                                  " to " + var_idxright.getLine() + ":" + var_idxright.getColumn();
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -1627,9 +1646,9 @@ class CUP$Parser$actions {
                                     op_code = Code.mod;
                                     break;
                                   default :
-                                    String from = opxleft.getLine() + ":" + opxleft.getColumn();
-                                    String to = opxright.getLine() + ":" + opxright.getColumn();
-                                    String message = "Invalid arithmetic operator from "+from+" to "+to;
+                                    String message = "Invalid arithmetic operator from " + 
+                                    opxleft.getLine() + ":" + opxleft.getColumn() + 
+                                    " to " + opxright.getLine() + ":" + opxright.getColumn();
                                     throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -1649,10 +1668,10 @@ class CUP$Parser$actions {
                                       value = val1 * val2;
                                       break;
                                     case "/" :
-                                      if(val2 == 0){
-                                        String from = arith_val2xleft.getLine() + ":" + arith_val2xleft.getColumn();
-                                        String to = arith_val2xright.getLine() + ":" + arith_val2xright.getColumn();
-                                        String message = "Can not divide by zero (0)" + " from "+from+" to "+to;
+                                      if (val2 == 0) {
+                                        String message = "Can not divide by zero (0)" + 
+                                        " from " + arith_val2xleft.getLine() + ":" + arith_val2xleft.getColumn() + 
+                                        " to " + arith_val2xright.getLine() + ":" + arith_val2xright.getColumn();
                                         throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                       }
                                       value = val1 / val2;
@@ -1825,18 +1844,18 @@ class CUP$Parser$actions {
                               Tipo main_var_type = id_val.getTipo();
 
                               if(main_var_type != Tipo.darg && main_var_type != Tipo.dconst && main_var_type != Tipo.dvar){
-                                String from = id_valxleft.getLine() + ":" + id_valxleft.getColumn();
-                                String to = id_valxright.getLine() + ":" + id_valxright.getColumn();
-                                String message = "Invalid arithmetic value type" + " from "+from+" to "+to;
+                                String message = "Invalid arithmetic value type" + 
+                                " from " + id_valxleft.getLine() + ":" + id_valxleft.getColumn() + 
+                                " to " + id_valxright.getLine() + ":" + id_valxright.getColumn();
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
 
                               Type var_dtype = symbolsTable.get(id_val.getTypeName());
 
                               if(var_dtype.getTipoSubyacente() != TipoSubyacente.TS_NUMBER){
-                                String from = id_valxleft.getLine() + ":" + id_valxleft.getColumn();
-                                String to = id_valxright.getLine() + ":" + id_valxright.getColumn();
-                                String message = "ARITHMETICAL_VALUE: Invalid subjacent type" + " from "+from+" to "+to;
+                                String message = "Arithmetic Value: Invalid subjacent type" + 
+                                                " from " + id_valxleft.getLine() + ":" + id_valxleft.getColumn() + 
+                                                " to " + id_valxright.getLine() + ":" + id_valxright.getColumn();
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
 
@@ -1888,14 +1907,16 @@ class CUP$Parser$actions {
 		Location call_fnxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                            try{
+                            try {
                               Type fn_type = symbolsTable.get(call_fn.getFunctionId());
                               Type dfn_type = symbolsTable.get(fn_type.getTypeName());
 
-                              if(dfn_type.getTipoSubyacente() != TipoSubyacente.TS_NUMBER){
-                                String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
-                                String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
-                                String message = "Invalid function call "+call_fn.getFunctionId() + " with return type "+ dfn_type.getTipoSubyacente() +". Expected :"+TipoSubyacente.TS_NUMBER + " from "+from+" to "+to;
+                              if (dfn_type.getTipoSubyacente() != TipoSubyacente.TS_NUMBER) {
+                                String message = "Invalid function call " + call_fn.getFunctionId() + 
+                                                " with return type " + dfn_type.getTipoSubyacente() + 
+                                                ". Expected :" + TipoSubyacente.TS_NUMBER + 
+                                                " from " + call_fnxleft.getLine() + ":" + call_fnxleft.getColumn() + 
+                                                " to " + call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
 
@@ -1904,10 +1925,10 @@ class CUP$Parser$actions {
                               c3a_g.generarC3A(Code.copy,"return",call_fn.getBackendId(),var_id);
 
                               RESULT = new ArithmeticValue(var_id);
-                            }catch(SymTabError e){
-                              String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
-                              String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
-                              String message = e.getMessage() + " from "+from+" to "+to;
+                            } catch (SymTabError e) {
+                              String message = e.getMessage() + 
+                              " from " + call_fnxleft.getLine() + ":" + call_fnxleft.getColumn() + 
+                              " to " + call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                               throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                             }
                           
@@ -1926,14 +1947,16 @@ class CUP$Parser$actions {
 		Location call_fnxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                            try{
+                            try {
                               Type fn_type = symbolsTable.get(call_fn.getFunctionId());
                               Type dfn_type = symbolsTable.get(fn_type.getTypeName());
 
-                              if(dfn_type.getTipoSubyacente() != TipoSubyacente.TS_NUMBER){
-                                String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
-                                String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
-                                String message = "Invalid function call "+call_fn.getFunctionId() + " with return type "+ dfn_type.getTipoSubyacente() +". Expected :"+TipoSubyacente.TS_NUMBER + " from "+from+" to "+to;
+                              if (dfn_type.getTipoSubyacente() != TipoSubyacente.TS_NUMBER) {
+                                String message = "Invalid function call " + call_fn.getFunctionId() + 
+                                                " with return type " + dfn_type.getTipoSubyacente() + 
+                                                ". Expected :" + TipoSubyacente.TS_NUMBER + 
+                                                " from " + call_fnxleft.getLine() + ":" + call_fnxleft.getColumn() + 
+                                                " to " + call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
 
@@ -1941,15 +1964,15 @@ class CUP$Parser$actions {
 
                               c3a_g.generarC3A(Code.copy,"return",call_fn.getBackendId(),var_id);
 
-                              if(op.equals("-")){
+                              if (op.equals("-")) {
                                 c3a_g.generarC3A(Code.neg,var_id,null,var_id);
                               }
 
                               RESULT = new ArithmeticValue(var_id);
-                            }catch(SymTabError e){
-                              String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
-                              String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
-                              String message = e.getMessage() + " from "+from+" to "+to;
+                            } catch (SymTabError e) {
+                              String message = e.getMessage() + 
+                              " from " + call_fnxleft.getLine() + ":" + call_fnxleft.getColumn() + 
+                              " to " + call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                               throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                             }
                           
@@ -1965,19 +1988,19 @@ class CUP$Parser$actions {
 		Location id_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		String id_val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
+                              try {
                                 Type id_type = symbolsTable.get(id_val);
                                 String var_id = id_type.getBackendId();
                                 Identifier sym = new Identifier(var_id, id_type.getTipo(), id_type.getTypeName());
-                                if(id_type.getTipo() == Tipo.dconst){
+                                if (id_type.getTipo() == Tipo.dconst) {
                                   sym = new Identifier(var_id, id_type.getTipo(), id_type.getTypeName(), id_type.getValue());
                                 }
 
                                 RESULT = sym;
-                              }catch(SymTabError e){
-                                String from = id_valxleft.getLine() + ":" + id_valxleft.getColumn();
-                                String to = id_valxright.getLine() + ":" + id_valxright.getColumn();
-                                String message = e.getMessage() + " from "+from+" to "+to;
+                              } catch(SymTabError e) {
+                                String message = e.getMessage() + 
+                                " from " + id_valxleft.getLine() + ":" + id_valxleft.getColumn() + 
+                                " to " + id_valxright.getLine() + ":" + id_valxright.getColumn();
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -2010,16 +2033,17 @@ class CUP$Parser$actions {
 		Location id_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		Identifier id_val = (Identifier)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
+                              try {
 
                                 Identifier sym;
                                 // check if unary operator is type valid
                                 TipoSubyacente subType = symbolsTable.get(id_val.getTypeName()).getTipoSubyacente();
 
-                                if(subType != TipoSubyacente.TS_BOOLEAN) {
-                                  String from = opxleft.getLine() + ":" + opxleft.getColumn();
-                                  String to = opxright.getLine() + ":" + opxright.getColumn();
-                                  String message = "Invalid unary operator " + op + " for type " + subType + " from "+from+" to "+to;
+                                if (subType != TipoSubyacente.TS_BOOLEAN) {
+                                  String message = "Invalid unary operator " + op + 
+                                                  " for type " + subType + 
+                                                  " from " + opxleft.getLine() + ":" + opxleft.getColumn() + 
+                                                  " to " + opxright.getLine() + ":" + opxright.getColumn();
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -2060,23 +2084,24 @@ class CUP$Parser$actions {
                                 // check if unary operator is type valid
                                 TipoSubyacente subType = symbolsTable.get(id_val.getTypeName()).getTipoSubyacente();
 
-                                if(subType != TipoSubyacente.TS_BOOLEAN) {
-                                  String from = opxleft.getLine() + ":" + opxleft.getColumn();
-                                  String to = opxright.getLine() + ":" + opxright.getColumn();
-                                  String message = "Invalid unary operator " + op + " for type " + subType + " from "+from+" to "+to;
+                                if (subType != TipoSubyacente.TS_BOOLEAN) {
+                                  String message = "Invalid unary operator " + op + 
+                                                  " for type " + subType + 
+                                                  " from " + opxleft.getLine() + ":" + opxleft.getColumn() + 
+                                                  " to " + opxright.getLine() + ":" + opxright.getColumn();
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
-                                if(op.equals("-")){
+                                if (op.equals("-")) {
                                   Type type_number = symbolsTable.get("number");
                                   String var_id = backTables.addTempVar(type_number.getSize(),  type_number.getTipoSubyacente());
 
                                   c3a_g.generarC3A(Code.neg,id_val.getId(),null,var_id);
 
-                                  if(id_val.getTipo() == Tipo.dconst){
+                                  if (id_val.getTipo() == Tipo.dconst) {
                                     Integer value = -((Integer) id_val.getValue()).intValue();
                                     sym = new Identifier(var_id, id_val.getTipo(), id_val.getTypeName(), value);
-                                  }else{
+                                  } else {
                                     sym = new Identifier(var_id, id_val.getTipo(), id_val.getTypeName());
                                   }
                                 }
@@ -2156,9 +2181,9 @@ class CUP$Parser$actions {
                                 Type type_string = symbolsTable.get("string");
 
                                 if (value.length() > 1000){
-                                  String from = str_valuexleft.getLine() + ":" + str_valuexleft.getColumn();
-                                  String to = str_valuexright.getLine() + ":" + str_valuexright.getColumn();
-                                  String message = "String must be shorter than 1000 characters " + " from "+from+" to "+to;
+                                  String message = "String must be shorter than 1000 characters " + 
+                                                  " from " + str_valuexleft.getLine() + ":" + str_valuexleft.getColumn() + 
+                                                  " to " + str_valuexright.getLine() + ":" + str_valuexright.getColumn();
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -2168,7 +2193,7 @@ class CUP$Parser$actions {
                                 Value sym = new Value(value, stringSize);
 
                                 RESULT = sym;
-                              }catch(SymTabError e){
+                              } catch (SymTabError e) {
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -2184,7 +2209,7 @@ class CUP$Parser$actions {
 		Location bool_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		BooleanValue bool_val = (BooleanValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
+                              try {
                                 Boolean value = bool_val.getValue();
                                 Type type_bool = symbolsTable.get("boolean");
 
@@ -2193,7 +2218,7 @@ class CUP$Parser$actions {
                                 c3a_g.generarC3A(Code.copy,value.toString(),null,var_id);
 
                                 RESULT = new Value(var_id, TipoSubyacente.TS_BOOLEAN, value);
-                              }catch(SymTabError e){
+                              } catch(SymTabError e) {
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -2219,7 +2244,7 @@ class CUP$Parser$actions {
                                 c3a_g.generarC3A(Code.copy,Integer.toString(value),null,var_id);
 
                                 RESULT = new Value(var_id, TipoSubyacente.TS_NUMBER, value);
-                              }catch(SymTabError e){
+                              } catch (SymTabError e) {
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -2238,10 +2263,10 @@ class CUP$Parser$actions {
                               Value sym;
                               String id = comp_val.getVarId();
 
-                              if(comp_val.getIsConst()){
+                              if (comp_val.getIsConst()) {
                                 Boolean value = comp_val.getValue();
                                 sym = new Value(id, TipoSubyacente.TS_BOOLEAN, value);
-                              }else{
+                              } else {
                                 sym = new Value(id, TipoSubyacente.TS_BOOLEAN);
                               }
 
@@ -2259,7 +2284,7 @@ class CUP$Parser$actions {
 		Location comp_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		ValuesComparison comp_val = (ValuesComparison)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
+                              try {
                                 Value sym;
 
                                 Type type_bool = symbolsTable.get("boolean");
@@ -2267,15 +2292,15 @@ class CUP$Parser$actions {
 
                                 c3a_g.generarC3A(Code.not,comp_val.getVarId(),null,var_id);
 
-                                if(comp_val.getIsConst()){
+                                if (comp_val.getIsConst()) {
                                   Boolean value = ! comp_val.getValue().booleanValue();
                                   sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN, value);
-                                }else{
+                                } else {
                                   sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN);
                                 }
 
                                 RESULT = sym;
-                              }catch(SymTabError e){
+                              } catch (SymTabError e) {
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -2293,9 +2318,9 @@ class CUP$Parser$actions {
 		
                               Value sym;
                               String var_id = arith_op.getVarId();
-                              if(arith_op.getIsConst()){
+                              if (arith_op.getIsConst()) {
                                 sym = new Value(var_id, TipoSubyacente.TS_NUMBER, arith_op.getValue());
-                              }else{
+                              } else {
                                 sym = new Value(var_id, TipoSubyacente.TS_NUMBER);
                               }
 
@@ -2315,9 +2340,9 @@ class CUP$Parser$actions {
 		
                               Value sym;
                               String var_id = new String(bool_op.getVarId());
-                              if(bool_op.getIsConst()){
+                              if (bool_op.getIsConst()) {
                                 sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN, bool_op.getValue());
-                              }else{
+                              } else {
                                 sym = new Value(var_id, TipoSubyacente.TS_BOOLEAN);
                               }
 
@@ -2335,11 +2360,11 @@ class CUP$Parser$actions {
 		Location call_fnxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
+                              try {
                                 Type fn_type = symbolsTable.get(call_fn.getFunctionId());
                                 Type dfn_type = symbolsTable.get(fn_type.getTypeName());
 
-                                if(dfn_type.getTipoSubyacente() == TipoSubyacente.TS_NULL){
+                                if (dfn_type.getTipoSubyacente() == TipoSubyacente.TS_NULL) {
                                   String from = call_fnxleft.getLine() + ":" +call_fnxleft.getColumn();
                                   String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                                   String message = "Function call : "+call_fn.getFunctionId() + " does not return any value" + " from "+from+" to "+to;
@@ -2351,7 +2376,7 @@ class CUP$Parser$actions {
                                 c3a_g.generarC3A(Code.copy,"return",call_fn.getBackendId(),var_id);
 
                                 RESULT = new Value(var_id, Tipo.dfun, fn_type.getTypeName());
-                              }catch(SymTabError e){
+                              } catch (SymTabError e) {
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -2364,14 +2389,14 @@ class CUP$Parser$actions {
             {
               Value RESULT =null;
 		
-                              try{
+                              try {
                                 Type number_type = symbolsTable.get("number");
                                 String var_id = backTables.addTempVar(number_type.getSize(), number_type.getTipoSubyacente());
 
                                 c3a_g.generarC3A(Code.read,null,null,var_id);
 
                                 RESULT = new Value(var_id, number_type.getTipoSubyacente());
-                              }catch(SymTabError e){
+                              } catch (SymTabError e) {
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -2439,7 +2464,7 @@ class CUP$Parser$actions {
 		Location bool_val2xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		BooleanOperationValue bool_val2 = (BooleanOperationValue)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
+                              try {
                                 BooleanOperator sym;
                                 Code op_code;
 
@@ -2451,9 +2476,9 @@ class CUP$Parser$actions {
                                     op_code = Code.or;
                                     break;
                                   default :
-                                    String from = opxleft.getLine() + ":" + opxleft.getColumn();
-                                    String to = opxright.getLine() + ":" + opxright.getColumn();
-                                    String message = "Invalid boolean operator" + " from "+from+" to "+to;
+                                    String message = "Invalid boolean operator" + 
+                                                    " from " + opxleft.getLine() + ":" + opxleft.getColumn() + 
+                                                    " to " + opxright.getLine() + ":" + opxright.getColumn();
                                     throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -2573,21 +2598,21 @@ class CUP$Parser$actions {
 		Location id_valxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		Identifier id_val = (Identifier)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
+                              try {
                                 Tipo main_var_type = id_val.getTipo();
-                                if(main_var_type != Tipo.darg && main_var_type != Tipo.dconst && main_var_type != Tipo.dvar){
-                                  String from = id_valxleft.getLine() + ":" + id_valxleft.getColumn();
-                                  String to = id_valxright.getLine() + ":" + id_valxright.getColumn();
-                                  String message = "Invalid arithmetic value type" + " from "+from+" to "+to;
+                                if (main_var_type != Tipo.darg && main_var_type != Tipo.dconst && main_var_type != Tipo.dvar) {
+                                  String message = "Invalid arithmetic value type" + 
+                                                  " from " + id_valxleft.getLine() + ":" + id_valxleft.getColumn() + 
+                                                  " to " + id_valxright.getLine() + ":" + id_valxright.getColumn();
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
                                 Type var_dtype = symbolsTable.get(id_val.getTypeName());
 
-                                if(var_dtype.getTipoSubyacente() != TipoSubyacente.TS_BOOLEAN){
-                                  String from = id_valxleft.getLine() + ":" + id_valxleft.getColumn();
-                                  String to = id_valxright.getLine() + ":" + id_valxright.getColumn();
-                                  String message = "boolean_op_value: Invalid subjacent type" + " from "+from+" to "+to;
+                                if (var_dtype.getTipoSubyacente() != TipoSubyacente.TS_BOOLEAN) {
+                                  String message = "Boolean Value: Invalid subjacent type" + 
+                                                  " from " + id_valxleft.getLine() + ":" + id_valxleft.getColumn() + 
+                                                  " to " + id_valxright.getLine() + ":" + id_valxright.getColumn();
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -2690,14 +2715,16 @@ class CUP$Parser$actions {
 		Location call_fnxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
+                              try {
                                 Type fn_type = symbolsTable.get(call_fn.getFunctionId());
                                 Type dfn_type = symbolsTable.get(fn_type.getTypeName());
 
-                                if(dfn_type.getTipoSubyacente() != TipoSubyacente.TS_BOOLEAN){
-                                  String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
-                                  String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
-                                  String message = "Invalid function call "+call_fn.getFunctionId() + " with return type "+ dfn_type.getTipoSubyacente() +". Expected :"+TipoSubyacente.TS_BOOLEAN + " from "+from+" to "+to;
+                                if (dfn_type.getTipoSubyacente() != TipoSubyacente.TS_BOOLEAN){
+                                  String message = "Invalid function call " + call_fn.getFunctionId() + 
+                                                  " with return type " + dfn_type.getTipoSubyacente() + 
+                                                  ". Expected :" + TipoSubyacente.TS_BOOLEAN + 
+                                                  " from " + call_fnxleft.getLine() + ":" + call_fnxleft.getColumn() + 
+                                                  " to " + call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -2706,7 +2733,7 @@ class CUP$Parser$actions {
                                 c3a_g.generarC3A(Code.copy,"return",call_fn.getBackendId(),var_id);
 
                                 RESULT = new BooleanOperationValue(var_id);
-                              }catch(SymTabError e){
+                              } catch (SymTabError e) {
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -2725,14 +2752,16 @@ class CUP$Parser$actions {
 		Location call_fnxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
+                              try {
                                 Type fn_type = symbolsTable.get(call_fn.getFunctionId());
                                 Type dfn_type = symbolsTable.get(fn_type.getTypeName());
 
-                                if(dfn_type.getTipoSubyacente() != TipoSubyacente.TS_NUMBER){
-                                  String from = call_fnxleft.getLine() + ":" + call_fnxleft.getColumn();
-                                  String to = call_fnxright.getLine() + ":" + call_fnxright.getColumn();
-                                  String message = "Invalid function call "+call_fn.getFunctionId() + " with return type "+ dfn_type.getTipoSubyacente() +". Expected :"+TipoSubyacente.TS_NUMBER + " from "+from+" to "+to;
+                                if (dfn_type.getTipoSubyacente() != TipoSubyacente.TS_NUMBER) {
+                                  String message = "Invalid function call " + call_fn.getFunctionId() + 
+                                                  " with return type " + dfn_type.getTipoSubyacente() + 
+                                                  ". Expected :" + TipoSubyacente.TS_NUMBER + 
+                                                  " from " + call_fnxleft.getLine() + ":" + call_fnxleft.getColumn() + 
+                                                  " to " + call_fnxright.getLine() + ":" + call_fnxright.getColumn();
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -2743,7 +2772,7 @@ class CUP$Parser$actions {
                                 c3a_g.generarC3A(Code.neg,var_id,null,var_id);
 
                                 RESULT = new BooleanOperationValue(var_id);
-                              }catch(SymTabError e){
+                              } catch (SymTabError e) {
                                 throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
@@ -2819,9 +2848,9 @@ class CUP$Parser$actions {
                                   subType1 = val1.getTipoSubyacente();
                                 }else{
                                   if(type1 != Tipo.dvar && type1 != Tipo.dconst && type1 != Tipo.darg && type1 != Tipo.dfun) {
-                                    String from = val1xleft.getLine() + ":" + val1xleft.getColumn();
-                                    String to = val1xright.getLine() + ":" + val1xright.getColumn();
-                                    String message = "Value 1 of comparison wrong type" + " from "+from+" to "+to;
+                                    String message = "Value 1 of comparison wrong type" + 
+                                    " from " + val1xleft.getLine() + ":" + val1xleft.getColumn() + 
+                                    " to " + val1xright.getLine() + ":" + val1xright.getColumn();
                                     throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                   }
                                   Type dtype_type = symbolsTable.get(val1.getTypeName());
@@ -2835,9 +2864,9 @@ class CUP$Parser$actions {
                                   subType2 = val2.getTipoSubyacente();
                                 }else{
                                   if(type2 != Tipo.dvar && type2 != Tipo.dconst && type2 != Tipo.darg && type2 != Tipo.dfun) {
-                                    String from = val2xleft.getLine() + ":" + val2xleft.getColumn();
-                                    String to = val2xright.getLine() + ":" + val2xright.getColumn();
-                                    String message = "Value 2 of comparison wrong type" + " from "+from+" to "+to;
+                                    String message = "Value 2 of comparison wrong type" + 
+                                    " from " + val2xleft.getLine() + ":" + val2xleft.getColumn() + 
+                                    " to " + val2xright.getLine() + ":" + val2xright.getColumn();
                                     throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                   }
                                   Type dtype_type = symbolsTable.get(val2.getTypeName());
@@ -2846,9 +2875,9 @@ class CUP$Parser$actions {
 
                                 //Check same subtype
                                 if(subType1 != subType2) {
-                                  String from = val2xleft.getLine() + ":" + val2xleft.getColumn();
-                                  String to = val2xright.getLine() + ":" + val2xright.getColumn();
-                                  String message = "Value 1 subtype is different from value 2" + " from "+from+" to "+to;
+                                  String message = "Value 1 subtype is different from value 2" + 
+                                  " from " + val2xleft.getLine() + ":" + val2xleft.getColumn() + 
+                                  " to " + val2xright.getLine() + ":" + val2xright.getColumn();
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
@@ -2862,36 +2891,36 @@ class CUP$Parser$actions {
                                     break;
                                   case "<":
                                     if(subType1 != TipoSubyacente.TS_NUMBER) {
-                                      String from = opxleft.getLine() + ":" + opxleft.getColumn();
-                                      String to = opxright.getLine() + ":" + opxright.getColumn();
-                                      String message = "This operator ("+op+") only works with integer subtypes" + " from "+from+" to "+to;
+                                      String message = "The operator (" + op + ") only works with integer subtypes" + 
+                                      " from " + opxleft.getLine() + ":" + opxleft.getColumn() + 
+                                      " to " + opxright.getLine() + ":" + opxright.getColumn();
                                       throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                     }
                                     op_code = Code.LT;
                                     break;
                                   case "<=":
                                     if(subType1 != TipoSubyacente.TS_NUMBER) {
-                                      String from = opxleft.getLine() + ":" + opxleft.getColumn();
-                                      String to = opxright.getLine() + ":" + opxright.getColumn();
-                                      String message = "This operator ("+op+") only works with integer subtypes" + " from "+from+" to "+to;
+                                      String message = "The operator (" + op + ") only works with integer subtypes" + 
+                                      " from " + opxleft.getLine() + ":" + opxleft.getColumn() + 
+                                      " to " + opxright.getLine() + ":" + opxright.getColumn();
                                       throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                     }
                                     op_code = Code.LE;
                                     break;
                                   case ">":
                                     if(subType1 != TipoSubyacente.TS_NUMBER) {
-                                      String from = opxleft.getLine() + ":" + opxleft.getColumn();
-                                      String to = opxright.getLine() + ":" + opxright.getColumn();
-                                      String message = "This operator ("+op+") only works with integer subtypes" + " from "+from+" to "+to;
+                                      String message = "The operator (" + op + ") only works with integer subtypes" + 
+                                      " from " + opxleft.getLine() + ":" + opxleft.getColumn() + 
+                                      " to " + opxright.getLine() + ":" + opxright.getColumn();
                                       throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                     }
                                     op_code = Code.GT;
                                     break;
                                   case ">=":
                                     if(subType1 != TipoSubyacente.TS_NUMBER) {
-                                      String from = opxleft.getLine() + ":" + opxleft.getColumn();
-                                      String to = opxright.getLine() + ":" + opxright.getColumn();
-                                      String message = "This operator ("+op+") only works with integer subtypes" + " from "+from+" to "+to;
+                                      String message = "The operator (" + op + ") only works with integer subtypes" + 
+                                      " from " + opxleft.getLine() + ":" + opxleft.getColumn() + 
+                                      " to " + opxright.getLine() + ":" + opxright.getColumn();
                                       throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                     }
                                     op_code = Code.GE;
