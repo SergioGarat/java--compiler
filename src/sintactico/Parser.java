@@ -735,16 +735,16 @@ class CUP$Parser$actions {
 		
                               //Check function type and return type
                               if (init_func.getTipoSubyacente() != ret_func.getTipoSubyacente()) {
+                                  String message = "Mismatched return type. Expected: " + init_func.getTipoSubyacente() + 
+                                                  ", but received: " + ret_func.getTipoSubyacente() + 
+                                                  " from " + ret_funcxleft.getLine() + ":" + ret_funcxleft.getColumn() + 
+                                                  " to " + ret_funcxright.getLine() + ":" + ret_funcxright.getColumn();
 
-                                String from = ret_funcxleft.getLine() + ":" + ret_funcxleft.getColumn();
-                                String to = ret_funcxright.getLine() + ":" + ret_funcxright.getColumn();
-                                String message = "Invalid return type. Expected : "+init_func.getTipoSubyacente()+", but got: "+ret_func.getTipoSubyacente() + " from "+from+" to "+to;
-
-                                throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
 
                               // NO RETURN
-                              if (init_func.getTipoSubyacente() == TipoSubyacente.TS_NULL){
+                              if (TipoSubyacente.TS_NULL == init_func.getTipoSubyacente()){
                                 c3a_g.generarC3A(Code.rtn,null,null,init_func.getFunId()); 
                               // RETURN
                               } else {
@@ -771,32 +771,31 @@ class CUP$Parser$actions {
 		Location type_idxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		String type_id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                              try{
+                              try {
                                 // check return type
-                                Type return_fun_type = symbolsTable.get(type_id);
-                                if(return_fun_type.getTipo() != Tipo.dtype){
+                                Type return_tp = symbolsTable.get(type_id);
+                                if (return_tp.getTipo() != Tipo.dtype) {
                                   String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                   String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Function declaration : invalid type" + " from "+from+" to "+to;
-                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                                }
-                                if(return_fun_type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
-                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid return type : "+type_id+". Valid return types are : boolean or number" + " from "+from+" to "+to;
+                                  String message = "Invalid function declaration: incorrect type" + " from " + from + " to " + to;
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
-                                TipoSubyacente subType = return_fun_type.getTipoSubyacente();
-                                ArrayList<Parameter> params = fun_params.getParams();
-                                String backId = backTables.addProcedure(fun_id, params.size(), 0, subType);
+                                if (TipoSubyacente.TS_STRING==return_tp.getTipoSubyacente()) {
+                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
+                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
+                                  String message = "Invalid return type: " + type_id + ". Expected boolean or number" + " from " + from + " to " + to;
+                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                                }
 
+                                ArrayList<Parameter> parameters = fun_params.getParams();
+                                TipoSubyacente subType = return_tp.getTipoSubyacente();
+                                String backId = backTables.addProcedure(fun_id, parameters.size(), 0, subType);
                                 Type fun_type = new Type(backId, Tipo.dfun, type_id);
-
                                 symbolsTable.add(fun_id, fun_type);
 
-                                // add params if it has
-                                for(Parameter param : params){
+                                // Add parameters
+                                for (Parameter param : parameters) {
                                   Type param_type = param.getType();
                                   TipoSubyacente param_subType = symbolsTable.get(param.getType().getTypeName()).getTipoSubyacente();
                                   String param_backId = backTables.addVariable(param.getVarId(), param_subType, param.getSize(), true);
@@ -808,10 +807,11 @@ class CUP$Parser$actions {
                                 c3a_g.generarC3A(Code.pmb,null,null,backId);
 
                                 RESULT = new FunctionInit(backId, subType);
-                              }catch(SymTabError e){
+
+                              } catch (SymTabError e) {
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                String message = e.getMessage() + " from "+from+" to "+to;
+                                String message = e.getMessage() + " from " + from + " to "+to;
                                 throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                               }
                             
