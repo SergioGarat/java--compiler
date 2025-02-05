@@ -1476,6 +1476,7 @@ boolean_op_value            ::= boolean_value:bool_val
                             | OP_LOGICAL_NOT:op call_function:call_fn
                             {:
                               try {
+                                
                                 Type tipofunc = symbolsTable.get(call_fn.getFunctionId());
                                 Type tipodef = symbolsTable.get(tipofunc.getTypeName());
 
