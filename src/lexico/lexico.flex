@@ -105,37 +105,15 @@ import java.io.FileWriter;
   return symbol(Tokens.EOF.name(),ParserSym.EOF);
 %eofval}
 
+// Definición de tokens
 
-DIGIT       = [0-9]
-LETTER      = [a-zA-Z]
-
-BLANK       = (" "|\t|\r|\n)
 COMMENT     = ("//".*"//")
+BLANK       = (" "|\t|\r|\n)
 
-ID          = (({LETTER})({LETTER}|{DIGIT})*)
-NUMBER      = ("0" | [1-9]{DIGIT}*)
+ID          = (([a-zA-Z])([a-zA-Z]|[0-9])*)
+NUMBER      = ("0" | [1-9][0-9]*)
 STRING      = \" [^\"]* \"
 BOOLEAN     = [tT][rR][uU][eE] | [fF][aA][lL][sS][eE]
-
-// Operadores
-
-OP_SUM      = ("+")
-OP_SUB      = ("-")
-OP_MULT     = ("*")
-OP_DIV      = ("/")
-OP_MOD      = ("%")
-OP_EQ       = ("==")
-OP_NEQ      = ("!=")
-OP_LT       = ("<")
-OP_GT       = (">")
-OP_LE       = ("<=")
-OP_GE       = (">=")
-OP_AND      = ("&&")
-OP_OR       = ("||")
-OP_NOT      = ("!")
-OP_ASSIG    = (":=")
-
-CONSTANT    = [cC][oO][nN][sS][tT][aA][nN][tT]
 
 // Operaciones
 
@@ -170,6 +148,28 @@ LBRACE      = ("{")
 RBRACE      = ("}")
 LBRACKET    = ("[")
 RBRACKET    = ("]")
+
+
+// Operadores
+
+OP_SUM      = ("+")
+OP_SUB      = ("-")
+OP_MULT     = ("*")
+OP_DIV      = ("/")
+OP_MOD      = ("%")
+OP_EQ       = ("==")
+OP_NEQ      = ("!=")
+OP_LT       = ("<")
+OP_GT       = (">")
+OP_LE       = ("<=")
+OP_GE       = (">=")
+OP_AND      = ("&&")
+OP_OR       = ("||")
+OP_NOT      = ("!")
+OP_ASSIG    = (":=")
+
+CONSTANT    = [cC][oO][nN][sS][tT][aA][nN][tT]
+
 
 %%
 {BLANK}              {/*Ignore*/}
@@ -226,6 +226,39 @@ RBRACKET    = ("]")
                         Token token = new Token(Tokens.PRINT,yyline,yycolumn, yytext());
                         writeToken(token);
                         return symbol(Tokens.PRINT.name(),ParserSym.PRINT);
+                     }
+
+    //VALORES Y VARIABLES
+
+{BOOLEAN}            {
+                     Token token = new Token(Tokens.BOOLEAN,yyline,yycolumn, yytext());
+                     writeToken(token);
+                     return symbol(Tokens.BOOLEAN.name(),ParserSym.BOOL, yytext());
+                     }
+{CONSTANT}           {
+                     Token token = new Token(Tokens.CONSTANT,yyline,yycolumn, yytext());
+                     writeToken(token);
+                     return symbol(Tokens.CONSTANT.name(),ParserSym.CONSTANT, yytext());
+                     }
+{STRUCT}             {
+                     Token token = new Token(Tokens.STRUCT,yyline,yycolumn, yytext());
+                     writeToken(token);
+                     return symbol(Tokens.STRUCT.name(),ParserSym.STRUCT, yytext());
+                     }
+{ID}                 {
+                     Token token = new Token(Tokens.ID,yyline,yycolumn, yytext());
+                     writeToken(token);
+                     return symbol(Tokens.ID.name(),ParserSym.ID, yytext());
+                     }
+{NUMBER}             {
+                     Token token = new Token(Tokens.NUMBER,yyline,yycolumn, yytext());
+                     writeToken(token);
+                     return symbol(Tokens.NUMBER.name(),ParserSym.NUMBER, yytext());
+                     }
+{STRING}             {
+                        Token token = new Token(Tokens.STRING,yyline,yycolumn, yytext());
+                        writeToken(token);
+                        return symbol(Tokens.STRING.name(),ParserSym.STRING, yytext());
                      }
 
     //CARACTERES ESPECIALES
@@ -354,38 +387,6 @@ RBRACKET    = ("]")
                         return symbol(Tokens.OP_ASSIG.name(),ParserSym.OP_ASSIG, yytext());
                      }
 
-    //VALORES Y VARIABLES
-
-{BOOLEAN}            {
-                     Token token = new Token(Tokens.BOOLEAN,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(Tokens.BOOLEAN.name(),ParserSym.BOOL, yytext());
-                     }
-{CONSTANT}           {
-                     Token token = new Token(Tokens.CONSTANT,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(Tokens.CONSTANT.name(),ParserSym.CONSTANT, yytext());
-                     }
-{STRUCT}             {
-                     Token token = new Token(Tokens.STRUCT,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(Tokens.STRUCT.name(),ParserSym.STRUCT, yytext());
-                     }
-{ID}                 {
-                     Token token = new Token(Tokens.ID,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(Tokens.ID.name(),ParserSym.ID, yytext());
-                     }
-{NUMBER}             {
-                     Token token = new Token(Tokens.NUMBER,yyline,yycolumn, yytext());
-                     writeToken(token);
-                     return symbol(Tokens.NUMBER.name(),ParserSym.NUMBER, yytext());
-                     }
-{STRING}             {
-                        Token token = new Token(Tokens.STRING,yyline,yycolumn, yytext());
-                        writeToken(token);
-                        return symbol(Tokens.STRING.name(),ParserSym.STRING, yytext());
-                     }
 
     //ERROR
 

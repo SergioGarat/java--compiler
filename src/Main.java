@@ -64,22 +64,21 @@ public class Main {
     }
 
     private static void generateCupFile() throws Exception {
-        String[] commands = {/* "-dump_grammar", */ "-locations", "-parser", "Parser", CUP_FILE};
+        String[] commands = {"-locations", "-parser", "Parser", CUP_FILE};
         java_cup.Main.main(commands);
-        // generates on WorkDir folder Parser.java and ParserSym.java
 
-        // MOVE FILES
+        // files
         Path parser_o = Paths.get("Parser.java");
         Path parser_d = Paths.get(CUP_DIR + "Parser.java");
 
-        // move parser
+        // parser
         Files.deleteIfExists(parser_d);
         Files.move(parser_o, parser_d);
 
         Path sym_o = Paths.get("ParserSym.java");
         Path sym_d = Paths.get(CUP_DIR + "ParserSym.java");
 
-        // move parser symbols
+        // symbols
         Files.deleteIfExists(sym_d);
         Files.move(sym_o, sym_d);
     }

@@ -7,14 +7,6 @@ public class InstructionC3A {
     public Code code;
     public String op1, op2, destino;
 
-/* 
-    LT, // <    jl
-    LE, // <=   jle
-    EQ, // =    je
-    NE, // !=   jne
-    GE, // >=   jge
-    GT, // >    jg
-*/
     public enum Code {
         copy, neg, add, sub, prod, div, mod, and, or, not, skip,
         go_to, jump_cond, LT, LE, EQ, NE, GE, GT, pmb, call, param,
