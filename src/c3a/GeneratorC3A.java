@@ -25,7 +25,7 @@ public class GeneratorC3A {
     }
 
     // Add a new instruction
-    public void generateC3aInstr(InstructionC3A.Code opCode, String op1, String op2, String dest) {
+    public void generarC3A(InstructionC3A.Code opCode, String op1, String op2, String dest) {
         InstructionC3A inst = new InstructionC3A(opCode, op1, op2, dest);
         instructionList.add(inst);
     }

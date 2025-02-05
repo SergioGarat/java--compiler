@@ -13,16 +13,16 @@ import java.nio.file.Paths;
 
 public class Main {
 
-    private static final String USER_DIR = System.getProperty("user.dir");
-    private static final String WORK_DIR = USER_DIR + "\\src\\";
+    private static final String u_dir = System.getProperty("user.dir");
+    private static final String w_dir = u_dir + "\\src\\";
 
-    private static final String LEX_DIR = WORK_DIR + "lexico\\";
-    private static final String JFLEX_FILE = LEX_DIR + "lexico.flex";
+    private static final String l_dir = w_dir + "lexico\\";
+    private static final String filejflex = l_dir + "lexico.flex";
 
-    private static final String CUP_DIR = WORK_DIR + "sintactico\\";
-    private static final String CUP_FILE = CUP_DIR + "sintactico.cup";
+    private static final String c_dir = w_dir + "sintactico\\";
+    private static final String c_file = c_dir + "sintactico.cup";
 
-    private static final String OUTPUT_DIR = WORK_DIR + "output\\";
+    private static final String outputd = w_dir + "output\\";
 
     //todo: Aquí se debe cambiar el archivo que se quiere escoger para compilar
     public static String fileToCompile = "example1.txt";
@@ -60,23 +60,23 @@ public class Main {
     }
 
     private static void generateFlexFile() throws SilentExit {
-        jflex.Main.generate(new String[]{JFLEX_FILE});
+        jflex.Main.generate(new String[]{filejflex});
     }
 
     private static void generateCupFile() throws Exception {
-        String[] commands = {"-locations", "-parser", "Parser", CUP_FILE};
+        String[] commands = {"-locations", "-parser", "Parser", c_file};
         java_cup.Main.main(commands);
 
         // files
         Path parser_o = Paths.get("Parser.java");
-        Path parser_d = Paths.get(CUP_DIR + "Parser.java");
+        Path parser_d = Paths.get(c_dir + "Parser.java");
 
         // parser
         Files.deleteIfExists(parser_d);
         Files.move(parser_o, parser_d);
 
         Path sym_o = Paths.get("ParserSym.java");
-        Path sym_d = Paths.get(CUP_DIR + "ParserSym.java");
+        Path sym_d = Paths.get(c_dir + "ParserSym.java");
 
         // symbols
         Files.deleteIfExists(sym_d);
@@ -97,7 +97,7 @@ public class Main {
     private static void executeCompiler(String fname) throws IOException {
         try {
             cleanOutputFiles(fname, false);
-            Reader reader = new BufferedReader(new FileReader(WORK_DIR + "examples\\" + fname + ".txt"));
+            Reader reader = new BufferedReader(new FileReader(w_dir + "examples\\" + fname + ".txt"));
             ComplexSymbolFactory symbolFactory = new ComplexSymbolFactory();
             Lexico scanner = new Lexico(reader, symbolFactory, fname);
             Parser parser = new Parser(scanner, symbolFactory, fname);
@@ -111,7 +111,7 @@ public class Main {
 
     private static void cleanOutputFiles(String startName, boolean full) {
         System.out.println("Deleting contents of the output folder.");
-        File outputDir = new File(OUTPUT_DIR + "\\" + startName);
+        File outputDir = new File(outputd + "\\" + startName);
 
         if (outputDir.isDirectory()) {
             File[] files = outputDir.listFiles();

@@ -64,10 +64,6 @@ parser code
       }
     }
 
-  private void closeErrorFiles(){
-    SymTabError.closeFile();
-    CompilerError.closeFiles();
-  }
 
   public void syntax_error(Symbol s) {
     try {
@@ -102,7 +98,8 @@ parser code
 
       throw new CompilerError(complexSymbol, expected_names, false, filenamePath);
     } catch (Exception e) {
-      closeErrorFiles();
+      SymTabError.closeFile();
+      CompilerError.closeFiles();
 		};
   }
 
@@ -128,7 +125,8 @@ parser code
       Type void_type = new Type(Tipo.dtype, TipoSubyacente.TS_NULL, 0);
       symbolsTable.add("void", void_type);
     }catch (SymTabError e){
-      closeErrorFiles();
+      SymTabError.closeFile();
+      CompilerError.closeFiles();
     }
   }
 
@@ -229,7 +227,8 @@ STARTS                      ::=  INIT declare_functions
                               c3a_g.guardarC3Dir();
                               assembler.generateAssembler();
 
-                              closeErrorFiles();
+                              SymTabError.closeFile();
+                              CompilerError.closeFiles();
                             :};
 
 INIT                        ::= {:
@@ -246,13 +245,182 @@ declare_functions           ::= define_function declare_functions
                               RESULT = new DeclareFunctions();
                             :};
 
+define_function             ::= function_init:init_func LBRACE block_in function_instructions function_return:ret_func block_out RBRACE
+                            {:
+                              //Check function type and return type
+                              if (init_func.getTipoSubyacente() != ret_func.getTipoSubyacente()) {
+
+                                String from = ret_funcxleft.getLine() + ":" + ret_funcxleft.getColumn();
+                                String to = ret_funcxright.getLine() + ":" + ret_funcxright.getColumn();
+                                String message = "Invalid return type. Expected : "+init_func.getTipoSubyacente()+", but got: "+ret_func.getTipoSubyacente() + " from "+from+" to "+to;
+
+                                throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                              }
+
+                              // NO RETURN
+                              if (init_func.getTipoSubyacente() == TipoSubyacente.TS_NULL){
+                                c3a_g.generarC3A(Code.rtn,null,null,init_func.getFunId()); 
+                              // RETURN
+                              } else {
+                                c3a_g.generarC3A(Code.rtn,ret_func.getVarId(),null,init_func.getFunId());
+                              }
+
+                              RESULT = new DefineFunction();
+                            :};
+
+function_init               ::= FUNC ID:fun_id function_params:fun_params RPAREN TWO_POINTS ID:type_id
+                            {:
+                              try{
+                                // check return type
+                                Type return_fun_type = symbolsTable.get(type_id);
+                                if(return_fun_type.getTipo() != Tipo.dtype){
+                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
+                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
+                                  String message = "Function declaration : invalid type" + " from "+from+" to "+to;
+                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                                }
+                                if(return_fun_type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
+                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
+                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
+                                  String message = "Invalid return type : "+type_id+". Valid return types are : boolean or number" + " from "+from+" to "+to;
+                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                                }
+
+                                TipoSubyacente subType = return_fun_type.getTipoSubyacente();
+                                ArrayList<Parameter> params = fun_params.getParams();
+                                String backId = backTables.addProcedure(fun_id, params.size(), 0, subType);
+
+                                Type fun_type = new Type(backId, Tipo.dfun, type_id);
+
+                                symbolsTable.add(fun_id, fun_type);
+
+                                // add params if it has
+                                for(Parameter param : params){
+                                  Type param_type = param.getType();
+                                  TipoSubyacente param_subType = symbolsTable.get(param.getType().getTypeName()).getTipoSubyacente();
+                                  String param_backId = backTables.addVariable(param.getVarId(), param_subType, param.getSize(), true);
+                                  param_type.setIdBack(param_backId);
+                                  symbolsTable.addParam(fun_id, param_backId, param.getVarId(), param_type);
+                                }
+
+                                c3a_g.generarC3A(Code.skip,null,null,backId);
+                                c3a_g.generarC3A(Code.pmb,null,null,backId);
+
+                                RESULT = new FunctionInit(backId, subType);
+                              }catch(SymTabError e){
+                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
+                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
+                                String message = e.getMessage() + " from "+from+" to "+to;
+                                throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                              }
+                            :};
+
+function_params             ::= function_w_params:params
+                            {:
+                              RESULT = new FunctionParams(params.getParams());
+                            :}
+                            | LPAREN
+                            {:
+                              RESULT = new FunctionParams();
+                            :};
+
+function_w_params           ::= function_w_params:prev_params COMMA ID:id TWO_POINTS ID:type_id
+                            {:
+                              try{
+                                //check param type
+                                Type type_type = symbolsTable.get(type_id);
+                                if(type_type.getTipo() != Tipo.dtype){
+                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
+                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
+                                  String message = "Invalid param type" + " from "+from+" to "+to;
+                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                                }
+                                if(type_type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
+                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
+                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
+                                  String message = "Invalid param type : "+type_id+". Valid params types are : boolean or number" + " from "+from+" to "+to;
+                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                                }
+
+                                Type param_type = new Type(Tipo.darg, type_id);
+
+                                Parameter param = new Parameter(id, param_type, type_type.getSize());
+
+                                RESULT = new FunctionWithParams(param, prev_params);
+                              }catch(SymTabError e){
+                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
+                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
+                                String message = e.getMessage() + " from "+from+" to "+to;
+                                throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                              }
+                            :}
+                            | LPAREN ID:id TWO_POINTS ID:type_id
+                            {:
+                              try{
+                                //check param type
+                                Type type_type = symbolsTable.get(type_id);
+                                if(type_type.getTipo() != Tipo.dtype){
+                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
+                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
+                                  String message = "Invalid param type" + " from "+from+" to "+to;
+                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                                }
+                                if(type_type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
+                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
+                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
+                                  String message = "Invalid param type : "+type_id+". Valid params types are : boolean or number" + " from "+from+" to "+to;
+                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                                }
+
+                                Type param_type = new Type(Tipo.darg, type_id);
+
+                                Parameter param = new Parameter(id, param_type, type_type.getSize());
+
+                                RESULT = new FunctionWithParams(param);
+                              }catch(SymTabError e){
+                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
+                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
+                                String message = e.getMessage() + " from "+from+" to "+to;
+                                throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
+                              }
+                            :};
+
+function_instructions       ::= instructions
+                            {:
+                              RESULT = new FunctionInstructions();
+                            :}
+                            |
+                            {:
+                              RESULT = new FunctionInstructions();
+                            :};
+
+function_return             ::= RETURN value:value SEMICOLON
+                            {:
+                              try{
+                                // is literall
+                                TipoSubyacente subType = null;
+                                if(value.getTipo() == Tipo.dnull){
+                                  subType = value.getTipoSubyacente();
+                                }
+
+                                // is variable
+                                if(value.getTipo() != Tipo.dnull){
+                                  Type type_type = symbolsTable.get(value.getTypeName());
+                                  subType = type_type.getTipoSubyacente();
+                                }
+
+                                RESULT = new FunctionReturn(value.getVarId(), subType);
+                              }catch(SymTabError e){
+                                throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
+                              }
+                            :}
+                            | EMPTY
+                            {:
+                              RESULT = new FunctionReturn();
+                            :};
+
 main_s                        ::= FUNC MAIN m_main LPAREN RPAREN LBRACE block_in main_instructions block_out RBRACE {:
-                              c3a_g.generateC3aInstr(
-                                Code.rtn,
-                                null,
-                                null,
-                                "PROC_main"
-                              );
+                              c3a_g.generarC3A(Code.rtn,null,null,"PROC_main");
 
                               RESULT = new MainS();
                             :};
@@ -264,19 +432,8 @@ m_main                      ::=
                               Type fun_type = new Type(backId, Tipo.dfun, null);
                               symbolsTable.add("main", fun_type);
 
-                              c3a_g.generateC3aInstr(
-                                Code.skip,
-                                null,
-                                null,
-                                "main"
-                              );
-
-                              c3a_g.generateC3aInstr(
-                                Code.pmb,
-                                null,
-                                null,
-                                backId
-                              );
+                              c3a_g.generarC3A(Code.skip,null,null,"main");
+                              c3a_g.generarC3A(Code.pmb,null,null,backId);
 
                               RESULT = new MainLabel();
                             :};
@@ -350,31 +507,24 @@ block_out                   ::=
 
 declarations                ::=  ID:var_id COMMA declarations:declarations
                             {:
-                              try{
+                              try {
                                 Type type = declarations.getType();
                                 String backId;
 
-                                if(type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
+                                if (type.getTipoSubyacente() == TipoSubyacente.TS_STRING) {
                                   String value = declarations.getValue();
                                   backId = backTables.addStringVariable(var_id, type.getSize(), value);
-                                }else{
+                                } else {
                                   backId = backTables.addVariable(var_id, type.getTipoSubyacente(), type.getSize(), false);
                                 }
 
                                 type.setIdBack(backId);
-
                                 symbolsTable.add(var_id, type);
+                                c3a_g.generarC3A(Code.copy,declarations.getVarId(),null,backId);
 
-                                c3a_g.generateC3aInstr(
-                                  Code.copy,
-                                  declarations.getVarId(),
-                                  null,
-                                  backId
-                                );
+                                RESULT = declarations;
 
-                                  RESULT = declarations;
-
-                              }catch(SymTabError e){
+                              } catch(SymTabError e) {
                                 String from = var_idxleft.getLine() + ":" + var_idxleft.getColumn();
                                 String to = var_idxright.getLine() + ":" + var_idxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -413,7 +563,7 @@ field_list                  ::= field_list:field_list SEMICOLON tuple_field:fiel
 tuple_field                 ::= ID:id_var TWO_POINTS ID:type_id
                             {:
                             Type type = symbolsTable.get(type_id);
-                            if(type == null || type.getTipo() != Tipo.dtype){
+                            if (type == null || type.getTipo() != Tipo.dtype) {
                               String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                               String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                               String message = "Invalid type" + " from "+from+" to "+to;
@@ -422,7 +572,6 @@ tuple_field                 ::= ID:id_var TWO_POINTS ID:type_id
 
                             String backId = backTables.addVariable(id_var, type.getTipoSubyacente(), type.getSize(), false);
                             type.setIdBack(backId);
-
                             symbolsTable.add(id_var, type);
 
                             RESULT = new TupleField(id_var, type);
@@ -437,16 +586,16 @@ declaration                 ::=  ID:id_var constant:constant TWO_POINTS ID:type_
 
                                 Type type = symbolsTable.get(type_id);
 
-                                if(type == null || type.getTipo() != Tipo.dtype){
+                                if (type == null || type.getTipo() != Tipo.dtype) {
                                   String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                   String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                   String message = "Invalid type" + " from "+from+" to "+to;
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
-                                if(type.getTipoSubyacente() != TipoSubyacente.TS_BOOLEAN
+                                if (type.getTipoSubyacente() != TipoSubyacente.TS_BOOLEAN
                                   && type.getTipoSubyacente() != TipoSubyacente.TS_NUMBER
-                                  && type.getTipoSubyacente() != TipoSubyacente.TS_STRING){
+                                  && type.getTipoSubyacente() != TipoSubyacente.TS_STRING) {
                                     String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                     String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                     String message = "DECLARATION: Invalid subjacent type" + " from "+from+" to "+to;
@@ -454,14 +603,14 @@ declaration                 ::=  ID:id_var constant:constant TWO_POINTS ID:type_
                                 }
 
                                 //IF LITERALL (type = null) CHECK SUBJACENT Tipo
-                                if(value.getTipo() == Tipo.dnull && type.getTipoSubyacente() != value.getTipoSubyacente()){
+                                if (value.getTipo() == Tipo.dnull && type.getTipoSubyacente() != value.getTipoSubyacente()) {
                                   String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                   String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                   String message = "Value and type must have same subjacent type" + " from "+from+" to "+to;
                                   throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                 }
 
-                                if(value.getTipo() != Tipo.dnull && !value.getTypeName().equals(type_id)){
+                                if (value.getTipo() != Tipo.dnull && !value.getTypeName().equals(type_id)) {
                                   String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                   String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                   String message = "Value and type must have same subjacent type" + " from "+from+" to "+to;
@@ -496,23 +645,19 @@ declaration                 ::=  ID:id_var constant:constant TWO_POINTS ID:type_
                                 symbolsTable.add(id_var, var_type);
 
                                 Declarations symDcls;
-                                if(value.getIsString()){
+                                if (value.getIsString()) {
                                   symDcls = new Declarations(val_id, var_type, (String) value.getValue());
-                                }else{
+                                } else {
                                   symDcls = new Declarations(val_id, var_type);
                                 }
 
-                                if(type.getTipoSubyacente() != TipoSubyacente.TS_STRING){
-                                  c3a_g.generateC3aInstr(
-                                    Code.copy,
-                                    val_id,
-                                    null,
-                                    var_id
-                                  );
+                                if (type.getTipoSubyacente() != TipoSubyacente.TS_STRING) {
+                                  c3a_g.generarC3A(Code.copy,val_id,null,var_id);
                                 }
 
                                 RESULT = symDcls;
-                              }catch(SymTabError e){
+
+                              } catch(SymTabError e) {
                                 String from = id_varxleft.getLine() + ":" + id_varxleft.getColumn();
                                 String to = id_varxright.getLine() + ":" + id_varxright.getColumn();
                                 String message = e.getMessage() + " from "+from+" to "+to;
@@ -523,14 +668,14 @@ declaration                 ::=  ID:id_var constant:constant TWO_POINTS ID:type_
                             {:
                             Type type = symbolsTable.get(type_id);
 
-                            if(type == null || type.getTipo() != Tipo.dtype){
+                            if (type == null || type.getTipo() != Tipo.dtype) {
                               String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                               String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                               String message = "Invalid type" + " from "+from+" to "+to;
                               throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                             }
 
-                            if(type.getTipoSubyacente() != TipoSubyacente.TS_TUPLE){
+                            if (type.getTipoSubyacente() != TipoSubyacente.TS_TUPLE) {
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                 String message = "DECLARATION: Invalid subjacent type" + " from "+from+" to "+to;
@@ -538,7 +683,7 @@ declaration                 ::=  ID:id_var constant:constant TWO_POINTS ID:type_
                             }
 
                             //COMPROBAMOS QUE LA CANTIDAD DE VALORES COINCIDA CON LA CANTIDAD DE VARIABLES DE LA TUPLA
-                            if(type.getTupleTypes().size() != tuple_value.getValues().size()){
+                            if (type.getTupleTypes().size() != tuple_value.getValues().size()) {
                                 String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                 String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
                                 String message = "TUPLE_DECLARATION: Invalid number of values" + " from "+from+" to "+to;
@@ -546,7 +691,7 @@ declaration                 ::=  ID:id_var constant:constant TWO_POINTS ID:type_
                             }
 
                             //COMPROBAMOS QUE LOS TIPOS DE LOS VALUES SEAN COMPATIBLES CON LOS TIPOS DE LA TUPLA
-                            for (int i = 0; i < tuple_value.getValues().size(); i++){
+                            for (int i = 0; i < tuple_value.getValues().size(); i++) {
                                 if(type.getTupleTypes().get(i).getTipoSubyacente() != tuple_value.getValues().get(i).getTipoSubyacente()){
                                     String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
                                     String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
@@ -555,15 +700,10 @@ declaration                 ::=  ID:id_var constant:constant TWO_POINTS ID:type_
                                 }
                             }
 
-                            for (int i = 0; i < tuple_value.getValues().size(); i++){
+                            for (int i = 0; i < tuple_value.getValues().size(); i++) {
                                 var value = tuple_value.getValues().get(i);
                                 var varType = type.getTupleTypes().get(i);
-                                    c3a_g.generateC3aInstr(
-                                           Code.copy,
-                                           value.getVarId(),
-                                           null,
-                                           varType.getBackendId()
-                                   );
+                                c3a_g.generarC3A(Code.copy,value.getVarId(),null,varType.getBackendId());
                             }
 
                             backTables.addVariable(id_var, type.getTipoSubyacente(), type.getSize(), false);
@@ -610,12 +750,7 @@ operator_assig              ::= ID:var_id OP_ASSIG value:value
                                        throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
                                    }
 
-                                   c3a_g.generateC3aInstr(
-                                           Code.copy,
-                                           value.getVarId(),
-                                           null,
-                                           varType.getBackendId()
-                                   );
+                                   c3a_g.generarC3A(Code.copy,value.getVarId(),null,varType.getBackendId());
 
                                    RESULT = new Assignation();
                               } catch (SymTabError e) {
@@ -633,13 +768,13 @@ arith_op                    ::= OP_ARITHMETICAL_B:op
 
 arithmetical_operation      ::= arithmetical_value:arith_val1 arith_op:op arithmetical_value:arith_val2
                             {:
-                              try{
+                              try {
                                 ArithmeticOperation sym;
                                 boolean allConst = arith_val1.getIsConst() && arith_val2.getIsConst();
 
                                 Code op_code;
 
-                                switch(op.getOperator()){
+                                switch (op.getOperator()) {
                                   case "+" :
                                     op_code = Code.add;
                                     break;
@@ -663,7 +798,7 @@ arithmetical_operation      ::= arithmetical_value:arith_val1 arith_op:op arithm
                                 }
 
                                 Integer value = null;
-                                if(allConst) {
+                                if (allConst) {
                                   Integer val1 = (Integer) arith_val1.getValue();
                                   Integer val2 = (Integer) arith_val2.getValue();
 
@@ -696,12 +831,7 @@ arithmetical_operation      ::= arithmetical_value:arith_val1 arith_op:op arithm
 
                                 String var_id = backTables.addTempVar(type_number.getSize(), type_number.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  op_code,
-                                  arith_val1.getVarId(),
-                                  arith_val2.getVarId(),
-                                  var_id
-                                );
+                                c3a_g.generarC3A(op_code,arith_val1.getVarId(),arith_val2.getVarId(),var_id);
 
                                 if(allConst){
                                   sym = new ArithmeticOperation(var_id, value);
@@ -730,12 +860,7 @@ arithmetical_operation      ::= arithmetical_value:arith_val1 arith_op:op arithm
                                     sym = new ArithmeticOperation(var_id);
                                   }
 
-                                  c3a_g.generateC3aInstr(
-                                    Code.neg,
-                                    arith_op.getVarId(),
-                                    null,
-                                    var_id
-                                  );
+                                  c3a_g.generarC3A(Code.neg,arith_op.getVarId(),null,var_id);
                                 }
 
                                 RESULT = sym;
@@ -777,12 +902,7 @@ arithmetical_value         ::= number_value:n_val
 
                               String var_id = backTables.addTempVar(type_number.getSize(),  type_number.getTipoSubyacente());
 
-                              c3a_g.generateC3aInstr(
-                                Code.copy,
-                                Integer.toString(value),
-                                null,
-                                var_id
-                              );
+                              c3a_g.generarC3A(Code.copy,Integer.toString(value),null,var_id);
 
                               RESULT = new ArithmeticValue(var_id, value);
                             }catch(SymTabError e){
@@ -851,12 +971,7 @@ arithmetical_value         ::= number_value:n_val
 
                               String var_id = backTables.addTempVar(dfn_type.getSize(), dfn_type.getTipoSubyacente());
 
-                              c3a_g.generateC3aInstr(
-                                Code.copy,
-                                "return",
-                                call_fn.getBackendId(),
-                                var_id
-                              );
+                              c3a_g.generarC3A(Code.copy,"return",call_fn.getBackendId(),var_id);
 
                               RESULT = new ArithmeticValue(var_id);
                             }catch(SymTabError e){
@@ -881,20 +996,10 @@ arithmetical_value         ::= number_value:n_val
 
                               String var_id = backTables.addTempVar(dfn_type.getSize(), dfn_type.getTipoSubyacente());
 
-                              c3a_g.generateC3aInstr(
-                                Code.copy,
-                                "return",
-                                call_fn.getBackendId(),
-                                var_id
-                              );
+                              c3a_g.generarC3A(Code.copy,"return",call_fn.getBackendId(),var_id);
 
                               if(op.equals("-")){
-                                c3a_g.generateC3aInstr(
-                                  Code.neg,
-                                  var_id,
-                                  null,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.neg,var_id,null,var_id);
                               }
 
                               RESULT = new ArithmeticValue(var_id);
@@ -946,12 +1051,7 @@ id_value                    ::= ID:id_val
                                 Type type_boolean = symbolsTable.get("boolean");
                                 String var_id = backTables.addTempVar(type_boolean.getSize(),  type_boolean.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.not,
-                                  id_val.getId(),
-                                  null,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.not,id_val.getId(),null,var_id);
 
                                 if(id_val.getTipo() == Tipo.dconst){
                                   Boolean value = !((Boolean) id_val.getValue()).booleanValue();
@@ -983,12 +1083,7 @@ id_value                    ::= ID:id_val
                                   Type type_number = symbolsTable.get("number");
                                   String var_id = backTables.addTempVar(type_number.getSize(),  type_number.getTipoSubyacente());
 
-                                  c3a_g.generateC3aInstr(
-                                    Code.neg,
-                                    id_val.getId(),
-                                    null,
-                                    var_id
-                                  );
+                                  c3a_g.generarC3A(Code.neg,id_val.getId(),null,var_id);
 
                                   if(id_val.getTipo() == Tipo.dconst){
                                     Integer value = -((Integer) id_val.getValue()).intValue();
@@ -1059,12 +1154,7 @@ value                       ::= id_value:id_val
 
                                 String var_id = backTables.addTempVar(type_bool.getSize(), type_bool.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.copy,
-                                  value.toString(),
-                                  null,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.copy,value.toString(),null,var_id);
 
                                 RESULT = new Value(var_id, TipoSubyacente.TS_BOOLEAN, value);
                               }catch(SymTabError e){
@@ -1080,12 +1170,7 @@ value                       ::= id_value:id_val
 
                                 String var_id = backTables.addTempVar(type_number.getSize(), type_number.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.copy,
-                                  Integer.toString(value),
-                                  null,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.copy,Integer.toString(value),null,var_id);
 
                                 RESULT = new Value(var_id, TipoSubyacente.TS_NUMBER, value);
                               }catch(SymTabError e){
@@ -1114,12 +1199,7 @@ value                       ::= id_value:id_val
                                 Type type_bool = symbolsTable.get("boolean");
                                 String var_id = backTables.addTempVar(type_bool.getSize(), type_bool.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.not,
-                                  comp_val.getVarId(),
-                                  null,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.not,comp_val.getVarId(),null,var_id);
 
                                 if(comp_val.getIsConst()){
                                   Boolean value = ! comp_val.getValue().booleanValue();
@@ -1172,12 +1252,7 @@ value                       ::= id_value:id_val
 
                                 String var_id = backTables.addTempVar(dfn_type.getSize(), dfn_type.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.copy,
-                                  "return",
-                                  call_fn.getBackendId(),
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.copy,"return",call_fn.getBackendId(),var_id);
 
                                 RESULT = new Value(var_id, Tipo.dfun, fn_type.getTypeName());
                               }catch(SymTabError e){
@@ -1190,12 +1265,7 @@ value                       ::= id_value:id_val
                                 Type number_type = symbolsTable.get("number");
                                 String var_id = backTables.addTempVar(number_type.getSize(), number_type.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.read,
-                                  null,
-                                  null,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.read,null,null,var_id);
 
                                 RESULT = new Value(var_id, number_type.getTipoSubyacente());
                               }catch(SymTabError e){
@@ -1264,12 +1334,7 @@ boolean_operation           ::= boolean_op_value:bool_val1 OP_LOGICAL:op boolean
 
                                 String val1_id = bool_val1.getVarId();
                                 String val2_id = bool_val2.getVarId();
-                                c3a_g.generateC3aInstr(
-                                  op_code,
-                                  val1_id,
-                                  val2_id,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(op_code,val1_id,val2_id,var_id);
 
                                 if(allConst){
                                   sym = new BooleanOperator(var_id, value);
@@ -1293,12 +1358,7 @@ boolean_operation           ::= boolean_op_value:bool_val1 OP_LOGICAL:op boolean
                                 Type type_boolean = symbolsTable.get("boolean");
                                 String var_id = backTables.addTempVar(type_boolean.getSize(),  type_boolean.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.neg,
-                                  bool_op.getVarId(),
-                                  null,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.neg,bool_op.getVarId(),null,var_id);
 
                                 if(bool_op.getIsConst()){
                                   Boolean value = ! bool_op.getValue().booleanValue();
@@ -1321,12 +1381,7 @@ boolean_op_value            ::= boolean_value:bool_val
 
                                 String var_id = backTables.addTempVar(type_boolean.getSize(),  type_boolean.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.copy,
-                                  value.toString(),
-                                  null,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.copy,value.toString(),null,var_id);
 
                                 RESULT = new BooleanOperationValue(var_id, value);
                               }catch(SymTabError e){
@@ -1396,12 +1451,7 @@ boolean_op_value            ::= boolean_value:bool_val
                                 Type type_bool = symbolsTable.get("boolean");
                                 String var_id = backTables.addTempVar(type_bool.getSize(), type_bool.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.not,
-                                  comp_val.getVarId(),
-                                  null,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.not,comp_val.getVarId(),null,var_id);
 
                                 BooleanOperationValue sym;
                                 if(comp_val.getIsConst()){
@@ -1430,12 +1480,7 @@ boolean_op_value            ::= boolean_value:bool_val
 
                                 String var_id = backTables.addTempVar(dfn_type.getSize(), dfn_type.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.copy,
-                                  "return",
-                                  call_fn.getBackendId(),
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.copy,"return",call_fn.getBackendId(),var_id);
 
                                 RESULT = new BooleanOperationValue(var_id);
                               }catch(SymTabError e){
@@ -1457,19 +1502,9 @@ boolean_op_value            ::= boolean_value:bool_val
 
                                 String var_id = backTables.addTempVar(dfn_type.getSize(), dfn_type.getTipoSubyacente());
 
-                                c3a_g.generateC3aInstr(
-                                  Code.copy,
-                                  "return",
-                                  call_fn.getBackendId(),
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.copy,"return",call_fn.getBackendId(),var_id);
 
-                                c3a_g.generateC3aInstr(
-                                  Code.neg,
-                                  var_id,
-                                  null,
-                                  var_id
-                                );
+                                c3a_g.generarC3A(Code.neg,var_id,null,var_id);
 
                                 RESULT = new BooleanOperationValue(var_id);
                               }catch(SymTabError e){
@@ -1638,12 +1673,7 @@ value_comparison            ::= LPAREN value:val1 OP_RELATIONAL:op value:val2 RP
                                   sym = new ValuesComparison(var_id);
                                 }
 
-                                c3a_g.generateC3aInstr(
-                                  op_code,
-                                  val1.getVarId(),
-                                  val2.getVarId(),
-                                  var_id
-                                );
+                                c3a_g.generarC3A(op_code,val1.getVarId(),val2.getVarId(),var_id);
 
                                 RESULT = sym;
                               }catch(SymTabError e){
@@ -1666,19 +1696,8 @@ cond                        ::= boolean_op_value:bool_val
                                 labelFalseStack.push(false_label);
 
 
-                                c3a_g.generateC3aInstr(
-                                  Code.jump_cond,
-                                  var_id,
-                                  "true",
-                                  true_label
-                                );
-
-                                c3a_g.generateC3aInstr(
-                                  Code.go_to,
-                                  null,
-                                  null,
-                                  false_label
-                                );
+                                c3a_g.generarC3A(Code.jump_cond,var_id,"true",true_label);
+                                c3a_g.generarC3A(Code.go_to,null,null,false_label);
 
                                 RESULT = new Condition();
                               :};
@@ -1687,12 +1706,7 @@ cond_t                      ::=
                               {:
                                 String label = labelTrueStack.pop();
 
-                                c3a_g.generateC3aInstr(
-                                  Code.skip,
-                                  null,
-                                  null,
-                                  label
-                                );
+                                c3a_g.generarC3A(Code.skip,null,null,label);
 
                                 RESULT = new CondTrue();
                               :};
@@ -1701,12 +1715,7 @@ cond_f                      ::=
                               {:
                                 String label = labelFalseStack.pop();
 
-                                c3a_g.generateC3aInstr(
-                                  Code.skip,
-                                  null,
-                                  null,
-                                  label
-                                );
+                                c3a_g.generarC3A(Code.skip,null,null,label);
 
                                 RESULT = new CondFalse();
                               :};
@@ -1720,12 +1729,7 @@ m_end                       ::= EMPTY
                             {:
                               String label = backTables.addEtiq();
 
-                              c3a_g.generateC3aInstr(
-                                Code.go_to,
-                                null,
-                                null,
-                                label
-                              );
+                              c3a_g.generarC3A(Code.go_to,null,null,label);
 
                               RESULT = new End(label);
                             :};
@@ -1734,12 +1738,7 @@ instruction_elif                ::= m_end:mend ELIF cond_f cond LBRACE block_in 
                             {:
                               String label = mend.getLabel();
 
-                              c3a_g.generateC3aInstr(
-                                Code.skip,
-                                null,
-                                null,
-                                label
-                              );
+                              c3a_g.generarC3A(Code.skip,null,null,label);
 
                               RESULT = new ElseIf();
                             :}
@@ -1752,12 +1751,7 @@ instruction_else                        ::= m_end:mend ELSE LBRACE block_in cond
                             {:
                               String label = mend.getLabel();
 
-                              c3a_g.generateC3aInstr(
-                                Code.skip,
-                                null,
-                                null,
-                                label
-                              );
+                              c3a_g.generarC3A(Code.skip,null,null,label);
 
                               RESULT = new Else();
                             :}
@@ -1770,12 +1764,7 @@ m_while                     ::= EMPTY
                             {:
                               String label = backTables.addEtiq();
 
-                              c3a_g.generateC3aInstr(
-                                Code.skip,
-                                null,
-                                null,
-                                label
-                              );
+                              c3a_g.generarC3A(Code.skip,null,null,label);
 
                               RESULT = new WhileLabel(label);
                             :};
@@ -1783,20 +1772,10 @@ m_while                     ::= EMPTY
 instruction_while           ::= WHILE m_while:mwhile cond LBRACE block_in cond_t instructions block_out RBRACE
                             {:
                               String loop_label = mwhile.getLabel();
-                              c3a_g.generateC3aInstr(
-                                Code.go_to,
-                                null,
-                                null,
-                                loop_label
-                              );
+                              c3a_g.generarC3A(Code.go_to,null,null,loop_label);
 
                               String end_label = labelFalseStack.pop();
-                              c3a_g.generateC3aInstr(
-                                Code.skip,
-                                null,
-                                null,
-                                end_label
-                              );
+                              c3a_g.generarC3A(Code.skip,null,null,end_label);
 
                               RESULT = new InstructionWhile();
                             :};
@@ -1804,20 +1783,9 @@ instruction_while           ::= WHILE m_while:mwhile cond LBRACE block_in cond_t
 instruction_for             ::= FOR LPAREN for_body:forBody RPAREN LBRACE block_in cond_t instructions block_out RBRACE
                             {:
                               String postInstrLabel = forBody.getLabel();
-                              c3a_g.generateC3aInstr(
-                                Code.go_to,
-                                null,
-                                null,
-                                postInstrLabel
-                              );
-
+                              c3a_g.generarC3A(Code.go_to,null,null,postInstrLabel);
                               String end_label = labelFalseStack.pop();
-                              c3a_g.generateC3aInstr(
-                                Code.skip,
-                                null,
-                                null,
-                                end_label
-                              );
+                              c3a_g.generarC3A(Code.skip,null,null,end_label);
                               RESULT = new InstructionFor();
                             :};
 
@@ -1825,12 +1793,7 @@ label_for                   ::= EMPTY
                             {:
                               String label = backTables.addEtiq();
 
-                              c3a_g.generateC3aInstr(
-                                Code.skip,
-                                null,
-                                null,
-                                label
-                              );
+                              c3a_g.generarC3A(Code.skip,null,null,label);
 
                               RESULT = new ForLabel(label);
                             :};
@@ -1838,12 +1801,7 @@ label_for                   ::= EMPTY
 for_body                    ::= declaration SEMICOLON label_for:labelFor cond SEMICOLON label_post_for:labelPostFor operator_assig
                                 {:
                                     String iniForLabel = labelFor.getLabel();
-                                    c3a_g.generateC3aInstr(
-                                      Code.go_to,
-                                      null,
-                                      null,
-                                      iniForLabel
-                                    );
+                                    c3a_g.generarC3A(Code.go_to,null,null,iniForLabel);
 
                                     RESULT = new ForBody(labelPostFor.getLabel());
                                 :};
@@ -1852,13 +1810,7 @@ label_post_for              ::= EMPTY
                             {:
                               String label = backTables.addEtiq();
 
-                              c3a_g.generateC3aInstr(
-                                Code.skip,
-                                null,
-                                null,
-                                label
-                              );
-
+                              c3a_g.generarC3A(Code.skip,null,null,label);
                               RESULT = new LabelPostFor(label);
                             :};
 
@@ -1876,12 +1828,7 @@ call_function               ::= ID:fun_id LPAREN:lp RPAREN:rp
 
                                 Type fun_type = symbolsTable.get(fun_id);
                                 String backId = fun_type.getBackendId();
-                                c3a_g.generateC3aInstr(
-                                  Code.call,
-                                  0 + "",
-                                  null,
-                                  backId
-                                );
+                                c3a_g.generarC3A( Code.call, 0 + "", null, backId );
 
                                 RESULT = new CallFunction(fun_id, backId);
                               }catch(SymTabError e){
@@ -1906,14 +1853,7 @@ call_function               ::= ID:fun_id LPAREN:lp RPAREN:rp
                                 }
 
                                 String fun_backId = body.getFunBackId();
-                                c3a_g.generateC3aInstr(
-                                  Code.call,
-                                  fun_params + "",
-                                  null,
-                                  fun_backId
-                                );
-
-
+                                c3a_g.generarC3A( Code.call, fun_params + "", null, fun_backId );
 
                                 RESULT = new CallFunction(fun_id, fun_backId);
                               }catch(SymTabError e){
@@ -1954,12 +1894,7 @@ call_body                   ::= call_body:body COMMA value:value
                                 }
 
                                 String fun_back_id = body.getFunBackId();
-                                c3a_g.generateC3aInstr(
-                                  Code.param,
-                                  value.getVarId(),
-                                  null,
-                                  fun_back_id
-                                );
+                                c3a_g.generarC3A(Code.param,value.getVarId(),null,fun_back_id);
 
                                 RESULT = new CallBody(fun_id, fun_back_id, num_params+1);
                               }catch(SymTabError e){
@@ -1999,13 +1934,7 @@ call_body                   ::= call_body:body COMMA value:value
                                 Type fun_type = symbolsTable.get(fun_id);
                                 String fun_back_id = fun_type.getBackendId();
 
-                                c3a_g.generateC3aInstr(
-                                  Code.param,
-                                  value.getVarId(),
-                                  null,
-                                  fun_back_id
-                                );
-
+                                c3a_g.generarC3A(Code.param,value.getVarId(),null,fun_back_id);
                                 RESULT = new CallBody(fun_id, fun_back_id, 0 + 1);
                               }catch(SymTabError e){
                                 String from = fun_idxleft.getLine() + ":" + fun_idxleft.getColumn();
@@ -2030,19 +1959,9 @@ instruction_out             ::= PRINT LPAREN value:value RPAREN
 
                                 if (value.getTipo() == Tipo.dnull && value.getTipoSubyacente() == TipoSubyacente.TS_STRING) {
                                   var_id = backTables.addTemporalStringVariable(value.getStringSize(), (String) value.getValue());
-                                  c3a_g.generateC3aInstr(
-                                    Code.print,
-                                    subtype.toString(),
-                                    (String) value.getValue(),
-                                    var_id
-                                  );
+                                  c3a_g.generarC3A( Code.print, subtype.toString(), (String) value.getValue(), var_id );
                                 } else {
-                                  c3a_g.generateC3aInstr(
-                                    Code.print,
-                                    subtype.toString(),
-                                    null,
-                                    var_id
-                                  );
+                                  c3a_g.generarC3A(Code.print,subtype.toString(),null,var_id);
                                 }
                                 RESULT = new InstructionOut();
                               }catch(SymTabError e){
@@ -2050,199 +1969,5 @@ instruction_out             ::= PRINT LPAREN value:value RPAREN
                               }
                             :};
 
-define_function             ::= function_init:fun_init LBRACE block_in function_instructions function_return:fun_ret block_out RBRACE
-                            {:
-                              //check if fun type and return type are the same
-                              if(fun_init.getTipoSubyacente() != fun_ret.getTipoSubyacente()) {
-                                String from = fun_retxleft.getLine() + ":" + fun_retxleft.getColumn();
-                                String to = fun_retxright.getLine() + ":" + fun_retxright.getColumn();
-                                String message = "Invalid return type. Expected : "+fun_init.getTipoSubyacente()+", but got: "+fun_ret.getTipoSubyacente() + " from "+from+" to "+to;
-                                throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                              }
-
-                              // no return value
-                              if(fun_init.getTipoSubyacente() == TipoSubyacente.TS_NULL){
-                                c3a_g.generateC3aInstr(
-                                  Code.rtn,
-                                  null,
-                                  null,
-                                  fun_init.getFunId()
-                                );
-                              }
-                              // return value
-                              else{
-
-                                c3a_g.generateC3aInstr(
-                                  Code.rtn,
-                                  fun_ret.getVarId(),
-                                  null,
-                                  fun_init.getFunId()
-                                );
-                              }
-
-                              RESULT = new DefineFunction();
-                            :};
-
-function_init               ::= FUNC ID:fun_id function_params:fun_params RPAREN TWO_POINTS ID:type_id
-                            {:
-                              try{
-                                // check return type
-                                Type return_fun_type = symbolsTable.get(type_id);
-                                if(return_fun_type.getTipo() != Tipo.dtype){
-                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Function declaration : invalid type" + " from "+from+" to "+to;
-                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                                }
-                                if(return_fun_type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
-                                  String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid return type : "+type_id+". Valid return types are : boolean or number" + " from "+from+" to "+to;
-                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                                }
-
-                                TipoSubyacente subType = return_fun_type.getTipoSubyacente();
-                                ArrayList<Parameter> params = fun_params.getParams();
-                                String backId = backTables.addProcedure(fun_id, params.size(), 0, subType);
-
-                                Type fun_type = new Type(backId, Tipo.dfun, type_id);
-
-                                symbolsTable.add(fun_id, fun_type);
-
-                                // add params if it has
-                                for(Parameter param : params){
-                                  Type param_type = param.getType();
-                                  TipoSubyacente param_subType = symbolsTable.get(param.getType().getTypeName()).getTipoSubyacente();
-                                  String param_backId = backTables.addVariable(param.getVarId(), param_subType, param.getSize(), true);
-                                  param_type.setIdBack(param_backId);
-                                  symbolsTable.addParam(fun_id, param_backId, param.getVarId(), param_type);
-                                }
-
-                                c3a_g.generateC3aInstr(
-                                  Code.skip,
-                                  null,
-                                  null,
-                                  backId
-                                );
-
-                                c3a_g.generateC3aInstr(
-                                  Code.pmb,
-                                  null,
-                                  null,
-                                  backId
-                                );
-
-                                RESULT = new FunctionInit(backId, subType);
-                              }catch(SymTabError e){
-                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                String message = e.getMessage() + " from "+from+" to "+to;
-                                throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                              }
-                            :};
-
-function_params             ::= function_w_params:params
-                            {:
-                              RESULT = new FunctionParams(params.getParams());
-                            :}
-                            | LPAREN
-                            {:
-                              RESULT = new FunctionParams();
-                            :};
-
-function_w_params           ::= function_w_params:prev_params COMMA ID:id TWO_POINTS ID:type_id
-                            {:
-                              try{
-                                //check param type
-                                Type type_type = symbolsTable.get(type_id);
-                                if(type_type.getTipo() != Tipo.dtype){
-                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid param type" + " from "+from+" to "+to;
-                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                                }
-                                if(type_type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
-                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid param type : "+type_id+". Valid params types are : boolean or number" + " from "+from+" to "+to;
-                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                                }
-
-                                Type param_type = new Type(Tipo.darg, type_id);
-
-                                Parameter param = new Parameter(id, param_type, type_type.getSize());
-
-                                RESULT = new FunctionWithParams(param, prev_params);
-                              }catch(SymTabError e){
-                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                String message = e.getMessage() + " from "+from+" to "+to;
-                                throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                              }
-                            :}
-                            | LPAREN ID:id TWO_POINTS ID:type_id
-                            {:
-                              try{
-                                //check param type
-                                Type type_type = symbolsTable.get(type_id);
-                                if(type_type.getTipo() != Tipo.dtype){
-                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid param type" + " from "+from+" to "+to;
-                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                                }
-                                if(type_type.getTipoSubyacente() == TipoSubyacente.TS_STRING){
-                                  String from = idxleft.getLine() + ":" + idxleft.getColumn();
-                                  String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                  String message = "Invalid param type : "+type_id+". Valid params types are : boolean or number" + " from "+from+" to "+to;
-                                  throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                                }
-
-                                Type param_type = new Type(Tipo.darg, type_id);
-
-                                Parameter param = new Parameter(id, param_type, type_type.getSize());
-
-                                RESULT = new FunctionWithParams(param);
-                              }catch(SymTabError e){
-                                String from = type_idxleft.getLine() + ":" + type_idxleft.getColumn();
-                                String to = type_idxright.getLine() + ":" + type_idxright.getColumn();
-                                String message = e.getMessage() + " from "+from+" to "+to;
-                                throw new CompilerError(message, CompilerError.ErrorType.SEMANTIC, filenamePath);
-                              }
-                            :};
-
-function_instructions       ::= instructions
-                            {:
-                              RESULT = new FunctionInstructions();
-                            :}
-                            |
-                            {:
-                              RESULT = new FunctionInstructions();
-                            :};
-
-function_return             ::= RETURN value:value SEMICOLON
-                            {:
-                              try{
-                                // is literall
-                                TipoSubyacente subType = null;
-                                if(value.getTipo() == Tipo.dnull){
-                                  subType = value.getTipoSubyacente();
-                                }
-
-                                // is variable
-                                if(value.getTipo() != Tipo.dnull){
-                                  Type type_type = symbolsTable.get(value.getTypeName());
-                                  subType = type_type.getTipoSubyacente();
-                                }
-
-                                RESULT = new FunctionReturn(value.getVarId(), subType);
-                              }catch(SymTabError e){
-                                throw new CompilerError(e.getMessage(), CompilerError.ErrorType.SEMANTIC, filenamePath);
-                              }
-                            :}
-                            | EMPTY
-                            {:
-                              RESULT = new FunctionReturn();
-                            :};
 
 EMPTY                       ::= {: RESULT = new Empty(); :};
