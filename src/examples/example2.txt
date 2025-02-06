@@ -7,8 +7,8 @@ function main() {
     }
 
     //mostramos como permitimos la definicion de tuplas//
-    struct { id1 : number ; id2 : boolean ; id3 : number} persona;
+    struct { edad : number ; soltero : boolean ; altura : number} persona;
 
-    p: persona := [1, true, 2];
+    p: persona := [18, false, 180];
 
 }
