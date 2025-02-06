@@ -17,6 +17,6 @@ function main() {
     for (i : number := 1; (i <= 20); i := i + 1){
           print(i);
           print(": ");
-          any : number := fizbuz(i);  //error aquí porque no reconoce la funcion 'fizbuz'//
+          any : number := fizbuz(i);  //error de la tabla de simbolos porque no reconoce la funcion 'fizbuz'//
     }
 }
