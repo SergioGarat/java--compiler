@@ -1,5 +1,0 @@
-function suma(a: number, b: number) : number {
-    result : number := 0;
-    result = a + b;  // ERROR: la asignación debe llevar :=
-    return result;
-}

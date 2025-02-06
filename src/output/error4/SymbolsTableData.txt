@@ -1,0 +1,657 @@
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : tuple
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : number
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : string
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : boolean
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : void
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : fizzbuzz
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD PARAM: n_0_1 function : fizzbuzz
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ENTER BLOCK : increase scope
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+scope:2, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : div3
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+scope:2, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+identifier : div3 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : div5
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+scope:2, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : div5 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+identifier : div3 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ENTER BLOCK : increase scope
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 3 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+scope:2, pointing at: 1 value
+scope:3, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : div5 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+identifier : div3 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	LEAVE BLOCK : decrease scope
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+scope:2, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : div5 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+identifier : div3 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ENTER BLOCK : increase scope
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 3 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+scope:2, pointing at: 1 value
+scope:3, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : div5 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+identifier : div3 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	LEAVE BLOCK : decrease scope
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+scope:2, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : div5 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+identifier : div3 TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	LEAVE BLOCK : decrease scope
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : main
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 1 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ENTER BLOCK : increase scope
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+scope:2, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : i
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+scope:2, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ENTER BLOCK : increase scope
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 3 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 1 value
+scope:2, pointing at: 1 value
+scope:3, pointing at: 1 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+identifier : fizzbuzz TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: 0
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+ID : n_0_1 TIPO: darg TIPO SUBYACENTE: null SCOPE : -1 FUNCTION : fizzbuzz NEXT : -1
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+

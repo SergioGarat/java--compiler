@@ -1,6 +1,0 @@
-function suma(a: number, b: number) : number {
-    result : number := 0   // ERROR: Falta el punto y coma (;) al final
-    result := (a + b);     
-    return result;
-}
-
