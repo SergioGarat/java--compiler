@@ -87,6 +87,10 @@ public class CompilerError extends Exception {
         closeFile(outSemantic);
     }
 
+    public ErrorType getType() {
+        return type;
+    }
+
     private static void closeFile(BufferedWriter out) {
         try {
             if (out != null) {

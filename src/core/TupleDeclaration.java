@@ -29,6 +29,10 @@ public class TupleDeclaration extends SymbolBase {
         this.size = size;
     }
 
+    public FieldList getFieldList() {
+        return fieldList;
+    }
+
     public TupleDeclaration() {
         super("TupleDeclaration", 0);
     }
