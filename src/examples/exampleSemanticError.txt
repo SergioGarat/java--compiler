@@ -1,6 +1,0 @@
-function suma(a: number, b: number) : number {
-    result : number := 0;   
-    result := (a + b);
-    hola : STRING := "hola";      // ERROR: No reconoce el tipo 
-    return hola;
-}

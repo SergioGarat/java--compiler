@@ -1,0 +1,212 @@
+*** Tokens ***
+	FUNC[function](0:0)
+
+	ID[fizzbuzz](0:9)
+
+	LPAREN[(](0:17)
+
+	ID[n](0:18)
+
+	TWO_POINTS[:](0:20)
+
+	ID[number](0:22)
+
+	RPAREN[)](0:28)
+
+	TWO_POINTS[:](0:30)
+
+	ID[number](0:31)
+
+	LBRACE[{](0:38)
+
+	ID[div3](1:4)
+
+	TWO_POINTS[:](1:9)
+
+	ID[number](1:11)
+
+	OP_ASSIG[:=](1:18)
+
+	ID[n](1:21)
+
+	OP_MOD[%](1:23)
+
+	NUMBER[3](1:25)
+
+	SEMICOLON[;](1:26)
+
+	ID[div5](2:4)
+
+	TWO_POINTS[:](2:9)
+
+	ID[number](2:11)
+
+	OP_ASSIG[:=](2:18)
+
+	ID[n](2:21)
+
+	OP_MOD[%](2:23)
+
+	NUMBER[5](2:25)
+
+	SEMICOLON[;](2:26)
+
+	IF[if](3:4)
+
+	LPAREN[(](3:7)
+
+	ID[div3](3:8)
+
+	OP_EQ[==](3:13)
+
+	NUMBER[0](3:16)
+
+	RPAREN[)](3:17)
+
+	LBRACE[{](3:19)
+
+	PRINT[print](4:8)
+
+	LPAREN[(](4:13)
+
+	STRING["fizz"](4:14)
+
+	RPAREN[)](4:20)
+
+	SEMICOLON[;](4:21)
+
+	RBRACE[}](5:4)
+
+	IF[if](6:4)
+
+	LPAREN[(](6:7)
+
+	ID[div5](6:8)
+
+	OP_EQ[==](6:13)
+
+	NUMBER[0](6:16)
+
+	RPAREN[)](6:17)
+
+	LBRACE[{](6:19)
+
+	PRINT[print](7:7)
+
+	LPAREN[(](7:12)
+
+	STRING["buzz"](7:13)
+
+	RPAREN[)](7:19)
+
+	SEMICOLON[;](7:20)
+
+	RBRACE[}](8:4)
+
+	PRINT[print](9:4)
+
+	LPAREN[(](9:9)
+
+	STRING["\n"](9:10)
+
+	RPAREN[)](9:14)
+
+	SEMICOLON[;](9:15)
+
+	RETURN[return](10:4)
+
+	NUMBER[0](10:11)
+
+	SEMICOLON[;](10:12)
+
+	RBRACE[}](11:0)
+
+	FUNC[function](13:0)
+
+	MAIN[main](13:9)
+
+	LPAREN[(](13:13)
+
+	RPAREN[)](13:14)
+
+	LBRACE[{](13:16)
+
+	FOR[for](16:4)
+
+	LPAREN[(](16:8)
+
+	ID[i](16:9)
+
+	TWO_POINTS[:](16:11)
+
+	ID[number](16:13)
+
+	OP_ASSIG[:=](16:20)
+
+	NUMBER[1](16:23)
+
+	SEMICOLON[;](16:24)
+
+	LPAREN[(](16:26)
+
+	ID[i](16:27)
+
+	OP_LE[<=](16:29)
+
+	NUMBER[20](16:32)
+
+	RPAREN[)](16:34)
+
+	SEMICOLON[;](16:35)
+
+	ID[i](16:37)
+
+	OP_ASSIG[:=](16:39)
+
+	ID[i](16:42)
+
+	OP_SUM[+](16:44)
+
+	NUMBER[1](16:46)
+
+	RPAREN[)](16:47)
+
+	LBRACE[{](16:48)
+
+	PRINT[print](17:10)
+
+	LPAREN[(](17:15)
+
+	ID[i](17:16)
+
+	RPAREN[)](17:17)
+
+	SEMICOLON[;](17:18)
+
+	PRINT[print](18:10)
+
+	LPAREN[(](18:15)
+
+	STRING[": "](18:16)
+
+	RPAREN[)](18:20)
+
+	SEMICOLON[;](18:21)
+
+	ID[any](19:10)
+
+	TWO_POINTS[:](19:14)
+
+	ID[number](19:16)
+
+	OP_ASSIG[:=](19:23)
+
+	ID[fizbuz](19:26)
+
+	LPAREN[(](19:32)
+
+	ID[i](19:33)
+
+	RPAREN[)](19:34)
+
+Token processing halted due to an error

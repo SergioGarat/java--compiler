@@ -6,13 +6,15 @@ import java.io.IOException;
 
 public class SymTabError extends Exception {
     private static BufferedWriter out;
-    private static final String dir = "src\\output\\symbolTableError.txt";
+    private static final String dir = "src\\output\\";
+    private static final String filename = "symbolTableError.txt";
 
-    public SymTabError(String error) {
+    public SymTabError(String error, String filenameDir) {
         super(error);
+        var errorOutput = dir + filenameDir + "\\" + filename;
         try {
             if (out == null) {
-                out = new BufferedWriter(new FileWriter(dir, true));
+                out = new BufferedWriter(new FileWriter(errorOutput, true));
             }
             out.write(error);
             out.newLine();

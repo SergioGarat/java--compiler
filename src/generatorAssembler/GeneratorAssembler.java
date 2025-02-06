@@ -27,6 +27,7 @@ public class GeneratorAssembler {
 
     private BufferedWriter writer;
     private String PATH = "src\\output\\";
+    private String filename = "AssemblerCode.s";
     // Symbols Table
     private SymbolsTable symbolsTable;
     // TS + TV
@@ -37,19 +38,20 @@ public class GeneratorAssembler {
     private final EnumMap<Code, Consumer<InstructionC3A>> instructionHandlers = new EnumMap<>(Code.class);
     private Set<String> requiredComparers = new HashSet<>();
     private Boolean HasPrint = false;
+    private String filenameDir;
 
     /**
      * Constructor for GeneratorAssembler
      * @param symbolTable the symbols table
      * @param backend     the backend tables
      * @param c3a_g       the C3A generator
-     * @param filename    the output filename
+     * @param filenameDir the output filename
      */
-    public GeneratorAssembler(SymbolsTable symbolTable, BackTables backend, GeneratorC3A c3a_g, String filename) {
+    public GeneratorAssembler(SymbolsTable symbolTable, BackTables backend, GeneratorC3A c3a_g, String filenameDir) {
         this.symbolsTable = symbolTable;
         this.backend = backend;
         this.c3a_g = c3a_g;
-        this.PATH += filename + "\\" + "AssemblerCode.s";
+        this.filenameDir = filenameDir;
         initializeHandlers();
     }
 
@@ -58,7 +60,7 @@ public class GeneratorAssembler {
      */
     public void generateAssembler() {
         try {
-            File GASfile = new File(PATH);
+            File GASfile = new File(PATH + filenameDir + "\\" + filename);
             if (!GASfile.exists()) {
                 GASfile.createNewFile();
             }
@@ -170,7 +172,7 @@ public class GeneratorAssembler {
         if (handler != null) {
             handler.accept(instruction);
         } else {
-            throw new SymTabError("No handler found for instruction: " + instruction.getOpCode());
+            throw new SymTabError("No handler found for instruction: " + instruction.getOpCode(), "");
         }
 
         writeLine("");

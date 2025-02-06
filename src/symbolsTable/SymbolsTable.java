@@ -18,6 +18,7 @@ public class SymbolsTable {
     private static BufferedWriter out;
     private final String SYMBOLS_TABLE_PATH = "src\\output\\";
     private String filename = "SymbolsTableData.txt";
+    private String filenameDir;
 
     public SymbolsTable() {
         reset();
@@ -26,7 +27,7 @@ public class SymbolsTable {
     }
 
     public SymbolsTable(String filename) {
-        this.filename = filename + "\\" + "SymbolsTableData.txt";
+        this.filenameDir = filename + "\\";
         reset();
         initializeFileWriter();
         saveTableInFile(null);
@@ -34,7 +35,7 @@ public class SymbolsTable {
 
     private void initializeFileWriter() {
         try {
-            out = new BufferedWriter(new FileWriter(SYMBOLS_TABLE_PATH + filename));
+            out = new BufferedWriter(new FileWriter(SYMBOLS_TABLE_PATH + filenameDir + filename));
         } catch (IOException e) {
             handleIOException(e);
         }
@@ -59,13 +60,13 @@ public class SymbolsTable {
 
     private void handleExistingDescription(String id, Descriptor oldDescription) throws SymTabError {
         if (oldDescription.getScope() == scope) {
-            throw new SymTabError(id + " cannot be added because it already exists in the current scope");
+            throw new SymTabError(id + " cannot be added because it already exists in the current scope", filenameDir);
         }
         if (oldDescription.getType().getTipo() == Tipo.dfun) {
-            throw new SymTabError(id + " cannot be added because it is a function");
+            throw new SymTabError(id + " cannot be added because it is a function", filenameDir);
         }
         if (oldDescription.getType().getTipo() == Tipo.dtype) {
-            throw new SymTabError(id + " cannot be added because it is a reserved word");
+            throw new SymTabError(id + " cannot be added because it is a reserved word", filenameDir);
         }
 
         // Move oldDescription to expansionTable
@@ -79,7 +80,7 @@ public class SymbolsTable {
         Descriptor funDes = descriptionTable.get(idFun);
 
         if (funDes == null || funDes.getType().getTipo() != Tipo.dfun) {
-            throw new SymTabError(idFun + " is not a function or does not exist.");
+            throw new SymTabError(idFun + " is not a function or does not exist.", filenameDir);
         }
 
         int idxe = funDes.getFirst();
@@ -91,7 +92,7 @@ public class SymbolsTable {
         }
 
         if (idxe != -1) {
-            throw new SymTabError(idParam + " already exists as function param");
+            throw new SymTabError(idParam + " already exists as function param", filenameDir);
         }
 
         idxe = scopeTable.get(scope);
@@ -130,7 +131,7 @@ public class SymbolsTable {
                 }
             }
         }
-        throw new SymTabError("Unknown id: " + id);
+        throw new SymTabError("Unknown id: " + id, filenameDir);
     }
 
     public int getNumParams(String idFun) throws SymTabError {
@@ -138,7 +139,7 @@ public class SymbolsTable {
         int count = 0;
 
         if (funDes == null || funDes.getType().getTipo() != Tipo.dfun) {
-            throw new SymTabError(idFun + " is not a function");
+            throw new SymTabError(idFun + " is not a function", filenameDir);
         }
 
         int idxe = funDes.getFirst();
@@ -154,7 +155,7 @@ public class SymbolsTable {
         Descriptor funDes = descriptionTable.get(idFun);
 
         if (funDes == null || funDes.getType().getTipo() != Tipo.dfun) {
-            throw new SymTabError(idFun + " is not a function");
+            throw new SymTabError(idFun + " is not a function", filenameDir);
         }
 
         int idxe = funDes.getFirst();
@@ -166,7 +167,7 @@ public class SymbolsTable {
         }
 
         if (idxe == -1) {
-            throw new SymTabError(idFun + " has no param at index " + index);
+            throw new SymTabError(idFun + " has no param at index " + index, filenameDir);
         }
 
         return expansionTable.get(idxe).getType();
@@ -180,7 +181,7 @@ public class SymbolsTable {
 
     public void leaveBlock() throws SymTabError {
         if (scope == 1) {
-            throw new SymTabError("Compiler error: out of scope 1");
+            throw new SymTabError("Compiler error: out of scope 1", filenameDir);
         }
 
         this.scope--;

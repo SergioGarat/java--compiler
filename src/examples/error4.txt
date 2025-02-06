@@ -1,0 +1,22 @@
+function fizzbuzz(n : number) :number {
+    div3 : number := n % 3;
+    div5 : number := n % 5;
+    if (div3 == 0) {
+        print("fizz");
+    }
+    if (div5 == 0) {
+       print("buzz");
+    }
+    print("\n");
+    return 0;
+}
+
+function main() {
+
+    //probando for con funcion fizzbuzz//
+    for (i : number := 1; (i <= 20); i := i + 1){
+          print(i);
+          print(": ");
+          any : number := fizbuz(i);  //error aquí porque no reconoce la funcion 'fizbuz'//
+    }
+}
