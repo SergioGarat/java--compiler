@@ -2711,6 +2711,7 @@ class CUP$Parser$actions {
 		CallFunction call_fn = (CallFunction)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
                               try {
+                                
                                 Type tipofunc = symbolsTable.get(call_fn.getFunctionId());
                                 Type tipodef = symbolsTable.get(tipofunc.getTypeName());
 
