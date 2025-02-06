@@ -1,0 +1,24 @@
+*** Tokens ***
+	FUNC[function](0:0)
+
+	MAIN[main](0:9)
+
+	LPAREN[(](0:13)
+
+	RPAREN[)](0:14)
+
+	LBRACE[{](0:16)
+
+	ID[num](2:1)
+
+	TWO_POINTS[:](2:5)
+
+	ID[number](2:7)
+
+	OP_ASSIG[:=](2:14)
+
+	STRING["HOLA MUNDO!"](2:17)
+
+	SEMICOLON[;](2:30)
+
+Token processing halted due to an error

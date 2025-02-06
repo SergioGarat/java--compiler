@@ -1,0 +1,8 @@
+function main() {
+    //error sintáctico, ya que nuestro for espera si o si una postinstruccion//
+    print("He entrado: ");
+    for (i : number := 0; (i < 3)){
+          print(i);
+          print("\n");
+    }
+}

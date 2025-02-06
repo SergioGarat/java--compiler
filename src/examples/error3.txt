@@ -1,0 +1,6 @@
+function main() {
+    //error semántico, no coinciden los tipos de datos en la asignación//
+	num : number := "HOLA MUNDO!";
+	print(num);
+	print("\n");
+}

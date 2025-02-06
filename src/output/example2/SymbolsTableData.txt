@@ -231,7 +231,7 @@ identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
 ----------------- ACTION DONE -----------------
-	ADD : num
+	ADD : i
 -----------------------------------------------
 
 -----------------------------------------------
@@ -250,7 +250,7 @@ identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
 identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : num TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
@@ -265,27 +265,27 @@ identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
 ----------------- ACTION DONE -----------------
-	ADD : str
+	ENTER BLOCK : increase scope
 -----------------------------------------------
 
 -----------------------------------------------
 ------------- SYMBOLS TABLE -------------- 
 -----------------------------------------------
 
---------------- SCOPE INFO : 2 ----------------
+--------------- SCOPE INFO : 3 ----------------
 scope:0, pointing at: 0 value
 scope:1, pointing at: 0 value
 scope:2, pointing at: 0 value
+scope:3, pointing at: 0 value
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
-identifier : str TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
 identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : num TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
@@ -300,7 +300,7 @@ identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------
 ----------------- ACTION DONE -----------------
-	ADD : b
+	LEAVE BLOCK : decrease scope
 -----------------------------------------------
 
 -----------------------------------------------
@@ -314,14 +314,158 @@ scope:2, pointing at: 0 value
 -----------------------------------------------
 -------------- DESCRIPTION TABLE --------------
 
-identifier : str TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
 identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
-identifier : b TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
 identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
 identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
 identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
-identifier : num TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : id1
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+scope:2, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : id1 TIPO: dtype TIPO SUBYACENTE: number SCOPE: 2
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : id2
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+scope:2, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : id2 TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 2
+identifier : id1 TIPO: dtype TIPO SUBYACENTE: number SCOPE: 2
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : id3
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+scope:2, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : id2 TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 2
+identifier : id1 TIPO: dtype TIPO SUBYACENTE: number SCOPE: 2
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : id3 TIPO: dtype TIPO SUBYACENTE: number SCOPE: 2
+identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
+
+-----------------------------------------------
+
+-----------------------------------------------
+------------- EXPANSION TABLE -----------------
+
+
+-----------------------------------------------
+
+-------------- END SYMBOLS TABLE --------------
+
+-----------------------------------------------
+----------------- ACTION DONE -----------------
+	ADD : persona
+-----------------------------------------------
+
+-----------------------------------------------
+------------- SYMBOLS TABLE -------------- 
+-----------------------------------------------
+
+--------------- SCOPE INFO : 2 ----------------
+scope:0, pointing at: 0 value
+scope:1, pointing at: 0 value
+scope:2, pointing at: 0 value
+-----------------------------------------------
+-------------- DESCRIPTION TABLE --------------
+
+identifier : tuple TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 1
+identifier : number TIPO: dtype TIPO SUBYACENTE: number SCOPE: 1
+identifier : boolean TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 1
+identifier : void TIPO: dtype TIPO SUBYACENTE: null SCOPE: 1
+identifier : persona TIPO: dtype TIPO SUBYACENTE: tuple SCOPE: 2
+identifier : string TIPO: dtype TIPO SUBYACENTE: string SCOPE: 1
+identifier : id2 TIPO: dtype TIPO SUBYACENTE: boolean SCOPE: 2
+identifier : id1 TIPO: dtype TIPO SUBYACENTE: number SCOPE: 2
+identifier : i TIPO: dvar TIPO SUBYACENTE: null SCOPE: 2
+identifier : id3 TIPO: dtype TIPO SUBYACENTE: number SCOPE: 2
 identifier : main TIPO: dfun TIPO SUBYACENTE: null SCOPE: 1 FIRST: -1
 
 -----------------------------------------------

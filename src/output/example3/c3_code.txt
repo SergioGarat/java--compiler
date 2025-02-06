@@ -1,0 +1,327 @@
+-----------------------------------------------
+---------------- C3@ Code ----------------
+-----------------------------------------------
+PROC_fizzbuzz: skip
+
+pmb PROC_fizzbuzz
+
+T0 = 3
+
+T1 = n_0_1 % T0
+
+div3_0_2 = T1
+
+T2 = 5
+
+T3 = n_0_1 % T2
+
+div5_0_2 = T3
+
+T4 = 0
+
+T5 = div3_0_2 == T4
+
+if T5 == true goto ETIQ_0
+
+goto ETIQ_1
+
+ETIQ_0: skip
+
+T6 = "fizz"
+print T6
+
+ETIQ_1: skip
+
+T7 = 0
+
+T8 = div5_0_2 == T7
+
+if T8 == true goto ETIQ_2
+
+goto ETIQ_3
+
+ETIQ_2: skip
+
+T9 = "buzz"
+print T9
+
+ETIQ_3: skip
+
+T10 = "\n"
+print T10
+
+T11 = 0
+
+rtn T11
+
+PROC_factorial: skip
+
+pmb PROC_factorial
+
+T12 = 0
+
+result_1_2 = T12
+
+T13 = 0
+
+T14 = num_1_1 == T13
+
+if T14 == true goto ETIQ_4
+
+goto ETIQ_5
+
+ETIQ_4: skip
+
+T15 = 1
+
+result_1_2 = T15
+
+goto ETIQ_6
+
+ETIQ_5: skip
+
+T16 = 1
+
+T17 = num_1_1 - T16
+
+param PROC_factorial(T17)
+
+call PROC_factorial
+
+T18 = return PROC_factorial
+
+T19 = num_1_1 * T18
+
+result_1_2 = T19
+
+ETIQ_6: skip
+
+rtn result_1_2
+
+main: skip
+
+pmb PROC_main
+
+T20 = 1
+
+i_2_2 = T20
+
+ETIQ_7: skip
+
+T21 = 20
+
+T22 = i_2_2 <= T21
+
+if T22 == true goto ETIQ_8
+
+goto ETIQ_9
+
+ETIQ_10: skip
+
+T23 = 1
+
+T24 = i_2_2 + T23
+
+i_2_2 = T24
+
+goto ETIQ_7
+
+ETIQ_8: skip
+
+print i_2_2
+
+T25 = ": "
+print T25
+
+param PROC_fizzbuzz(i_2_2)
+
+call PROC_fizzbuzz
+
+T26 = return PROC_fizzbuzz
+
+any_2_3 = T26
+
+goto ETIQ_10
+
+ETIQ_9: skip
+
+T27 = "Inserta un número (entre 0 y 15) para calcular el factorial: "
+print T27
+
+T28 = read
+
+fact_2_2 = T28
+
+T29 = "Número insertado: "
+print T29
+
+print fact_2_2
+
+T30 = "\n"
+print T30
+
+T31 = 0
+
+T32 = fact_2_2 >= T31
+
+T33 = 15
+
+T34 = fact_2_2 <= T33
+
+T35 = T32 && T34
+
+if T35 == true goto ETIQ_11
+
+goto ETIQ_12
+
+ETIQ_11: skip
+
+print fact_2_2
+
+T36 = "! = "
+print T36
+
+param PROC_factorial(fact_2_2)
+
+call PROC_factorial
+
+T37 = return PROC_factorial
+
+print T37
+
+T38 = "\n"
+print T38
+
+goto ETIQ_13
+
+ETIQ_12: skip
+
+print fact_2_2
+
+T39 = " es demasiado grande.\n"
+print T39
+
+ETIQ_13: skip
+
+T40 = 10
+
+contador_2_2 = T40
+
+ETIQ_14: skip
+
+T41 = 0
+
+T42 = contador_2_2 > T41
+
+if T42 == true goto ETIQ_15
+
+goto ETIQ_16
+
+ETIQ_15: skip
+
+print contador_2_2
+
+T43 = ", "
+print T43
+
+T44 = 1
+
+T45 = contador_2_2 - T44
+
+contador_2_2 = T45
+
+goto ETIQ_14
+
+ETIQ_16: skip
+
+T46 = "PUM\n"
+print T46
+
+T47 = "Inserta un número a: "
+print T47
+
+T48 = read
+
+a_2_2 = T48
+
+T49 = "Número insertado: "
+print T49
+
+print a_2_2
+
+T50 = "\n"
+print T50
+
+T51 = "Inserta un número b: "
+print T51
+
+T52 = read
+
+b_2_2 = T52
+
+T53 = "Número insertado: "
+print T53
+
+print b_2_2
+
+T54 = "\n"
+print T54
+
+T55 = a_2_2 + b_2_2
+
+suma_2_2 = T55
+
+print suma_2_2
+
+T56 = 100
+
+T57 = suma_2_2 < T56
+
+if T57 == true goto ETIQ_17
+
+goto ETIQ_18
+
+ETIQ_17: skip
+
+T58 = ": Es un número pequeño\n"
+print T58
+
+goto ETIQ_19
+
+ETIQ_18: skip
+
+T59 = 100
+
+T60 = suma_2_2 >= T59
+
+T61 = 1000
+
+T62 = suma_2_2 < T61
+
+T63 = T60 && T62
+
+if T63 == true goto ETIQ_20
+
+goto ETIQ_21
+
+ETIQ_20: skip
+
+T64 = ": Es un número mediano\n"
+print T64
+
+ETIQ_19: skip
+
+goto ETIQ_22
+
+ETIQ_21: skip
+
+T65 = ": Es un número grande\n"
+print T65
+
+ETIQ_22: skip
+
+T66 = "HE ACABADO\n"
+print T66
+
+rtn
+

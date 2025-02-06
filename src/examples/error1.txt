@@ -1,0 +1,7 @@
+function main() {
+    //error léxico, ya que nuestro lenguaje no reconoce caracteres especiales en nuestros identificadores//
+	numer@ : number := 100;
+
+	print(num);
+	print("\n");
+}

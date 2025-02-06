@@ -1,78 +1,13 @@
-function sumaDosNumeros(a: number, b: number) : number {
-    result : number := 0;
-    result := (a + b);
-    return result;
-}
+function main() {
+    //presentamos la declaración de variables//
+	num : number := 100;
+	str : string := "HOLA MUNDO!";
+	b : boolean := true;
 
-function factorial(num : number) : number {
-	result : number := 0;
-	if (num == 0) {
-		result := 1;
-	}else{
-          result := num * factorial(num - 1);
-	}
-	return result;
-}
-
-function recursiveAdding(num : number) : number {
-	result : number := 0;
-	print("NUM: ");
 	print(num);
 	print("\n");
-	if(num < 0){
-		print("Invalid number: ");
-		print(num);
-		print("\n");
-		result := 0;
-	}
-	elif (num == 1){
-		result := 1;
-	}
-	else{
-		result := num + recursiveAdding(num - 1);
-	}
-	return result;
-}
-
-function main() {
-	numA : number := 5;
-	numB : number := 10;
-	print("FACTORIAL ");
-	print(numA);
-	print("! :");
-	print(factorial(numA));
+	print(str);
 	print("\n");
-
-    print("Inserta un número: ");
-	print(read());
+	print(b);
 	print("\n");
-
-
-	//Llamada a la función de suma recursiva//
-
-	print("Inserta un número para calcular la suma recursiva: ");
-    numZ : number := read();
-    print("Número insertado: ");
-    print(numZ);
-    print("\n");
-
-	print("RECURSIVE ADDING ");
-	print(numZ);
-	print(" :");
-	pRint(recursiveAdding(numZ));
-	prInt("\n");
-
-    // Comprobación del funcionamiento del bucle for//
-
-	for (i : number := 0; (i < 3); i := i + 1) {
-         print("\n");
-         print("He entrado: ");
-         print(i);
-    }
-
-    struct { id1 : number ; id2 : boolean ; id3 : number} persona ;
-
-    p: persona := [1, true, 2];
-
-    print("\nHE SALIDO\n");
 }

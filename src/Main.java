@@ -25,7 +25,7 @@ public class Main {
     private static final String outputd = w_dir + "output\\";
 
     //todo: Aquí se debe cambiar el archivo que se quiere escoger para compilar
-    public static String fileToCompile = "example1.txt";
+    public static String fileToCompile = "example3.txt";
 
     public static void main(String[] args) throws IOException {
         generateJavaFiles();

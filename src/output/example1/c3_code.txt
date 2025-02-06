@@ -1,271 +1,32 @@
 -----------------------------------------------
 ---------------- C3@ Code ----------------
 -----------------------------------------------
-PROC_sumaDosNumeros: skip
-
-pmb PROC_sumaDosNumeros
-
-T0 = 0
-
-result_0_2 = T0
-
-T1 = a_0_1 + b_0_1
-
-result_0_2 = T1
-
-rtn result_0_2
-
-PROC_factorial: skip
-
-pmb PROC_factorial
-
-T2 = 0
-
-result_1_2 = T2
-
-T3 = 0
-
-T4 = num_1_1 == T3
-
-if T4 == true goto ETIQ_0
-
-goto ETIQ_1
-
-ETIQ_0: skip
-
-T5 = 1
-
-result_1_2 = T5
-
-goto ETIQ_2
-
-ETIQ_1: skip
-
-T6 = 1
-
-T7 = num_1_1 - T6
-
-param PROC_factorial(T7)
-
-call PROC_factorial
-
-T8 = return PROC_factorial
-
-T9 = num_1_1 * T8
-
-result_1_2 = T9
-
-ETIQ_2: skip
-
-rtn result_1_2
-
-PROC_recursiveAdding: skip
-
-pmb PROC_recursiveAdding
-
-T10 = 0
-
-result_2_2 = T10
-
-T11 = "NUM: "
-print T11
-
-print num_1_1
-
-T12 = "\n"
-print T12
-
-T13 = 0
-
-T14 = num_1_1 < T13
-
-if T14 == true goto ETIQ_3
-
-goto ETIQ_4
-
-ETIQ_3: skip
-
-T15 = "Invalid number: "
-print T15
-
-print num_1_1
-
-T16 = "\n"
-print T16
-
-T17 = 0
-
-result_2_2 = T17
-
-goto ETIQ_5
-
-ETIQ_4: skip
-
-T18 = 1
-
-T19 = num_1_1 == T18
-
-if T19 == true goto ETIQ_6
-
-goto ETIQ_7
-
-ETIQ_6: skip
-
-T20 = 1
-
-result_2_2 = T20
-
-ETIQ_5: skip
-
-goto ETIQ_8
-
-ETIQ_7: skip
-
-T21 = 1
-
-T22 = num_1_1 - T21
-
-param PROC_recursiveAdding(T22)
-
-call PROC_recursiveAdding
-
-T23 = return PROC_recursiveAdding
-
-T24 = num_1_1 + T23
-
-result_2_2 = T24
-
-ETIQ_8: skip
-
-rtn result_2_2
-
 main: skip
 
 pmb PROC_main
 
-T25 = 5
+T0 = 100
 
-numA_3_2 = T25
+num_0_2 = T0
 
-T26 = 10
+T1 = true
 
-numB_3_2 = T26
+b_0_2 = T1
 
-T27 = "FACTORIAL "
-print T27
+print num_0_2
 
-print numA_3_2
+T2 = "\n"
+print T2
 
-T28 = "! :"
-print T28
+print str_0_2
 
-param PROC_factorial(numA_3_2)
+T3 = "\n"
+print T3
 
-call PROC_factorial
+print b_0_2
 
-T29 = return PROC_factorial
-
-print T29
-
-T30 = "\n"
-print T30
-
-T31 = "Inserta un número: "
-print T31
-
-T32 = read
-
-print T32
-
-T33 = "\n"
-print T33
-
-T34 = "Inserta un número para calcular la suma recursiva: "
-print T34
-
-T35 = read
-
-numZ_3_2 = T35
-
-T36 = "Número insertado: "
-print T36
-
-print numZ_3_2
-
-T37 = "\n"
-print T37
-
-T38 = "RECURSIVE ADDING "
-print T38
-
-print numZ_3_2
-
-T39 = " :"
-print T39
-
-param PROC_recursiveAdding(numZ_3_2)
-
-call PROC_recursiveAdding
-
-T40 = return PROC_recursiveAdding
-
-print T40
-
-T41 = "\n"
-print T41
-
-T42 = 0
-
-i_3_2 = T42
-
-ETIQ_9: skip
-
-T43 = 3
-
-T44 = i_3_2 < T43
-
-if T44 == true goto ETIQ_10
-
-goto ETIQ_11
-
-ETIQ_12: skip
-
-T45 = 1
-
-T46 = i_3_2 + T45
-
-i_3_2 = T46
-
-goto ETIQ_9
-
-ETIQ_10: skip
-
-T47 = "\n"
-print T47
-
-T48 = "He entrado: "
-print T48
-
-print i_3_2
-
-goto ETIQ_12
-
-ETIQ_11: skip
-
-T49 = 1
-
-T50 = true
-
-T51 = 2
-
-id3_3_2 = T49
-
-id2_3_2 = T50
-
-id3_3_2 = T51
-
-T52 = "\nHE SALIDO\n"
-print T52
+T4 = "\n"
+print T4
 
 rtn
 

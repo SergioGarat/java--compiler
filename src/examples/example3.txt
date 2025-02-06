@@ -1,16 +1,84 @@
+function fizzbuzz(n : number) :number {
+    div3 : number := n % 3;
+    div5 : number := n % 5;
+    if (div3 == 0) {
+        print("fizz");
+    }
+    if (div5 == 0) {
+       print("buzz");
+    }
+    print("\n");
+    return 0;
+}
+
+function factorial(num : number) : number {
+	result : number := 0;
+	if (num == 0) {
+	    result := 1;
+	}else{
+        result := num * factorial(num - 1);
+	}
+	return result;
+}
+
 function main() {
 
-    for (i : number := 0; (i < 3); i := i + 1){
-          print("He entrado: ");
+    //probando for con funcion fizzbuzz//
+    for (i : number := 1; (i <= 20); i := i + 1){
           print(i);
-          print("\n");
+          print(": ");
+          any : number := fizzbuzz(i);
     }
 
-    struct { id1 : number ; id2 : boolean ; id3 : number} persona ;
+    //probando funcion recursiva factorial//
+    print("Inserta un número (entre 0 y 15) para calcular el factorial: ");
+    fact : number := read();
+    print("Número insertado: ");
+    print(fact);
+    print("\n");
 
-    p: persona := [1, true, 2];
+    if ((fact >= 0) && (fact <= 15)){
+        print(fact);
+        print("! = ");
+        print(factorial(fact));
+        print("\n");
+    } else {
+        print(fact);
+        print(" es demasiado grande.\n");
+    }
 
-    entrada : number := read();
-    print(entrada);
-    print("HE SALIDO");
+    //probando while para hacer un contador de 10 hasta 1 y "PUM"//
+    contador : number := 10;
+    while (contador > 0){
+        print(contador);
+        print(", ");
+        contador := contador - 1;
+    }
+    print("PUM\n");
+
+    //probando if elif else//
+    print("Inserta un número a: ");
+    a : number := read();
+    print("Número insertado: ");
+    print(a);
+    print("\n");
+
+    print("Inserta un número b: ");
+    b : number := read();
+    print("Número insertado: ");
+    print(b);
+    print("\n");
+
+    suma : number := a + b;
+
+    print(suma);
+    if (suma < 100){
+        print(": Es un número pequeño\n");
+    } elif ((suma >= 100) && (suma < 1000)){
+        print(": Es un número mediano\n");
+    } else {
+        print(": Es un número grande\n");
+    }
+
+    print("HE ACABADO\n");
 }

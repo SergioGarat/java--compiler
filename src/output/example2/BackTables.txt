@@ -1,0 +1,29 @@
+---------------------------------------------
+---------------- TABLES INFO ----------------
+---------------------------------------------
+
+Variables:
+T4:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -80(%rbp)
+T5:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -96(%rbp)
+T6:	Tamaño: 32	|	Tipo Subyacente:string	|	IdFuncion : 0	|	Desplazamiento : T6
+p_0_2:	Tamaño: 48	|	Tipo Subyacente:tuple	|	IdFuncion : 0	|	Desplazamiento : -240(%rbp)
+T7:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -160(%rbp)
+id2_0_2:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 0	|	Desplazamiento : -128(%rbp)
+T8:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 0	|	Desplazamiento : -176(%rbp)
+T9:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -192(%rbp)
+id1_0_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -112(%rbp)
+id3_0_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -144(%rbp)
+T0:	Tamaño: 192	|	Tipo Subyacente:string	|	IdFuncion : 0	|	Desplazamiento : T0
+T1:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -16(%rbp)
+i_0_2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -32(%rbp)
+T2:	Tamaño: 16	|	Tipo Subyacente:number	|	IdFuncion : 0	|	Desplazamiento : -48(%rbp)
+T3:	Tamaño: 16	|	Tipo Subyacente:boolean	|	IdFuncion : 0	|	Desplazamiento : -64(%rbp)
+
+Procedures:
+PROC_main:	Nº de parámetros: 0	|	Tipo: null
+
+Etiquetas:
+ETIQ_0
+ETIQ_1
+ETIQ_2
+ETIQ_3
