@@ -1,13 +1,14 @@
 function main() {
 
+    print("He entrado: ");
     for (i : number := 0; (i < 3); i := i + 1){
-          print("He entrado: ");
           print(i);
           print("\n");
     }
 
-    entrada : number := read();
-    print(entrada);
-    print("HE SALIDO");
+    //mostramos como permitimos la definicion de tuplas//
+    struct { id1 : number ; id2 : boolean ; id3 : number} persona;
+
+    p: persona := [1, true, 2];
 
 }

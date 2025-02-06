@@ -1,0 +1,147 @@
+*** Tokens ***
+	FUNC[function](0:0)
+
+	MAIN[main](0:9)
+
+	LPAREN[(](0:13)
+
+	RPAREN[)](0:14)
+
+	LBRACE[{](0:16)
+
+	PRINT[print](2:4)
+
+	LPAREN[(](2:9)
+
+	STRING["He entrado: "](2:10)
+
+	RPAREN[)](2:24)
+
+	SEMICOLON[;](2:25)
+
+	FOR[for](3:4)
+
+	LPAREN[(](3:8)
+
+	ID[i](3:9)
+
+	TWO_POINTS[:](3:11)
+
+	ID[number](3:13)
+
+	OP_ASSIG[:=](3:20)
+
+	NUMBER[0](3:23)
+
+	SEMICOLON[;](3:24)
+
+	LPAREN[(](3:26)
+
+	ID[i](3:27)
+
+	OP_LT[<](3:29)
+
+	NUMBER[3](3:31)
+
+	RPAREN[)](3:32)
+
+	SEMICOLON[;](3:33)
+
+	ID[i](3:35)
+
+	OP_ASSIG[:=](3:37)
+
+	ID[i](3:40)
+
+	OP_SUM[+](3:42)
+
+	NUMBER[1](3:44)
+
+	RPAREN[)](3:45)
+
+	LBRACE[{](3:46)
+
+	PRINT[print](4:10)
+
+	LPAREN[(](4:15)
+
+	ID[i](4:16)
+
+	RPAREN[)](4:17)
+
+	SEMICOLON[;](4:18)
+
+	PRINT[print](5:10)
+
+	LPAREN[(](5:15)
+
+	STRING["\n"](5:16)
+
+	RPAREN[)](5:20)
+
+	SEMICOLON[;](5:21)
+
+	RBRACE[}](6:4)
+
+	STRUCT[struct](9:4)
+
+	LBRACE[{](9:11)
+
+	ID[id1](9:13)
+
+	TWO_POINTS[:](9:17)
+
+	ID[number](9:19)
+
+	SEMICOLON[;](9:26)
+
+	ID[id2](9:28)
+
+	TWO_POINTS[:](9:32)
+
+	ID[boolean](9:34)
+
+	SEMICOLON[;](9:42)
+
+	ID[id3](9:44)
+
+	TWO_POINTS[:](9:48)
+
+	ID[number](9:50)
+
+	RBRACE[}](9:56)
+
+	ID[persona](9:58)
+
+	SEMICOLON[;](9:65)
+
+	ID[p](11:4)
+
+	TWO_POINTS[:](11:5)
+
+	ID[persona](11:7)
+
+	OP_ASSIG[:=](11:15)
+
+	LBRACKET[[](11:18)
+
+	NUMBER[1](11:19)
+
+	COMMA[,](11:20)
+
+	BOOLEAN[true](11:22)
+
+	COMMA[,](11:26)
+
+	NUMBER[2](11:28)
+
+	RBRACKET[]](11:29)
+
+	SEMICOLON[;](11:30)
+
+	RBRACE[}](13:0)
+
+	EOF[](13:1)
+
+
+***** End of File *****

@@ -1,0 +1,775 @@
+*** Tokens ***
+	FUNC[function](0:0)
+
+	ID[fizzbuzz](0:9)
+
+	LPAREN[(](0:17)
+
+	ID[n](0:18)
+
+	TWO_POINTS[:](0:20)
+
+	ID[number](0:22)
+
+	RPAREN[)](0:28)
+
+	TWO_POINTS[:](0:30)
+
+	ID[number](0:31)
+
+	LBRACE[{](0:38)
+
+	ID[div3](1:4)
+
+	TWO_POINTS[:](1:9)
+
+	ID[number](1:11)
+
+	OP_ASSIG[:=](1:18)
+
+	ID[n](1:21)
+
+	OP_MOD[%](1:23)
+
+	NUMBER[3](1:25)
+
+	SEMICOLON[;](1:26)
+
+	ID[div5](2:4)
+
+	TWO_POINTS[:](2:9)
+
+	ID[number](2:11)
+
+	OP_ASSIG[:=](2:18)
+
+	ID[n](2:21)
+
+	OP_MOD[%](2:23)
+
+	NUMBER[5](2:25)
+
+	SEMICOLON[;](2:26)
+
+	IF[if](3:4)
+
+	LPAREN[(](3:7)
+
+	ID[div3](3:8)
+
+	OP_EQ[==](3:13)
+
+	NUMBER[0](3:16)
+
+	RPAREN[)](3:17)
+
+	LBRACE[{](3:19)
+
+	PRINT[print](4:8)
+
+	LPAREN[(](4:13)
+
+	STRING["fizz"](4:14)
+
+	RPAREN[)](4:20)
+
+	SEMICOLON[;](4:21)
+
+	RBRACE[}](5:4)
+
+	IF[if](6:4)
+
+	LPAREN[(](6:7)
+
+	ID[div5](6:8)
+
+	OP_EQ[==](6:13)
+
+	NUMBER[0](6:16)
+
+	RPAREN[)](6:17)
+
+	LBRACE[{](6:19)
+
+	PRINT[print](7:7)
+
+	LPAREN[(](7:12)
+
+	STRING["buzz"](7:13)
+
+	RPAREN[)](7:19)
+
+	SEMICOLON[;](7:20)
+
+	RBRACE[}](8:4)
+
+	PRINT[print](9:4)
+
+	LPAREN[(](9:9)
+
+	STRING["\n"](9:10)
+
+	RPAREN[)](9:14)
+
+	SEMICOLON[;](9:15)
+
+	RETURN[return](10:4)
+
+	NUMBER[0](10:11)
+
+	SEMICOLON[;](10:12)
+
+	RBRACE[}](11:0)
+
+	FUNC[function](13:0)
+
+	ID[factorial](13:9)
+
+	LPAREN[(](13:18)
+
+	ID[num](13:19)
+
+	TWO_POINTS[:](13:23)
+
+	ID[number](13:25)
+
+	RPAREN[)](13:31)
+
+	TWO_POINTS[:](13:33)
+
+	ID[number](13:35)
+
+	LBRACE[{](13:42)
+
+	ID[result](14:1)
+
+	TWO_POINTS[:](14:8)
+
+	ID[number](14:10)
+
+	OP_ASSIG[:=](14:17)
+
+	NUMBER[0](14:20)
+
+	SEMICOLON[;](14:21)
+
+	IF[if](15:1)
+
+	LPAREN[(](15:4)
+
+	ID[num](15:5)
+
+	OP_EQ[==](15:9)
+
+	NUMBER[0](15:12)
+
+	RPAREN[)](15:13)
+
+	LBRACE[{](15:15)
+
+	ID[result](16:5)
+
+	OP_ASSIG[:=](16:12)
+
+	NUMBER[1](16:15)
+
+	SEMICOLON[;](16:16)
+
+	RBRACE[}](17:1)
+
+	ELSE[else](17:2)
+
+	LBRACE[{](17:6)
+
+	ID[result](18:8)
+
+	OP_ASSIG[:=](18:15)
+
+	ID[num](18:18)
+
+	OP_MULT[*](18:22)
+
+	ID[factorial](18:24)
+
+	LPAREN[(](18:33)
+
+	ID[num](18:34)
+
+	OP_SUB[-](18:38)
+
+	NUMBER[1](18:40)
+
+	RPAREN[)](18:41)
+
+	SEMICOLON[;](18:42)
+
+	RBRACE[}](19:1)
+
+	RETURN[return](20:1)
+
+	ID[result](20:8)
+
+	SEMICOLON[;](20:14)
+
+	RBRACE[}](21:0)
+
+	FUNC[function](23:0)
+
+	MAIN[main](23:9)
+
+	LPAREN[(](23:13)
+
+	RPAREN[)](23:14)
+
+	LBRACE[{](23:16)
+
+	FOR[for](26:4)
+
+	LPAREN[(](26:8)
+
+	ID[i](26:9)
+
+	TWO_POINTS[:](26:11)
+
+	ID[number](26:13)
+
+	OP_ASSIG[:=](26:20)
+
+	NUMBER[1](26:23)
+
+	SEMICOLON[;](26:24)
+
+	LPAREN[(](26:26)
+
+	ID[i](26:27)
+
+	OP_LE[<=](26:29)
+
+	NUMBER[20](26:32)
+
+	RPAREN[)](26:34)
+
+	SEMICOLON[;](26:35)
+
+	ID[i](26:37)
+
+	OP_ASSIG[:=](26:39)
+
+	ID[i](26:42)
+
+	OP_SUM[+](26:44)
+
+	NUMBER[1](26:46)
+
+	RPAREN[)](26:47)
+
+	LBRACE[{](26:48)
+
+	PRINT[print](27:10)
+
+	LPAREN[(](27:15)
+
+	ID[i](27:16)
+
+	RPAREN[)](27:17)
+
+	SEMICOLON[;](27:18)
+
+	PRINT[print](28:10)
+
+	LPAREN[(](28:15)
+
+	STRING[": "](28:16)
+
+	RPAREN[)](28:20)
+
+	SEMICOLON[;](28:21)
+
+	ID[any](29:10)
+
+	TWO_POINTS[:](29:14)
+
+	ID[number](29:16)
+
+	OP_ASSIG[:=](29:23)
+
+	ID[fizzbuzz](29:26)
+
+	LPAREN[(](29:34)
+
+	ID[i](29:35)
+
+	RPAREN[)](29:36)
+
+	SEMICOLON[;](29:37)
+
+	RBRACE[}](30:4)
+
+	PRINT[print](33:4)
+
+	LPAREN[(](33:9)
+
+	STRING["Inserta un número (entre 0 y 15) para calcular el factorial: "](33:10)
+
+	RPAREN[)](33:73)
+
+	SEMICOLON[;](33:74)
+
+	ID[fact](34:4)
+
+	TWO_POINTS[:](34:9)
+
+	ID[number](34:11)
+
+	OP_ASSIG[:=](34:18)
+
+	READ[read](34:21)
+
+	LPAREN[(](34:25)
+
+	RPAREN[)](34:26)
+
+	SEMICOLON[;](34:27)
+
+	PRINT[print](35:4)
+
+	LPAREN[(](35:9)
+
+	STRING["Número insertado: "](35:10)
+
+	RPAREN[)](35:30)
+
+	SEMICOLON[;](35:31)
+
+	PRINT[print](36:4)
+
+	LPAREN[(](36:9)
+
+	ID[fact](36:10)
+
+	RPAREN[)](36:14)
+
+	SEMICOLON[;](36:15)
+
+	PRINT[print](37:4)
+
+	LPAREN[(](37:9)
+
+	STRING["\n"](37:10)
+
+	RPAREN[)](37:14)
+
+	SEMICOLON[;](37:15)
+
+	IF[if](39:4)
+
+	LPAREN[(](39:7)
+
+	LPAREN[(](39:8)
+
+	ID[fact](39:9)
+
+	OP_GE[>=](39:14)
+
+	NUMBER[0](39:17)
+
+	RPAREN[)](39:18)
+
+	OP_AND[&&](39:20)
+
+	LPAREN[(](39:23)
+
+	ID[fact](39:24)
+
+	OP_LE[<=](39:29)
+
+	NUMBER[15](39:32)
+
+	RPAREN[)](39:34)
+
+	RPAREN[)](39:35)
+
+	LBRACE[{](39:36)
+
+	PRINT[print](40:8)
+
+	LPAREN[(](40:13)
+
+	ID[fact](40:14)
+
+	RPAREN[)](40:18)
+
+	SEMICOLON[;](40:19)
+
+	PRINT[print](41:8)
+
+	LPAREN[(](41:13)
+
+	STRING["! = "](41:14)
+
+	RPAREN[)](41:20)
+
+	SEMICOLON[;](41:21)
+
+	PRINT[print](42:8)
+
+	LPAREN[(](42:13)
+
+	ID[factorial](42:14)
+
+	LPAREN[(](42:23)
+
+	ID[fact](42:24)
+
+	RPAREN[)](42:28)
+
+	RPAREN[)](42:29)
+
+	SEMICOLON[;](42:30)
+
+	PRINT[print](43:8)
+
+	LPAREN[(](43:13)
+
+	STRING["\n"](43:14)
+
+	RPAREN[)](43:18)
+
+	SEMICOLON[;](43:19)
+
+	RBRACE[}](44:4)
+
+	ELSE[else](44:6)
+
+	LBRACE[{](44:11)
+
+	PRINT[print](45:8)
+
+	LPAREN[(](45:13)
+
+	ID[fact](45:14)
+
+	RPAREN[)](45:18)
+
+	SEMICOLON[;](45:19)
+
+	PRINT[print](46:8)
+
+	LPAREN[(](46:13)
+
+	STRING[" es demasiado grande.\n"](46:14)
+
+	RPAREN[)](46:39)
+
+	SEMICOLON[;](46:40)
+
+	RBRACE[}](47:4)
+
+	ID[contador](50:4)
+
+	TWO_POINTS[:](50:13)
+
+	ID[number](50:15)
+
+	OP_ASSIG[:=](50:22)
+
+	NUMBER[10](50:25)
+
+	SEMICOLON[;](50:27)
+
+	WHILE[while](51:4)
+
+	LPAREN[(](51:10)
+
+	ID[contador](51:11)
+
+	OP_GT[>](51:20)
+
+	NUMBER[0](51:22)
+
+	RPAREN[)](51:23)
+
+	LBRACE[{](51:24)
+
+	PRINT[print](52:8)
+
+	LPAREN[(](52:13)
+
+	ID[contador](52:14)
+
+	RPAREN[)](52:22)
+
+	SEMICOLON[;](52:23)
+
+	PRINT[print](53:8)
+
+	LPAREN[(](53:13)
+
+	STRING[", "](53:14)
+
+	RPAREN[)](53:18)
+
+	SEMICOLON[;](53:19)
+
+	ID[contador](54:8)
+
+	OP_ASSIG[:=](54:17)
+
+	ID[contador](54:20)
+
+	OP_SUB[-](54:29)
+
+	NUMBER[1](54:31)
+
+	SEMICOLON[;](54:32)
+
+	RBRACE[}](55:4)
+
+	PRINT[print](56:4)
+
+	LPAREN[(](56:9)
+
+	STRING["PUM\n"](56:10)
+
+	RPAREN[)](56:17)
+
+	SEMICOLON[;](56:18)
+
+	PRINT[print](59:4)
+
+	LPAREN[(](59:9)
+
+	STRING["Inserta un número a: "](59:10)
+
+	RPAREN[)](59:33)
+
+	SEMICOLON[;](59:34)
+
+	ID[a](60:4)
+
+	TWO_POINTS[:](60:6)
+
+	ID[number](60:8)
+
+	OP_ASSIG[:=](60:15)
+
+	READ[read](60:18)
+
+	LPAREN[(](60:22)
+
+	RPAREN[)](60:23)
+
+	SEMICOLON[;](60:24)
+
+	PRINT[print](61:4)
+
+	LPAREN[(](61:9)
+
+	STRING["Número insertado: "](61:10)
+
+	RPAREN[)](61:30)
+
+	SEMICOLON[;](61:31)
+
+	PRINT[print](62:4)
+
+	LPAREN[(](62:9)
+
+	ID[a](62:10)
+
+	RPAREN[)](62:11)
+
+	SEMICOLON[;](62:12)
+
+	PRINT[print](63:4)
+
+	LPAREN[(](63:9)
+
+	STRING["\n"](63:10)
+
+	RPAREN[)](63:14)
+
+	SEMICOLON[;](63:15)
+
+	PRINT[print](65:4)
+
+	LPAREN[(](65:9)
+
+	STRING["Inserta un número b: "](65:10)
+
+	RPAREN[)](65:33)
+
+	SEMICOLON[;](65:34)
+
+	ID[b](66:4)
+
+	TWO_POINTS[:](66:6)
+
+	ID[number](66:8)
+
+	OP_ASSIG[:=](66:15)
+
+	READ[read](66:18)
+
+	LPAREN[(](66:22)
+
+	RPAREN[)](66:23)
+
+	SEMICOLON[;](66:24)
+
+	PRINT[print](67:4)
+
+	LPAREN[(](67:9)
+
+	STRING["Número insertado: "](67:10)
+
+	RPAREN[)](67:30)
+
+	SEMICOLON[;](67:31)
+
+	PRINT[print](68:4)
+
+	LPAREN[(](68:9)
+
+	ID[b](68:10)
+
+	RPAREN[)](68:11)
+
+	SEMICOLON[;](68:12)
+
+	PRINT[print](69:4)
+
+	LPAREN[(](69:9)
+
+	STRING["\n"](69:10)
+
+	RPAREN[)](69:14)
+
+	SEMICOLON[;](69:15)
+
+	ID[suma](71:4)
+
+	TWO_POINTS[:](71:9)
+
+	ID[number](71:11)
+
+	OP_ASSIG[:=](71:18)
+
+	ID[a](71:21)
+
+	OP_SUM[+](71:23)
+
+	ID[b](71:25)
+
+	SEMICOLON[;](71:26)
+
+	PRINT[print](73:4)
+
+	LPAREN[(](73:9)
+
+	ID[suma](73:10)
+
+	RPAREN[)](73:14)
+
+	SEMICOLON[;](73:15)
+
+	IF[if](74:4)
+
+	LPAREN[(](74:7)
+
+	ID[suma](74:8)
+
+	OP_LT[<](74:13)
+
+	NUMBER[100](74:15)
+
+	RPAREN[)](74:18)
+
+	LBRACE[{](74:19)
+
+	PRINT[print](75:8)
+
+	LPAREN[(](75:13)
+
+	STRING[": Es un número pequeño\n"](75:14)
+
+	RPAREN[)](75:40)
+
+	SEMICOLON[;](75:41)
+
+	RBRACE[}](76:4)
+
+	ELSE[elif](76:6)
+
+	LPAREN[(](76:11)
+
+	LPAREN[(](76:12)
+
+	ID[suma](76:13)
+
+	OP_GE[>=](76:18)
+
+	NUMBER[100](76:21)
+
+	RPAREN[)](76:24)
+
+	OP_AND[&&](76:26)
+
+	LPAREN[(](76:29)
+
+	ID[suma](76:30)
+
+	OP_LT[<](76:35)
+
+	NUMBER[1000](76:37)
+
+	RPAREN[)](76:41)
+
+	RPAREN[)](76:42)
+
+	LBRACE[{](76:43)
+
+	PRINT[print](77:8)
+
+	LPAREN[(](77:13)
+
+	STRING[": Es un número mediano\n"](77:14)
+
+	RPAREN[)](77:40)
+
+	SEMICOLON[;](77:41)
+
+	RBRACE[}](78:4)
+
+	ELSE[else](78:6)
+
+	LBRACE[{](78:11)
+
+	PRINT[print](79:8)
+
+	LPAREN[(](79:13)
+
+	STRING[": Es un número grande\n"](79:14)
+
+	RPAREN[)](79:39)
+
+	SEMICOLON[;](79:40)
+
+	RBRACE[}](80:4)
+
+	PRINT[print](82:4)
+
+	LPAREN[(](82:9)
+
+	STRING["HE ACABADO\n"](82:10)
+
+	RPAREN[)](82:24)
+
+	SEMICOLON[;](82:25)
+
+	RBRACE[}](83:0)
+
+	EOF[](83:1)
+
+
+***** End of File *****

@@ -1,0 +1,50 @@
+*** Tokens ***
+	FUNC[function](0:0)
+
+	MAIN[main](0:9)
+
+	LPAREN[(](0:13)
+
+	RPAREN[)](0:14)
+
+	LBRACE[{](0:16)
+
+	PRINT[print](2:4)
+
+	LPAREN[(](2:9)
+
+	STRING["He entrado: "](2:10)
+
+	RPAREN[)](2:24)
+
+	SEMICOLON[;](2:25)
+
+	FOR[for](3:4)
+
+	LPAREN[(](3:8)
+
+	ID[i](3:9)
+
+	TWO_POINTS[:](3:11)
+
+	ID[number](3:13)
+
+	OP_ASSIG[:=](3:20)
+
+	NUMBER[0](3:23)
+
+	SEMICOLON[;](3:24)
+
+	LPAREN[(](3:26)
+
+	ID[i](3:27)
+
+	OP_LT[<](3:29)
+
+	NUMBER[3](3:31)
+
+	RPAREN[)](3:32)
+
+	RPAREN[)](3:33)
+
+Token processing halted due to an error

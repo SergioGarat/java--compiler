@@ -1,0 +1,59 @@
+-----------------------------------------------
+---------------- C3@ Code ----------------
+-----------------------------------------------
+main: skip
+
+pmb PROC_main
+
+T0 = "He entrado: "
+print T0
+
+T1 = 0
+
+i_0_2 = T1
+
+ETIQ_0: skip
+
+T2 = 3
+
+T3 = i_0_2 < T2
+
+if T3 == true goto ETIQ_1
+
+goto ETIQ_2
+
+ETIQ_3: skip
+
+T4 = 1
+
+T5 = i_0_2 + T4
+
+i_0_2 = T5
+
+goto ETIQ_0
+
+ETIQ_1: skip
+
+print i_0_2
+
+T6 = "\n"
+print T6
+
+goto ETIQ_3
+
+ETIQ_2: skip
+
+T7 = 1
+
+T8 = true
+
+T9 = 2
+
+id3_0_2 = T7
+
+id2_0_2 = T8
+
+id3_0_2 = T9
+
+rtn
+
