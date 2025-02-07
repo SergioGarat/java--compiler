@@ -31,7 +31,7 @@ false_label : .asciz "false"
 PROC_fizzbuzz:
 
 # pmb PROC_fizzbuzz
-push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.
+push %rbp        # Guardamos el regustro que utilizaremos como a apuntador de la pila.
 mov %rsp, %rbp
 sub $176, %rsp
 
@@ -147,7 +147,7 @@ ret
 PROC_factorial:
 
 # pmb PROC_factorial
-push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.
+push %rbp        # Guardamos el regustro que utilizaremos como a apuntador de la pila.
 mov %rsp, %rbp
 sub $144, %rsp
 
@@ -242,7 +242,7 @@ ret
 main:
 
 # pmb PROC_main
-push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.
+push %rbp        # Guardamos el regustro que utilizaremos como a apuntador de la pila.
 mov %rsp, %rbp
 sub $560, %rsp
 

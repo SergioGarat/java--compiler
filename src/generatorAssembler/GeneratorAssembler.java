@@ -30,7 +30,7 @@ public class GeneratorAssembler {
     private String filename = "AssemblerCode.s";
     // Symbols Table
     private SymbolsTable symbolsTable;
-    // TS + TV
+
     private BackTables backend;
 
     private GeneratorC3A c3a_g;
@@ -538,7 +538,7 @@ public class GeneratorAssembler {
      * @param instruction the C3A instruction
      */
     private void pmbInstruction(InstructionC3A instruction) {
-        writeLine("push %rbp        # Guardem el registre que utilitzarem com a apuntador de la pila.");
+        writeLine("push %rbp        # Guardamos el regustro que utilizaremos como a apuntador de la pila.");
         writeLine("mov %rsp, %rbp");
         //Declarar parametros del procedimiento como variables.
         String backFunId = instruction.getDest();
@@ -554,11 +554,9 @@ public class GeneratorAssembler {
             throw new Error("Invalid function");
         }
 
+        //Alineación a 16 bytes
         Proc proc = backend.getProc(backFunId);
-
-        int procsize = proc.getMemorySize();
-        int alignedSize = (procsize + 15) & ~15;
-        //si alineamos al memoria a 16 funciona
+        int alignedSize = (proc.getMemorySize() + 15) & ~15;
         writeLine("sub $" + alignedSize + ", %rsp");
     }
 
